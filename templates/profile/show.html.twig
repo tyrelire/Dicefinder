@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+<div class="bg-gray-100">
+    <div class="container mx-auto py-8">
+        <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
+            <div class="col-span-4 sm:col-span-3">
+                <div class="bg-white shadow rounded-lg p-6">
+                    <div class="flex flex-col items-center">
+                        {% if app.user.avatar %}
+                            <img src="{{ asset('uploads/avatars/' ~ app.user.avatar) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="Photo de profil">
+                        {% else %}
+                            <img src="{{ asset('images/default-avatar.png') }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="Photo de profil par défaut">
+                        {% endif %}
+                        <h1 class="text-xl font-bold">{{ app.user.firstName }} "{{ app.user.username }}" {{ app.user.lastName }}</h1>
+
+                        <!-- Section Niveau de compte -->
+                        <div class="mt-4 mb-6 text-center">
+                            <span class="text-gray-700 text-lg font-bold">Niveau</span>
+                            <span class="text-indigo-600 text-xl font-extrabold">12</span>
+                        </div>
+
+                        <!-- Rôles -->
+                        <p class="text-gray-700">
+                            {% if is_granted('ROLE_MJ') and is_granted('ROLE_JOUEUR') %}
+                                Maître du Jeu & Joueur
+                            {% elseif is_granted('ROLE_MJ') %}
+                                Maître du Jeu
+                            {% elseif is_granted('ROLE_JOUEUR') %}
+                                Joueur
+                            {% else %}
+                                Aucun rôle attribué
+                            {% endif %}
+                        </p>
+
+                        <div class="mt-6 flex flex-wrap gap-4 justify-center">
+                            <a href="#" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Rejoindre une partie</a>
+                            <a href="#" class="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded">Créer une campagne</a>
+                        </div>
+                    </div>
+
+                    <hr class="my-6 border-t border-gray-300">
+                    <div class="flex flex-col mb-6">
+                        <span class="text-gray-700 uppercase font-bold tracking-wider mb-2">Compétences</span>
+                        <ul>
+                            <li class="mb-2">Maître du jeu</li>
+                            <li class="mb-2">Création d'univers</li>
+                            <li class="mb-2">Stratégie de combat</li>
+                            <li class="mb-2">Narration</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-col mb-6">
+                        <span class="text-gray-700 uppercase font-bold tracking-wider mb-2">Badges</span>
+                        <ul>
+                            <li class="mb-2">Expert Narration</li>
+                            <li class="mb-2">Stratégiste</li>
+                            <li class="mb-2">Créateur d'Univers</li>
+                            <li class="mb-2">Maître des Combats</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-span-4 sm:col-span-9">
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-xl font-bold mb-4">À propos de moi</h2>
+                    <p class="text-gray-700">{{ app.user.bio ? app.user.bio : 'Pas de biographie disponible' }}</p>
+
+                    <h2 class="text-xl font-bold mt-6 mb-4">Mon expérience dans les jeux de rôle</h2>
+                    <div class="mb-6">
+                        <div class="flex justify-between flex-wrap gap-2 w-full">
+                            <span class="text-gray-700 font-bold">Campagne : Les Brumes de Valoria</span>
+                            <p>
+                                <span class="text-gray-700 mr-2">Rôle : Maître du Jeu</span>
+                                <span class="text-gray-700">2021 - présent</span>
+                            </p>
+                        </div>
+                        <p class="mt-2">Une campagne immersive dans un monde fantastique où les joueurs doivent explorer des terres mystérieuses...</p>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex justify-between flex-wrap gap-2 w-full">
+                            <span class="text-gray-700 font-bold">Campagne : La Cité des Ombres</span>
+                            <p>
+                                <span class="text-gray-700 mr-2">Rôle : Joueur (Assassin)</span>
+                                <span class="text-gray-700">2020 - 2022</span>
+                            </p>
+                        </div>
+                        <p class="mt-2">Une aventure de jeu de rôle urbaine avec des complots, de la trahison et des combats intenses.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
