@@ -40,7 +40,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'mt-3 mb-3 p-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+                    'class' => 'p-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
                     'placeholder' => 'toi@exemple.com',
                 ],
                 'invalid_message' => 'Un compte existe déjà avec cette adresse e-mail.',
@@ -51,13 +51,13 @@ class RegistrationFormType extends AbstractType
                     'Joueur' => 'ROLE_JOUEUR',
                 ],
                 'multiple' => true,
-                'expanded' => true, 
+                'expanded' => true,
                 'label' => 'Roles',
                 'label_attr' => [
                     'class' => 'block text-sm font-medium text-gray-700',
                 ],
                 'attr' => [
-                    'class' => 'flex items-center space-x-2',
+                    'class' => 'flex items-center space-x-2 font-bold text-white',
                 ],
                 'choice_attr' => [
                     'ROLE_MJ' => ['class' => 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 rounded border-gray-300'],
@@ -89,13 +89,13 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'first_options' => [
                     'attr' => [
-                        'class' => 'mt-3 mb-3 p-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+                        'class' => 'p-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
                         'placeholder' => 'Mot de passe'
                     ],
                 ],
                 'second_options' => [
                     'attr' => [
-                        'class' => 'mt-3 mb-3 p-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+                        'class' => 'p-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
                         'placeholder' => 'Confirmer le mot de passe'
                     ],
                 ],

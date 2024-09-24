@@ -1,0 +1,76 @@
+<div class="container mx-auto p-6 bg-gray-100 rounded-lg shadow-lg mt-20">
+    <h1 class="text-2xl font-bold mb-4 text-gray-800">Create or Edit JDR Group</h1>
+    {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <label for="title" class="block text-sm font-medium text-gray-700">
+                {{ form_label(form.title) }}
+            </label>
+            <div class="mt-1">
+                {{ form_widget(form.title, {'attr': {'class': 'input-field'}}) }}
+            </div>
+        </div>
+
+        <div>
+            <label for="description" class="block text-sm font-medium text-gray-700">
+                {{ form_label(form.description) }}
+            </label>
+            <div class="mt-1">
+                {{ form_widget(form.description, {'attr': {'class': 'input-field'}}) }}
+            </div>
+        </div>
+
+        <div>
+            <label for="picture" class="block text-sm font-medium text-gray-700">
+                {{ form_label(form.picture) }}
+            </label>
+            <div class="mt-1">
+                {{ form_widget(form.picture, {'attr': {'class': 'input-field'}}) }}
+            </div>
+        </div>
+
+        <div>
+            <label for="created_at" class="block text-sm font-medium text-gray-700">
+                {{ form_label(form.created_at) }}
+            </label>
+            <div class="mt-1">
+                {{ form_widget(form.created_at, {'attr': {'class': 'input-field'}}) }}
+            </div>
+        </div>
+
+        <div>
+            <label for="edit_at" class="block text-sm font-medium text-gray-700">
+                {{ form_label(form.edit_at) }}
+            </label>
+            <div class="mt-1">
+                {{ form_widget(form.edit_at, {'attr': {'class': 'input-field'}}) }}
+            </div>
+        </div>
+
+        <div>
+            <label for="maxPlayer" class="block text-sm font-medium text-gray-700">
+                {{ form_label(form.maxPlayer) }}
+            </label>
+            <div class="mt-1">
+                {{ form_widget(form.maxPlayer, {'attr': {'class': 'input-field'}}) }}
+            </div>
+        </div>
+
+        <div>
+            <label for="players" class="block text-sm font-medium text-gray-700">
+                {{ form_label(form.players) }}
+            </label>
+            <div class="mt-1">
+                {{ form_widget(form.players, {'attr': {'class': 'input-field'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-6">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            {{ button_label|default('Save') }}
+        </button>
+    </div>
+
+    {{ form_end(form) }}
+</div>

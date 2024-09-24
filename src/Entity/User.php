@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -61,6 +63,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, unique: true)]
     private ?string $username = null;
+
+    /**
+     * @var Collection<int, GroupeJDR>
+     */
+    #[ORM\OneToMany(targetEntity: GroupeJDR::class, mappedBy: 'owner')]
+    private Collection $groupeJDRs;
+
+    #[ORM\ManyToMany(targetEntity: GroupeJDR::class, inversedBy: 'players')]
+    private Collection $joinedGroupeJDRs; // Groupes auxquels l'utilisateur a rejoint
+
+    public function __construct()
+    {
+        $this->groupeJDRs = new ArrayCollection();
+        $this->joinedGroupeJDRs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -241,6 +258,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GroupeJDR>
+     */
+    public function getGroupeJDRs(): Collection
+    {
+        return $this->groupeJDRs;
+    }
+
+    public function addGroupeJDR(GroupeJDR $groupeJDR): static
+    {
+        if (!$this->groupeJDRs->contains($groupeJDR)) {
+            $this->groupeJDRs->add($groupeJDR);
+            $groupeJDR->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupeJDR(GroupeJDR $groupeJDR): static
+    {
+        if ($this->groupeJDRs->removeElement($groupeJDR)) {
+            // set the owning side to null (unless already changed)
+            if ($groupeJDR->getOwner() === $this) {
+                $groupeJDR->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GroupeJDR>
+     */
+    public function getJoinedGroupeJDRs(): Collection
+    {
+        return $this->joinedGroupeJDRs;
+    }
+
+    public function joinGroupeJDR(GroupeJDR $groupeJDR): static
+    {
+        if (!$this->joinedGroupeJDRs->contains($groupeJDR)) {
+            $this->joinedGroupeJDRs->add($groupeJDR);
+        }
+
+        return $this;
+    }
+
+    public function leaveGroupeJDR(GroupeJDR $groupeJDR): static
+    {
+        $this->joinedGroupeJDRs->removeElement($groupeJDR);
 
         return $this;
     }

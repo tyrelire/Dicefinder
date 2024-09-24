@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New GroupeJDR{% endblock %}
+
+{% block body %}
+    <h1>Create new GroupeJDR</h1>
+
+    {{ include('groupe_jdr/_form.html.twig') }}
+
+    <a href="{{ path('app_groupe_j_d_r_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GroupeJDR index{% endblock %}
+
+{% block body %}
+<div class="container mx-auto p-6 mt-20">
+    <h1 class="text-3xl font-bold mb-8 text-gray-900">Les   </h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for groupe_j_d_r in groupe_j_d_rs %}
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img class="w-full h-48 object-cover" src="{{ groupe_j_d_r.picture }}" alt="{{ groupe_j_d_r.title }} image">
+                
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-2 text-gray-800">{{ groupe_j_d_r.title }}</h2>
+                    
+                    <p class="text-gray-600 mb-4">
+                        {{ groupe_j_d_r.description|length > 100 ? groupe_j_d_r.description[:100] ~ '...' : groupe_j_d_r.description }}
+                    </p>
+
+                    <div class="text-gray-600 text-sm mb-2">
+                        <strong>Created at:</strong> {{ groupe_j_d_r.createdAt ? groupe_j_d_r.createdAt|date('Y-m-d H:i:s') : 'N/A' }}
+                    </div>
+                    <div class="text-gray-600 text-sm mb-4">
+                        <strong>Last edited:</strong> {{ groupe_j_d_r.editAt ? groupe_j_d_r.editAt|date('Y-m-d H:i:s') : 'N/A' }}
+                    </div>
+                    <div class="text-gray-600 text-sm mb-4">
+                        <strong>Max Players:</strong> {{ groupe_j_d_r.maxPlayer }}
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                            Show
+                        </a>
+                        <a href="{{ path('app_groupe_j_d_r_edit', {'id': groupe_j_d_r.id}) }}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                            Edit
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-gray-700 text-lg">No records found</p>
+        {% endfor %}
+    </div>
+
+    <div class="mt-8">
+        <a href="{{ path('app_groupe_j_d_r_new') }}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+            Create new
+        </a>
+    </div>
+
+</div>
+{% endblock %}

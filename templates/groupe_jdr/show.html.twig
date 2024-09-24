@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GroupeJDR{% endblock %}
+
+{% block body %}
+    <h1>GroupeJDR</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ groupe_j_d_r.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ groupe_j_d_r.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ groupe_j_d_r.description }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>{{ groupe_j_d_r.picture }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ groupe_j_d_r.createdAt ? groupe_j_d_r.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Edit_at</th>
+                <td>{{ groupe_j_d_r.editAt ? groupe_j_d_r.editAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>MaxPlayer</th>
+                <td>{{ groupe_j_d_r.maxPlayer }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_groupe_j_d_r_index') }}">back to list</a>
+
+    <a href="{{ path('app_groupe_j_d_r_edit', {'id': groupe_j_d_r.id}) }}">edit</a>
+
+    {{ include('groupe_jdr/_delete_form.html.twig') }}
+{% endblock %}
