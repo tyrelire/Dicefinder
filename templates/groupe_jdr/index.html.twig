@@ -1,40 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}GroupeJDR index{% endblock %}
+{% block title %}DiceFinder | Les Univers{% endblock %}
 
 {% block body %}
-<div class="container mx-auto p-6 mt-20">
-    <h1 class="text-3xl font-bold mb-8 text-gray-900">Les   </h1>
+<div class="container mx-auto px-4 p-6 mt-10">
+    <h1 class="text-3xl font-bold mb-8 text-gray-900">Les groupes JDR</h1>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <form method="get" action="{{ path('app_groupe_j_d_r_index') }}" class="mb-8">
+        <input type="text" name="search" placeholder="Rechercher un JDR..." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </form>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {% for groupe_j_d_r in groupe_j_d_rs %}
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img class="w-full h-48 object-cover" src="{{ groupe_j_d_r.picture }}" alt="{{ groupe_j_d_r.title }} image">
+            <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white">
+                <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }} image" class="rounded-lg mb-4 w-full h-[20rem] object-cover">
                 
-                <div class="p-6">
-                    <h2 class="text-xl font-bold mb-2 text-gray-800">{{ groupe_j_d_r.title }}</h2>
-                    
-                    <p class="text-gray-600 mb-4">
-                        {{ groupe_j_d_r.description|length > 100 ? groupe_j_d_r.description[:100] ~ '...' : groupe_j_d_r.description }}
-                    </p>
+                <div class="flex justify-between items-center">
+                    <span class="font-semibold">{{ groupe_j_d_r.title }}</span>
+                    <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}" class="bg-blue-600 text-white px-2 py-1 rounded text-xs">GO</a>
+                </div>
 
-                    <div class="text-gray-600 text-sm mb-2">
-                        <strong>Created at:</strong> {{ groupe_j_d_r.createdAt ? groupe_j_d_r.createdAt|date('Y-m-d H:i:s') : 'N/A' }}
+                <div class="flex justify-between items-center mt-2">
+                    <div class="flex items-center">
+                    {% if app.user.avatar %}
+                        <img src="{{ asset('uploads/avatars/' ~ groupe_j_d_r.owner.avatar) }}" alt="MJ photo" class="rounded h-8 w-8 object-cover">
+                    {% else %}
+                        <img class="rounded h-8 w-8 object-cover" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
+                    {% endif %}
+                        <div class="ml-2">
+                            <p class="text-xs text-gray-400">MJ</p>
+                            <p class="text-xs text-white">{{ groupe_j_d_r.owner.username }}</p>
+                        </div>
                     </div>
-                    <div class="text-gray-600 text-sm mb-4">
-                        <strong>Last edited:</strong> {{ groupe_j_d_r.editAt ? groupe_j_d_r.editAt|date('Y-m-d H:i:s') : 'N/A' }}
-                    </div>
-                    <div class="text-gray-600 text-sm mb-4">
-                        <strong>Max Players:</strong> {{ groupe_j_d_r.maxPlayer }}
-                    </div>
-
-                    <div class="flex space-x-4">
-                        <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-                            Show
-                        </a>
-                        <a href="{{ path('app_groupe_j_d_r_edit', {'id': groupe_j_d_r.id}) }}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
-                            Edit
-                        </a>
+                    <div class="text-right">
+                        <p class="text-xs text-gray-400">Places disponibles</p>
+                        <p class="text-lg font-bold text-white">{{ groupe_j_d_r.maxPlayer - groupe_j_d_r.players|length }}</p>
                     </div>
                 </div>
             </div>
@@ -42,12 +42,5 @@
             <p class="text-gray-700 text-lg">No records found</p>
         {% endfor %}
     </div>
-
-    <div class="mt-8">
-        <a href="{{ path('app_groupe_j_d_r_new') }}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
-            Create new
-        </a>
-    </div>
-
 </div>
 {% endblock %}

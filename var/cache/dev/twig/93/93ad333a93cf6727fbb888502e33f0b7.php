@@ -1245,6 +1245,6 @@ class __TwigTemplate_4e673a32aa5a625c1b3284755187d81b extends Template
         </span>
     {%- endif -%}
 {%- endblock form_help %}
-", "bootstrap_3_layout.html.twig", "C:\\Users\\benja\\Desktop\\app\\dicefinder\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\bootstrap_3_layout.html.twig");
+", "bootstrap_3_layout.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\bootstrap_3_layout.html.twig");
     }
 }

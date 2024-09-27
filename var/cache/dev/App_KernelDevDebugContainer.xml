@@ -84,7 +84,7 @@
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
     <parameter key="avatars_directory">C:\Users\benja\Documents\GitHub\dicefinder/public/uploads/avatars</parameter>
-    <parameter key="uploads_directory">C:\Users\benja\Documents\GitHub\dicefinder/public/uploads/images</parameter>
+    <parameter key="uploads_directory">C:\Users\benja\Documents\GitHub\dicefinder/public/uploads/images-jdr</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -372,6 +372,27 @@
         <argument type="service" id=".service_locator.QaaoWjx.App\Controller\HomeController"/>
       </call>
     </service>
+    <service id="App\Controller\InvitationController" class="App\Controller\InvitationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.QaaoWjx.App\Controller\InvitationController"/>
+      </call>
+    </service>
+    <service id="App\Controller\MyGameController" class="App\Controller\MyGameController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.QaaoWjx.App\Controller\MyGameController"/>
+      </call>
+    </service>
+    <service id="App\Controller\PlayerInvitationController" class="App\Controller\PlayerInvitationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.QaaoWjx.App\Controller\PlayerInvitationController"/>
+      </call>
+    </service>
     <service id="App\Controller\ProfileController" class="App\Controller\ProfileController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -412,7 +433,19 @@
     <service id="App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\GroupeJDRRepository" class="App\Repository\GroupeJDRRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\InvitationRepository" class="App\Repository\InvitationRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\NotificationHistoryRepository" class="App\Repository\NotificationHistoryRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -452,7 +485,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.TzkxWEs"/>
+      <argument type="service" id=".service_locator.Za4wbqN"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3393,7 +3426,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.TzkxWEs"/>
+      <argument type="service" id=".service_locator.Za4wbqN"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -5170,7 +5203,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.pSNm1xs"/>
+      <argument type="service" id=".service_locator.j5Cs53P"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7445,6 +7478,15 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\InvitationController" class="App\Controller\InvitationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\InvitationController" class="App\Controller\InvitationController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\InvitationController" class="App\Controller\InvitationController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\MyGameController" class="App\Controller\MyGameController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\MyGameController" class="App\Controller\MyGameController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\MyGameController" class="App\Controller\MyGameController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PlayerInvitationController" class="App\Controller\PlayerInvitationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PlayerInvitationController" class="App\Controller\PlayerInvitationController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PlayerInvitationController" class="App\Controller\PlayerInvitationController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ProfileController" class="App\Controller\ProfileController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ProfileController" class="App\Controller\ProfileController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ProfileController" class="App\Controller\ProfileController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7464,8 +7506,14 @@
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserType" class="App\Form\UserType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\GroupeJDRRepository" class="App\Repository\GroupeJDRRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\GroupeJDRRepository" class="App\Repository\GroupeJDRRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\InvitationRepository" class="App\Repository\InvitationRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\InvitationRepository" class="App\Repository\InvitationRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\NotificationHistoryRepository" class="App\Repository\NotificationHistoryRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\NotificationHistoryRepository" class="App\Repository\NotificationHistoryRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.pRu6x_4" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8039,19 +8087,21 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.b7WMJCv" method="withContext"/>
     </service>
-    <service id=".service_locator.KSb8udl" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.CzRsto_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="groupeJDR" type="service_closure" id=".errored..service_locator.KSb8udl.App\Entity\GroupeJDR"/>
+        <argument key="groupeJDR" type="service_closure" id=".errored..service_locator.CzRsto_.App\Entity\GroupeJDR"/>
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="invitationRepository" type="service_closure" id="App\Repository\InvitationRepository"/>
         <argument key="slugger" type="service_closure" id="slugger"/>
       </argument>
     </service>
-    <service id=".service_locator.KSb8udl.App\Controller\GroupeJDRController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.CzRsto_.App\Controller\GroupeJDRController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\GroupeJDRController::edit()"/>
       <argument>App\Controller\GroupeJDRController::edit()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.KSb8udl" method="withContext"/>
+      <factory service=".service_locator.CzRsto_" method="withContext"/>
     </service>
     <service id=".service_locator.8bi2G4e" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -8065,6 +8115,84 @@
       <argument>App\Controller\GroupeJDRController::delete()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.8bi2G4e" method="withContext"/>
+    </service>
+    <service id=".service_locator.BhavcCd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="invitationRepository" type="service_closure" id="App\Repository\InvitationRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.BhavcCd.App\Controller\InvitationController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\InvitationController::index()"/>
+      <argument>App\Controller\InvitationController::index()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.BhavcCd" method="withContext"/>
+    </service>
+    <service id=".service_locator.t03gBDU" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="invitation" type="service_closure" id=".errored..service_locator.t03gBDU.App\Entity\Invitation"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.t03gBDU.App\Controller\InvitationController::respond()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\InvitationController::respond()"/>
+      <argument>App\Controller\InvitationController::respond()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.t03gBDU" method="withContext"/>
+    </service>
+    <service id=".service_locator.RvFgQI_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="jdrRepository" type="service_closure" id="App\Repository\GroupeJDRRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.RvFgQI_.App\Controller\MyGameController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MyGameController::index()"/>
+      <argument>App\Controller\MyGameController::index()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.RvFgQI_" method="withContext"/>
+    </service>
+    <service id=".service_locator.D_ODzvE" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="groupeJdrRepository" type="service_closure" id="App\Repository\GroupeJDRRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.D_ODzvE.App\Controller\PlayerInvitationController::checkUser()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PlayerInvitationController::checkUser()"/>
+      <argument>App\Controller\PlayerInvitationController::checkUser()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.D_ODzvE" method="withContext"/>
+    </service>
+    <service id=".service_locator.BVux.Zu" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="groupeJDRRepository" type="service_closure" id="App\Repository\GroupeJDRRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.BVux.Zu.App\Controller\PlayerInvitationController::invitePlayer()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PlayerInvitationController::invitePlayer()"/>
+      <argument>App\Controller\PlayerInvitationController::invitePlayer()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.BVux.Zu" method="withContext"/>
+    </service>
+    <service id=".service_locator.cPirmC2" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="groupeJdrRepository" type="service_closure" id="App\Repository\GroupeJDRRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.cPirmC2.App\Controller\PlayerInvitationController::removeUserFromJdr()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PlayerInvitationController::removeUserFromJdr()"/>
+      <argument>App\Controller\PlayerInvitationController::removeUserFromJdr()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.cPirmC2" method="withContext"/>
     </service>
     <service id=".service_locator.gigYcBf" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -8117,7 +8245,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.mXDaS5b" method="withContext"/>
     </service>
-    <service id=".service_locator.TzkxWEs" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Za4wbqN" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.4wc4Ag1.kernel::registerContainerConfiguration()"/>
@@ -8127,8 +8255,14 @@
         <argument key="App\Controller\GroupeJDRController::index" type="service_closure" id=".service_locator.uqAk9vV.App\Controller\GroupeJDRController::index()"/>
         <argument key="App\Controller\GroupeJDRController::new" type="service_closure" id=".service_locator..fUBbna.App\Controller\GroupeJDRController::new()"/>
         <argument key="App\Controller\GroupeJDRController::show" type="service_closure" id=".service_locator.b7WMJCv.App\Controller\GroupeJDRController::show()"/>
-        <argument key="App\Controller\GroupeJDRController::edit" type="service_closure" id=".service_locator.KSb8udl.App\Controller\GroupeJDRController::edit()"/>
+        <argument key="App\Controller\GroupeJDRController::edit" type="service_closure" id=".service_locator.CzRsto_.App\Controller\GroupeJDRController::edit()"/>
         <argument key="App\Controller\GroupeJDRController::delete" type="service_closure" id=".service_locator.8bi2G4e.App\Controller\GroupeJDRController::delete()"/>
+        <argument key="App\Controller\InvitationController::index" type="service_closure" id=".service_locator.BhavcCd.App\Controller\InvitationController::index()"/>
+        <argument key="App\Controller\InvitationController::respond" type="service_closure" id=".service_locator.t03gBDU.App\Controller\InvitationController::respond()"/>
+        <argument key="App\Controller\MyGameController::index" type="service_closure" id=".service_locator.RvFgQI_.App\Controller\MyGameController::index()"/>
+        <argument key="App\Controller\PlayerInvitationController::checkUser" type="service_closure" id=".service_locator.D_ODzvE.App\Controller\PlayerInvitationController::checkUser()"/>
+        <argument key="App\Controller\PlayerInvitationController::invitePlayer" type="service_closure" id=".service_locator.BVux.Zu.App\Controller\PlayerInvitationController::invitePlayer()"/>
+        <argument key="App\Controller\PlayerInvitationController::removeUserFromJdr" type="service_closure" id=".service_locator.cPirmC2.App\Controller\PlayerInvitationController::removeUserFromJdr()"/>
         <argument key="App\Controller\ProfileController::edit" type="service_closure" id=".service_locator.gigYcBf.App\Controller\ProfileController::edit()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.QVAk1vM.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.fdTWzgN.App\Controller\RegistrationController::verifyUserEmail()"/>
@@ -8138,8 +8272,14 @@
         <argument key="App\Controller\GroupeJDRController:index" type="service_closure" id=".service_locator.uqAk9vV.App\Controller\GroupeJDRController::index()"/>
         <argument key="App\Controller\GroupeJDRController:new" type="service_closure" id=".service_locator..fUBbna.App\Controller\GroupeJDRController::new()"/>
         <argument key="App\Controller\GroupeJDRController:show" type="service_closure" id=".service_locator.b7WMJCv.App\Controller\GroupeJDRController::show()"/>
-        <argument key="App\Controller\GroupeJDRController:edit" type="service_closure" id=".service_locator.KSb8udl.App\Controller\GroupeJDRController::edit()"/>
+        <argument key="App\Controller\GroupeJDRController:edit" type="service_closure" id=".service_locator.CzRsto_.App\Controller\GroupeJDRController::edit()"/>
         <argument key="App\Controller\GroupeJDRController:delete" type="service_closure" id=".service_locator.8bi2G4e.App\Controller\GroupeJDRController::delete()"/>
+        <argument key="App\Controller\InvitationController:index" type="service_closure" id=".service_locator.BhavcCd.App\Controller\InvitationController::index()"/>
+        <argument key="App\Controller\InvitationController:respond" type="service_closure" id=".service_locator.t03gBDU.App\Controller\InvitationController::respond()"/>
+        <argument key="App\Controller\MyGameController:index" type="service_closure" id=".service_locator.RvFgQI_.App\Controller\MyGameController::index()"/>
+        <argument key="App\Controller\PlayerInvitationController:checkUser" type="service_closure" id=".service_locator.D_ODzvE.App\Controller\PlayerInvitationController::checkUser()"/>
+        <argument key="App\Controller\PlayerInvitationController:invitePlayer" type="service_closure" id=".service_locator.BVux.Zu.App\Controller\PlayerInvitationController::invitePlayer()"/>
+        <argument key="App\Controller\PlayerInvitationController:removeUserFromJdr" type="service_closure" id=".service_locator.cPirmC2.App\Controller\PlayerInvitationController::removeUserFromJdr()"/>
         <argument key="App\Controller\ProfileController:edit" type="service_closure" id=".service_locator.gigYcBf.App\Controller\ProfileController::edit()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.QVAk1vM.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.fdTWzgN.App\Controller\RegistrationController::verifyUserEmail()"/>
@@ -8435,10 +8575,13 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.pSNm1xs" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.j5Cs53P" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\CategoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
         <argument key="App\Repository\GroupeJDRRepository" type="service_closure" id="App\Repository\GroupeJDRRepository"/>
+        <argument key="App\Repository\InvitationRepository" type="service_closure" id="App\Repository\InvitationRepository"/>
+        <argument key="App\Repository\NotificationHistoryRepository" type="service_closure" id="App\Repository\NotificationHistoryRepository"/>
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
@@ -8699,6 +8842,24 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.QaaoWjx" method="withContext"/>
     </service>
+    <service id=".service_locator.QaaoWjx.App\Controller\InvitationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\InvitationController"/>
+      <argument>App\Controller\InvitationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.QaaoWjx" method="withContext"/>
+    </service>
+    <service id=".service_locator.QaaoWjx.App\Controller\MyGameController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MyGameController"/>
+      <argument>App\Controller\MyGameController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.QaaoWjx" method="withContext"/>
+    </service>
+    <service id=".service_locator.QaaoWjx.App\Controller\PlayerInvitationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PlayerInvitationController"/>
+      <argument>App\Controller\PlayerInvitationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.QaaoWjx" method="withContext"/>
+    </service>
     <service id=".service_locator.QaaoWjx.App\Controller\ProfileController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ProfileController"/>
       <argument>App\Controller\ProfileController</argument>
@@ -8902,6 +9063,9 @@
           <argument>App\Kernel</argument>
           <argument>App\Controller\GroupeJDRController</argument>
           <argument>App\Controller\HomeController</argument>
+          <argument>App\Controller\InvitationController</argument>
+          <argument>App\Controller\MyGameController</argument>
+          <argument>App\Controller\PlayerInvitationController</argument>
           <argument>App\Controller\ProfileController</argument>
           <argument>App\Controller\RegistrationController</argument>
           <argument>App\Controller\SecurityController</argument>
@@ -9105,11 +9269,14 @@
     <service id=".errored..service_locator.b7WMJCv.App\Entity\GroupeJDR" class="App\Entity\GroupeJDR">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.b7WMJCv&quot;: it needs an instance of &quot;App\Entity\GroupeJDR&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
-    <service id=".errored..service_locator.KSb8udl.App\Entity\GroupeJDR" class="App\Entity\GroupeJDR">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.KSb8udl&quot;: it needs an instance of &quot;App\Entity\GroupeJDR&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    <service id=".errored..service_locator.CzRsto_.App\Entity\GroupeJDR" class="App\Entity\GroupeJDR">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.CzRsto_&quot;: it needs an instance of &quot;App\Entity\GroupeJDR&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".errored..service_locator.8bi2G4e.App\Entity\GroupeJDR" class="App\Entity\GroupeJDR">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.8bi2G4e&quot;: it needs an instance of &quot;App\Entity\GroupeJDR&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.t03gBDU.App\Entity\Invitation" class="App\Entity\Invitation">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.t03gBDU&quot;: it needs an instance of &quot;App\Entity\Invitation&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -10276,7 +10443,7 @@
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.TzkxWEs"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Za4wbqN"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10322,8 +10489,14 @@
     <service id=".service_locator.v8rLr_4" alias=".service_locator.uqAk9vV"/>
     <service id=".service_locator.sbm5tvA" alias=".service_locator..fUBbna"/>
     <service id=".service_locator.aMQTCYO" alias=".service_locator.b7WMJCv"/>
-    <service id=".service_locator.l_bOgRn" alias=".service_locator.KSb8udl"/>
+    <service id=".service_locator.7WpZzpY" alias=".service_locator.CzRsto_"/>
     <service id=".service_locator.W8kbQve" alias=".service_locator.8bi2G4e"/>
+    <service id=".service_locator.Af6SJa6" alias=".service_locator.BhavcCd"/>
+    <service id=".service_locator.7FtUuEV" alias=".service_locator.t03gBDU"/>
+    <service id=".service_locator.jXYnld_" alias=".service_locator.RvFgQI_"/>
+    <service id=".service_locator.ALbmI8F" alias=".service_locator.D_ODzvE"/>
+    <service id=".service_locator.VvMEzhL" alias=".service_locator.BVux.Zu"/>
+    <service id=".service_locator.vnA0x6b" alias=".service_locator.cPirmC2"/>
     <service id=".service_locator.RbXSRxP" alias=".service_locator.gigYcBf"/>
     <service id=".service_locator._I.kJlJ" alias=".service_locator.QVAk1vM"/>
     <service id=".service_locator.UQkiy2u" alias=".service_locator.fdTWzgN"/>

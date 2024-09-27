@@ -73,6 +73,7 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
+        yield "DiceFinder | Connexion";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -206,14 +207,14 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  148 => 31,  140 => 27,  132 => 24,  129 => 23,  126 => 22,  120 => 19,  117 => 18,  115 => 17,  108 => 13,  99 => 6,  86 => 5,  64 => 3,  41 => 1,);
+        return array (  149 => 31,  141 => 27,  133 => 24,  130 => 23,  127 => 22,  121 => 19,  118 => 18,  116 => 17,  109 => 13,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}DiceFinder | Connexion{% endblock %}
 
 {% block body %}
 <div class=\"min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8\">

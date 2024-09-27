@@ -14,12 +14,10 @@
                         <img src="{{ asset('images/default-avatar.png') }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="Photo de profil par défaut">
                     {% endif %}
                     <h1 class="text-xl font-bold">{{ app.user.username }}</h1>
-
                     <div class="mt-4 mb-6 text-center">
                         <span class="text-gray-700 text-lg font-bold">Niveau</span>
                         <span class="text-indigo-600 text-xl font-extrabold">12</span>
                     </div>
-
                     <p class="text-gray-700">
                         {% if is_granted('ROLE_MJ') and is_granted('ROLE_JOUEUR') %}
                             Maître du Jeu & Joueur
@@ -31,13 +29,11 @@
                             Aucun rôle attribué
                         {% endif %}
                     </p>
-
                     <div class="mt-6 flex flex-wrap gap-4 justify-center">
                         <a href="#" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Rejoindre une partie</a>
                         <a href="#" class="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded">Créer une campagne</a>
                     </div>
                 </div>
-
                 <hr class="my-6 border-t border-gray-300">
                 <div class="flex flex-col mb-6">
                     <span class="text-gray-700 uppercase font-bold tracking-wider mb-2">Compétences</span>
@@ -48,7 +44,6 @@
                         <li class="mb-2">Narration</li>
                     </ul>
                 </div>
-
                 <div class="flex flex-col mb-6">
                     <span class="text-gray-700 uppercase font-bold tracking-wider mb-2">Badges</span>
                     <ul>

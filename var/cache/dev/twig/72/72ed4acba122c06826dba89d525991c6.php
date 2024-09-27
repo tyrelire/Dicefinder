@@ -327,6 +327,6 @@ class __TwigTemplate_380435f9409b4359ab6666c7d63bda14 extends Template
         {{- form_rest(form) -}}
     </table>
 {%- endblock form_widget_compound -%}
-", "form_table_layout.html.twig", "C:\\Users\\benja\\Desktop\\app\\dicefinder\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\form_table_layout.html.twig");
+", "form_table_layout.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\form_table_layout.html.twig");
     }
 }

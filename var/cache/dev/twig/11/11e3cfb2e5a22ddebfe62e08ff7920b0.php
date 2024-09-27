@@ -231,6 +231,6 @@ class __TwigTemplate_4ccc5ca7139071b0979c6c408a464660 extends Template
     word-wrap: break-word;
     word-break: break-all;
 }
-", "@WebProfiler/Profiler/open.css.twig", "C:\\Users\\benja\\Desktop\\app\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\open.css.twig");
+", "@WebProfiler/Profiler/open.css.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\open.css.twig");
     }
 }

@@ -186,6 +186,6 @@ class __TwigTemplate_96dedf26a596f0487d488a2188f7f93f extends Template
         {%- endfor -%}
     </pre>
 {% endif %}
-", "@Doctrine/Collector/explain.html.twig", "C:\\Users\\benja\\Desktop\\app\\dicefinder\\vendor\\doctrine\\doctrine-bundle\\templates\\Collector\\explain.html.twig");
+", "@Doctrine/Collector/explain.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\vendor\\doctrine\\doctrine-bundle\\templates\\Collector\\explain.html.twig");
     }
 }

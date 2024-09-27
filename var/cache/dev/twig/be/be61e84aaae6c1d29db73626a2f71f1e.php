@@ -422,6 +422,6 @@ class __TwigTemplate_8af61ee27e5d3007f08d24fba53e24fa extends Template
 
     </div>
 {%- endif %}
-", "@WebProfiler/Profiler/_request_summary.html.twig", "C:\\Users\\benja\\Desktop\\app\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\_request_summary.html.twig");
+", "@WebProfiler/Profiler/_request_summary.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\_request_summary.html.twig");
     }
 }

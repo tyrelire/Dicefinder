@@ -17,6 +17,8 @@ return [
         '/groupe/jdr' => [[['_route' => 'app_groupe_j_d_r_index', '_controller' => 'App\\Controller\\GroupeJDRController::index'], null, ['GET' => 0], null, false, false, null]],
         '/groupe/jdr/new' => [[['_route' => 'app_groupe_j_d_r_new', '_controller' => 'App\\Controller\\GroupeJDRController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
+        '/invitations' => [[['_route' => 'app_invitations_index', '_controller' => 'App\\Controller\\InvitationController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/my/jdr' => [[['_route' => 'app_my_jdr', '_controller' => 'App\\Controller\\MyGameController::index'], null, null, null, false, false, null]],
         '/profile/show' => [[['_route' => 'app_profile', '_controller' => 'App\\Controller\\ProfileController::index'], null, null, null, false, false, null]],
         '/profile/edit' => [[['_route' => 'app_profile_edit', '_controller' => 'App\\Controller\\ProfileController::edit'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
@@ -49,6 +51,12 @@ return [
                     .'|/edit(*:238)'
                     .'|(*:246)'
                 .')'
+                .'|/invitations/([^/]++)/respond(*:284)'
+                .'|/api/(?'
+                    .'|check_user/([^/]++)/([^/]++)(*:328)'
+                    .'|invite/([^/]++)/([^/]++)(*:360)'
+                    .'|remove_user/([^/]++)/([^/]++)(*:397)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -62,8 +70,12 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         225 => [[['_route' => 'app_groupe_j_d_r_show', '_controller' => 'App\\Controller\\GroupeJDRController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         238 => [[['_route' => 'app_groupe_j_d_r_edit', '_controller' => 'App\\Controller\\GroupeJDRController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        246 => [
-            [['_route' => 'app_groupe_j_d_r_delete', '_controller' => 'App\\Controller\\GroupeJDRController::delete'], ['id'], ['POST' => 0], null, false, true, null],
+        246 => [[['_route' => 'app_groupe_j_d_r_delete', '_controller' => 'App\\Controller\\GroupeJDRController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        284 => [[['_route' => 'app_invitations_respond', '_controller' => 'App\\Controller\\InvitationController::respond'], ['id'], ['POST' => 0], null, false, false, null]],
+        328 => [[['_route' => 'check_user', '_controller' => 'App\\Controller\\PlayerInvitationController::checkUser'], ['pseudo', 'jdrId'], ['GET' => 0], null, false, true, null]],
+        360 => [[['_route' => 'invite_player', '_controller' => 'App\\Controller\\PlayerInvitationController::invitePlayer'], ['groupeId', 'pseudo'], ['POST' => 0], null, false, true, null]],
+        397 => [
+            [['_route' => 'remove_user_from_jdr', '_controller' => 'App\\Controller\\PlayerInvitationController::removeUserFromJdr'], ['userId', 'jdrId'], ['DELETE' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

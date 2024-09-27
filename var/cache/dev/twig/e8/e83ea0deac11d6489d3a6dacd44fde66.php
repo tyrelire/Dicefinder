@@ -113,17 +113,23 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
 
         <div class=\"flex flex-col lg:flex-row lg:w-1/2 justify-center items-center relative mt-10 lg:mt-0\">
             <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full h-[28rem] lg:w-[26rem] relative z-20 transform scale-105 lg:ml-12 hidden lg:block\">
-                <img src=\"https://via.placeholder.com/150\" alt=\"Image de jeu\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
+                <img src=\"";
+        // line 22
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/logo-card.png"), "html", null, true);
+        yield "\" alt=\"Image de jeu\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
                 <div class=\"flex justify-between items-center\">
                     <span class=\"font-semibold\">Donjons & Dragons 5e</span>
                     <a href=\"\" class=\"bg-blue-600 text-white px-2 py-1 rounded text-xs\">GO</a>
                 </div>
                 <div class=\"flex justify-between items-center mt-2\">
                     <div class=\"flex items-center\">
-                        <img src=\"https://via.placeholder.com/30\" alt=\"MJ photo\" class=\"rounded h-8 w-8 object-cover\">
+                        <img src=\"";
+        // line 29
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/pp-card.png"), "html", null, true);
+        yield "\" alt=\"MJ photo\" class=\"rounded h-8 w-8 object-cover\">
                         <div class=\"ml-2\">
                             <p class=\"text-xs text-gray-400\">MJ</p>
-                            <p class=\"text-xs text-white\">Gui</p>
+                            <p class=\"text-xs text-white\">Klyx</p>
                         </div>
                     </div>
                     <div class=\"text-right\">
@@ -134,8 +140,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
             </div>
         </div>
     </div>
-
-    <!-- Section avec 3 cards -->
     <div class=\"container mx-auto flex flex-col lg:flex-row lg:gap-x-8 gap-y-4 mt-8\">
         <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
@@ -155,7 +159,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-
         <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
@@ -174,7 +177,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-
         <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
@@ -194,7 +196,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
             </a>
         </article>
     </div>
-
     <div class=\"container mx-auto flex flex-col mt-12\">
         <div class=\"flex justify-between items-center\">
             <h2 class=\"text-2xl font-bold text-white\">Parties qui recrutent</h2>
@@ -359,7 +360,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
             </div>
         </div>
 
-        <!-- Cards Section (Two Rows of Cards) -->
         <div class=\"mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8\">
             <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
                 <img src=\"https://via.placeholder.com/150\" alt=\"Image de jeu\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
@@ -473,7 +473,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  128 => 29,  118 => 22,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -499,17 +499,17 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
 
         <div class=\"flex flex-col lg:flex-row lg:w-1/2 justify-center items-center relative mt-10 lg:mt-0\">
             <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full h-[28rem] lg:w-[26rem] relative z-20 transform scale-105 lg:ml-12 hidden lg:block\">
-                <img src=\"https://via.placeholder.com/150\" alt=\"Image de jeu\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
+                <img src=\"{{ asset('images/logo-card.png') }}\" alt=\"Image de jeu\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
                 <div class=\"flex justify-between items-center\">
                     <span class=\"font-semibold\">Donjons & Dragons 5e</span>
                     <a href=\"\" class=\"bg-blue-600 text-white px-2 py-1 rounded text-xs\">GO</a>
                 </div>
                 <div class=\"flex justify-between items-center mt-2\">
                     <div class=\"flex items-center\">
-                        <img src=\"https://via.placeholder.com/30\" alt=\"MJ photo\" class=\"rounded h-8 w-8 object-cover\">
+                        <img src=\"{{ asset('images/pp-card.png') }}\" alt=\"MJ photo\" class=\"rounded h-8 w-8 object-cover\">
                         <div class=\"ml-2\">
                             <p class=\"text-xs text-gray-400\">MJ</p>
-                            <p class=\"text-xs text-white\">Gui</p>
+                            <p class=\"text-xs text-white\">Klyx</p>
                         </div>
                     </div>
                     <div class=\"text-right\">
@@ -520,8 +520,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
             </div>
         </div>
     </div>
-
-    <!-- Section avec 3 cards -->
     <div class=\"container mx-auto flex flex-col lg:flex-row lg:gap-x-8 gap-y-4 mt-8\">
         <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
@@ -541,7 +539,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-
         <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
@@ -560,7 +557,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-
         <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
@@ -580,7 +576,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
             </a>
         </article>
     </div>
-
     <div class=\"container mx-auto flex flex-col mt-12\">
         <div class=\"flex justify-between items-center\">
             <h2 class=\"text-2xl font-bold text-white\">Parties qui recrutent</h2>
@@ -745,7 +740,6 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
             </div>
         </div>
 
-        <!-- Cards Section (Two Rows of Cards) -->
         <div class=\"mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8\">
             <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
                 <img src=\"https://via.placeholder.com/150\" alt=\"Image de jeu\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">

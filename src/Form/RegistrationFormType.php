@@ -29,8 +29,8 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Le nom d’utilisateur est obligatoire.',
                     ]),
                     new Regex([
-                        'pattern' => '/^[a-zA-Z0-9]+$/',
-                        'message' => 'Le nom d’utilisateur ne doit contenir que des lettres et des chiffres.',
+                        'pattern' => '/^[A-Z][a-zA-Z0-9]+$/',
+                        'message' => 'Le nom d’utilisateur doit commencer par une majuscule et ne contenir que des lettres et des chiffres.',
                     ]),
                 ],
                 'attr' => [

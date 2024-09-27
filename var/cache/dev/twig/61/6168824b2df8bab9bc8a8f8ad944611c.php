@@ -121,41 +121,37 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
         yield "                    <h1 class=\"text-xl font-bold\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 16, $this->source); })()), "user", [], "any", false, false, false, 16), "username", [], "any", false, false, false, 16), "html", null, true);
         yield "</h1>
-
                     <div class=\"mt-4 mb-6 text-center\">
                         <span class=\"text-gray-700 text-lg font-bold\">Niveau</span>
                         <span class=\"text-indigo-600 text-xl font-extrabold\">12</span>
                     </div>
-
                     <p class=\"text-gray-700\">
                         ";
-        // line 24
+        // line 22
         if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_MJ") && $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_JOUEUR"))) {
-            // line 25
+            // line 23
             yield "                            Maître du Jeu & Joueur
                         ";
         } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_MJ")) {
-            // line 27
+            // line 25
             yield "                            Maître du Jeu
                         ";
         } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_JOUEUR")) {
-            // line 29
+            // line 27
             yield "                            Joueur
                         ";
         } else {
-            // line 31
+            // line 29
             yield "                            Aucun rôle attribué
                         ";
         }
-        // line 33
+        // line 31
         yield "                    </p>
-
                     <div class=\"mt-6 flex flex-wrap gap-4 justify-center\">
                         <a href=\"#\" class=\"bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded\">Rejoindre une partie</a>
                         <a href=\"#\" class=\"bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded\">Créer une campagne</a>
                     </div>
                 </div>
-
                 <hr class=\"my-6 border-t border-gray-300\">
                 <div class=\"flex flex-col mb-6\">
                     <span class=\"text-gray-700 uppercase font-bold tracking-wider mb-2\">Compétences</span>
@@ -166,7 +162,6 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                         <li class=\"mb-2\">Narration</li>
                     </ul>
                 </div>
-
                 <div class=\"flex flex-col mb-6\">
                     <span class=\"text-gray-700 uppercase font-bold tracking-wider mb-2\">Badges</span>
                     <ul>
@@ -184,8 +179,8 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
             <div class=\"bg-white shadow rounded-lg p-6\">
                 <h2 class=\"text-xl font-bold mb-4\">À propos de moi</h2>
                 <p class=\"text-gray-700\">";
-        // line 68
-        ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 68, $this->source); })()), "user", [], "any", false, false, false, 68), "bio", [], "any", false, false, false, 68)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 68, $this->source); })()), "user", [], "any", false, false, false, 68), "bio", [], "any", false, false, false, 68), "html", null, true)) : (yield "Pas de biographie disponible"));
+        // line 63
+        ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 63, $this->source); })()), "user", [], "any", false, false, false, 63), "bio", [], "any", false, false, false, 63)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 63, $this->source); })()), "user", [], "any", false, false, false, 63), "bio", [], "any", false, false, false, 63), "html", null, true)) : (yield "Pas de biographie disponible"));
         yield "</p>
 
                 <h2 class=\"text-xl font-bold mt-6 mb-4\">Mon expérience dans les jeux de rôle</h2>
@@ -244,7 +239,7 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  188 => 68,  151 => 33,  147 => 31,  143 => 29,  139 => 27,  135 => 25,  133 => 24,  121 => 16,  115 => 14,  109 => 12,  107 => 11,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  183 => 63,  149 => 31,  145 => 29,  141 => 27,  137 => 25,  133 => 23,  131 => 22,  121 => 16,  115 => 14,  109 => 12,  107 => 11,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -265,12 +260,10 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                         <img src=\"{{ asset('images/default-avatar.png') }}\" class=\"w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0\" alt=\"Photo de profil par défaut\">
                     {% endif %}
                     <h1 class=\"text-xl font-bold\">{{ app.user.username }}</h1>
-
                     <div class=\"mt-4 mb-6 text-center\">
                         <span class=\"text-gray-700 text-lg font-bold\">Niveau</span>
                         <span class=\"text-indigo-600 text-xl font-extrabold\">12</span>
                     </div>
-
                     <p class=\"text-gray-700\">
                         {% if is_granted('ROLE_MJ') and is_granted('ROLE_JOUEUR') %}
                             Maître du Jeu & Joueur
@@ -282,13 +275,11 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                             Aucun rôle attribué
                         {% endif %}
                     </p>
-
                     <div class=\"mt-6 flex flex-wrap gap-4 justify-center\">
                         <a href=\"#\" class=\"bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded\">Rejoindre une partie</a>
                         <a href=\"#\" class=\"bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded\">Créer une campagne</a>
                     </div>
                 </div>
-
                 <hr class=\"my-6 border-t border-gray-300\">
                 <div class=\"flex flex-col mb-6\">
                     <span class=\"text-gray-700 uppercase font-bold tracking-wider mb-2\">Compétences</span>
@@ -299,7 +290,6 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                         <li class=\"mb-2\">Narration</li>
                     </ul>
                 </div>
-
                 <div class=\"flex flex-col mb-6\">
                     <span class=\"text-gray-700 uppercase font-bold tracking-wider mb-2\">Badges</span>
                     <ul>

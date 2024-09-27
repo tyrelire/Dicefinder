@@ -2,13 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\GroupeJDR;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Category;
+use App\Entity\GroupeJDR;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class GroupeJDRType extends AbstractType
@@ -27,19 +29,30 @@ class GroupeJDRType extends AbstractType
                 'required' => false,
                 'attr' => ['accept' => 'image/*'],
             ])
-            ->add('created_at', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('edit_at', null, [
-                'widget' => 'single_text',
-            ])
             ->add('maxPlayer')
-            ->add('players', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
+            ->add('categories', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
                 'multiple' => true,
+                'expanded' => true,
+                'attr' => [
+                    'data-max-selection' => 3,
+                    'class' => 'flex flex-wrap gap-2',
+                ],
             ])
-        ;
+            ->add('status', ChoiceType::class, [
+                'choices' => [
+                    'Préparation' => 'preparation',
+                    'Prêt à jouer' => 'pret_a_jouer',
+                    'En cours' => 'en_cours',
+                    'Complet' => 'complet',
+                    'Pause' => 'pause',
+                    'Terminé' => 'termine',
+                    'Annulé' => 'annule',
+                ],
+                'placeholder' => 'Sélectionner un statut',
+                'required' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

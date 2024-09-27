@@ -1,46 +1,158 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}GroupeJDR{% endblock %}
+{% block title %}{{ groupe_j_d_r.title }} | DiceFinder{% endblock %}
 
 {% block body %}
-    <h1>GroupeJDR</h1>
+<div class="container mx-auto px-4 p-6 mt-20">
+    <div class="bg-gray-900 text-white min-h-screen p-8 space-y-10">
+        <div class="flex flex-col lg:flex-row items-start lg:items-start justify-between space-y-8 lg:space-y-0 lg:space-x-10">
+            <div class="lg:w-1/2 space-y-8">
+                <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }}" class="rounded-lg shadow-lg w-full h-[500px] object-cover">
+                
+                <div class="flex justify-between">
+                    <button class="w-[48%] bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700">Je Participe</button>
+                </div>
+            </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ groupe_j_d_r.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ groupe_j_d_r.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ groupe_j_d_r.description }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ groupe_j_d_r.picture }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ groupe_j_d_r.createdAt ? groupe_j_d_r.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Edit_at</th>
-                <td>{{ groupe_j_d_r.editAt ? groupe_j_d_r.editAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>MaxPlayer</th>
-                <td>{{ groupe_j_d_r.maxPlayer }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="lg:w-1/2 space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-3xl font-bold">{{ groupe_j_d_r.title }}</h2>
+                    <svg class="w-6 h-6 text-orange-500 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <p class="text-gray-300">{{ groupe_j_d_r.description }}</p>
 
-    <a href="{{ path('app_groupe_j_d_r_index') }}">back to list</a>
+                <div class="flex justify-between">
+                    <div>
+                        <span class="text-gray-400">Date de Création</span>
+                        <p class="text-xl font-semibold">{{ groupe_j_d_r.getCreatedAt|date('d/m/Y') }}</p>
+                    </div>
+                    <div>
+                        <span class="text-gray-400">Nombre de Participants</span>
+                        <p class="text-xl font-semibold">{{ groupe_j_d_r.players|length }}/{{ groupe_j_d_r.maxPlayer }}</p>
+                    </div>
+                </div>
 
-    <a href="{{ path('app_groupe_j_d_r_edit', {'id': groupe_j_d_r.id}) }}">edit</a>
+                <div class="bg-gray-800 p-6 rounded-lg space-y-4">
+                    <h3 class="font-semibold">MJ et Joueurs</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-4">
+                            {% if groupe_j_d_r.owner.avatar %}
+                                <img src="{{ asset('uploads/avatars/' ~ groupe_j_d_r.owner.avatar) }}" class="rounded-full w-12 h-12 object-cover" alt="{{ groupe_j_d_r.owner.username }}">
+                            {% else %}
+                                <img class="rounded-full w-12 h-12 object-cover" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
+                            {% endif %}
+                            <div>
+                                <p class="font-semibold">{{ groupe_j_d_r.owner.username }}</p>
+                                <span class="text-gray-400 text-sm">MJ</span>
+                            </div>
+                        </div>
 
-    {{ include('groupe_jdr/_delete_form.html.twig') }}
+                        {% for player in groupe_j_d_r.players %}
+                            {% if player.id != groupe_j_d_r.owner.id %}
+                                <div class="flex items-center space-x-4">
+                                    {% if player.avatar %}
+                                        <img src="{{ asset('uploads/avatars/' ~ player.avatar) }}" class="rounded-full w-12 h-12 object-cover" alt="{{ player.username }}">
+                                    {% else %}
+                                        <img class="rounded-full w-12 h-12 object-cover" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
+                                    {% endif %}
+                                    <div>
+                                        <p class="font-semibold">{{ player.username }}</p>
+                                        <span class="text-gray-400 text-sm">Joueur</span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {% if app.user and app.user.id == groupe_j_d_r.owner.id %}
+                    <a href="{{ path('app_groupe_j_d_r_edit', {id: groupe_j_d_r.id}) }}" class="w-full bg-green-600 text-white font-bold py-3 rounded mt-4 hover:bg-green-700 block text-center">
+                        Editer le JDR
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="flex justify-center space-x-8">
+            <button class="text-blue-500 border-b-2 border-blue-500 py-2 px-4">Description</button>
+            <button class="text-gray-400 hover:text-blue-500 border-b-2 border-transparent hover:border-blue-500 py-2 px-4">Logiciel requis</button>
+            <button class="text-gray-400 hover:text-blue-500 border-b-2 border-transparent hover:border-blue-500 py-2 px-4">Informations supplémentaires</button>
+        </div>
+
+        <div class="text-gray-400 mt-8">
+            <p>{{ groupe_j_d_r.description }}</p>
+        </div>
+
+        <div class="mt-16">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Parties Qui Recrutent</h2>
+        <a href="#" class="text-blue-500 border border-blue-500 rounded-full py-2 px-6 hover:bg-blue-500 hover:text-white">Voir Plus</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full lg:w-[26rem]">
+            <img src="https://via.placeholder.com/150" alt="Image de jeu" class="rounded-lg mb-4 w-full h-[24rem] object-cover">
+            <div class="flex justify-between items-center">
+                <span class="font-semibold text-lg">Cthulhu</span>
+                <a href="#" class="bg-blue-600 text-white px-3 py-2 rounded text-xs">GO</a>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+                <div class="flex items-center">
+                    <img src="https://via.placeholder.com/30" alt="MJ photo" class="rounded h-10 w-10 object-cover">
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-400">MJ</p>
+                        <p class="text-sm text-white">Sam</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-400">Places disponibles</p>
+                    <p class="text-lg font-bold text-white">5</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full lg:w-[26rem]">
+            <img src="https://via.placeholder.com/150" alt="Image de jeu" class="rounded-lg mb-4 w-full h-[24rem] object-cover">
+            <div class="flex justify-between items-center">
+                <span class="font-semibold text-lg">Cthulhu</span>
+                <a href="#" class="bg-blue-600 text-white px-3 py-2 rounded text-xs">GO</a>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+                <div class="flex items-center">
+                    <img src="https://via.placeholder.com/30" alt="MJ photo" class="rounded h-10 w-10 object-cover">
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-400">MJ</p>
+                        <p class="text-sm text-white">Sam</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-400">Places disponibles</p>
+                    <p class="text-lg font-bold text-white">5</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full lg:w-[26rem]">
+            <img src="https://via.placeholder.com/150" alt="Image de jeu" class="rounded-lg mb-4 w-full h-[24rem] object-cover">
+            <div class="flex justify-between items-center">
+                <span class="font-semibold text-lg">Cthulhu</span>
+                <a href="#" class="bg-blue-600 text-white px-3 py-2 rounded text-xs">GO</a>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+                <div class="flex items-center">
+                    <img src="https://via.placeholder.com/30" alt="MJ photo" class="rounded h-10 w-10 object-cover">
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-400">MJ</p>
+                        <p class="text-sm text-white">Sam</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-400">Places disponibles</p>
+                    <p class="text-lg font-bold text-white">5</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
 {% endblock %}

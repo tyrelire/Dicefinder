@@ -731,6 +731,6 @@ class __TwigTemplate_036afa5774049bf707f329389a774b85 extends Template
     });
 })();
 </script>
-", "@WebProfiler/Profiler/settings.html.twig", "C:\\Users\\benja\\Desktop\\app\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\settings.html.twig");
+", "@WebProfiler/Profiler/settings.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\settings.html.twig");
     }
 }

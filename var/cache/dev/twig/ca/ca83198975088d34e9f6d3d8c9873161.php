@@ -836,6 +836,6 @@ class __TwigTemplate_d32cd7a20d43335418dae2211b7b70e5 extends Template
         {% endif %}
     </div>
 {% endblock %}
-", "@WebProfiler/Collector/command.html.twig", "C:\\Users\\benja\\Desktop\\app\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\command.html.twig");
+", "@WebProfiler/Collector/command.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\command.html.twig");
     }
 }

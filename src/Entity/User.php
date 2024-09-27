@@ -71,12 +71,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $groupeJDRs;
 
     #[ORM\ManyToMany(targetEntity: GroupeJDR::class, inversedBy: 'players')]
-    private Collection $joinedGroupeJDRs; // Groupes auxquels l'utilisateur a rejoint
+    private Collection $joinedGroupeJDRs;
+
+    /**
+     * @var Collection<int, Invitation>
+     */
+    #[ORM\OneToMany(targetEntity: Invitation::class, mappedBy: 'user')]
+    private Collection $invitations;
+
+    /**
+     * @var Collection<int, NotificationHistory>
+     */
+    #[ORM\OneToMany(targetEntity: NotificationHistory::class, mappedBy: 'user')]
+    private Collection $notificationHistories; // Groupes auxquels l'utilisateur a rejoint
 
     public function __construct()
     {
         $this->groupeJDRs = new ArrayCollection();
         $this->joinedGroupeJDRs = new ArrayCollection();
+        $this->invitations = new ArrayCollection();
+        $this->notificationHistories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -312,6 +326,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function leaveGroupeJDR(GroupeJDR $groupeJDR): static
     {
         $this->joinedGroupeJDRs->removeElement($groupeJDR);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Invitation>
+     */
+    public function getInvitations(): Collection
+    {
+        return $this->invitations;
+    }
+
+    public function addInvitation(Invitation $invitation): static
+    {
+        if (!$this->invitations->contains($invitation)) {
+            $this->invitations->add($invitation);
+            $invitation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvitation(Invitation $invitation): static
+    {
+        if ($this->invitations->removeElement($invitation)) {
+            // set the owning side to null (unless already changed)
+            if ($invitation->getUser() === $this) {
+                $invitation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, NotificationHistory>
+     */
+    public function getNotificationHistories(): Collection
+    {
+        return $this->notificationHistories;
+    }
+
+    public function addNotificationHistory(NotificationHistory $notificationHistory): static
+    {
+        if (!$this->notificationHistories->contains($notificationHistory)) {
+            $this->notificationHistories->add($notificationHistory);
+            $notificationHistory->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotificationHistory(NotificationHistory $notificationHistory): static
+    {
+        if ($this->notificationHistories->removeElement($notificationHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($notificationHistory->getUser() === $this) {
+                $notificationHistory->setUser(null);
+            }
+        }
 
         return $this;
     }

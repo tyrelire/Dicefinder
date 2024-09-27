@@ -73,7 +73,7 @@ class __TwigTemplate_c68ccfffe16109c362dccf8b7d38e5f9 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "New GroupeJDR";
+        yield "DiceFinder | Création de JDR";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -97,17 +97,12 @@ class __TwigTemplate_c68ccfffe16109c362dccf8b7d38e5f9 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "    <h1>Create new GroupeJDR</h1>
-
+        yield "
     ";
-        // line 8
-        yield Twig\Extension\CoreExtension::include($this->env, $context, "groupe_jdr/_form.html.twig");
+        // line 7
+        yield Twig\Extension\CoreExtension::include($this->env, $context, "groupe_jdr/_form.html.twig", ["button_label" => "create"]);
         yield "
 
-    <a href=\"";
-        // line 10
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
-        yield "\">back to list</a>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -139,21 +134,19 @@ class __TwigTemplate_c68ccfffe16109c362dccf8b7d38e5f9 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  109 => 10,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  103 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}New GroupeJDR{% endblock %}
+{% block title %}DiceFinder | Création de JDR{% endblock %}
 
 {% block body %}
-    <h1>Create new GroupeJDR</h1>
 
-    {{ include('groupe_jdr/_form.html.twig') }}
+    {{ include('groupe_jdr/_form.html.twig', {'button_label': 'create'}) }}
 
-    <a href=\"{{ path('app_groupe_j_d_r_index') }}\">back to list</a>
 {% endblock %}
 ", "groupe_jdr/new.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\templates\\groupe_jdr\\new.html.twig");
     }

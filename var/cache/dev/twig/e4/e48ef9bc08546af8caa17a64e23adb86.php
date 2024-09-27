@@ -654,6 +654,6 @@ class __TwigTemplate_321b763e00d6ec4d46dd26dace353794 extends Template
         }
     }
 </script>
-", "@WebProfiler/Profiler/base_js.html.twig", "C:\\Users\\benja\\Desktop\\app\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\base_js.html.twig");
+", "@WebProfiler/Profiler/base_js.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\base_js.html.twig");
     }
 }

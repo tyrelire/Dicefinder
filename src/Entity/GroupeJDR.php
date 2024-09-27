@@ -33,7 +33,7 @@ class GroupeJDR
     private ?\DateTimeInterface $edit_at = null;
 
     #[ORM\Column]
-    private ?int $maxPlayer = 15; // Limitation par défaut
+    private ?int $maxPlayer = 15;
 
     #[ORM\ManyToOne(inversedBy: 'groupeJDRs')]
     #[ORM\JoinColumn(nullable: false)]
@@ -43,9 +43,33 @@ class GroupeJDR
     #[ORM\JoinTable(name: 'groupejdr_players')]
     private Collection $players;
 
+    /**
+     * @var Collection<int, Invitation>
+     */
+    #[ORM\OneToMany(targetEntity: Invitation::class, mappedBy: 'groupeJDR')]
+    private Collection $invitations;
+
+    /**
+     * @var Collection<int, NotificationHistory>
+     */
+    #[ORM\OneToMany(targetEntity: NotificationHistory::class, mappedBy: 'groupeJDR')]
+    private Collection $notificationHistories;
+
+    #[ORM\Column(length: 255)]
+    private ?string $status = null;
+
+    /**
+     * @var Collection<int, Category>
+     */
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'groupeJDRs')]
+    private Collection $categories;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
+        $this->invitations = new ArrayCollection();
+        $this->notificationHistories = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,7 +171,8 @@ class GroupeJDR
 
     public function addPlayer(User $player): static
     {
-        if (!$this->players->contains($player) && $this->players->count() < $this->maxPlayer) {
+        // Ajoute uniquement si l'utilisateur a le rôle ROLE_JOUEUR et qu'il n'a pas atteint la limite max
+        if (!$this->players->contains($player) && $this->players->count() < $this->maxPlayer && in_array('ROLE_JOUEUR', $player->getRoles())) {
             $this->players->add($player);
         }
 
@@ -157,6 +182,102 @@ class GroupeJDR
     public function removePlayer(User $player): static
     {
         $this->players->removeElement($player);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Invitation>
+     */
+    public function getInvitations(): Collection
+    {
+        return $this->invitations;
+    }
+
+    public function addInvitation(Invitation $invitation): static
+    {
+        if (!$this->invitations->contains($invitation)) {
+            $this->invitations->add($invitation);
+            $invitation->setGroupeJDR($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvitation(Invitation $invitation): static
+    {
+        if ($this->invitations->removeElement($invitation)) {
+            // set the owning side to null (unless already changed)
+            if ($invitation->getGroupeJDR() === $this) {
+                $invitation->setGroupeJDR(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, NotificationHistory>
+     */
+    public function getNotificationHistories(): Collection
+    {
+        return $this->notificationHistories;
+    }
+
+    public function addNotificationHistory(NotificationHistory $notificationHistory): static
+    {
+        if (!$this->notificationHistories->contains($notificationHistory)) {
+            $this->notificationHistories->add($notificationHistory);
+            $notificationHistory->setGroupeJDR($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotificationHistory(NotificationHistory $notificationHistory): static
+    {
+        if ($this->notificationHistories->removeElement($notificationHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($notificationHistory->getGroupeJDR() === $this) {
+                $notificationHistory->setGroupeJDR(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): static
+    {
+        $this->categories->removeElement($category);
 
         return $this;
     }
