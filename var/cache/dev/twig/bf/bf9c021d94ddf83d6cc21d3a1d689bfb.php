@@ -563,30 +563,39 @@ class __TwigTemplate_82a570a5cc75e585ca0ba5b3206667b5 extends Template
         yield "            </div>
         </div>
     </div>
-
     <div class=\"flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4\">
         <div class=\"flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4\">
             ";
-        // line 212
-        if ((isset($context["is_owner"]) || array_key_exists("is_owner", $context) ? $context["is_owner"] : (function () { throw new RuntimeError('Variable "is_owner" does not exist.', 212, $this->source); })())) {
+        // line 211
+        if ((isset($context["is_owner"]) || array_key_exists("is_owner", $context) ? $context["is_owner"] : (function () { throw new RuntimeError('Variable "is_owner" does not exist.', 211, $this->source); })())) {
             yield " 
+                <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
+                    Vous êtes le MJ
+                </button>
             ";
-        } elseif (        // line 213
-(isset($context["is_member"]) || array_key_exists("is_member", $context) ? $context["is_member"] : (function () { throw new RuntimeError('Variable "is_member" does not exist.', 213, $this->source); })())) {
-            // line 214
+        } elseif (        // line 215
+(isset($context["is_member"]) || array_key_exists("is_member", $context) ? $context["is_member"] : (function () { throw new RuntimeError('Variable "is_member" does not exist.', 215, $this->source); })())) {
+            // line 216
             yield "                <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
                     Vous êtes déjà membre
                 </button>
             ";
-        } elseif (        // line 217
-(isset($context["request_in_progress"]) || array_key_exists("request_in_progress", $context) ? $context["request_in_progress"] : (function () { throw new RuntimeError('Variable "request_in_progress" does not exist.', 217, $this->source); })())) {
-            // line 218
+        } elseif (        // line 219
+(isset($context["request_in_progress"]) || array_key_exists("request_in_progress", $context) ? $context["request_in_progress"] : (function () { throw new RuntimeError('Variable "request_in_progress" does not exist.', 219, $this->source); })())) {
+            // line 220
             yield "                <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
                     En attente d'acceptation de la demande
                 </button>
             ";
+        } elseif (( !(null === CoreExtension::getAttribute($this->env, $this->source,         // line 223
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 223, $this->source); })()), "user", [], "any", false, false, false, 223)) && !CoreExtension::inFilter("ROLE_JOUEUR", CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 223, $this->source); })()), "user", [], "any", false, false, false, 223), "getRoles", [], "method", false, false, false, 223)))) {
+            // line 224
+            yield "                <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
+                    Vous devez avoir le grade de joueur pour rejoindre ce JDR.
+                </button>
+            ";
         } else {
-            // line 222
+            // line 228
             yield "                <button id=\"participate-button\" class=\"w-full sm:w-[80%] md:w-[60%] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-2xl hover:bg-blue-800 transition-all duration-300 ease-in-out transform hover:scale-105\">
                     <svg class=\"inline-block w-6 h-6 mr-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
                         <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 13l4 4L19 7\"></path>
@@ -595,9 +604,8 @@ class __TwigTemplate_82a570a5cc75e585ca0ba5b3206667b5 extends Template
                 </button>
             ";
         }
-        // line 229
+        // line 235
         yield "        </div>
-
     </div>
     <div id=\"request-join-modal\" class=\"hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center transition-opacity duration-300 ease-in-out\">
         <div class=\"bg-white p-6 rounded-lg space-y-4 shadow-2xl max-w-md w-full relative\">
@@ -608,8 +616,8 @@ class __TwigTemplate_82a570a5cc75e585ca0ba5b3206667b5 extends Template
             </button>
             <h3 class=\"text-lg font-semibold\">Postuler pour rejoindre cet Univers</h3>
             <form id=\"request-join-form\" method=\"POST\" action=\"";
-        // line 240
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("request_join", ["groupeId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["groupe_j_d_r"]) || array_key_exists("groupe_j_d_r", $context) ? $context["groupe_j_d_r"] : (function () { throw new RuntimeError('Variable "groupe_j_d_r" does not exist.', 240, $this->source); })()), "id", [], "any", false, false, false, 240)]), "html", null, true);
+        // line 245
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("request_join", ["groupeId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["groupe_j_d_r"]) || array_key_exists("groupe_j_d_r", $context) ? $context["groupe_j_d_r"] : (function () { throw new RuntimeError('Variable "groupe_j_d_r" does not exist.', 245, $this->source); })()), "id", [], "any", false, false, false, 245)]), "html", null, true);
         yield "\">
                 <div class=\"mb-4\">
                     <label for=\"message\" class=\"block text-base font-semibold text-gray-900 mb-2\">Votre message</label>
@@ -622,7 +630,6 @@ class __TwigTemplate_82a570a5cc75e585ca0ba5b3206667b5 extends Template
             </form>
         </div>
     </div>
-
 </div>
 
 <script>
@@ -655,12 +662,19 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.add('hidden');
     }
 
-    participateButton.addEventListener('click', function() {
-        modal.classList.remove('hidden');
-    });
+    if (participateButton) {
+        participateButton.addEventListener('click', function() {
+            modal.classList.remove('hidden');
+        });
+    }
 
-    closeModalButton.addEventListener('click', closeModal);
-    cancelButton.addEventListener('click', closeModal);
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeModal);
+    }
+
+    if (cancelButton) {
+        cancelButton.addEventListener('click', closeModal);
+    }
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -672,26 +686,25 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '";
-        // line 301
+        // line 312
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("submit_invitation_request"), "html", null, true);
         yield "'
             },
             body: JSON.stringify({ message: message })
         }).then(response => {
-            response.json().then(data => {
-                if (response.ok) {
-                    closeModal();
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1000);
-                }
-            });
+            if (response.ok) {
+                closeModal();
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            } else {
+                location.reload();
+            }
         }).catch(error => {
-            console.error('Erreur:', error);
-            location.reload();
         });
     });
 });
+
 </script>
 
 ";
@@ -725,7 +738,7 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     public function getDebugInfo(): array
     {
-        return array (  676 => 301,  612 => 240,  599 => 229,  590 => 222,  584 => 218,  582 => 217,  577 => 214,  575 => 213,  571 => 212,  563 => 206,  556 => 204,  546 => 199,  538 => 194,  534 => 192,  528 => 190,  520 => 188,  518 => 187,  511 => 183,  507 => 182,  500 => 180,  497 => 179,  492 => 178,  486 => 175,  478 => 169,  471 => 167,  457 => 164,  454 => 163,  451 => 162,  448 => 161,  445 => 160,  442 => 159,  439 => 158,  436 => 157,  434 => 156,  431 => 155,  428 => 154,  426 => 153,  423 => 152,  421 => 151,  419 => 143,  417 => 142,  414 => 141,  409 => 140,  400 => 134,  382 => 118,  374 => 114,  372 => 113,  365 => 109,  361 => 108,  354 => 103,  348 => 102,  340 => 97,  337 => 96,  331 => 94,  323 => 92,  321 => 91,  318 => 90,  315 => 89,  311 => 88,  304 => 84,  301 => 83,  295 => 81,  287 => 79,  285 => 78,  276 => 71,  257 => 69,  254 => 68,  236 => 67,  234 => 66,  222 => 59,  215 => 55,  207 => 50,  199 => 45,  191 => 39,  187 => 37,  183 => 35,  181 => 34,  178 => 33,  176 => 32,  173 => 31,  171 => 30,  168 => 29,  166 => 28,  163 => 27,  161 => 26,  158 => 25,  156 => 24,  153 => 23,  151 => 22,  148 => 21,  144 => 20,  139 => 19,  135 => 18,  131 => 17,  127 => 16,  123 => 15,  119 => 14,  115 => 13,  107 => 10,  101 => 6,  88 => 5,  64 => 3,  41 => 1,);
+        return array (  690 => 312,  620 => 245,  608 => 235,  599 => 228,  593 => 224,  591 => 223,  586 => 220,  584 => 219,  579 => 216,  577 => 215,  570 => 211,  563 => 206,  556 => 204,  546 => 199,  538 => 194,  534 => 192,  528 => 190,  520 => 188,  518 => 187,  511 => 183,  507 => 182,  500 => 180,  497 => 179,  492 => 178,  486 => 175,  478 => 169,  471 => 167,  457 => 164,  454 => 163,  451 => 162,  448 => 161,  445 => 160,  442 => 159,  439 => 158,  436 => 157,  434 => 156,  431 => 155,  428 => 154,  426 => 153,  423 => 152,  421 => 151,  419 => 143,  417 => 142,  414 => 141,  409 => 140,  400 => 134,  382 => 118,  374 => 114,  372 => 113,  365 => 109,  361 => 108,  354 => 103,  348 => 102,  340 => 97,  337 => 96,  331 => 94,  323 => 92,  321 => 91,  318 => 90,  315 => 89,  311 => 88,  304 => 84,  301 => 83,  295 => 81,  287 => 79,  285 => 78,  276 => 71,  257 => 69,  254 => 68,  236 => 67,  234 => 66,  222 => 59,  215 => 55,  207 => 50,  199 => 45,  191 => 39,  187 => 37,  183 => 35,  181 => 34,  178 => 33,  176 => 32,  173 => 31,  171 => 30,  168 => 29,  166 => 28,  163 => 27,  161 => 26,  158 => 25,  156 => 24,  153 => 23,  151 => 22,  148 => 21,  144 => 20,  139 => 19,  135 => 18,  131 => 17,  127 => 16,  123 => 15,  119 => 14,  115 => 13,  107 => 10,  101 => 6,  88 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -938,10 +951,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>
-
     <div class=\"flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4\">
         <div class=\"flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4\">
             {% if is_owner %} 
+                <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
+                    Vous êtes le MJ
+                </button>
             {% elseif is_member %}
                 <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
                     Vous êtes déjà membre
@@ -949,6 +964,10 @@ document.addEventListener('DOMContentLoaded', function() {
             {% elseif request_in_progress %}
                 <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
                     En attente d'acceptation de la demande
+                </button>
+            {% elseif app.user is not null and 'ROLE_JOUEUR' not in app.user.getRoles() %}
+                <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
+                    Vous devez avoir le grade de joueur pour rejoindre ce JDR.
                 </button>
             {% else %}
                 <button id=\"participate-button\" class=\"w-full sm:w-[80%] md:w-[60%] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-2xl hover:bg-blue-800 transition-all duration-300 ease-in-out transform hover:scale-105\">
@@ -959,7 +978,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 </button>
             {% endif %}
         </div>
-
     </div>
     <div id=\"request-join-modal\" class=\"hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center transition-opacity duration-300 ease-in-out\">
         <div class=\"bg-white p-6 rounded-lg space-y-4 shadow-2xl max-w-md w-full relative\">
@@ -981,7 +999,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </form>
         </div>
     </div>
-
 </div>
 
 <script>
@@ -1014,12 +1031,19 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.add('hidden');
     }
 
-    participateButton.addEventListener('click', function() {
-        modal.classList.remove('hidden');
-    });
+    if (participateButton) {
+        participateButton.addEventListener('click', function() {
+            modal.classList.remove('hidden');
+        });
+    }
 
-    closeModalButton.addEventListener('click', closeModal);
-    cancelButton.addEventListener('click', closeModal);
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeModal);
+    }
+
+    if (cancelButton) {
+        cancelButton.addEventListener('click', closeModal);
+    }
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -1034,20 +1058,19 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({ message: message })
         }).then(response => {
-            response.json().then(data => {
-                if (response.ok) {
-                    closeModal();
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1000);
-                }
-            });
+            if (response.ok) {
+                closeModal();
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            } else {
+                location.reload();
+            }
         }).catch(error => {
-            console.error('Erreur:', error);
-            location.reload();
         });
     });
 });
+
 </script>
 
 {% endblock %}

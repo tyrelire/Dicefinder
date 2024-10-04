@@ -206,10 +206,12 @@
             </div>
         </div>
     </div>
-
     <div class="flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4">
         <div class="flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4">
             {% if is_owner %} 
+                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                    Vous êtes le MJ
+                </button>
             {% elseif is_member %}
                 <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
                     Vous êtes déjà membre
@@ -217,6 +219,10 @@
             {% elseif request_in_progress %}
                 <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
                     En attente d'acceptation de la demande
+                </button>
+            {% elseif app.user is not null and 'ROLE_JOUEUR' not in app.user.getRoles() %}
+                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                    Vous devez avoir le grade de joueur pour rejoindre ce JDR.
                 </button>
             {% else %}
                 <button id="participate-button" class="w-full sm:w-[80%] md:w-[60%] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-2xl hover:bg-blue-800 transition-all duration-300 ease-in-out transform hover:scale-105">
@@ -227,7 +233,6 @@
                 </button>
             {% endif %}
         </div>
-
     </div>
     <div id="request-join-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center transition-opacity duration-300 ease-in-out">
         <div class="bg-white p-6 rounded-lg space-y-4 shadow-2xl max-w-md w-full relative">
@@ -249,7 +254,6 @@
             </form>
         </div>
     </div>
-
 </div>
 
 <script>
@@ -282,12 +286,19 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.add('hidden');
     }
 
-    participateButton.addEventListener('click', function() {
-        modal.classList.remove('hidden');
-    });
+    if (participateButton) {
+        participateButton.addEventListener('click', function() {
+            modal.classList.remove('hidden');
+        });
+    }
 
-    closeModalButton.addEventListener('click', closeModal);
-    cancelButton.addEventListener('click', closeModal);
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeModal);
+    }
+
+    if (cancelButton) {
+        cancelButton.addEventListener('click', closeModal);
+    }
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -302,20 +313,19 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({ message: message })
         }).then(response => {
-            response.json().then(data => {
-                if (response.ok) {
-                    closeModal();
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1000);
-                }
-            });
+            if (response.ok) {
+                closeModal();
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            } else {
+                location.reload();
+            }
         }).catch(error => {
-            console.error('Erreur:', error);
-            location.reload();
         });
     });
 });
+
 </script>
 
 {% endblock %}

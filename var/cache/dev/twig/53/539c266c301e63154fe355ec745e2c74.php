@@ -472,6 +472,7 @@ setTimeout(function() {
         }, 500);
     });
 }, 5000);
+
 document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     if (mobileMenuToggle) {
@@ -487,7 +488,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (userMenuToggle) {
         userMenuToggle.addEventListener('click', function () {
             const menu = document.getElementById('user-menu');
-            menu.classList.toggle('hidden');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            } else {
+                console.error('Element \"user-menu\" not found.');
+            }
         });
     }
 
@@ -502,7 +507,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (notificationDropdown) {
         notificationDropdown.addEventListener('click', function () {
-            dropdownMenu.classList.toggle('hidden');
+            if (dropdownMenu) {
+                dropdownMenu.classList.toggle('hidden');
+            } else {
+                console.error('Element \"dropdown-menu\" not found.');
+            }
         });
     }
 
@@ -519,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let modalMessage;
         let modalAction;
-      
+
         if (initiatedBy === 'invite') {
             modalMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
             modalAction = 'Invitation';
@@ -566,59 +575,76 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
         });
     }
 
     function fetchInvitations() {
-      fetch('/api/invitations_pending')
-        .then(response => response.json())
-        .then(data => {
-            if (data.count && data.count > 0) {
-                invitationNotification.innerText = data.count;
-                invitationNotification.classList.remove('hidden');
-            } else {
-                invitationNotification.classList.add('hidden');
-            }
-
-            invitationsList.innerHTML = '';
-
-            if (Array.isArray(data.invitations) && data.invitations.length > 0) {
-                noInvitationMsg.classList.add('hidden');
-                data.invitations.forEach(invitation => {
-                    const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
-                    const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
-                    const message = invitation.message || 'Pas de message';
-                    const initiatedBy = invitation.initiatedBy || 'user';
-
-                    let displayMessage;
-                    if (initiatedBy === 'owner') {
-                        displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
+        fetch('/api/invitations_pending')
+            .then(response => response.json())
+            .then(data => {
+                if (data.count && data.count > 0) {
+                    if (invitationNotification) {
+                        invitationNotification.innerText = data.count;
+                        invitationNotification.classList.remove('hidden');
                     } else {
-                        displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
+                        console.error('Element \"invitation-notification\" not found.');
+                    }
+                } else {
+                    if (invitationNotification) {
+                        invitationNotification.classList.add('hidden');
+                    }
+                }
+
+                if (invitationsList) {
+                    invitationsList.innerHTML = '';
+                } else {
+                    console.error('Element \"invitations-list\" not found.');
+                    return;
+                }
+
+                if (Array.isArray(data.invitations) && data.invitations.length > 0) {
+                    if (noInvitationMsg) {
+                        noInvitationMsg.classList.add('hidden');
                     }
 
-                    const invitationItem = document.createElement('div');
-                    invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
-                    invitationItem.textContent = displayMessage;
-                    invitationsList.appendChild(invitationItem);
+                    data.invitations.forEach(invitation => {
+                        const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
+                        const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
+                        const message = invitation.message || 'Pas de message';
+                        const initiatedBy = invitation.initiatedBy || 'user';
 
-                    invitationItem.addEventListener('click', function () {
-                        openInvitationModal({
-                            id: invitation.id,
-                            title: groupTitle,
-                            type: initiatedBy === 'owner' ? 'invite' : 'request',
-                            requester: requesterName
+                        let displayMessage;
+                        if (initiatedBy === 'owner') {
+                            displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
+                        } else {
+                            displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
+                        }
+
+                        const invitationItem = document.createElement('div');
+                        invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
+                        invitationItem.textContent = displayMessage;
+                        invitationsList.appendChild(invitationItem);
+
+                        invitationItem.addEventListener('click', function () {
+                            openInvitationModal({
+                                id: invitation.id,
+                                title: groupTitle,
+                                type: initiatedBy === 'owner' ? 'invite' : 'request',
+                                requester: requesterName
+                            });
                         });
                     });
-                });
-            } else {
-                noInvitationMsg.classList.remove('hidden');
-            }
-        })
-        .catch(error => console.error('Error fetching invitations:', error));
+                } else {
+                    if (noInvitationMsg) {
+                        noInvitationMsg.classList.remove('hidden');
+                    } else {
+                        console.error('Element \"no-invitation-msg\" not found.');
+                    }
+                }
+            })
+            .catch(error => console.error('Error fetching invitations:', error));
     }
+
     fetchInvitations();
     setInterval(fetchInvitations, 30000);
 });
@@ -772,7 +798,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     public function getDebugInfo(): array
     {
-        return array (  733 => 143,  710 => 15,  699 => 16,  696 => 15,  683 => 14,  661 => 12,  639 => 5,  343 => 144,  341 => 143,  338 => 142,  329 => 139,  326 => 138,  322 => 137,  319 => 136,  310 => 133,  307 => 132,  303 => 131,  295 => 125,  289 => 123,  284 => 121,  280 => 120,  275 => 119,  273 => 118,  264 => 112,  260 => 111,  253 => 107,  249 => 106,  242 => 102,  238 => 101,  231 => 97,  227 => 96,  221 => 92,  215 => 90,  209 => 87,  205 => 86,  201 => 85,  197 => 83,  191 => 81,  185 => 79,  183 => 78,  179 => 76,  177 => 75,  172 => 72,  166 => 69,  148 => 53,  146 => 52,  136 => 45,  126 => 42,  116 => 39,  106 => 36,  91 => 24,  87 => 23,  79 => 17,  77 => 14,  74 => 13,  72 => 12,  66 => 9,  59 => 5,  53 => 1,);
+        return array (  759 => 143,  736 => 15,  725 => 16,  722 => 15,  709 => 14,  687 => 12,  665 => 5,  343 => 144,  341 => 143,  338 => 142,  329 => 139,  326 => 138,  322 => 137,  319 => 136,  310 => 133,  307 => 132,  303 => 131,  295 => 125,  289 => 123,  284 => 121,  280 => 120,  275 => 119,  273 => 118,  264 => 112,  260 => 111,  253 => 107,  249 => 106,  242 => 102,  238 => 101,  231 => 97,  227 => 96,  221 => 92,  215 => 90,  209 => 87,  205 => 86,  201 => 85,  197 => 83,  191 => 81,  185 => 79,  183 => 78,  179 => 76,  177 => 75,  172 => 72,  166 => 69,  148 => 53,  146 => 52,  136 => 45,  126 => 42,  116 => 39,  106 => 36,  91 => 24,  87 => 23,  79 => 17,  77 => 14,  74 => 13,  72 => 12,  66 => 9,  59 => 5,  53 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1052,6 +1078,7 @@ setTimeout(function() {
         }, 500);
     });
 }, 5000);
+
 document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     if (mobileMenuToggle) {
@@ -1067,7 +1094,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (userMenuToggle) {
         userMenuToggle.addEventListener('click', function () {
             const menu = document.getElementById('user-menu');
-            menu.classList.toggle('hidden');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            } else {
+                console.error('Element \"user-menu\" not found.');
+            }
         });
     }
 
@@ -1082,7 +1113,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (notificationDropdown) {
         notificationDropdown.addEventListener('click', function () {
-            dropdownMenu.classList.toggle('hidden');
+            if (dropdownMenu) {
+                dropdownMenu.classList.toggle('hidden');
+            } else {
+                console.error('Element \"dropdown-menu\" not found.');
+            }
         });
     }
 
@@ -1099,7 +1134,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let modalMessage;
         let modalAction;
-      
+
         if (initiatedBy === 'invite') {
             modalMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
             modalAction = 'Invitation';
@@ -1146,59 +1181,76 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
         });
     }
 
     function fetchInvitations() {
-      fetch('/api/invitations_pending')
-        .then(response => response.json())
-        .then(data => {
-            if (data.count && data.count > 0) {
-                invitationNotification.innerText = data.count;
-                invitationNotification.classList.remove('hidden');
-            } else {
-                invitationNotification.classList.add('hidden');
-            }
-
-            invitationsList.innerHTML = '';
-
-            if (Array.isArray(data.invitations) && data.invitations.length > 0) {
-                noInvitationMsg.classList.add('hidden');
-                data.invitations.forEach(invitation => {
-                    const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
-                    const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
-                    const message = invitation.message || 'Pas de message';
-                    const initiatedBy = invitation.initiatedBy || 'user';
-
-                    let displayMessage;
-                    if (initiatedBy === 'owner') {
-                        displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
+        fetch('/api/invitations_pending')
+            .then(response => response.json())
+            .then(data => {
+                if (data.count && data.count > 0) {
+                    if (invitationNotification) {
+                        invitationNotification.innerText = data.count;
+                        invitationNotification.classList.remove('hidden');
                     } else {
-                        displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
+                        console.error('Element \"invitation-notification\" not found.');
+                    }
+                } else {
+                    if (invitationNotification) {
+                        invitationNotification.classList.add('hidden');
+                    }
+                }
+
+                if (invitationsList) {
+                    invitationsList.innerHTML = '';
+                } else {
+                    console.error('Element \"invitations-list\" not found.');
+                    return;
+                }
+
+                if (Array.isArray(data.invitations) && data.invitations.length > 0) {
+                    if (noInvitationMsg) {
+                        noInvitationMsg.classList.add('hidden');
                     }
 
-                    const invitationItem = document.createElement('div');
-                    invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
-                    invitationItem.textContent = displayMessage;
-                    invitationsList.appendChild(invitationItem);
+                    data.invitations.forEach(invitation => {
+                        const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
+                        const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
+                        const message = invitation.message || 'Pas de message';
+                        const initiatedBy = invitation.initiatedBy || 'user';
 
-                    invitationItem.addEventListener('click', function () {
-                        openInvitationModal({
-                            id: invitation.id,
-                            title: groupTitle,
-                            type: initiatedBy === 'owner' ? 'invite' : 'request',
-                            requester: requesterName
+                        let displayMessage;
+                        if (initiatedBy === 'owner') {
+                            displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
+                        } else {
+                            displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
+                        }
+
+                        const invitationItem = document.createElement('div');
+                        invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
+                        invitationItem.textContent = displayMessage;
+                        invitationsList.appendChild(invitationItem);
+
+                        invitationItem.addEventListener('click', function () {
+                            openInvitationModal({
+                                id: invitation.id,
+                                title: groupTitle,
+                                type: initiatedBy === 'owner' ? 'invite' : 'request',
+                                requester: requesterName
+                            });
                         });
                     });
-                });
-            } else {
-                noInvitationMsg.classList.remove('hidden');
-            }
-        })
-        .catch(error => console.error('Error fetching invitations:', error));
+                } else {
+                    if (noInvitationMsg) {
+                        noInvitationMsg.classList.remove('hidden');
+                    } else {
+                        console.error('Element \"no-invitation-msg\" not found.');
+                    }
+                }
+            })
+            .catch(error => console.error('Error fetching invitations:', error));
     }
+
     fetchInvitations();
     setInterval(fetchInvitations, 30000);
 });

@@ -35,33 +35,42 @@ class InvitationController extends AbstractController
     {
         $user = $this->getUser();
         if (!$user) {
-            return new JsonResponse(['error' => 'Unauthorized'], 401);
+            return new JsonResponse(['error' => 'User not connected'], 200);
         }
     
-        $invitations = $entityManager->getRepository(Invitation::class)
-            ->findBy(['user' => $user, 'status' => 'pending']);
-    
-        $data = [];
-    
-        foreach ($invitations as $invitation) {
-            $groupeJDR = $invitation->getGroupeJDR();
-            $data[] = [
-                'id' => $invitation->getId(),
-                'requestedBy' => $invitation->getRequestedBy() ? $invitation->getRequestedBy()->getUsername() : 'Unknown',
-                'initiatedBy' => $invitation->getInitiatedBy(),
-                'groupeJDR' => [
+        try {
+            $invitations = $entityManager->getRepository(Invitation::class)
+                ->findBy(['user' => $user, 'status' => 'pending']);
+
+            if (!$invitations) {
+                return new JsonResponse(['invitations' => [], 'count' => 0], 200);
+            }
+
+            $data = [];
+
+            foreach ($invitations as $invitation) {
+                $groupeJDR = $invitation->getGroupeJDR();
+                $groupeJDRData = $groupeJDR ? [
                     'title' => $groupeJDR->getTitle(),
                     'description' => $groupeJDR->getDescription(),
-                    'players' => count($groupeJDR->getPlayers()),
-                ],
-                'message' => $invitation->getMessage(),
-            ];            
+                    'players' => count($groupeJDR->getPlayers())
+                ] : null;
+    
+                $data[] = [
+                    'id' => $invitation->getId(),
+                    'requestedBy' => $invitation->getRequestedBy() ? $invitation->getRequestedBy()->getUsername() : 'Unknown',
+                    'initiatedBy' => $invitation->getInitiatedBy(),
+                    'groupeJDR' => $groupeJDRData,
+                    'message' => $invitation->getMessage() ?: 'No message provided',
+                ];
+            }
+
+            return new JsonResponse(['invitations' => $data, 'count' => count($data)], 200);
+
+        } catch (\Exception $e) {
+            return new JsonResponse(['error' => 'An error occurred while fetching invitations', 'details' => $e->getMessage()], 500);
         }
-    
-        return new JsonResponse(['invitations' => $data, 'count' => count($data)]);
     }
-    
-    
 
     #[Route('/invitations/{id}/respond', name: 'app_invitations_respond', methods: ['POST'])]
     public function respondInvitation(
