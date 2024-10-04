@@ -24,6 +24,15 @@ class Invitation
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $message = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $initiatedBy = null;
+
+    #[ORM\ManyToOne(inversedBy: 'invitationPending')]
+    private ?User $requestedBy = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +70,42 @@ class Invitation
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?string $message): static
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    public function getInitiatedBy(): ?string
+    {
+        return $this->initiatedBy;
+    }
+
+    public function setInitiatedBy(?string $initiatedBy): static
+    {
+        $this->initiatedBy = $initiatedBy;
+
+        return $this;
+    }
+
+    public function getRequestedBy(): ?User
+    {
+        return $this->requestedBy;
+    }
+
+    public function setRequestedBy(?User $requestedBy): static
+    {
+        $this->requestedBy = $requestedBy;
 
         return $this;
     }

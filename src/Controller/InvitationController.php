@@ -12,49 +12,81 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/invitations')]
 class InvitationController extends AbstractController
 {
-    #[Route('/', name: 'app_invitations_index', methods: ['GET'])]
+    
+    #[Route('/invitations', name: 'app_invitations_index', methods: ['GET'])]
     public function index(InvitationRepository $invitationRepository): Response
     {
         $user = $this->getUser();
-        $invitations = $invitationRepository->findBy(['user' => $user, 'status' => 'pending']);
+        
+        $invitations = $invitationRepository->findBy([
+            'user' => $user, 
+            'status' => 'pending'
+        ]);
 
         return $this->render('invitation/index.html.twig', [
             'invitations' => $invitations,
         ]);
     }
 
-    #[Route('/{id}/respond', name: 'app_invitations_respond', methods: ['POST'])]
-    public function respond(Invitation $invitation, Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/api/invitations_pending', name: 'app_invitations_pending')]
+    public function getPendingInvitations(EntityManagerInterface $entityManager): JsonResponse
     {
-        if ($invitation->getUser() !== $this->getUser()) {
-            throw $this->createAccessDeniedException();
+        $user = $this->getUser();
+        if (!$user) {
+            return new JsonResponse(['error' => 'Unauthorized'], 401);
         }
     
-        $response = json_decode($request->getContent(), true)['response'];
-        
+        $invitations = $entityManager->getRepository(Invitation::class)
+            ->findBy(['user' => $user, 'status' => 'pending']);
+    
+        $data = [];
+    
+        foreach ($invitations as $invitation) {
+            $groupeJDR = $invitation->getGroupeJDR();
+            $data[] = [
+                'id' => $invitation->getId(),
+                'requestedBy' => $invitation->getRequestedBy() ? $invitation->getRequestedBy()->getUsername() : 'Unknown',
+                'initiatedBy' => $invitation->getInitiatedBy(),
+                'groupeJDR' => [
+                    'title' => $groupeJDR->getTitle(),
+                    'description' => $groupeJDR->getDescription(),
+                    'players' => count($groupeJDR->getPlayers()),
+                ],
+                'message' => $invitation->getMessage(),
+            ];            
+        }
+    
+        return new JsonResponse(['invitations' => $data, 'count' => count($data)]);
+    }
+    
+    
+
+    #[Route('/invitations/{id}/respond', name: 'app_invitations_respond', methods: ['POST'])]
+    public function respondInvitation(
+        Invitation $invitation,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $response = $request->request->get('response');
+
         $notificationHistory = new NotificationHistory();
         $notificationHistory->setUser($invitation->getUser());
         $notificationHistory->setGroupeJDR($invitation->getGroupeJDR());
         $notificationHistory->setStatus($response === 'accept' ? 'accepted' : 'refused');
         $notificationHistory->setCreatedAt(new \DateTime());
-    
-        $entityManager->persist($notificationHistory);
-        
+
         if ($response === 'accept') {
-            $invitation->setStatus('accepted');
             $groupeJDR = $invitation->getGroupeJDR();
             $groupeJDR->addPlayer($invitation->getUser());
             $entityManager->persist($groupeJDR);
-        } else {
-            $invitation->setStatus('refused');
         }
-    
+
+        $entityManager->persist($notificationHistory);
         $entityManager->remove($invitation);
         $entityManager->flush();
-    
-        return new JsonResponse(['success' => true]);
+
+        return $this->redirectToRoute('app_invitations_index');
     }
 }

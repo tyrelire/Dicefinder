@@ -3,30 +3,123 @@
 {% block title %}DiceFinder | Les Univers{% endblock %}
 
 {% block body %}
-<div class="container mx-auto px-4 p-6 mt-10">
-    <h1 class="text-3xl font-bold mb-8 text-gray-900">Les groupes JDR</h1>
 
-    <form method="get" action="{{ path('app_groupe_j_d_r_index') }}" class="mb-8">
-        <input type="text" name="search" placeholder="Rechercher un JDR..." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+<style>
+    .card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+<div class="container mx-auto px-4 p-6">
+    <h1 class="text-2xl md:text-4xl font-bold text-center mb-10 text-white">Les Univers</h1>
+
+    <form method="get" action="{{ path('app_groupe_j_d_r_index') }}" class="mb-8 flex items-center space-x-2">
+        <input type="text" name="search" placeholder="Rechercher un Univers..." value="{{ searchTerm }}" class="w-full p-3 bg-gray-800 border border-white text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+        <button type="submit" class="bg-blue-500 text-white p-2.5 md:p-3 rounded-lg shadow hover:bg-blue-600 text-center flex items-center justify-center space-x-2 md:w-auto">
+            <span class="hidden md:block">Rechercher</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+        </button>
     </form>
+
+    <div class="flex flex-wrap justify-center space-x-2 mb-4">
+        {% if searchTerm %}
+            <div class="px-3 py-2 bg-blue-600 text-white rounded-lg">
+                Recherche: "{{ searchTerm }}"
+                <a href="{{ path('app_groupe_j_d_r_index') }}" class="ml-2 text-sm text-white">&times;</a>
+            </div>
+        {% endif %}
+
+        {% if selectedCategory %}
+            <div class="px-3 py-2 bg-blue-600 text-white rounded-lg">
+                Catégorie: "{{ selectedCategory.name }}"
+                <a href="{{ path('app_groupe_j_d_r_index') }}" class="ml-2 text-sm text-white">&times;</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="flex flex-wrap justify-center mb-8">
+        <a href="{{ path('app_groupe_j_d_r_index') }}" class="m-2 px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-blue-600">Toutes</a>
+        {% for category in categories[:5] %}
+            <a href="{{ path('app_groupe_j_d_r_index', {'category': category.id}) }}" class="m-2 px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-blue-600">
+                {{ category.name }}
+            </a>
+        {% endfor %}
+
+        {% if categories|length > 5 %}
+            <div class="relative">
+                <button class="m-2 px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-blue-600 focus:outline-none" id="more-categories-btn">
+                    Plus
+                </button>
+                <div id="more-categories-menu" class="hidden absolute mt-2 bg-gray-700 text-white rounded-lg shadow-lg p-2 w-40 z-10">
+                    {% for category in categories[5:] %}
+                        <a href="{{ path('app_groupe_j_d_r_index', {'category': category.id}) }}" class="block px-3 py-2 hover:bg-blue-600 rounded">
+                            {{ category.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {% for groupe_j_d_r in groupe_j_d_rs %}
-            <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white">
-                <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }} image" class="rounded-lg mb-4 w-full h-[20rem] object-cover">
-                
-                <div class="flex justify-between items-center">
-                    <span class="font-semibold">{{ groupe_j_d_r.title }}</span>
-                    <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}" class="bg-blue-600 text-white px-2 py-1 rounded text-xs">GO</a>
+            <div class="card bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative">
+                <div class="relative">
+                    <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }} image" class="rounded-lg mb-4 w-full h-[20rem] object-cover">
+
+                    <div class="absolute top-2 right-2">
+                        <span class="text-sm font-bold px-2 py-1 rounded 
+                            {% if groupe_j_d_r.status == 'preparation' %} bg-yellow-500
+                            {% elseif groupe_j_d_r.status == 'pret_a_jouer' %} bg-green-500
+                            {% elseif groupe_j_d_r.status == 'en_cours' %} bg-blue-500
+                            {% elseif groupe_j_d_r.status == 'complet' %} bg-red-500
+                            {% elseif groupe_j_d_r.status == 'pause' %} bg-gray-500
+                            {% elseif groupe_j_d_r.status == 'termine' %} bg-purple-500
+                            {% elseif groupe_j_d_r.status == 'annule' %} bg-gray-400
+                            {% else %} bg-gray-700
+                            {% endif %} text-white">
+                            {% if groupe_j_d_r.status == 'preparation' %}
+                                En Préparation
+                            {% elseif groupe_j_d_r.status == 'pret_a_jouer' %}
+                                Prêt à jouer
+                            {% elseif groupe_j_d_r.status == 'en_cours' %}
+                                En Cours
+                            {% elseif groupe_j_d_r.status == 'complet' %}
+                                Complet
+                            {% elseif groupe_j_d_r.status == 'pause' %}
+                                En Pause
+                            {% elseif groupe_j_d_r.status == 'termine' %}
+                                Terminé
+                            {% elseif groupe_j_d_r.status == 'annule' %}
+                                Annulé
+                            {% else %}
+                                Statut inconnu
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mb-2">
+                    <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}" class="font-semibold">{{ groupe_j_d_r.title }}</a>
+                    <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}" class="bg-blue-600 text-white px-2 py-1 rounded text-xs">Voir</a>
                 </div>
 
                 <div class="flex justify-between items-center mt-2">
                     <div class="flex items-center">
-                    {% if app.user.avatar %}
-                        <img src="{{ asset('uploads/avatars/' ~ groupe_j_d_r.owner.avatar) }}" alt="MJ photo" class="rounded h-8 w-8 object-cover">
-                    {% else %}
-                        <img class="rounded h-8 w-8 object-cover" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
-                    {% endif %}
+                        {% if groupe_j_d_r.owner.avatar %}
+                            <img src="{{ asset('uploads/avatars/' ~ groupe_j_d_r.owner.avatar) }}" alt="MJ photo" class="rounded h-8 w-8 object-cover">
+                        {% else %}
+                            <img class="rounded h-8 w-8 object-cover" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
+                        {% endif %}
                         <div class="ml-2">
                             <p class="text-xs text-gray-400">MJ</p>
                             <p class="text-xs text-white">{{ groupe_j_d_r.owner.username }}</p>
@@ -43,4 +136,32 @@
         {% endfor %}
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const moreCategoriesBtn = document.getElementById('more-categories-btn');
+        const moreCategoriesMenu = document.getElementById('more-categories-menu');
+        const cards = document.querySelectorAll('.card');
+
+        moreCategoriesBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            moreCategoriesMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!moreCategoriesBtn.contains(event.target) && !moreCategoriesMenu.contains(event.target)) {
+                moreCategoriesMenu.classList.add('hidden');
+            }
+        });
+
+        function revealCards() {
+            for (let i = 0; i < cards.length; i++) {
+                setTimeout(function() {
+                    cards[i].classList.add('visible');
+                }, i * 150);
+            }
+        }
+        revealCards();
+    });
+</script>
 {% endblock %}

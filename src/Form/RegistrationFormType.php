@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class RegistrationFormType extends AbstractType
 {
@@ -44,6 +45,18 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'toi@exemple.com',
                 ],
                 'invalid_message' => 'Un compte existe déjà avec cette adresse e-mail.',
+                'constraints' => [
+                    new Assert\NotBlank([
+                        'message' => 'L\'adresse e-mail est obligatoire.',
+                    ]),
+                    new Assert\Email([
+                        'message' => 'L\'adresse e-mail "{{ value }}" n\'est pas valide.',
+                    ]),
+                    new Assert\Regex([
+                        'pattern' => '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+                        'message' => 'L\'adresse e-mail doit contenir un domaine valide avec un "." suivi d\'une extension (exemple : .com, .org, .net).',
+                    ]),
+                ],
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
@@ -57,7 +70,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'block text-sm font-medium text-gray-700',
                 ],
                 'attr' => [
-                    'class' => 'flex items-center space-x-2 font-bold text-white',
+                    'class' => 'flex items-center space-x-2 font-bold text-dark',
                 ],
                 'choice_attr' => [
                     'ROLE_MJ' => ['class' => 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 rounded border-gray-300'],

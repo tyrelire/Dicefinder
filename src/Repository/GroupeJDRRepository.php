@@ -16,6 +16,23 @@ class GroupeJDRRepository extends ServiceEntityRepository
         parent::__construct($registry, GroupeJDR::class);
     }
 
+    public function findBySearchAndCategory(?string $searchTerm, ?int $categoryId): array
+    {
+        $queryBuilder = $this->createQueryBuilder('g');
+    
+        if ($searchTerm) {
+            $queryBuilder->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm')
+                ->setParameter('searchTerm', '%' . $searchTerm . '%');
+        }
+    
+        if ($categoryId) {
+            $queryBuilder->leftJoin('g.categories', 'c')
+                ->andWhere('c.id = :categoryId')
+                ->setParameter('categoryId', $categoryId);
+        }
+    
+        return $queryBuilder->getQuery()->getResult();
+    }    
     //    /**
     //     * @return GroupeJDR[] Returns an array of GroupeJDR objects
     //     */

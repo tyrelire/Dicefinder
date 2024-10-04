@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Security\EmailVerifier;
 use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,52 +30,61 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $username = $form->get('username')->getData();
-            
+    
             $existingUser = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
-            
+    
             if ($existingUser) {
                 $form->get('username')->addError(new FormError('Ce nom d’utilisateur est déjà pris.'));
             } else {
                 $roles = $form->get('roles')->getData();
                 $user->setRoles($roles);
-
                 $plainPassword = $form->get('password')->getData();
                 $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
-
+    
                 $entityManager->persist($user);
                 $entityManager->flush();
-
-                return $this->redirectToRoute('app_login');
+    
+                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                    (new TemplatedEmail())
+                        ->from(new Address('bot@dicefinder.com', 'DiceFinder Bot'))
+                        ->to($user->getEmail())
+                        ->subject('Veuillez confirmer votre email')
+                        ->htmlTemplate('registration/confirmation_email.html.twig')
+                );
+                $this->addFlash('emailsent', 'Pour finaliser votre inscription, veuillez cliquer sur le lien inclus dans l\'e-mail que nous vous avons envoyé. Cela activera votre compte et confirmera votre inscription sur notre plateforme. Merci de votre confiance !');
             }
         }
-
+    
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
 
     #[Route('/verify/email', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
+    public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $id = $request->query->get('id');
+        $user = $userRepository->find($id);
 
+        if (null === $id || null === $user) {
+            $this->addFlash('erreurMiss', 'Une erreur est survenu pendant la vérification de votre email. Veuillez réessayer plus tard.');
+            return $this->redirectToRoute('app_register');
+        }
+        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // validate email confirmation link, sets User::isVerified=true and persists
         try {
-            /** @var User $user */
-            $user = $this->getUser();
             $this->emailVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
-
             return $this->redirectToRoute('app_register');
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Votre adresse email a bien été verifiée, vous pouvez maintenant vous connecter.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_login');
     }
 }

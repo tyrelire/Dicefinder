@@ -3,34 +3,42 @@
 {% block title %}Invitations{% endblock %}
 
 {% block body %}
-<div class="container mx-auto px-4 py-8 mt-20">
+<div class="container mx-auto px-4 py-8">
     <div class="bg-white shadow rounded-lg p-6">
-    <h1 class="text-2xl font-bold mb-4 text-gray-800">Mes Invitations</h1>
+        <h1 class="text-2xl font-bold mb-4 text-gray-800">Mes Invitations</h1>
 
-    {% if invitations|length > 0 %}
-        <div class="space-y-4">
-            {% for invitation in invitations %}
-                <div class="bg-slate-900 p-4 rounded-lg shadow flex justify-between items-center">
-                    <div>
-                        <p class="text-lg font-bold text-white">{{ invitation.groupeJDR.title }}</p>
-                        <p class="text-sm text-white">Invité à rejoindre ce groupe</p>
+        {% if invitations|length > 0 %}
+            <div class="space-y-4">
+                {% for invitation in invitations %}
+                    <div class="bg-slate-900 p-4 rounded-lg shadow flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+                        <div>
+                            <p class="text-lg font-bold text-white">{{ invitation.groupeJDR.title }}</p>
+                            
+                            {% if invitation.initiatedBy == 'owner' %}
+                                <p class="text-sm text-white">Invité par le propriétaire à rejoindre ce groupe</p>
+                            {% elseif invitation.initiatedBy == 'user' %}
+                                <p class="text-sm text-white">{{ invitation.user.username }} a demandé à rejoindre ce groupe</p>
+                                {% if invitation.message %}
+                                    <p class="text-xs text-gray-400 mt-2"><em>"{{ invitation.message }}"</em></p>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="flex space-x-2 lg:ml-6">
+                            <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block">
+                                <input type="hidden" name="response" value="accept">
+                                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-200" aria-label="Accepter l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Accepter</button>
+                            </form>
+                            <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block">
+                                <input type="hidden" name="response" value="refuse">
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors duration-200" aria-label="Refuser l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Refuser</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="flex space-x-2">
-                        <form action="{{ path('app_invitations_respond', {'id': invitation.id}) }}" method="POST">
-                            <input type="hidden" name="response" value="accept">
-                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md">Accepter</button>
-                        </form>
-                        <form action="{{ path('app_invitations_respond', {'id': invitation.id}) }}" method="POST">
-                            <input type="hidden" name="response" value="refuse">
-                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md">Refuser</button>
-                        </form>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p class="text-gray-500">Aucune invitation en attente.</p>
-    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-500">Aucune invitation en attente.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

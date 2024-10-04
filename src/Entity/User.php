@@ -83,7 +83,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Collection<int, NotificationHistory>
      */
     #[ORM\OneToMany(targetEntity: NotificationHistory::class, mappedBy: 'user')]
-    private Collection $notificationHistories; // Groupes auxquels l'utilisateur a rejoint
+    private Collection $notificationHistories;
+
+    /**
+     * @var Collection<int, Invitation>
+     */
+    #[ORM\OneToMany(targetEntity: Invitation::class, mappedBy: 'requestedBy')]
+    private Collection $invitationPending; // Groupes auxquels l'utilisateur a rejoint
 
     public function __construct()
     {
@@ -91,6 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->joinedGroupeJDRs = new ArrayCollection();
         $this->invitations = new ArrayCollection();
         $this->notificationHistories = new ArrayCollection();
+        $this->invitationPending = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -384,6 +391,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($notificationHistory->getUser() === $this) {
                 $notificationHistory->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Invitation>
+     */
+    public function getInvitationPending(): Collection
+    {
+        return $this->invitationPending;
+    }
+
+    public function addInvitationPending(Invitation $invitationPending): static
+    {
+        if (!$this->invitationPending->contains($invitationPending)) {
+            $this->invitationPending->add($invitationPending);
+            $invitationPending->setRequestedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvitationPending(Invitation $invitationPending): static
+    {
+        if ($this->invitationPending->removeElement($invitationPending)) {
+            // set the owning side to null (unless already changed)
+            if ($invitationPending->getRequestedBy() === $this) {
+                $invitationPending->setRequestedBy(null);
             }
         }
 

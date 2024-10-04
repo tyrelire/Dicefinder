@@ -64,12 +64,27 @@ class GroupeJDR
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'groupeJDRs')]
     private Collection $categories;
 
+    #[ORM\Column]
+    private ?bool $recrutement = null;
+
+    /**
+     * @var Collection<int, Event>
+     */
+    #[ORM\OneToMany(
+        targetEntity: Event::class,
+        mappedBy: 'groupeJDR',
+        cascade: ['persist', 'remove'],
+        orphanRemoval: true
+    )]
+    private Collection $events;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
         $this->invitations = new ArrayCollection();
         $this->notificationHistories = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -278,6 +293,48 @@ class GroupeJDR
     public function removeCategory(Category $category): static
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function isRecrutement(): ?bool
+    {
+        return $this->recrutement;
+    }
+
+    public function setRecrutement(bool $recrutement): static
+    {
+        $this->recrutement = $recrutement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): static
+    {
+        if (!$this->events->contains($event)) {
+            $this->events->add($event);
+            $event->setGroupeJDR($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): static
+    {
+        if ($this->events->removeElement($event)) {
+            // set the owning side to null (unless already changed)
+            if ($event->getGroupeJDR() === $this) {
+                $event->setGroupeJDR(null);
+            }
+        }
 
         return $this;
     }

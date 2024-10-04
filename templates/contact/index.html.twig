@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DiceFinder | Nous Contacter{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <section class="bg-white rounded-lg shadow-lg p-6 sm:p-12">
+        <div class="text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-dark">Nous Contacter</h2>
+            <p class="mt-4 mb-8 text-lg text-dark">Vous avez rencontré un problème technique ? Vous souhaitez nous faire part de vos commentaires ou avez besoin de détails sur nos services ? Faites-le nous savoir.</p>
+        </div>
+        {{ form_start(contactForm, {'attr': {'class': 'space-y-6'}}) }}
+
+            <div class="mb-6">
+                {{ form_row(contactForm.email, {
+                    'label': 'Votre Email',
+                    'attr': {
+                        'class': 'shadow-sm bg-gray-600 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full',
+                        'placeholder': 'De quoi souhaitez-vous nous parler ?'
+                    },
+                    'label_attr': {'class': 'text-dark font-semibold mb-2'}
+                }) }}
+            </div>
+
+            <div class="mb-6">
+                {{ form_row(contactForm.subject, {
+                    'label': 'Sujet',
+                    'attr': {
+                        'class': 'shadow-sm bg-gray-600 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full',
+                        'placeholder': 'De quoi souhaitez-vous nous parler ?'
+                    },
+                    'label_attr': {'class': 'text-dark font-semibold mb-2'}
+                }) }}
+            </div>
+
+            <div class="mb-6">
+                {{ form_row(contactForm.message, {
+                    'label': 'Votre message',
+                    'attr': {
+                        'class': 'shadow-sm bg-gray-600 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full',
+                        'placeholder': 'Décrivez votre message ici',
+                        'rows': 6
+                    },
+                    'label_attr': {'class': 'text-dark font-semibold mb-2'}
+                }) }}
+            </div>
+
+            <div class="flex justify-center">
+                <button type="submit" class="w-full sm:w-auto px-6 py-3 text-dark bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none">
+                    Envoyer le message
+                </button>
+            </div>
+
+        {{ form_end(contactForm) }}
+    </section>
+</div>
+{% endblock %}
