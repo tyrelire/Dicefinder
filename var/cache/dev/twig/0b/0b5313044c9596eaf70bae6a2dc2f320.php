@@ -98,13 +98,13 @@ class __TwigTemplate_38dce160e8c43a4732d97145bc19f6f2 extends Template
 
         // line 6
         yield "
-<div class=\"min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8\">
+<div class=\"min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-20\">
     <div class=\"max-w-md w-full space-y-8\">
         <div>
-            <img class=\"mx-auto h-24 w-auto mb-3\" src=\"";
+            <img class=\"mx-auto h-24 w-auto mb-3 hidden sm:block\" src=\"";
         // line 10
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/logo-dicefinder.png"), "html", null, true);
-        yield "\" alt=\"Your Company\">
+        yield "\" alt=\"DiceFinder Logo\">
             <h1 class=\"text-center text-3xl font-bold tracking-tight text-white\">DiceFinder</h1>
             <h2 class=\"mt-6 text-center text-2xl tracking-tight text-white\">Créez un compte.</h2>
             <p class=\"mt-1 text-center text-sm text-gray-600\">
@@ -325,10 +325,10 @@ class __TwigTemplate_38dce160e8c43a4732d97145bc19f6f2 extends Template
 
 {% block body %}
 
-<div class=\"min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8\">
+<div class=\"min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-20\">
     <div class=\"max-w-md w-full space-y-8\">
         <div>
-            <img class=\"mx-auto h-24 w-auto mb-3\" src=\"{{ asset('images/logo-dicefinder.png') }}\" alt=\"Your Company\">
+            <img class=\"mx-auto h-24 w-auto mb-3 hidden sm:block\" src=\"{{ asset('images/logo-dicefinder.png') }}\" alt=\"DiceFinder Logo\">
             <h1 class=\"text-center text-3xl font-bold tracking-tight text-white\">DiceFinder</h1>
             <h2 class=\"mt-6 text-center text-2xl tracking-tight text-white\">Créez un compte.</h2>
             <p class=\"mt-1 text-center text-sm text-gray-600\">

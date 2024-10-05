@@ -14,11 +14,14 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $user = $this->getUser();
-
         if ($user instanceof User && !$user->isVerified()) {
             throw new CustomUserMessageAuthenticationException('Votre email n\'a pas encore été vérifié.');
         }

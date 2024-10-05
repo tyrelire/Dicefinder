@@ -27,16 +27,16 @@ final class GroupeJDRController extends AbstractController
     {
         $searchTerm = $request->query->get('search');
         $categoryId = $request->query->get('category');
-    
+
         $categories = $categoryRepository->findAll();
         $selectedCategory = null;
 
         if ($categoryId) {
             $selectedCategory = $categoryRepository->find($categoryId);
         }
-    
+
         $jdrs = $groupeJDRRepository->findBySearchAndCategory($searchTerm, $selectedCategory ? $selectedCategory->getId() : null);
-    
+
         return $this->render('groupe_jdr/index.html.twig', [
             'groupe_j_d_rs' => $jdrs,
             'user' => $this->getUser(),
@@ -99,32 +99,34 @@ final class GroupeJDRController extends AbstractController
     {
         $recruitingJDRs = $groupeJDRRepository->findBy(['recrutement' => true]);
         $invitations = $invitationRepository->findBy(['groupeJDR' => $groupeJDR]);
-    
+
         $currentUser = $this->getUser();
         $requestInProgress = false;
         $isOwner = false;
         $isMember = false;
-    
+
         if ($currentUser) {
             if ($groupeJDR->getOwner() === $currentUser) {
                 $isOwner = true;
             }
-    
+
             if ($groupeJDR->getPlayers()->contains($currentUser)) {
                 $isMember = true;
             }
-    
+
             $invitation = $invitationRepository->findOneBy([
                 'requestedBy' => $currentUser,
                 'groupeJDR' => $groupeJDR,
                 'status' => 'pending'
             ]);
-    
+
             if ($invitation) {
                 $requestInProgress = true;
             }
         }
-    
+
+        $isClosed = in_array($groupeJDR->getStatus(), ['complet', 'termine', 'annule']);
+
         return $this->render('groupe_jdr/show.html.twig', [
             'groupe_j_d_r' => $groupeJDR,
             'recruiting_jdrs' => $recruitingJDRs,
@@ -132,9 +134,9 @@ final class GroupeJDRController extends AbstractController
             'request_in_progress' => $requestInProgress,
             'is_owner' => $isOwner,
             'is_member' => $isMember,
+            'is_closed' => $isClosed,
         ]);
     }
-    
 
     #[Route('/{id}/edit', name: 'app_groupe_j_d_r_edit', methods: ['GET', 'POST'])]
     public function edit(

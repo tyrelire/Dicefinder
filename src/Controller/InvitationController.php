@@ -35,19 +35,19 @@ class InvitationController extends AbstractController
     {
         $user = $this->getUser();
         if (!$user) {
-            return new JsonResponse(['error' => 'User not connected'], 200);
+            return new JsonResponse(['error' => 'User not connected'], 403);
         }
     
         try {
             $invitations = $entityManager->getRepository(Invitation::class)
                 ->findBy(['user' => $user, 'status' => 'pending']);
-
+    
             if (!$invitations) {
                 return new JsonResponse(['invitations' => [], 'count' => 0], 200);
             }
-
+    
             $data = [];
-
+    
             foreach ($invitations as $invitation) {
                 $groupeJDR = $invitation->getGroupeJDR();
                 $groupeJDRData = $groupeJDR ? [
@@ -64,9 +64,9 @@ class InvitationController extends AbstractController
                     'message' => $invitation->getMessage() ?: 'No message provided',
                 ];
             }
-
+    
             return new JsonResponse(['invitations' => $data, 'count' => count($data)], 200);
-
+    
         } catch (\Exception $e) {
             return new JsonResponse(['error' => 'An error occurred while fetching invitations', 'details' => $e->getMessage()], 500);
         }

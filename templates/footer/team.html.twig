@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre Équipe | DiceFinder{% endblock %}
+
+{% block body %}
+<div class="bg-gray-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl font-extrabold sm:text-5xl">Notre Équipe</h1>
+            <p class="mt-4 text-lg text-gray-400">Découvrez les passionnés derrière DiceFinder</p>
+        </div>
+
+        <div class="mt-12 space-y-12">
+            <section class="flex flex-col lg:flex-row lg:items-center lg:space-x-8">
+                <img class="w-32 h-32 rounded-full mx-auto lg:mx-0" src="{{ asset('images/talep.jpg') }}" alt="Talep">
+                <div class="mt-6 lg:mt-0 text-center lg:text-left">
+                    <h2 class="text-3xl font-bold">Talep (Pelcat Théo) - Fondateur</h2>
+                    <p class="mt-4 text-gray-400">
+                        Talep est le créateur de DiceFinder et le moteur principal derrière cette aventure. Maître de jeu depuis plus de 10 ans, il combine son expérience dans l’animation de parties avec ses compétences en gestion acquises en tant que directeur de magasin.
+                    </p>
+                    <p class="mt-4 text-gray-400">
+                        Son objectif : simplifier la mise en relation des joueurs et maîtres de jeu en construisant une plateforme moderne qui enrichit l'expérience du jeu de rôle.
+                    </p>
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row lg:items-center lg:space-x-8">
+                <img class="w-32 h-32 rounded-full mx-auto lg:mx-0" src="{{ asset('images/benjamin.jpg') }}" alt="Benjamin">
+                <div class="mt-6 lg:mt-0 text-center lg:text-left">
+                    <h2 class="text-3xl font-bold">Benjamin - Développeur Principal</h2>
+                    <p class="mt-4 text-gray-400">
+                        Benjamin est notre développeur principal. Actuellement en études de développement, il travaille en étroite collaboration avec Talep pour transformer les idées en réalité. Passionné de technologie et de jeux, il contribue à faire de DiceFinder une plateforme fluide et intuitive.
+                    </p>
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row lg:items-center lg:space-x-8">
+                <img class="w-32 h-32 rounded-full mx-auto lg:mx-0" src="{{ asset('images/gui.jpg') }}" alt="Gui">
+                <div class="mt-6 lg:mt-0 text-center lg:text-left">
+                    <h2 class="text-3xl font-bold">Gui - Modérateur</h2>
+                    <p class="mt-4 text-gray-400">
+                        Boucher à temps plein et modérateur passionné sur DiceFinder, Gui utilise ses connaissances en jeux de rôle pour maintenir l'ordre et contribuer à la convivialité de la plateforme. Il aide l'équipe à s'assurer que l'expérience utilisateur reste agréable.
+                    </p>
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row lg:items-center lg:space-x-8">
+                <img class="w-32 h-32 rounded-full mx-auto lg:mx-0" src="{{ asset('images/laura.jpg') }}" alt="Laura">
+                <div class="mt-6 lg:mt-0 text-center lg:text-left">
+                    <h2 class="text-3xl font-bold">Laura - Modératrice</h2>
+                    <p class="mt-4 text-gray-400">
+                        Assistante sociale à plein temps, Laura utilise son expérience pour veiller au respect et à la bienveillance sur la plateforme. Grâce à elle, DiceFinder reste un espace inclusif où chacun peut s’exprimer librement et en toute sécurité.
+                    </p>
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row lg:items-center lg:space-x-8">
+                <img class="w-32 h-32 rounded-full mx-auto lg:mx-0" src="{{ asset('images/paul.jpg') }}" alt="Paul">
+                <div class="mt-6 lg:mt-0 text-center lg:text-left">
+                    <h2 class="text-3xl font-bold">Paul - Modérateur</h2>
+                    <p class="mt-4 text-gray-400">
+                        Prothésiste dentaire à plein temps, Paul est aussi modérateur sur DiceFinder. Grâce à son calme et à sa rigueur, il contribue à maintenir un environnement sûr et respectueux sur la plateforme, où chacun peut partager sa passion.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

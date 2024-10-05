@@ -75,7 +75,6 @@
             <div class="card bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative">
                 <div class="relative">
                     <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }} image" class="rounded-lg mb-4 w-full h-[20rem] object-cover">
-
                     <div class="absolute top-2 right-2">
                         <span class="text-sm font-bold px-2 py-1 rounded 
                             {% if groupe_j_d_r.status == 'preparation' %} bg-yellow-500
@@ -126,8 +125,8 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <p class="text-xs text-gray-400">Places disponibles</p>
-                        <p class="text-lg font-bold text-white">{{ groupe_j_d_r.maxPlayer - groupe_j_d_r.players|length }}</p>
+                        <p class="text-xs text-gray-400">Nombre de joueur</p>
+                        <p class="text-lg font-bold text-white">{{ groupe_j_d_r.players|length }} / {{ groupe_j_d_r.maxPlayer }}</p>
                     </div>
                 </div>
             </div>

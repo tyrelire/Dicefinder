@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <link rel="icon" type="image/x-icon" href="{{ asset('icons/favicon.ico') }}" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <script src="https://cdn.tailwindcss.com"></script>
@@ -50,35 +50,34 @@
               <div class="relative flex items-center">
                   <div class="relative w-max mx-auto mr-10">
                     {% if app.user %}
-                    <button id="notificationDropdown" type="button" class="relative w-12 h-12 flex items-center justify-center text-white border-none outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18px" class="cursor-pointer fill-[#fff]" viewBox="0 0 371.263 371.263">
-                            <path
-                                d="M305.402 234.794v-70.54c0-52.396-33.533-98.085-79.702-115.151.539-2.695.838-5.449.838-8.204C226.539 18.324 208.215 0 185.64 0s-40.899 18.324-40.899 40.899c0 2.695.299 5.389.778 7.964-15.868 5.629-30.539 14.551-43.054 26.647-23.593 22.755-36.587 53.354-36.587 86.169v73.115c0 2.575-2.096 4.731-4.731 4.731-22.096 0-40.959 16.647-42.995 37.845-1.138 11.797 2.755 23.533 10.719 32.276 7.904 8.683 19.222 13.713 31.018 13.713h72.217c2.994 26.887 25.869 47.905 53.534 47.905s50.54-21.018 53.534-47.905h72.217c11.797 0 23.114-5.03 31.018-13.713 7.904-8.743 11.797-20.479 10.719-32.276-2.036-21.198-20.958-37.845-42.995-37.845a4.704 4.704 0 0 1-4.731-4.731zM185.64 23.952c9.341 0 16.946 7.605 16.946 16.946 0 .778-.12 1.497-.24 2.275-4.072-.599-8.204-1.018-12.336-1.138-7.126-.24-14.132.24-21.078 1.198-.12-.778-.24-1.497-.24-2.275.002-9.401 7.607-17.006 16.948-17.006zm0 323.358c-14.431 0-26.527-10.3-29.342-23.952h58.683c-2.813 13.653-14.909 23.952-29.341 23.952zm143.655-67.665c.479 5.15-1.138 10.12-4.551 13.892-3.533 3.773-8.204 5.868-13.353 5.868H59.89c-5.15 0-9.82-2.096-13.294-5.868-3.473-3.772-5.09-8.743-4.611-13.892.838-9.042 9.282-16.168 19.162-16.168 15.809 0 28.683-12.874 28.683-28.683v-73.115c0-26.228 10.419-50.719 29.282-68.923 18.024-17.425 41.498-26.887 66.528-26.887 1.198 0 2.335 0 3.533.06 50.839 1.796 92.277 45.929 92.277 98.325v70.54c0 15.809 12.874 28.683 28.683 28.683 9.88 0 18.264 7.126 19.162 16.168z"
-                                data-original="#000000">
-                            </path>
-                        </svg>
-                        <div id="invitation-notification" class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 hidden">
-                            0
-                        </div>
-                    </button>
-                    <div id="dropdown-menu" class="hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <div class="py-1" role="none">
-                            <p id="no-invitation-msg" class="px-4 py-2 text-sm text-gray-700 hidden">No new invitations</p>
-                            <div id="invitations-list"></div>
-                        </div>
-                        <a href="{{ path('app_invitations_index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Voir toutes les invitations</a>
-                    </div>
+                      <button id="notificationDropdown" type="button" class="relative w-12 h-12 flex items-center justify-center text-white border-none outline-none bg-gray-800 rounded-full transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none shadow-lg">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18px" class="cursor-pointer fill-current" viewBox="0 0 371.263 371.263">
+                              <path
+                                  d="M305.402 234.794v-70.54c0-52.396-33.533-98.085-79.702-115.151.539-2.695.838-5.449.838-8.204C226.539 18.324 208.215 0 185.64 0s-40.899 18.324-40.899 40.899c0 2.695.299 5.389.778 7.964-15.868 5.629-30.539 14.551-43.054 26.647-23.593 22.755-36.587 53.354-36.587 86.169v73.115c0 2.575-2.096 4.731-4.731 4.731-22.096 0-40.959 16.647-42.995 37.845-1.138 11.797 2.755 23.533 10.719 32.276 7.904 8.683 19.222 13.713 31.018 13.713h72.217c2.994 26.887 25.869 47.905 53.534 47.905s50.54-21.018 53.534-47.905h72.217c11.797 0 23.114-5.03 31.018-13.713 7.904-8.743 11.797-20.479 10.719-32.276-2.036-21.198-20.958-37.845-42.995-37.845a4.704 4.704 0 0 1-4.731-4.731zM185.64 23.952c9.341 0 16.946 7.605 16.946 16.946 0 .778-.12 1.497-.24 2.275-4.072-.599-8.204-1.018-12.336-1.138-7.126-.24-14.132.24-21.078 1.198-.12-.778-.24-1.497-.24-2.275.002-9.401 7.607-17.006 16.948-17.006zm0 323.358c-14.431 0-26.527-10.3-29.342-23.952h58.683c-2.813 13.653-14.909 23.952-29.341 23.952zm143.655-67.665c.479 5.15-1.138 10.12-4.551 13.892-3.533 3.773-8.204 5.868-13.353 5.868H59.89c-5.15 0-9.82-2.096-13.294-5.868-3.473-3.772-5.09-8.743-4.611-13.892.838-9.042 9.282-16.168 19.162-16.168 15.809 0 28.683-12.874 28.683-28.683v-73.115c0-26.228 10.419-50.719 29.282-68.923 18.024-17.425 41.498-26.887 66.528-26.887 1.198 0 2.335 0 3.533.06 50.839 1.796 92.277 45.929 92.277 98.325v70.54c0 15.809 12.874 28.683 28.683 28.683 9.88 0 18.264 7.126 19.162 16.168z"
+                              />
+                          </svg>
+                          <div id="invitation-notification" class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 hidden">
+                              0
+                          </div>
+                      </button>
+                      <div id="dropdown-menu" class="hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <div class="py-1" role="none">
+                              <p id="no-invitation-msg" class="px-4 py-2 text-sm text-gray-700 hidden">Pas de nouvelles notification</p>
+                              <div id="invitations-list"></div>
+                          </div>
+                          <a href="{{ path('app_invitations_index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Voir toutes les invitations</a>
+                      </div>
                     {% endif %}
                   </div>
               </div>
               <div class="relative ml-3">
                   {% if app.user %}
-                      <button id="user-menu-toggle" type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" aria-expanded="false" aria-haspopup="true">
+                      <button id="user-menu-toggle" type="button" class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 shadow-lg" aria-expanded="false" aria-haspopup="true">
                           <span class="sr-only">Open user menu</span>
                           {% if app.user.avatar %}
-                              <img class="h-10 w-10 rounded-full" src="{{ asset('uploads/avatars/' ~ app.user.avatar) }}" alt="Profile photo">
+                              <img class="h-10 w-10 rounded-full object-cover" src="{{ asset('uploads/avatars/' ~ app.user.avatar) }}" alt="Profile photo">
                           {% else %}
-                              <img class="h-10 w-10 rounded-full" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
+                              <img class="h-10 w-10 rounded-full object-cover" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
                           {% endif %}
                       </button>
                       <div id="user-menu" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-toggle" tabindex="-1">
@@ -215,31 +214,31 @@
                   <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Ressources</h3>
                   <ul role="list" class="mt-4 space-y-4">
                     <li>
-                      <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Centre d’Aide </a>
+                      <a href="{{ path('app_footer_cgv') }}" class="text-base text-gray-500 hover:text-gray-700"> Conditions Générales de Vente </a>
                     </li>
 
                     <li>
-                      <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Statut du site </a>
+                      <a href="{{ path('app_footer_cgu') }}" class="text-base text-gray-500 hover:text-gray-700"> Conditions Générales d'Utilisation </a>
                     </li>
 
                     <li>
-                      <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Partenaire </a>
+                      <a href="{{ path('app_footer_policy') }}" class="text-base text-gray-500 hover:text-gray-700"> Politique de Confidentialité </a>
                     </li>
                   </ul>
                 </div>
                 <div class="mt-12 md:mt-0">
-                  <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                  <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Entreprise</h3>
                   <ul role="list" class="mt-4 space-y-4">
                     <li>
-                      <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Notre équipe </a>
+                      <a href="{{ path('app_footer_team') }}" class="text-base text-gray-500 hover:text-gray-700"> Notre équipe </a>
                     </li>
 
                     <li>
-                      <a href="#" class="text-base text-gray-500 hover:text-gray-900"> A Propos de Nous </a>
+                      <a href="{{ path('app_footer_about') }}" class="text-base text-gray-500 hover:text-gray-700"> À propos de nous </a>
                     </li>
 
                     <li>
-                      <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Nous contacter </a>
+                      <a href="{{ path('app_footer_faq') }}" class="text-base text-gray-500 hover:text-gray-700"> FAQ </a>
                     </li>
                   </ul>
                 </div>
@@ -249,7 +248,7 @@
                   <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Contact</h3>
                   <ul role="list" class="mt-4 space-y-4">
                     <li>
-                      <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Mon adresse, 27500 VilleRandom, France </a>
+                        <a href="{{ path('app_contact') }}" class="text-base text-gray-500 hover:text-gray-700"> Nous contacter </a>
                     </li>
                   </ul>
                 </div>
@@ -276,6 +275,50 @@ setTimeout(function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const userMenuToggle = document.getElementById('user-menu-toggle');
+    const userMenu = document.getElementById('user-menu');
+    const notificationDropdown = document.getElementById('notificationDropdown');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    // Fonction pour fermer le menu utilisateur
+    function closeUserMenu() {
+        if (userMenu && !userMenu.classList.contains('hidden')) {
+            userMenu.classList.add('hidden');
+        }
+    }
+
+    // Fonction pour fermer le menu de notifications
+    function closeNotificationMenu() {
+        if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
+            dropdownMenu.classList.add('hidden');
+        }
+    }
+
+    // Toggle du menu utilisateur avec fermeture du menu de notifications
+    if (userMenuToggle) {
+        userMenuToggle.addEventListener('click', function () {
+            closeNotificationMenu();
+            if (userMenu) {
+                userMenu.classList.toggle('hidden');
+            } else {
+                console.error('Element "user-menu" not found.');
+            }
+        });
+    }
+
+    // Toggle du menu de notifications avec fermeture du menu utilisateur
+    if (notificationDropdown) {
+        notificationDropdown.addEventListener('click', function () {
+            closeUserMenu();
+            if (dropdownMenu) {
+                dropdownMenu.classList.toggle('hidden');
+            } else {
+                console.error('Element "dropdown-menu" not found.');
+            }
+        });
+    }
+
+    // Gestion du menu mobile
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function () {
             const menu = document.getElementById('mobile-menu');
@@ -285,20 +328,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const userMenuToggle = document.getElementById('user-menu-toggle');
-    if (userMenuToggle) {
-        userMenuToggle.addEventListener('click', function () {
-            const menu = document.getElementById('user-menu');
-            if (menu) {
-                menu.classList.toggle('hidden');
-            } else {
-                console.error('Element "user-menu" not found.');
-            }
-        });
-    }
-
-    const notificationDropdown = document.getElementById('notificationDropdown');
-    const dropdownMenu = document.getElementById('dropdown-menu');
     const invitationNotification = document.getElementById('invitation-notification');
     const invitationsList = document.getElementById('invitations-list');
     const noInvitationMsg = document.getElementById('no-invitation-msg');
@@ -306,16 +335,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const acceptBtn = document.getElementById('accept-btn');
     const rejectBtn = document.getElementById('reject-btn');
 
-    if (notificationDropdown) {
-        notificationDropdown.addEventListener('click', function () {
-            if (dropdownMenu) {
-                dropdownMenu.classList.toggle('hidden');
-            } else {
-                console.error('Element "dropdown-menu" not found.');
-            }
-        });
-    }
-
+    // Fonction pour ouvrir la modale d'invitation
     function openInvitationModal(invitation) {
         if (!modal) {
             console.error('Modal not found');
@@ -359,6 +379,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Fonction pour gérer la réponse à une invitation
     function handleInvitationResponse(invitationId, response) {
         fetch(`/api/respond_invitation/${invitationId}`, {
             method: 'POST',
@@ -376,19 +397,29 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
+            console.error('Error processing the invitation:', error);
         });
     }
 
+    // Fonction pour récupérer les invitations
     function fetchInvitations() {
         fetch('/api/invitations_pending')
-            .then(response => response.json())
+            .then(response => {
+                if (response.status === 403) {
+                    const invitationNotification = document.getElementById('invitation-notification');
+                    if (invitationNotification) {
+                        invitationNotification.classList.add('hidden');
+                    }
+                    return;
+                }
+                return response.json();
+            })
             .then(data => {
+                if (!data) return;
                 if (data.count && data.count > 0) {
                     if (invitationNotification) {
                         invitationNotification.innerText = data.count;
                         invitationNotification.classList.remove('hidden');
-                    } else {
-                        console.error('Element "invitation-notification" not found.');
                     }
                 } else {
                     if (invitationNotification) {
@@ -398,9 +429,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (invitationsList) {
                     invitationsList.innerHTML = '';
-                } else {
-                    console.error('Element "invitations-list" not found.');
-                    return;
                 }
 
                 if (Array.isArray(data.invitations) && data.invitations.length > 0) {
@@ -438,8 +466,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     if (noInvitationMsg) {
                         noInvitationMsg.classList.remove('hidden');
-                    } else {
-                        console.error('Element "no-invitation-msg" not found.');
                     }
                 }
             })
@@ -449,6 +475,5 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchInvitations();
     setInterval(fetchInvitations, 30000);
 });
-
 </script>
 </html>

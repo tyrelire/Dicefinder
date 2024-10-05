@@ -98,10 +98,10 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
 
         // line 6
         yield "<div class=\"container mx-auto px-4 py-8\">
-    <section class=\"bg-white rounded-lg shadow-lg p-6 sm:p-12\">
+    <section class=\"bg-gray-800 rounded-lg shadow-lg p-6 sm:p-12\">
         <div class=\"text-center\">
-            <h2 class=\"text-3xl sm:text-4xl font-extrabold text-dark\">Nous Contacter</h2>
-            <p class=\"mt-4 mb-8 text-lg text-dark\">Vous avez rencontré un problème technique ? Vous souhaitez nous faire part de vos commentaires ou avez besoin de détails sur nos services ? Faites-le nous savoir.</p>
+            <h2 class=\"text-3xl sm:text-4xl font-extrabold text-white\">Nous Contacter</h2>
+            <p class=\"mt-4 mb-8 text-lg text-white\">Vous avez rencontré un problème technique ? Vous souhaitez nous faire part de vos commentaires ou avez besoin de détails sur nos services ? Faites-le nous savoir.</p>
         </div>
         ";
         // line 12
@@ -111,7 +111,7 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
             <div class=\"mb-6\">
                 ";
         // line 15
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["contactForm"]) || array_key_exists("contactForm", $context) ? $context["contactForm"] : (function () { throw new RuntimeError('Variable "contactForm" does not exist.', 15, $this->source); })()), "email", [], "any", false, false, false, 15), 'row', ["label" => "Votre Email", "attr" => ["class" => "shadow-sm bg-gray-600 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full", "placeholder" => "De quoi souhaitez-vous nous parler ?"], "label_attr" => ["class" => "text-dark font-semibold mb-2"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["contactForm"]) || array_key_exists("contactForm", $context) ? $context["contactForm"] : (function () { throw new RuntimeError('Variable "contactForm" does not exist.', 15, $this->source); })()), "email", [], "any", false, false, false, 15), 'row', ["label" => "Votre Email", "attr" => ["class" => "shadow-sm bg-white border border-gray-300 text-dark text-sm rounded-lg p-2.5 w-full", "placeholder" => "De quoi souhaitez-vous nous parler ?"], "label_attr" => ["class" => "text-white font-semibold mb-2"]]);
         // line 22
         yield "
             </div>
@@ -119,7 +119,7 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
             <div class=\"mb-6\">
                 ";
         // line 26
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["contactForm"]) || array_key_exists("contactForm", $context) ? $context["contactForm"] : (function () { throw new RuntimeError('Variable "contactForm" does not exist.', 26, $this->source); })()), "subject", [], "any", false, false, false, 26), 'row', ["label" => "Sujet", "attr" => ["class" => "shadow-sm bg-gray-600 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full", "placeholder" => "De quoi souhaitez-vous nous parler ?"], "label_attr" => ["class" => "text-dark font-semibold mb-2"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["contactForm"]) || array_key_exists("contactForm", $context) ? $context["contactForm"] : (function () { throw new RuntimeError('Variable "contactForm" does not exist.', 26, $this->source); })()), "subject", [], "any", false, false, false, 26), 'row', ["label" => "Sujet", "attr" => ["class" => "shadow-sm bg-white border border-gray-300 text-dark text-sm rounded-lg p-2.5 w-full", "placeholder" => "De quoi souhaitez-vous nous parler ?"], "label_attr" => ["class" => "text-white font-semibold mb-2"]]);
         // line 33
         yield "
             </div>
@@ -127,13 +127,13 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
             <div class=\"mb-6\">
                 ";
         // line 37
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["contactForm"]) || array_key_exists("contactForm", $context) ? $context["contactForm"] : (function () { throw new RuntimeError('Variable "contactForm" does not exist.', 37, $this->source); })()), "message", [], "any", false, false, false, 37), 'row', ["label" => "Votre message", "attr" => ["class" => "shadow-sm bg-gray-600 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full", "placeholder" => "Décrivez votre message ici", "rows" => 6], "label_attr" => ["class" => "text-dark font-semibold mb-2"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["contactForm"]) || array_key_exists("contactForm", $context) ? $context["contactForm"] : (function () { throw new RuntimeError('Variable "contactForm" does not exist.', 37, $this->source); })()), "message", [], "any", false, false, false, 37), 'row', ["label" => "Votre message", "attr" => ["class" => "shadow-sm bg-white border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full", "placeholder" => "Décrivez votre message ici", "rows" => 6], "label_attr" => ["class" => "text-white font-semibold mb-2"]]);
         // line 45
         yield "
             </div>
 
             <div class=\"flex justify-center\">
-                <button type=\"submit\" class=\"w-full sm:w-auto px-6 py-3 text-dark bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none\">
+                <button type=\"submit\" class=\"w-full sm:w-auto px-6 py-3 text-white bg-[#4447a1] text-white rounded-lg shadow hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none\">
                     Envoyer le message
                 </button>
             </div>
@@ -186,10 +186,10 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
 
 {% block body %}
 <div class=\"container mx-auto px-4 py-8\">
-    <section class=\"bg-white rounded-lg shadow-lg p-6 sm:p-12\">
+    <section class=\"bg-gray-800 rounded-lg shadow-lg p-6 sm:p-12\">
         <div class=\"text-center\">
-            <h2 class=\"text-3xl sm:text-4xl font-extrabold text-dark\">Nous Contacter</h2>
-            <p class=\"mt-4 mb-8 text-lg text-dark\">Vous avez rencontré un problème technique ? Vous souhaitez nous faire part de vos commentaires ou avez besoin de détails sur nos services ? Faites-le nous savoir.</p>
+            <h2 class=\"text-3xl sm:text-4xl font-extrabold text-white\">Nous Contacter</h2>
+            <p class=\"mt-4 mb-8 text-lg text-white\">Vous avez rencontré un problème technique ? Vous souhaitez nous faire part de vos commentaires ou avez besoin de détails sur nos services ? Faites-le nous savoir.</p>
         </div>
         {{ form_start(contactForm, {'attr': {'class': 'space-y-6'}}) }}
 
@@ -197,10 +197,10 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
                 {{ form_row(contactForm.email, {
                     'label': 'Votre Email',
                     'attr': {
-                        'class': 'shadow-sm bg-gray-600 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full',
+                        'class': 'shadow-sm bg-white border border-gray-300 text-dark text-sm rounded-lg p-2.5 w-full',
                         'placeholder': 'De quoi souhaitez-vous nous parler ?'
                     },
-                    'label_attr': {'class': 'text-dark font-semibold mb-2'}
+                    'label_attr': {'class': 'text-white font-semibold mb-2'}
                 }) }}
             </div>
 
@@ -208,10 +208,10 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
                 {{ form_row(contactForm.subject, {
                     'label': 'Sujet',
                     'attr': {
-                        'class': 'shadow-sm bg-gray-600 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full',
+                        'class': 'shadow-sm bg-white border border-gray-300 text-dark text-sm rounded-lg p-2.5 w-full',
                         'placeholder': 'De quoi souhaitez-vous nous parler ?'
                     },
-                    'label_attr': {'class': 'text-dark font-semibold mb-2'}
+                    'label_attr': {'class': 'text-white font-semibold mb-2'}
                 }) }}
             </div>
 
@@ -219,16 +219,16 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
                 {{ form_row(contactForm.message, {
                     'label': 'Votre message',
                     'attr': {
-                        'class': 'shadow-sm bg-gray-600 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full',
+                        'class': 'shadow-sm bg-white border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full',
                         'placeholder': 'Décrivez votre message ici',
                         'rows': 6
                     },
-                    'label_attr': {'class': 'text-dark font-semibold mb-2'}
+                    'label_attr': {'class': 'text-white font-semibold mb-2'}
                 }) }}
             </div>
 
             <div class=\"flex justify-center\">
-                <button type=\"submit\" class=\"w-full sm:w-auto px-6 py-3 text-dark bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none\">
+                <button type=\"submit\" class=\"w-full sm:w-auto px-6 py-3 text-white bg-[#4447a1] text-white rounded-lg shadow hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none\">
                     Envoyer le message
                 </button>
             </div>

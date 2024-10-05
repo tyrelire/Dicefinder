@@ -18,21 +18,32 @@ class GroupeJDRRepository extends ServiceEntityRepository
 
     public function findBySearchAndCategory(?string $searchTerm, ?int $categoryId): array
     {
-        $queryBuilder = $this->createQueryBuilder('g');
+        $dql = 'SELECT g FROM App\Entity\GroupeJDR g';
+        
+        $parameters = [];
+        $conditions = [];
     
         if ($searchTerm) {
-            $queryBuilder->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm')
-                ->setParameter('searchTerm', '%' . $searchTerm . '%');
+            $conditions[] = '(g.title LIKE :searchTerm OR g.description LIKE :searchTerm)';
+            $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
     
         if ($categoryId) {
-            $queryBuilder->leftJoin('g.categories', 'c')
-                ->andWhere('c.id = :categoryId')
-                ->setParameter('categoryId', $categoryId);
+            $dql .= ' JOIN g.categories c';
+            $conditions[] = 'c.id = :categoryId';
+            $parameters['categoryId'] = $categoryId;
         }
     
-        return $queryBuilder->getQuery()->getResult();
-    }    
+        if (!empty($conditions)) {
+            $dql .= ' WHERE ' . implode(' AND ', $conditions);
+        }
+
+        // Utilisation de getEntityManager() au lieu de $_em
+        $query = $this->getEntityManager()->createQuery($dql)->setParameters($parameters);
+    
+        return $query->getResult();
+    }
+    
     //    /**
     //     * @return GroupeJDR[] Returns an array of GroupeJDR objects
     //     */

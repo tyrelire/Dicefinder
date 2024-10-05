@@ -3,10 +3,10 @@
 {% block title %}DiceFinder | Connexion{% endblock %}
 
 {% block body %}
-<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-36">
     <div class="w-full max-w-md space-y-8">
         <div>
-            <img class="mx-auto h-24 w-auto mb-3" src="{{ asset('images/logo-dicefinder.png') }}" alt="Your Company">
+            <img class="mx-auto h-24 w-auto mb-3 hidden sm:block" src="{{ asset('images/logo-dicefinder.png') }}" alt="DiceFinder Logo">
             <h1 class="text-center text-3xl font-bold tracking-tight text-white">DiceFinder</h1>
             <h2 class="mt-6 text-center text-2xl tracking-tight text-white">Connectez-vous à votre compte</h2>
             <p class="mt-2 text-center text-sm text-gray-600">
@@ -22,7 +22,7 @@
             {% endif %}
             {% if app.user %}
                 <div class="mb-3 text-sm text-gray-600">
-                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="font-medium text-indigo-600 hover:text-indigo-500">Logout</a>
+                    Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="font-medium text-indigo-600 hover:text-indigo-500">Déconnexion</a>
                 </div>
             {% endif %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
@@ -42,7 +42,7 @@
                     <label for="remember-me" class="ml-2 block text-sm text-white">Se souvenir de moi</label>
                 </div>
                 <div class="text-sm">
-                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Mot de passe oublié?</a>
+                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Mot de passe oublié ?</a>
                 </div>
             </div>
             <div>

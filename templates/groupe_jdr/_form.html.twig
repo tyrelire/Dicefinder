@@ -19,7 +19,8 @@
 
         <div class="mb-4">
             {{ form_label(form.description, 'Description', { 'attr': {'class': 'block text-base font-semibold text-gray-900 mb-2 tracking-wide'} }) }}
-            {{ form_widget(form.description, { 'attr': { 'class': 'bg-gray-800 text-white text-sm rounded-md shadow-inner focus:ring-blue-500 focus:border-blue-500 block w-full p-3 border border-gray-600 resize-none', 'rows': '6', 'placeholder': 'Écrivez la description ici...' }}) }}
+            {{ form_widget(form.description, { 'attr': { 'class': 'bg-gray-800 text-white text-sm rounded-md shadow-inner focus:ring-blue-500 focus:border-blue-500 block w-full p-3 border border-gray-600 resize-none', 'rows': '6', 'placeholder': 'Écrivez la description ici...', 'maxlength': '255', 'oninput': 'updateCharCount(this)' }}) }}
+            <div id="charCount" class="text-gray-400 text-sm mt-1">255 caractères restants</div>
             {{ form_errors(form.description) }}
         </div>
 
@@ -174,6 +175,12 @@
 </div>
 
 <script>
+
+    function updateCharCount(textarea) {
+        const maxChars = 255;
+        const remainingChars = maxChars - textarea.value.length;
+        document.getElementById('charCount').textContent = remainingChars + " caractères restants";
+    }
 document.addEventListener('DOMContentLoaded', function () {
     const decrementButton = document.getElementById('decrement-button');
     const incrementButton = document.getElementById('increment-button');
@@ -373,6 +380,10 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             if (data.success) {
                 document.querySelector(`[data-user-id="${userId}"]`).remove();
+
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
             } else {
                 console.error(data.message);
             }
@@ -381,6 +392,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Erreur lors de la suppression de l\'utilisateur:', error);
         });
     }
+
 
     updateMemberLimit();
 

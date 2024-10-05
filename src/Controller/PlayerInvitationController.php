@@ -85,20 +85,25 @@ class PlayerInvitationController extends AbstractController
     ): JsonResponse {
         $user = $userRepository->find($userId);
         $groupeJdr = $groupeJdrRepository->find($jdrId);
-
+    
         if (!$user || !$groupeJdr) {
             return new JsonResponse(['success' => false, 'message' => 'Utilisateur ou groupe non trouvé'], 404);
         }
-
+    
         if ($groupeJdr->getPlayers()->contains($user)) {
             $groupeJdr->removePlayer($user);
             $entityManager->flush();
-
-            return new JsonResponse(['success' => true, 'redirect' => $this->generateUrl('app_groupe_j_d_r_edit', ['id' => $jdrId])], 200);
+    
+            return new JsonResponse([
+                'success' => true, 
+                'redirect' => $this->generateUrl('app_groupe_j_d_r_edit', ['id' => $groupeJdr->getId()])
+            ], 200);
         }
-
-        return new JsonResponse(['success' => false, 'message' => 'Utilisateur ou groupe non trouvé'], 404);
+    
+        // Si l'utilisateur n'était pas dans le groupe
+        return new JsonResponse(['success' => false, 'message' => 'Utilisateur non trouvé dans ce groupe'], 404);
     }
+    
 
     #[Route('/api/request_join/{groupeId}', name: 'request_join', methods: ['POST'])]
     public function requestJoin(

@@ -59,7 +59,10 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         yield "</title>
         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">
-        <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\">
+        <link rel=\"icon\" type=\"image/x-icon\" href=\"";
+        // line 7
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/favicon.ico"), "html", null, true);
+        yield "\" />
         <link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap\" rel=\"stylesheet\">
         <link href=\"";
         // line 9
@@ -145,123 +148,122 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         // line 52
         if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 52, $this->source); })()), "user", [], "any", false, false, false, 52)) {
             // line 53
-            yield "                    <button id=\"notificationDropdown\" type=\"button\" class=\"relative w-12 h-12 flex items-center justify-center text-white border-none outline-none\">
-                        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18px\" class=\"cursor-pointer fill-[#fff]\" viewBox=\"0 0 371.263 371.263\">
-                            <path
-                                d=\"M305.402 234.794v-70.54c0-52.396-33.533-98.085-79.702-115.151.539-2.695.838-5.449.838-8.204C226.539 18.324 208.215 0 185.64 0s-40.899 18.324-40.899 40.899c0 2.695.299 5.389.778 7.964-15.868 5.629-30.539 14.551-43.054 26.647-23.593 22.755-36.587 53.354-36.587 86.169v73.115c0 2.575-2.096 4.731-4.731 4.731-22.096 0-40.959 16.647-42.995 37.845-1.138 11.797 2.755 23.533 10.719 32.276 7.904 8.683 19.222 13.713 31.018 13.713h72.217c2.994 26.887 25.869 47.905 53.534 47.905s50.54-21.018 53.534-47.905h72.217c11.797 0 23.114-5.03 31.018-13.713 7.904-8.743 11.797-20.479 10.719-32.276-2.036-21.198-20.958-37.845-42.995-37.845a4.704 4.704 0 0 1-4.731-4.731zM185.64 23.952c9.341 0 16.946 7.605 16.946 16.946 0 .778-.12 1.497-.24 2.275-4.072-.599-8.204-1.018-12.336-1.138-7.126-.24-14.132.24-21.078 1.198-.12-.778-.24-1.497-.24-2.275.002-9.401 7.607-17.006 16.948-17.006zm0 323.358c-14.431 0-26.527-10.3-29.342-23.952h58.683c-2.813 13.653-14.909 23.952-29.341 23.952zm143.655-67.665c.479 5.15-1.138 10.12-4.551 13.892-3.533 3.773-8.204 5.868-13.353 5.868H59.89c-5.15 0-9.82-2.096-13.294-5.868-3.473-3.772-5.09-8.743-4.611-13.892.838-9.042 9.282-16.168 19.162-16.168 15.809 0 28.683-12.874 28.683-28.683v-73.115c0-26.228 10.419-50.719 29.282-68.923 18.024-17.425 41.498-26.887 66.528-26.887 1.198 0 2.335 0 3.533.06 50.839 1.796 92.277 45.929 92.277 98.325v70.54c0 15.809 12.874 28.683 28.683 28.683 9.88 0 18.264 7.126 19.162 16.168z\"
-                                data-original=\"#000000\">
-                            </path>
-                        </svg>
-                        <div id=\"invitation-notification\" class=\"absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 hidden\">
-                            0
-                        </div>
-                    </button>
-                    <div id=\"dropdown-menu\" class=\"hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\">
-                        <div class=\"py-1\" role=\"none\">
-                            <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">No new invitations</p>
-                            <div id=\"invitations-list\"></div>
-                        </div>
-                        <a href=\"";
-            // line 69
+            yield "                      <button id=\"notificationDropdown\" type=\"button\" class=\"relative w-12 h-12 flex items-center justify-center text-white border-none outline-none bg-gray-800 rounded-full transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none shadow-lg\">
+                          <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18px\" class=\"cursor-pointer fill-current\" viewBox=\"0 0 371.263 371.263\">
+                              <path
+                                  d=\"M305.402 234.794v-70.54c0-52.396-33.533-98.085-79.702-115.151.539-2.695.838-5.449.838-8.204C226.539 18.324 208.215 0 185.64 0s-40.899 18.324-40.899 40.899c0 2.695.299 5.389.778 7.964-15.868 5.629-30.539 14.551-43.054 26.647-23.593 22.755-36.587 53.354-36.587 86.169v73.115c0 2.575-2.096 4.731-4.731 4.731-22.096 0-40.959 16.647-42.995 37.845-1.138 11.797 2.755 23.533 10.719 32.276 7.904 8.683 19.222 13.713 31.018 13.713h72.217c2.994 26.887 25.869 47.905 53.534 47.905s50.54-21.018 53.534-47.905h72.217c11.797 0 23.114-5.03 31.018-13.713 7.904-8.743 11.797-20.479 10.719-32.276-2.036-21.198-20.958-37.845-42.995-37.845a4.704 4.704 0 0 1-4.731-4.731zM185.64 23.952c9.341 0 16.946 7.605 16.946 16.946 0 .778-.12 1.497-.24 2.275-4.072-.599-8.204-1.018-12.336-1.138-7.126-.24-14.132.24-21.078 1.198-.12-.778-.24-1.497-.24-2.275.002-9.401 7.607-17.006 16.948-17.006zm0 323.358c-14.431 0-26.527-10.3-29.342-23.952h58.683c-2.813 13.653-14.909 23.952-29.341 23.952zm143.655-67.665c.479 5.15-1.138 10.12-4.551 13.892-3.533 3.773-8.204 5.868-13.353 5.868H59.89c-5.15 0-9.82-2.096-13.294-5.868-3.473-3.772-5.09-8.743-4.611-13.892.838-9.042 9.282-16.168 19.162-16.168 15.809 0 28.683-12.874 28.683-28.683v-73.115c0-26.228 10.419-50.719 29.282-68.923 18.024-17.425 41.498-26.887 66.528-26.887 1.198 0 2.335 0 3.533.06 50.839 1.796 92.277 45.929 92.277 98.325v70.54c0 15.809 12.874 28.683 28.683 28.683 9.88 0 18.264 7.126 19.162 16.168z\"
+                              />
+                          </svg>
+                          <div id=\"invitation-notification\" class=\"absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 hidden\">
+                              0
+                          </div>
+                      </button>
+                      <div id=\"dropdown-menu\" class=\"hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\">
+                          <div class=\"py-1\" role=\"none\">
+                              <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notification</p>
+                              <div id=\"invitations-list\"></div>
+                          </div>
+                          <a href=\"";
+            // line 68
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_invitations_index");
             yield "\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100\">Voir toutes les invitations</a>
-                    </div>
+                      </div>
                     ";
         }
-        // line 72
+        // line 71
         yield "                  </div>
               </div>
               <div class=\"relative ml-3\">
                   ";
-        // line 75
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 75, $this->source); })()), "user", [], "any", false, false, false, 75)) {
-            // line 76
-            yield "                      <button id=\"user-menu-toggle\" type=\"button\" class=\"flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2\" aria-expanded=\"false\" aria-haspopup=\"true\">
+        // line 74
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 74, $this->source); })()), "user", [], "any", false, false, false, 74)) {
+            // line 75
+            yield "                      <button id=\"user-menu-toggle\" type=\"button\" class=\"flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 shadow-lg\" aria-expanded=\"false\" aria-haspopup=\"true\">
                           <span class=\"sr-only\">Open user menu</span>
                           ";
-            // line 78
-            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 78, $this->source); })()), "user", [], "any", false, false, false, 78), "avatar", [], "any", false, false, false, 78)) {
-                // line 79
-                yield "                              <img class=\"h-10 w-10 rounded-full\" src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 79, $this->source); })()), "user", [], "any", false, false, false, 79), "avatar", [], "any", false, false, false, 79))), "html", null, true);
+            // line 77
+            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 77, $this->source); })()), "user", [], "any", false, false, false, 77), "avatar", [], "any", false, false, false, 77)) {
+                // line 78
+                yield "                              <img class=\"h-10 w-10 rounded-full object-cover\" src=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 78, $this->source); })()), "user", [], "any", false, false, false, 78), "avatar", [], "any", false, false, false, 78))), "html", null, true);
                 yield "\" alt=\"Profile photo\">
                           ";
             } else {
-                // line 81
-                yield "                              <img class=\"h-10 w-10 rounded-full\" src=\"";
+                // line 80
+                yield "                              <img class=\"h-10 w-10 rounded-full object-cover\" src=\"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
                 yield "\" alt=\"Default profile photo\">
                           ";
             }
-            // line 83
+            // line 82
             yield "                      </button>
                       <div id=\"user-menu\" class=\"hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\" role=\"menu\" aria-orientation=\"vertical\" aria-labelledby=\"user-menu-toggle\" tabindex=\"-1\">
                           <a href=\"";
-            // line 85
+            // line 84
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile");
             yield "\" class=\"block px-4 py-2 text-sm text-gray-700\" role=\"menuitem\" tabindex=\"-1\" id=\"user-menu-item-0\">Votre Profil</a>
                           <a href=\"";
-            // line 86
+            // line 85
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit");
             yield "\" class=\"block px-4 py-2 text-sm text-gray-700\" role=\"menuitem\" tabindex=\"-1\" id=\"user-menu-item-1\">Paramètre</a>
                           <a href=\"";
-            // line 87
+            // line 86
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\" class=\"block px-4 py-2 text-sm text-gray-700\" role=\"menuitem\" tabindex=\"-1\" id=\"user-menu-item-2\">Déconnexion</a>
                       </div>
                   ";
         } else {
-            // line 90
+            // line 89
             yield "                      <a href=\"";
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             yield "\" class=\"text-sm font-semibold leading-6 text-white\">Connexion <span aria-hidden=\"true\">&rarr;</span></a>
                   ";
         }
-        // line 92
+        // line 91
         yield "              </div>
           </nav>
           <div class=\"lg:hidden hidden backdrop-blur-lg bg-slate-900 bg-opacity-80\" id=\"mobile-menu\">
             <div class=\"space-y-1 pt-2 pb-3\">
               <a href=\"";
-        // line 96
+        // line 95
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
         yield "\"
                 class=\"block border-l-4 ";
-        // line 97
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 97, $this->source); })()), "request", [], "any", false, false, false, 97), "get", ["_route"], "method", false, false, false, 97) == "app_home")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
+        // line 96
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 96, $this->source); })()), "request", [], "any", false, false, false, 96), "get", ["_route"], "method", false, false, false, 96) == "app_home")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
         yield " py-2 pl-3 pr-4 text-base font-medium\">
                 Accueil
               </a>
 
               <a href=\"";
-        // line 101
+        // line 100
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
         yield "\"
                 class=\"block border-l-4 ";
-        // line 102
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 102, $this->source); })()), "request", [], "any", false, false, false, 102), "get", ["_route"], "method", false, false, false, 102) == "app_groupe_j_d_r_index")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
+        // line 101
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 101, $this->source); })()), "request", [], "any", false, false, false, 101), "get", ["_route"], "method", false, false, false, 101) == "app_groupe_j_d_r_index")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
         yield " py-2 pl-3 pr-4 text-base font-medium\">
                 Les Univers
               </a>
 
               <a href=\"";
-        // line 106
+        // line 105
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_my_jdr");
         yield "\"
                 class=\"block border-l-4 ";
-        // line 107
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 107, $this->source); })()), "request", [], "any", false, false, false, 107), "get", ["_route"], "method", false, false, false, 107) == "app_my_jdr")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
+        // line 106
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 106, $this->source); })()), "request", [], "any", false, false, false, 106), "get", ["_route"], "method", false, false, false, 106) == "app_my_jdr")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
         yield " py-2 pl-3 pr-4 text-base font-medium\">
                 Mes Parties
               </a>
 
               <a href=\"";
-        // line 111
+        // line 110
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact");
         yield "\"
                 class=\"block border-l-4 ";
-        // line 112
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 112, $this->source); })()), "request", [], "any", false, false, false, 112), "get", ["_route"], "method", false, false, false, 112) == "app_contact")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
+        // line 111
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 111, $this->source); })()), "request", [], "any", false, false, false, 111), "get", ["_route"], "method", false, false, false, 111) == "app_contact")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
         yield " py-2 pl-3 pr-4 text-base font-medium\">
                 Nous Contacter
               </a>
@@ -269,29 +271,29 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
             <div class=\"border-t border-gray-200 pt-4 pb-3\">
               <div class=\"mt-3 space-y-1\">
                 ";
-        // line 118
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 118, $this->source); })()), "user", [], "any", false, false, false, 118)) {
-            // line 119
+        // line 117
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 117, $this->source); })()), "user", [], "any", false, false, false, 117)) {
+            // line 118
             yield "                  <a href=\"";
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile");
             yield "\" class=\"block px-4 py-2 text-base font-medium text-white hover:bg-gray-50\">Votre Profil</a>
                   <a href=\"";
-            // line 120
+            // line 119
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit");
             yield "\" class=\"block px-4 py-2 text-base font-medium text-white hover:bg-gray-50\">Paramètre</a>
                   <a href=\"";
-            // line 121
+            // line 120
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\" class=\"block px-4 py-2 text-base font-medium text-white hover:bg-gray-50\">Déconnexion</a>
                 ";
         } else {
-            // line 123
+            // line 122
             yield "                  <a href=\"";
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             yield "\" class=\"block px-4 py-2 text-base font-medium text-white hover:bg-gray-50\">Connexion</a>
                 ";
         }
-        // line 125
+        // line 124
         yield "              </div>
             </div>
           </div>
@@ -299,14 +301,14 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
       </div>
       <div class=\"container mx-auto px-4 py-8 mt-20\">
           ";
-        // line 131
+        // line 130
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 131, $this->source); })()), "flashes", ["success"], "method", false, false, false, 131));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 130, $this->source); })()), "flashes", ["success"], "method", false, false, false, 130));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 132
+            // line 131
             yield "              <div class=\"alert-message bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6\" role=\"alert\">
                   ";
-            // line 133
+            // line 132
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
             yield "
               </div>
@@ -315,17 +317,17 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 136
+        // line 135
         yield "          
           ";
-        // line 137
+        // line 136
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 137, $this->source); })()), "flashes", ["error"], "method", false, false, false, 137));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 136, $this->source); })()), "flashes", ["error"], "method", false, false, false, 136));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 138
+            // line 137
             yield "              <div class=\"alert-message bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6\" role=\"alert\">
                   ";
-            // line 139
+            // line 138
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
             yield "
               </div>
@@ -334,12 +336,12 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 142
+        // line 141
         yield "
           ";
-        // line 143
+        // line 142
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 144
+        // line 143
         yield "      </div>
       <div id=\"invitationModal\" class=\"fixed z-10 inset-0 overflow-y-auto hidden\" aria-labelledby=\"modal-title\" role=\"dialog\" aria-modal=\"true\">
           <div class=\"flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0\">
@@ -414,31 +416,49 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                   <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Ressources</h3>
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Centre d’Aide </a>
+                      <a href=\"";
+        // line 217
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_cgv");
+        yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales de Vente </a>
                     </li>
 
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Statut du site </a>
+                      <a href=\"";
+        // line 221
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_cgu");
+        yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales d'Utilisation </a>
                     </li>
 
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Partenaire </a>
+                      <a href=\"";
+        // line 225
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_policy");
+        yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Politique de Confidentialité </a>
                     </li>
                   </ul>
                 </div>
                 <div class=\"mt-12 md:mt-0\">
-                  <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Company</h3>
+                  <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Entreprise</h3>
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Notre équipe </a>
+                      <a href=\"";
+        // line 233
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_team");
+        yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Notre équipe </a>
                     </li>
 
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> A Propos de Nous </a>
+                      <a href=\"";
+        // line 237
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_about");
+        yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> À propos de nous </a>
                     </li>
 
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Nous contacter </a>
+                      <a href=\"";
+        // line 241
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_faq");
+        yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> FAQ </a>
                     </li>
                   </ul>
                 </div>
@@ -448,7 +468,10 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                   <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Contact</h3>
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Mon adresse, 27500 VilleRandom, France </a>
+                        <a href=\"";
+        // line 251
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact");
+        yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Nous contacter </a>
                     </li>
                   </ul>
                 </div>
@@ -475,6 +498,50 @@ setTimeout(function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const userMenuToggle = document.getElementById('user-menu-toggle');
+    const userMenu = document.getElementById('user-menu');
+    const notificationDropdown = document.getElementById('notificationDropdown');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    // Fonction pour fermer le menu utilisateur
+    function closeUserMenu() {
+        if (userMenu && !userMenu.classList.contains('hidden')) {
+            userMenu.classList.add('hidden');
+        }
+    }
+
+    // Fonction pour fermer le menu de notifications
+    function closeNotificationMenu() {
+        if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
+            dropdownMenu.classList.add('hidden');
+        }
+    }
+
+    // Toggle du menu utilisateur avec fermeture du menu de notifications
+    if (userMenuToggle) {
+        userMenuToggle.addEventListener('click', function () {
+            closeNotificationMenu();
+            if (userMenu) {
+                userMenu.classList.toggle('hidden');
+            } else {
+                console.error('Element \"user-menu\" not found.');
+            }
+        });
+    }
+
+    // Toggle du menu de notifications avec fermeture du menu utilisateur
+    if (notificationDropdown) {
+        notificationDropdown.addEventListener('click', function () {
+            closeUserMenu();
+            if (dropdownMenu) {
+                dropdownMenu.classList.toggle('hidden');
+            } else {
+                console.error('Element \"dropdown-menu\" not found.');
+            }
+        });
+    }
+
+    // Gestion du menu mobile
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function () {
             const menu = document.getElementById('mobile-menu');
@@ -484,20 +551,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const userMenuToggle = document.getElementById('user-menu-toggle');
-    if (userMenuToggle) {
-        userMenuToggle.addEventListener('click', function () {
-            const menu = document.getElementById('user-menu');
-            if (menu) {
-                menu.classList.toggle('hidden');
-            } else {
-                console.error('Element \"user-menu\" not found.');
-            }
-        });
-    }
-
-    const notificationDropdown = document.getElementById('notificationDropdown');
-    const dropdownMenu = document.getElementById('dropdown-menu');
     const invitationNotification = document.getElementById('invitation-notification');
     const invitationsList = document.getElementById('invitations-list');
     const noInvitationMsg = document.getElementById('no-invitation-msg');
@@ -505,16 +558,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const acceptBtn = document.getElementById('accept-btn');
     const rejectBtn = document.getElementById('reject-btn');
 
-    if (notificationDropdown) {
-        notificationDropdown.addEventListener('click', function () {
-            if (dropdownMenu) {
-                dropdownMenu.classList.toggle('hidden');
-            } else {
-                console.error('Element \"dropdown-menu\" not found.');
-            }
-        });
-    }
-
+    // Fonction pour ouvrir la modale d'invitation
     function openInvitationModal(invitation) {
         if (!modal) {
             console.error('Modal not found');
@@ -558,6 +602,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Fonction pour gérer la réponse à une invitation
     function handleInvitationResponse(invitationId, response) {
         fetch(`/api/respond_invitation/\${invitationId}`, {
             method: 'POST',
@@ -575,19 +620,29 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
+            console.error('Error processing the invitation:', error);
         });
     }
 
+    // Fonction pour récupérer les invitations
     function fetchInvitations() {
         fetch('/api/invitations_pending')
-            .then(response => response.json())
+            .then(response => {
+                if (response.status === 403) {
+                    const invitationNotification = document.getElementById('invitation-notification');
+                    if (invitationNotification) {
+                        invitationNotification.classList.add('hidden');
+                    }
+                    return;
+                }
+                return response.json();
+            })
             .then(data => {
+                if (!data) return;
                 if (data.count && data.count > 0) {
                     if (invitationNotification) {
                         invitationNotification.innerText = data.count;
                         invitationNotification.classList.remove('hidden');
-                    } else {
-                        console.error('Element \"invitation-notification\" not found.');
                     }
                 } else {
                     if (invitationNotification) {
@@ -597,9 +652,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (invitationsList) {
                     invitationsList.innerHTML = '';
-                } else {
-                    console.error('Element \"invitations-list\" not found.');
-                    return;
                 }
 
                 if (Array.isArray(data.invitations) && data.invitations.length > 0) {
@@ -637,8 +689,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     if (noInvitationMsg) {
                         noInvitationMsg.classList.remove('hidden');
-                    } else {
-                        console.error('Element \"no-invitation-msg\" not found.');
                     }
                 }
             })
@@ -648,7 +698,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchInvitations();
     setInterval(fetchInvitations, 30000);
 });
-
 </script>
 </html>
 ";
@@ -755,7 +804,7 @@ document.addEventListener('DOMContentLoaded', function () {
         yield from [];
     }
 
-    // line 143
+    // line 142
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -798,7 +847,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     public function getDebugInfo(): array
     {
-        return array (  759 => 143,  736 => 15,  725 => 16,  722 => 15,  709 => 14,  687 => 12,  665 => 5,  343 => 144,  341 => 143,  338 => 142,  329 => 139,  326 => 138,  322 => 137,  319 => 136,  310 => 133,  307 => 132,  303 => 131,  295 => 125,  289 => 123,  284 => 121,  280 => 120,  275 => 119,  273 => 118,  264 => 112,  260 => 111,  253 => 107,  249 => 106,  242 => 102,  238 => 101,  231 => 97,  227 => 96,  221 => 92,  215 => 90,  209 => 87,  205 => 86,  201 => 85,  197 => 83,  191 => 81,  185 => 79,  183 => 78,  179 => 76,  177 => 75,  172 => 72,  166 => 69,  148 => 53,  146 => 52,  136 => 45,  126 => 42,  116 => 39,  106 => 36,  91 => 24,  87 => 23,  79 => 17,  77 => 14,  74 => 13,  72 => 12,  66 => 9,  59 => 5,  53 => 1,);
+        return array (  808 => 142,  785 => 15,  774 => 16,  771 => 15,  758 => 14,  736 => 12,  714 => 5,  473 => 251,  460 => 241,  453 => 237,  446 => 233,  435 => 225,  428 => 221,  421 => 217,  345 => 143,  343 => 142,  340 => 141,  331 => 138,  328 => 137,  324 => 136,  321 => 135,  312 => 132,  309 => 131,  305 => 130,  297 => 124,  291 => 122,  286 => 120,  282 => 119,  277 => 118,  275 => 117,  266 => 111,  262 => 110,  255 => 106,  251 => 105,  244 => 101,  240 => 100,  233 => 96,  229 => 95,  223 => 91,  217 => 89,  211 => 86,  207 => 85,  203 => 84,  199 => 82,  193 => 80,  187 => 78,  185 => 77,  181 => 75,  179 => 74,  174 => 71,  168 => 68,  151 => 53,  149 => 52,  139 => 45,  129 => 42,  119 => 39,  109 => 36,  94 => 24,  90 => 23,  82 => 17,  80 => 14,  77 => 13,  75 => 12,  69 => 9,  64 => 7,  59 => 5,  53 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -809,7 +858,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <meta charset=\"UTF-8\">
         <title>{% block title %}{% endblock %}</title>
         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">
-        <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\">
+        <link rel=\"icon\" type=\"image/x-icon\" href=\"{{ asset('icons/favicon.ico') }}\" />
         <link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap\" rel=\"stylesheet\">
         <link href=\"{{ asset('css/style.css') }}\" rel=\"stylesheet\">
         <script src=\"https://cdn.tailwindcss.com\"></script>
@@ -855,35 +904,34 @@ document.addEventListener('DOMContentLoaded', function () {
               <div class=\"relative flex items-center\">
                   <div class=\"relative w-max mx-auto mr-10\">
                     {% if app.user %}
-                    <button id=\"notificationDropdown\" type=\"button\" class=\"relative w-12 h-12 flex items-center justify-center text-white border-none outline-none\">
-                        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18px\" class=\"cursor-pointer fill-[#fff]\" viewBox=\"0 0 371.263 371.263\">
-                            <path
-                                d=\"M305.402 234.794v-70.54c0-52.396-33.533-98.085-79.702-115.151.539-2.695.838-5.449.838-8.204C226.539 18.324 208.215 0 185.64 0s-40.899 18.324-40.899 40.899c0 2.695.299 5.389.778 7.964-15.868 5.629-30.539 14.551-43.054 26.647-23.593 22.755-36.587 53.354-36.587 86.169v73.115c0 2.575-2.096 4.731-4.731 4.731-22.096 0-40.959 16.647-42.995 37.845-1.138 11.797 2.755 23.533 10.719 32.276 7.904 8.683 19.222 13.713 31.018 13.713h72.217c2.994 26.887 25.869 47.905 53.534 47.905s50.54-21.018 53.534-47.905h72.217c11.797 0 23.114-5.03 31.018-13.713 7.904-8.743 11.797-20.479 10.719-32.276-2.036-21.198-20.958-37.845-42.995-37.845a4.704 4.704 0 0 1-4.731-4.731zM185.64 23.952c9.341 0 16.946 7.605 16.946 16.946 0 .778-.12 1.497-.24 2.275-4.072-.599-8.204-1.018-12.336-1.138-7.126-.24-14.132.24-21.078 1.198-.12-.778-.24-1.497-.24-2.275.002-9.401 7.607-17.006 16.948-17.006zm0 323.358c-14.431 0-26.527-10.3-29.342-23.952h58.683c-2.813 13.653-14.909 23.952-29.341 23.952zm143.655-67.665c.479 5.15-1.138 10.12-4.551 13.892-3.533 3.773-8.204 5.868-13.353 5.868H59.89c-5.15 0-9.82-2.096-13.294-5.868-3.473-3.772-5.09-8.743-4.611-13.892.838-9.042 9.282-16.168 19.162-16.168 15.809 0 28.683-12.874 28.683-28.683v-73.115c0-26.228 10.419-50.719 29.282-68.923 18.024-17.425 41.498-26.887 66.528-26.887 1.198 0 2.335 0 3.533.06 50.839 1.796 92.277 45.929 92.277 98.325v70.54c0 15.809 12.874 28.683 28.683 28.683 9.88 0 18.264 7.126 19.162 16.168z\"
-                                data-original=\"#000000\">
-                            </path>
-                        </svg>
-                        <div id=\"invitation-notification\" class=\"absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 hidden\">
-                            0
-                        </div>
-                    </button>
-                    <div id=\"dropdown-menu\" class=\"hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\">
-                        <div class=\"py-1\" role=\"none\">
-                            <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">No new invitations</p>
-                            <div id=\"invitations-list\"></div>
-                        </div>
-                        <a href=\"{{ path('app_invitations_index') }}\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100\">Voir toutes les invitations</a>
-                    </div>
+                      <button id=\"notificationDropdown\" type=\"button\" class=\"relative w-12 h-12 flex items-center justify-center text-white border-none outline-none bg-gray-800 rounded-full transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none shadow-lg\">
+                          <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18px\" class=\"cursor-pointer fill-current\" viewBox=\"0 0 371.263 371.263\">
+                              <path
+                                  d=\"M305.402 234.794v-70.54c0-52.396-33.533-98.085-79.702-115.151.539-2.695.838-5.449.838-8.204C226.539 18.324 208.215 0 185.64 0s-40.899 18.324-40.899 40.899c0 2.695.299 5.389.778 7.964-15.868 5.629-30.539 14.551-43.054 26.647-23.593 22.755-36.587 53.354-36.587 86.169v73.115c0 2.575-2.096 4.731-4.731 4.731-22.096 0-40.959 16.647-42.995 37.845-1.138 11.797 2.755 23.533 10.719 32.276 7.904 8.683 19.222 13.713 31.018 13.713h72.217c2.994 26.887 25.869 47.905 53.534 47.905s50.54-21.018 53.534-47.905h72.217c11.797 0 23.114-5.03 31.018-13.713 7.904-8.743 11.797-20.479 10.719-32.276-2.036-21.198-20.958-37.845-42.995-37.845a4.704 4.704 0 0 1-4.731-4.731zM185.64 23.952c9.341 0 16.946 7.605 16.946 16.946 0 .778-.12 1.497-.24 2.275-4.072-.599-8.204-1.018-12.336-1.138-7.126-.24-14.132.24-21.078 1.198-.12-.778-.24-1.497-.24-2.275.002-9.401 7.607-17.006 16.948-17.006zm0 323.358c-14.431 0-26.527-10.3-29.342-23.952h58.683c-2.813 13.653-14.909 23.952-29.341 23.952zm143.655-67.665c.479 5.15-1.138 10.12-4.551 13.892-3.533 3.773-8.204 5.868-13.353 5.868H59.89c-5.15 0-9.82-2.096-13.294-5.868-3.473-3.772-5.09-8.743-4.611-13.892.838-9.042 9.282-16.168 19.162-16.168 15.809 0 28.683-12.874 28.683-28.683v-73.115c0-26.228 10.419-50.719 29.282-68.923 18.024-17.425 41.498-26.887 66.528-26.887 1.198 0 2.335 0 3.533.06 50.839 1.796 92.277 45.929 92.277 98.325v70.54c0 15.809 12.874 28.683 28.683 28.683 9.88 0 18.264 7.126 19.162 16.168z\"
+                              />
+                          </svg>
+                          <div id=\"invitation-notification\" class=\"absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 hidden\">
+                              0
+                          </div>
+                      </button>
+                      <div id=\"dropdown-menu\" class=\"hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\">
+                          <div class=\"py-1\" role=\"none\">
+                              <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notification</p>
+                              <div id=\"invitations-list\"></div>
+                          </div>
+                          <a href=\"{{ path('app_invitations_index') }}\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100\">Voir toutes les invitations</a>
+                      </div>
                     {% endif %}
                   </div>
               </div>
               <div class=\"relative ml-3\">
                   {% if app.user %}
-                      <button id=\"user-menu-toggle\" type=\"button\" class=\"flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2\" aria-expanded=\"false\" aria-haspopup=\"true\">
+                      <button id=\"user-menu-toggle\" type=\"button\" class=\"flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 shadow-lg\" aria-expanded=\"false\" aria-haspopup=\"true\">
                           <span class=\"sr-only\">Open user menu</span>
                           {% if app.user.avatar %}
-                              <img class=\"h-10 w-10 rounded-full\" src=\"{{ asset('uploads/avatars/' ~ app.user.avatar) }}\" alt=\"Profile photo\">
+                              <img class=\"h-10 w-10 rounded-full object-cover\" src=\"{{ asset('uploads/avatars/' ~ app.user.avatar) }}\" alt=\"Profile photo\">
                           {% else %}
-                              <img class=\"h-10 w-10 rounded-full\" src=\"{{ asset('images/default-avatar.png') }}\" alt=\"Default profile photo\">
+                              <img class=\"h-10 w-10 rounded-full object-cover\" src=\"{{ asset('images/default-avatar.png') }}\" alt=\"Default profile photo\">
                           {% endif %}
                       </button>
                       <div id=\"user-menu\" class=\"hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\" role=\"menu\" aria-orientation=\"vertical\" aria-labelledby=\"user-menu-toggle\" tabindex=\"-1\">
@@ -1020,31 +1068,31 @@ document.addEventListener('DOMContentLoaded', function () {
                   <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Ressources</h3>
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Centre d’Aide </a>
+                      <a href=\"{{ path('app_footer_cgv') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales de Vente </a>
                     </li>
 
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Statut du site </a>
+                      <a href=\"{{ path('app_footer_cgu') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales d'Utilisation </a>
                     </li>
 
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Partenaire </a>
+                      <a href=\"{{ path('app_footer_policy') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Politique de Confidentialité </a>
                     </li>
                   </ul>
                 </div>
                 <div class=\"mt-12 md:mt-0\">
-                  <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Company</h3>
+                  <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Entreprise</h3>
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Notre équipe </a>
+                      <a href=\"{{ path('app_footer_team') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Notre équipe </a>
                     </li>
 
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> A Propos de Nous </a>
+                      <a href=\"{{ path('app_footer_about') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> À propos de nous </a>
                     </li>
 
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Nous contacter </a>
+                      <a href=\"{{ path('app_footer_faq') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> FAQ </a>
                     </li>
                   </ul>
                 </div>
@@ -1054,7 +1102,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Contact</h3>
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
-                      <a href=\"#\" class=\"text-base text-gray-500 hover:text-gray-900\"> Mon adresse, 27500 VilleRandom, France </a>
+                        <a href=\"{{ path('app_contact') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Nous contacter </a>
                     </li>
                   </ul>
                 </div>
@@ -1081,6 +1129,50 @@ setTimeout(function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const userMenuToggle = document.getElementById('user-menu-toggle');
+    const userMenu = document.getElementById('user-menu');
+    const notificationDropdown = document.getElementById('notificationDropdown');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    // Fonction pour fermer le menu utilisateur
+    function closeUserMenu() {
+        if (userMenu && !userMenu.classList.contains('hidden')) {
+            userMenu.classList.add('hidden');
+        }
+    }
+
+    // Fonction pour fermer le menu de notifications
+    function closeNotificationMenu() {
+        if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
+            dropdownMenu.classList.add('hidden');
+        }
+    }
+
+    // Toggle du menu utilisateur avec fermeture du menu de notifications
+    if (userMenuToggle) {
+        userMenuToggle.addEventListener('click', function () {
+            closeNotificationMenu();
+            if (userMenu) {
+                userMenu.classList.toggle('hidden');
+            } else {
+                console.error('Element \"user-menu\" not found.');
+            }
+        });
+    }
+
+    // Toggle du menu de notifications avec fermeture du menu utilisateur
+    if (notificationDropdown) {
+        notificationDropdown.addEventListener('click', function () {
+            closeUserMenu();
+            if (dropdownMenu) {
+                dropdownMenu.classList.toggle('hidden');
+            } else {
+                console.error('Element \"dropdown-menu\" not found.');
+            }
+        });
+    }
+
+    // Gestion du menu mobile
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function () {
             const menu = document.getElementById('mobile-menu');
@@ -1090,20 +1182,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const userMenuToggle = document.getElementById('user-menu-toggle');
-    if (userMenuToggle) {
-        userMenuToggle.addEventListener('click', function () {
-            const menu = document.getElementById('user-menu');
-            if (menu) {
-                menu.classList.toggle('hidden');
-            } else {
-                console.error('Element \"user-menu\" not found.');
-            }
-        });
-    }
-
-    const notificationDropdown = document.getElementById('notificationDropdown');
-    const dropdownMenu = document.getElementById('dropdown-menu');
     const invitationNotification = document.getElementById('invitation-notification');
     const invitationsList = document.getElementById('invitations-list');
     const noInvitationMsg = document.getElementById('no-invitation-msg');
@@ -1111,16 +1189,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const acceptBtn = document.getElementById('accept-btn');
     const rejectBtn = document.getElementById('reject-btn');
 
-    if (notificationDropdown) {
-        notificationDropdown.addEventListener('click', function () {
-            if (dropdownMenu) {
-                dropdownMenu.classList.toggle('hidden');
-            } else {
-                console.error('Element \"dropdown-menu\" not found.');
-            }
-        });
-    }
-
+    // Fonction pour ouvrir la modale d'invitation
     function openInvitationModal(invitation) {
         if (!modal) {
             console.error('Modal not found');
@@ -1164,6 +1233,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Fonction pour gérer la réponse à une invitation
     function handleInvitationResponse(invitationId, response) {
         fetch(`/api/respond_invitation/\${invitationId}`, {
             method: 'POST',
@@ -1181,19 +1251,29 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
+            console.error('Error processing the invitation:', error);
         });
     }
 
+    // Fonction pour récupérer les invitations
     function fetchInvitations() {
         fetch('/api/invitations_pending')
-            .then(response => response.json())
+            .then(response => {
+                if (response.status === 403) {
+                    const invitationNotification = document.getElementById('invitation-notification');
+                    if (invitationNotification) {
+                        invitationNotification.classList.add('hidden');
+                    }
+                    return;
+                }
+                return response.json();
+            })
             .then(data => {
+                if (!data) return;
                 if (data.count && data.count > 0) {
                     if (invitationNotification) {
                         invitationNotification.innerText = data.count;
                         invitationNotification.classList.remove('hidden');
-                    } else {
-                        console.error('Element \"invitation-notification\" not found.');
                     }
                 } else {
                     if (invitationNotification) {
@@ -1203,9 +1283,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (invitationsList) {
                     invitationsList.innerHTML = '';
-                } else {
-                    console.error('Element \"invitations-list\" not found.');
-                    return;
                 }
 
                 if (Array.isArray(data.invitations) && data.invitations.length > 0) {
@@ -1243,8 +1320,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     if (noInvitationMsg) {
                         noInvitationMsg.classList.remove('hidden');
-                    } else {
-                        console.error('Element \"no-invitation-msg\" not found.');
                     }
                 }
             })
@@ -1254,7 +1329,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchInvitations();
     setInterval(fetchInvitations, 30000);
 });
-
 </script>
 </html>
 ", "base.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\templates\\base.html.twig");

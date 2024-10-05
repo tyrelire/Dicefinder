@@ -295,7 +295,10 @@ class __TwigTemplate_b647136e3f40dd6d1f40b08c78d970a4 extends Template
                                                             <tr>
                                                                 <td class=\"t1\" style=\"width:55px;padding:0 15px 0 0;\">
                                                                     <div style=\"font-size:0px;\">
-                                                                        <img class=\"t0\" style=\"display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;\" width=\"55\" height=\"35.78125\" alt=\"DiceFinder Logo\" src=\"./images/1.png\" />
+                                                                        <img class=\"t0\" style=\"display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;\" width=\"55\" height=\"35.78125\" alt=\"DiceFinder Logo\" src=\"";
+        // line 251
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\HttpFoundationExtension']->generateAbsoluteUrl($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/logo-dicefinder.png")), "html", null, true);
+        yield "\" />
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -418,7 +421,7 @@ class __TwigTemplate_b647136e3f40dd6d1f40b08c78d970a4 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  356 => 304,  336 => 287,  48 => 1,);
+        return array (  359 => 304,  339 => 287,  300 => 251,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -673,7 +676,7 @@ class __TwigTemplate_b647136e3f40dd6d1f40b08c78d970a4 extends Template
                                                             <tr>
                                                                 <td class=\"t1\" style=\"width:55px;padding:0 15px 0 0;\">
                                                                     <div style=\"font-size:0px;\">
-                                                                        <img class=\"t0\" style=\"display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;\" width=\"55\" height=\"35.78125\" alt=\"DiceFinder Logo\" src=\"./images/1.png\" />
+                                                                        <img class=\"t0\" style=\"display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;\" width=\"55\" height=\"35.78125\" alt=\"DiceFinder Logo\" src=\"{{ absolute_url(asset('images/logo-dicefinder.png')) }}\" />
                                                                     </div>
                                                                 </td>
                                                             </tr>

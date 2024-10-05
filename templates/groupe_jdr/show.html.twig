@@ -4,7 +4,13 @@
 
 {% block body %}
 <div class="container mx-auto px-4 p-6">
-    <div class="bg-gray-900 text-white min-h-screen p-4 md:p-8 space-y-10">
+    <a href="{{ path('app_groupe_j_d_r_index') }}" class="text-white bg-[#4447a1] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+        </svg>
+        Retour
+    </a>
+    <div class="bg-slate-900 text-white min-h-screen p-4 md:p-8 space-y-10">
         <div class="flex flex-col space-y-8 lg:space-y-0 lg:flex-row items-start lg:items-start justify-between lg:space-x-10">
             <div class="w-full lg:w-1/2 space-y-8 relative">
                 <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }}" class="rounded-lg shadow-lg w-full h-auto lg:h-[500px] object-cover">
@@ -208,7 +214,11 @@
     </div>
     <div class="flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4">
         <div class="flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4">
-            {% if is_owner %} 
+            {% if app.user is null %}
+                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                    Vous devez avoir un compte et être connecté pour rejoindre un univers.
+                </button>
+            {% elseif is_owner %} 
                 <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
                     Vous êtes le MJ
                 </button>
@@ -220,7 +230,11 @@
                 <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
                     En attente d'acceptation de la demande
                 </button>
-            {% elseif app.user is not null and 'ROLE_JOUEUR' not in app.user.getRoles() %}
+            {% elseif is_closed %}
+                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                    Ce groupe est {{ groupe_j_d_r.status }} et ne recrute plus
+                </button>
+            {% elseif 'ROLE_JOUEUR' not in app.user.getRoles() %}
                 <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
                     Vous devez avoir le grade de joueur pour rejoindre ce JDR.
                 </button>

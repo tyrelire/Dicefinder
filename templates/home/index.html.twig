@@ -13,7 +13,15 @@
             <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl element"></h1>
             <p class="mt-6 text-lg leading-8 text-gray-400">Votre quête commence ici, avec DiceFinder</p>
             <div class="mt-10">
-                <a href="#" class="rounded-md bg-indigo-700 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">C'est Parti →</a>
+                {% if app.user is not null %}
+                    <a href="{{ path('app_my_jdr') }}" class="rounded-md bg-indigo-700 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        C'est Parti →
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="rounded-md bg-indigo-700 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        C'est Parti →
+                    </a>
+                {% endif %}
             </div>
         </div>
 
@@ -131,7 +139,11 @@
                     </div>
                     <div class="flex justify-between items-center mt-2">
                         <div class="flex items-center">
-                            <img src="{{ asset('images/pp-card.png') }}" alt="MJ photo" class="rounded h-8 w-8 object-cover">
+                            {% if groupe.owner.avatar %}
+                                <img src="{{ asset('uploads/avatars/' ~ groupe.owner.avatar) }}" alt="Avatar MJ" class="w-8 h-8 rounded-full">
+                            {% else %}
+                                <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar MJ" class="rounded h-8 w-8 object-cover">
+                            {% endif %}
                             <div class="ml-2">
                                 <p class="text-xs text-gray-400">MJ</p>
                                 <p class="text-xs text-white">{{ groupe.owner.username }}</p>
@@ -163,7 +175,11 @@
                     </div>
                     <div class="flex justify-between items-center mt-2">
                         <div class="flex items-center">
-                            <img src="{{ asset('images/pp-card.png') }}" alt="MJ photo" class="rounded h-8 w-8 object-cover">
+                            {% if groupe.owner.avatar %}
+                                <img src="{{ asset('uploads/avatars/' ~ groupe.owner.avatar) }}" alt="Avatar MJ" class="w-8 h-8 rounded-full">
+                            {% else %}
+                                <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar MJ" class="rounded h-8 w-8 object-cover">
+                            {% endif %}
                             <div class="ml-2">
                                 <p class="text-xs text-gray-400">MJ</p>
                                 <p class="text-xs text-white">{{ groupe.owner.username }}</p>

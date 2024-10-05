@@ -97,13 +97,13 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "<div class=\"min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8\">
+        yield "<div class=\"min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-36\">
     <div class=\"w-full max-w-md space-y-8\">
         <div>
-            <img class=\"mx-auto h-24 w-auto mb-3\" src=\"";
+            <img class=\"mx-auto h-24 w-auto mb-3 hidden sm:block\" src=\"";
         // line 9
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/logo-dicefinder.png"), "html", null, true);
-        yield "\" alt=\"Your Company\">
+        yield "\" alt=\"DiceFinder Logo\">
             <h1 class=\"text-center text-3xl font-bold tracking-tight text-white\">DiceFinder</h1>
             <h2 class=\"mt-6 text-center text-2xl tracking-tight text-white\">Connectez-vous à votre compte</h2>
             <p class=\"mt-2 text-center text-sm text-gray-600\">
@@ -132,12 +132,12 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
         if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 23, $this->source); })()), "user", [], "any", false, false, false, 23)) {
             // line 24
             yield "                <div class=\"mb-3 text-sm text-gray-600\">
-                    You are logged in as ";
+                    Vous êtes connecté en tant que ";
             // line 25
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 25, $this->source); })()), "user", [], "any", false, false, false, 25), "userIdentifier", [], "any", false, false, false, 25), "html", null, true);
             yield ", <a href=\"";
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-            yield "\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Logout</a>
+            yield "\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Déconnexion</a>
                 </div>
             ";
         }
@@ -164,7 +164,7 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
                     <label for=\"remember-me\" class=\"ml-2 block text-sm text-white\">Se souvenir de moi</label>
                 </div>
                 <div class=\"text-sm\">
-                    <a href=\"#\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Mot de passe oublié?</a>
+                    <a href=\"#\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Mot de passe oublié ?</a>
                 </div>
             </div>
             <div>
@@ -221,10 +221,10 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
 {% block title %}DiceFinder | Connexion{% endblock %}
 
 {% block body %}
-<div class=\"min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8\">
+<div class=\"min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-36\">
     <div class=\"w-full max-w-md space-y-8\">
         <div>
-            <img class=\"mx-auto h-24 w-auto mb-3\" src=\"{{ asset('images/logo-dicefinder.png') }}\" alt=\"Your Company\">
+            <img class=\"mx-auto h-24 w-auto mb-3 hidden sm:block\" src=\"{{ asset('images/logo-dicefinder.png') }}\" alt=\"DiceFinder Logo\">
             <h1 class=\"text-center text-3xl font-bold tracking-tight text-white\">DiceFinder</h1>
             <h2 class=\"mt-6 text-center text-2xl tracking-tight text-white\">Connectez-vous à votre compte</h2>
             <p class=\"mt-2 text-center text-sm text-gray-600\">
@@ -240,7 +240,7 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
             {% endif %}
             {% if app.user %}
                 <div class=\"mb-3 text-sm text-gray-600\">
-                    You are logged in as {{ app.user.userIdentifier }}, <a href=\"{{ path('app_logout') }}\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Logout</a>
+                    Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href=\"{{ path('app_logout') }}\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Déconnexion</a>
                 </div>
             {% endif %}
             <input type=\"hidden\" name=\"_csrf_token\" value=\"{{ csrf_token('authenticate') }}\">
@@ -260,7 +260,7 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
                     <label for=\"remember-me\" class=\"ml-2 block text-sm text-white\">Se souvenir de moi</label>
                 </div>
                 <div class=\"text-sm\">
-                    <a href=\"#\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Mot de passe oublié?</a>
+                    <a href=\"#\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Mot de passe oublié ?</a>
                 </div>
             </div>
             <div>

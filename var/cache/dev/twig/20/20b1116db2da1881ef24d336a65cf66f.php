@@ -119,7 +119,7 @@ class __TwigTemplate_2c411cd98e2a8da759477523caf93b33 extends Template
         <a href=\"";
         // line 19
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_new");
-        yield "\" class=\"w-full md:w-auto bg-green-500 text-white p-2.5 rounded-lg shadow hover:bg-green-600 text-center\">Créer</a>
+        yield "\" class=\"w-full md:w-auto bg-green-500 text-white p-2.5 rounded-lg shadow hover:bg-green-600 text-center\">Créer mon Univers</a>
     </div>
 
     <h2 class=\"text-xl md:text-2xl font-bold mb-6 text-white\">Mes Parties (MJ)</h2>
@@ -504,7 +504,7 @@ $context["jdr"], "status", [], "any", false, false, false, 119) == "annule")) {
                 <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z\" />
             </svg>
         </button>
-        <a href=\"{{ path('app_groupe_j_d_r_new') }}\" class=\"w-full md:w-auto bg-green-500 text-white p-2.5 rounded-lg shadow hover:bg-green-600 text-center\">Créer</a>
+        <a href=\"{{ path('app_groupe_j_d_r_new') }}\" class=\"w-full md:w-auto bg-green-500 text-white p-2.5 rounded-lg shadow hover:bg-green-600 text-center\">Créer mon Univers</a>
     </div>
 
     <h2 class=\"text-xl md:text-2xl font-bold mb-6 text-white\">Mes Parties (MJ)</h2>
