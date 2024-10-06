@@ -169,7 +169,10 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                     <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222\" />
                 </svg>
             </span>
-            <a href=\"#\">
+            <a href=\"";
+        // line 61
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_new");
+        yield "\">
                 <h3 class=\"mt-0.5 text-lg font-medium text-gray-900 dark:text-white\">Créer ta partie</h3>
             </a>
             <p class=\"mt-2 text-sm text-gray-500 dark:text-gray-400\">
@@ -190,7 +193,10 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                     <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222\" />
                 </svg>
             </span>
-            <a href=\"#\">
+            <a href=\"";
+        // line 79
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
+        yield "\">
                 <h3 class=\"mt-0.5 text-lg font-medium text-gray-900 dark:text-white\">Rejoins une Partie</h3>
             </a>
             <p class=\"mt-2 text-sm text-gray-500 dark:text-gray-400\">
@@ -229,84 +235,91 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                     <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222\" />
                 </svg>
             </span>
-            <a href=\"#\">
+            <a href=\"";
+        // line 115
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_faq");
+        yield "\">
                 <h3 class=\"mt-0.5 text-lg font-medium text-gray-900 dark:text-white\">FAQ</h3>
             </a>
             <p class=\"mt-2 text-sm text-gray-500 dark:text-gray-400\">
                 Accède à des fonctionnalités exclusives, des parties prioritaires et des outils avancés en devenant membre VIP.
             </p>
-            <a href=\"#\" class=\"group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600\">
+            <a href=\"";
+        // line 121
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_faq");
+        yield "\" class=\"group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600\">
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
     </div>
+
     <div class=\"container mx-auto flex flex-col mt-12\">
         <div class=\"flex justify-between items-center\">
-            <h2 class=\"text-2xl font-bold text-white\">Parties qui Recrutent</h2>
+            <h2 class=\"text-2xl font-bold text-white\">Nouveaux Univers</h2>
             <a href=\"";
-        // line 129
+        // line 130
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
         yield "\" class=\"text-blue-600 text-sm font-semibold\">Voir plus →</a>
         </div>
 
         <div class=\"mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">
             ";
-        // line 133
+        // line 134
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["groupes_recrutement_ouvert"]) || array_key_exists("groupes_recrutement_ouvert", $context) ? $context["groupes_recrutement_ouvert"] : (function () { throw new RuntimeError('Variable "groupes_recrutement_ouvert" does not exist.', 133, $this->source); })()), 0, 4));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["nouveaux_groupes"]) || array_key_exists("nouveaux_groupes", $context) ? $context["nouveaux_groupes"] : (function () { throw new RuntimeError('Variable "nouveaux_groupes" does not exist.', 134, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["groupe"]) {
-            // line 134
+            // line 135
             yield "                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
                     <img src=\"";
-            // line 135
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "picture", [], "any", false, false, false, 135))), "html", null, true);
+            // line 136
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "picture", [], "any", false, false, false, 136))), "html", null, true);
             yield "\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "title", [], "any", false, false, false, 135), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "title", [], "any", false, false, false, 136), "html", null, true);
             yield "\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
                     <div class=\"flex justify-between items-center\">
                         <a href=\"";
-            // line 137
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "id", [], "any", false, false, false, 137)]), "html", null, true);
-            yield "\" class=\"font-semibold\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "title", [], "any", false, false, false, 137), "html", null, true);
-            yield "</a>
-                        <a href=\"";
             // line 138
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "id", [], "any", false, false, false, 138)]), "html", null, true);
+            yield "\" class=\"font-semibold\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "title", [], "any", false, false, false, 138), "html", null, true);
+            yield "</a>
+                        <a href=\"";
+            // line 139
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "id", [], "any", false, false, false, 139)]), "html", null, true);
             yield "\" class=\"bg-blue-600 text-white px-2 py-1 rounded text-xs\">Voir</a>
                     </div>
                     <div class=\"flex justify-between items-center mt-2\">
                         <div class=\"flex items-center\">
                             ";
-            // line 142
-            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 142), "avatar", [], "any", false, false, false, 142)) {
-                // line 143
+            // line 143
+            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 143), "avatar", [], "any", false, false, false, 143)) {
+                // line 144
                 yield "                                <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 143), "avatar", [], "any", false, false, false, 143))), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 144), "avatar", [], "any", false, false, false, 144))), "html", null, true);
                 yield "\" alt=\"Avatar MJ\" class=\"w-8 h-8 rounded-full\">
                             ";
             } else {
-                // line 145
+                // line 146
                 yield "                                <img src=\"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
                 yield "\" alt=\"Avatar MJ\" class=\"rounded h-8 w-8 object-cover\">
                             ";
             }
-            // line 147
+            // line 148
             yield "                            <div class=\"ml-2\">
                                 <p class=\"text-xs text-gray-400\">MJ</p>
                                 <p class=\"text-xs text-white\">";
-            // line 149
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 149), "username", [], "any", false, false, false, 149), "html", null, true);
+            // line 150
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 150), "username", [], "any", false, false, false, 150), "html", null, true);
             yield "</p>
                             </div>
                         </div>
                         <div class=\"text-right\">
                             <p class=\"text-xs text-gray-400\">Places disponibles</p>
                             <p class=\"text-lg font-bold text-white\">";
-            // line 154
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "maxPlayer", [], "any", false, false, false, 154) - Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "players", [], "any", false, false, false, 154))), "html", null, true);
+            // line 155
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "maxPlayer", [], "any", false, false, false, 155) - Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "players", [], "any", false, false, false, 155))), "html", null, true);
             yield "</p>
                         </div>
                     </div>
@@ -315,80 +328,166 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 159
+            // line 160
+            yield "                <p class=\"text-gray-400\">Aucun nouveau jeu de rôle disponible.</p>
+            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['groupe'], $context['_parent'], $context['_iterated']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 162
+        yield "        </div>
+    </div>
+
+    <div class=\"container mx-auto flex flex-col mt-12\">
+        <div class=\"flex justify-between items-center\">
+            <h2 class=\"text-2xl font-bold text-white\">Parties qui Recrutent</h2>
+            <a href=\"";
+        // line 168
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
+        yield "\" class=\"text-blue-600 text-sm font-semibold\">Voir plus →</a>
+        </div>
+
+        <div class=\"mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">
+            ";
+        // line 172
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["groupes_recrutement_ouvert"]) || array_key_exists("groupes_recrutement_ouvert", $context) ? $context["groupes_recrutement_ouvert"] : (function () { throw new RuntimeError('Variable "groupes_recrutement_ouvert" does not exist.', 172, $this->source); })()), 0, 4));
+        $context['_iterated'] = false;
+        foreach ($context['_seq'] as $context["_key"] => $context["groupe"]) {
+            // line 173
+            yield "                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
+                    <img src=\"";
+            // line 174
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "picture", [], "any", false, false, false, 174))), "html", null, true);
+            yield "\" alt=\"";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "title", [], "any", false, false, false, 174), "html", null, true);
+            yield "\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
+                    <div class=\"flex justify-between items-center\">
+                        <a href=\"";
+            // line 176
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "id", [], "any", false, false, false, 176)]), "html", null, true);
+            yield "\" class=\"font-semibold\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "title", [], "any", false, false, false, 176), "html", null, true);
+            yield "</a>
+                        <a href=\"";
+            // line 177
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "id", [], "any", false, false, false, 177)]), "html", null, true);
+            yield "\" class=\"bg-blue-600 text-white px-2 py-1 rounded text-xs\">Voir</a>
+                    </div>
+                    <div class=\"flex justify-between items-center mt-2\">
+                        <div class=\"flex items-center\">
+                            ";
+            // line 181
+            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 181), "avatar", [], "any", false, false, false, 181)) {
+                // line 182
+                yield "                                <img src=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 182), "avatar", [], "any", false, false, false, 182))), "html", null, true);
+                yield "\" alt=\"Avatar MJ\" class=\"w-8 h-8 rounded-full\">
+                            ";
+            } else {
+                // line 184
+                yield "                                <img src=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
+                yield "\" alt=\"Avatar MJ\" class=\"rounded h-8 w-8 object-cover\">
+                            ";
+            }
+            // line 186
+            yield "                            <div class=\"ml-2\">
+                                <p class=\"text-xs text-gray-400\">MJ</p>
+                                <p class=\"text-xs text-white\">";
+            // line 188
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 188), "username", [], "any", false, false, false, 188), "html", null, true);
+            yield "</p>
+                            </div>
+                        </div>
+                        <div class=\"text-right\">
+                            <p class=\"text-xs text-gray-400\">Places disponibles</p>
+                            <p class=\"text-lg font-bold text-white\">";
+            // line 193
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "maxPlayer", [], "any", false, false, false, 193) - Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "players", [], "any", false, false, false, 193))), "html", null, true);
+            yield "</p>
+                        </div>
+                    </div>
+                </div>
+            ";
+            $context['_iterated'] = true;
+        }
+        if (!$context['_iterated']) {
+            // line 198
             yield "                <p class=\"text-gray-400\">Aucune partie ne recrute actuellement.</p>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['groupe'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 161
+        // line 200
         yield "        </div>
     </div>
     <div class=\"container mx-auto flex flex-col mt-12\">
         <div class=\"flex justify-between items-center\">
             <h2 class=\"text-2xl font-bold text-white\">Parties avec des Places Disponibles</h2>
             <a href=\"";
-        // line 166
+        // line 205
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
         yield "\" class=\"text-blue-600 text-sm font-semibold\">Voir plus →</a>
         </div>
         <div class=\"mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">
             ";
-        // line 169
+        // line 208
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["groupes_non_pleins"]) || array_key_exists("groupes_non_pleins", $context) ? $context["groupes_non_pleins"] : (function () { throw new RuntimeError('Variable "groupes_non_pleins" does not exist.', 169, $this->source); })()), 0, 4));
+        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["groupes_non_pleins"]) || array_key_exists("groupes_non_pleins", $context) ? $context["groupes_non_pleins"] : (function () { throw new RuntimeError('Variable "groupes_non_pleins" does not exist.', 208, $this->source); })()), 0, 4));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["groupe"]) {
-            // line 170
+            // line 209
             yield "                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
                     <img src=\"";
-            // line 171
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "picture", [], "any", false, false, false, 171))), "html", null, true);
+            // line 210
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "picture", [], "any", false, false, false, 210))), "html", null, true);
             yield "\" alt=\"Image de jeu\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
                     <div class=\"flex justify-between items-center\">
                         <a href=\"";
-            // line 173
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "id", [], "any", false, false, false, 173)]), "html", null, true);
+            // line 212
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "id", [], "any", false, false, false, 212)]), "html", null, true);
             yield "\" class=\"font-semibold\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "title", [], "any", false, false, false, 173), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "title", [], "any", false, false, false, 212), "html", null, true);
             yield "</a>
                         <a href=\"";
-            // line 174
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "id", [], "any", false, false, false, 174)]), "html", null, true);
+            // line 213
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "id", [], "any", false, false, false, 213)]), "html", null, true);
             yield "\" class=\"bg-blue-600 text-white px-2 py-1 rounded text-xs\">Voir</a>
                     </div>
                     <div class=\"flex justify-between items-center mt-2\">
                         <div class=\"flex items-center\">
                             ";
-            // line 178
-            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 178), "avatar", [], "any", false, false, false, 178)) {
-                // line 179
+            // line 217
+            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 217), "avatar", [], "any", false, false, false, 217)) {
+                // line 218
                 yield "                                <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 179), "avatar", [], "any", false, false, false, 179))), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 218), "avatar", [], "any", false, false, false, 218))), "html", null, true);
                 yield "\" alt=\"Avatar MJ\" class=\"w-8 h-8 rounded-full\">
                             ";
             } else {
-                // line 181
+                // line 220
                 yield "                                <img src=\"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
                 yield "\" alt=\"Avatar MJ\" class=\"rounded h-8 w-8 object-cover\">
                             ";
             }
-            // line 183
+            // line 222
             yield "                            <div class=\"ml-2\">
                                 <p class=\"text-xs text-gray-400\">MJ</p>
                                 <p class=\"text-xs text-white\">";
-            // line 185
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 185), "username", [], "any", false, false, false, 185), "html", null, true);
+            // line 224
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "owner", [], "any", false, false, false, 224), "username", [], "any", false, false, false, 224), "html", null, true);
             yield "</p>
                             </div>
                         </div>
                         <div class=\"text-right\">
                             <p class=\"text-xs text-gray-400\">Places disponibles</p>
                             <p class=\"text-lg font-bold text-white\">";
-            // line 190
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "maxPlayer", [], "any", false, false, false, 190) - Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "players", [], "any", false, false, false, 190))), "html", null, true);
+            // line 229
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "maxPlayer", [], "any", false, false, false, 229) - Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "players", [], "any", false, false, false, 229))), "html", null, true);
             yield "</p>
                         </div>
                     </div>
@@ -397,14 +496,14 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 195
+            // line 234
             yield "                <p class=\"text-gray-400\">Aucune partie avec des places disponibles actuellement.</p>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['groupe'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 197
+        // line 236
         yield "        </div>
     </div>
     <div class=\"absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]\" aria-hidden=\"true\">
@@ -464,7 +563,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  408 => 197,  401 => 195,  391 => 190,  383 => 185,  379 => 183,  373 => 181,  367 => 179,  365 => 178,  358 => 174,  352 => 173,  347 => 171,  344 => 170,  339 => 169,  333 => 166,  326 => 161,  319 => 159,  309 => 154,  301 => 149,  297 => 147,  291 => 145,  285 => 143,  283 => 142,  276 => 138,  270 => 137,  263 => 135,  260 => 134,  255 => 133,  248 => 129,  201 => 85,  180 => 67,  147 => 37,  137 => 30,  130 => 25,  122 => 21,  114 => 17,  112 => 16,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  507 => 236,  500 => 234,  490 => 229,  482 => 224,  478 => 222,  472 => 220,  466 => 218,  464 => 217,  457 => 213,  451 => 212,  446 => 210,  443 => 209,  438 => 208,  432 => 205,  425 => 200,  418 => 198,  408 => 193,  400 => 188,  396 => 186,  390 => 184,  384 => 182,  382 => 181,  375 => 177,  369 => 176,  362 => 174,  359 => 173,  354 => 172,  347 => 168,  339 => 162,  332 => 160,  322 => 155,  314 => 150,  310 => 148,  304 => 146,  298 => 144,  296 => 143,  289 => 139,  283 => 138,  276 => 136,  273 => 135,  268 => 134,  261 => 130,  249 => 121,  240 => 115,  207 => 85,  198 => 79,  183 => 67,  174 => 61,  147 => 37,  137 => 30,  130 => 25,  122 => 21,  114 => 17,  112 => 16,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -529,7 +628,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                     <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222\" />
                 </svg>
             </span>
-            <a href=\"#\">
+            <a href=\"{{ path('app_groupe_j_d_r_new') }}\">
                 <h3 class=\"mt-0.5 text-lg font-medium text-gray-900 dark:text-white\">Créer ta partie</h3>
             </a>
             <p class=\"mt-2 text-sm text-gray-500 dark:text-gray-400\">
@@ -547,7 +646,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                     <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222\" />
                 </svg>
             </span>
-            <a href=\"#\">
+            <a href=\"{{ path('app_groupe_j_d_r_index') }}\">
                 <h3 class=\"mt-0.5 text-lg font-medium text-gray-900 dark:text-white\">Rejoins une Partie</h3>
             </a>
             <p class=\"mt-2 text-sm text-gray-500 dark:text-gray-400\">
@@ -583,17 +682,56 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                     <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222\" />
                 </svg>
             </span>
-            <a href=\"#\">
+            <a href=\"{{ path('app_footer_faq') }}\">
                 <h3 class=\"mt-0.5 text-lg font-medium text-gray-900 dark:text-white\">FAQ</h3>
             </a>
             <p class=\"mt-2 text-sm text-gray-500 dark:text-gray-400\">
                 Accède à des fonctionnalités exclusives, des parties prioritaires et des outils avancés en devenant membre VIP.
             </p>
-            <a href=\"#\" class=\"group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600\">
+            <a href=\"{{ path('app_footer_faq') }}\" class=\"group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600\">
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
     </div>
+
+    <div class=\"container mx-auto flex flex-col mt-12\">
+        <div class=\"flex justify-between items-center\">
+            <h2 class=\"text-2xl font-bold text-white\">Nouveaux Univers</h2>
+            <a href=\"{{ path('app_groupe_j_d_r_index') }}\" class=\"text-blue-600 text-sm font-semibold\">Voir plus →</a>
+        </div>
+
+        <div class=\"mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">
+            {% for groupe in nouveaux_groupes %}
+                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
+                    <img src=\"{{ asset('uploads/images-jdr/' ~ groupe.picture) }}\" alt=\"{{ groupe.title }}\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
+                    <div class=\"flex justify-between items-center\">
+                        <a href=\"{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}\" class=\"font-semibold\">{{ groupe.title }}</a>
+                        <a href=\"{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}\" class=\"bg-blue-600 text-white px-2 py-1 rounded text-xs\">Voir</a>
+                    </div>
+                    <div class=\"flex justify-between items-center mt-2\">
+                        <div class=\"flex items-center\">
+                            {% if groupe.owner.avatar %}
+                                <img src=\"{{ asset('uploads/avatars/' ~ groupe.owner.avatar) }}\" alt=\"Avatar MJ\" class=\"w-8 h-8 rounded-full\">
+                            {% else %}
+                                <img src=\"{{ asset('images/default-avatar.png') }}\" alt=\"Avatar MJ\" class=\"rounded h-8 w-8 object-cover\">
+                            {% endif %}
+                            <div class=\"ml-2\">
+                                <p class=\"text-xs text-gray-400\">MJ</p>
+                                <p class=\"text-xs text-white\">{{ groupe.owner.username }}</p>
+                            </div>
+                        </div>
+                        <div class=\"text-right\">
+                            <p class=\"text-xs text-gray-400\">Places disponibles</p>
+                            <p class=\"text-lg font-bold text-white\">{{ groupe.maxPlayer - groupe.players|length }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class=\"text-gray-400\">Aucun nouveau jeu de rôle disponible.</p>
+            {% endfor %}
+        </div>
+    </div>
+
     <div class=\"container mx-auto flex flex-col mt-12\">
         <div class=\"flex justify-between items-center\">
             <h2 class=\"text-2xl font-bold text-white\">Parties qui Recrutent</h2>

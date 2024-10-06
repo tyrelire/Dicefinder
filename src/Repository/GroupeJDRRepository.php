@@ -38,7 +38,6 @@ class GroupeJDRRepository extends ServiceEntityRepository
             $dql .= ' WHERE ' . implode(' AND ', $conditions);
         }
 
-        // Utilisation de getEntityManager() au lieu de $_em
         $query = $this->getEntityManager()->createQuery($dql)->setParameters($parameters);
     
         return $query->getResult();
