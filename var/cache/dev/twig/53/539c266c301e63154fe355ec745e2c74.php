@@ -230,7 +230,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         yield "\"
                 class=\"block border-l-4 ";
         // line 96
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 96, $this->source); })()), "request", [], "any", false, false, false, 96), "get", ["_route"], "method", false, false, false, 96) == "app_home")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 96, $this->source); })()), "request", [], "any", false, false, false, 96), "get", ["_route"], "method", false, false, false, 96) == "app_home")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-500"));
         yield " py-2 pl-3 pr-4 text-base font-medium\">
                 Accueil
               </a>
@@ -241,7 +241,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         yield "\"
                 class=\"block border-l-4 ";
         // line 101
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 101, $this->source); })()), "request", [], "any", false, false, false, 101), "get", ["_route"], "method", false, false, false, 101) == "app_groupe_j_d_r_index")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 101, $this->source); })()), "request", [], "any", false, false, false, 101), "get", ["_route"], "method", false, false, false, 101) == "app_groupe_j_d_r_index")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-500"));
         yield " py-2 pl-3 pr-4 text-base font-medium\">
                 Les Univers
               </a>
@@ -252,7 +252,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         yield "\"
                 class=\"block border-l-4 ";
         // line 106
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 106, $this->source); })()), "request", [], "any", false, false, false, 106), "get", ["_route"], "method", false, false, false, 106) == "app_my_jdr")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 106, $this->source); })()), "request", [], "any", false, false, false, 106), "get", ["_route"], "method", false, false, false, 106) == "app_my_jdr")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-500"));
         yield " py-2 pl-3 pr-4 text-base font-medium\">
                 Mes Parties
               </a>
@@ -263,7 +263,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         yield "\"
                 class=\"block border-l-4 ";
         // line 111
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 111, $this->source); })()), "request", [], "any", false, false, false, 111), "get", ["_route"], "method", false, false, false, 111) == "app_contact")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-50"));
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 111, $this->source); })()), "request", [], "any", false, false, false, 111), "get", ["_route"], "method", false, false, false, 111) == "app_contact")) ? ("border-indigo-500 bg-indigo-50 text-indigo-700") : ("border-transparent text-white hover:bg-gray-500"));
         yield " py-2 pl-3 pr-4 text-base font-medium\">
                 Nous Contacter
               </a>
@@ -299,7 +299,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
           </div>
         </header>
       </div>
-      <div class=\"container mx-auto px-4 py-8 mt-20\">
+      <div class=\"container mx-auto px-4 py-8 mt-4 sm:mt-16\">
           ";
         // line 130
         $context['_parent'] = $context;
@@ -947,22 +947,22 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class=\"lg:hidden hidden backdrop-blur-lg bg-slate-900 bg-opacity-80\" id=\"mobile-menu\">
             <div class=\"space-y-1 pt-2 pb-3\">
               <a href=\"{{ path('app_home') }}\"
-                class=\"block border-l-4 {{ app.request.get('_route') == 'app_home' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-50' }} py-2 pl-3 pr-4 text-base font-medium\">
+                class=\"block border-l-4 {{ app.request.get('_route') == 'app_home' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-500' }} py-2 pl-3 pr-4 text-base font-medium\">
                 Accueil
               </a>
 
               <a href=\"{{ path('app_groupe_j_d_r_index') }}\"
-                class=\"block border-l-4 {{ app.request.get('_route') == 'app_groupe_j_d_r_index' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-50' }} py-2 pl-3 pr-4 text-base font-medium\">
+                class=\"block border-l-4 {{ app.request.get('_route') == 'app_groupe_j_d_r_index' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-500' }} py-2 pl-3 pr-4 text-base font-medium\">
                 Les Univers
               </a>
 
               <a href=\"{{ path('app_my_jdr') }}\"
-                class=\"block border-l-4 {{ app.request.get('_route') == 'app_my_jdr' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-50' }} py-2 pl-3 pr-4 text-base font-medium\">
+                class=\"block border-l-4 {{ app.request.get('_route') == 'app_my_jdr' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-500' }} py-2 pl-3 pr-4 text-base font-medium\">
                 Mes Parties
               </a>
 
               <a href=\"{{ path('app_contact') }}\"
-                class=\"block border-l-4 {{ app.request.get('_route') == 'app_contact' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-50' }} py-2 pl-3 pr-4 text-base font-medium\">
+                class=\"block border-l-4 {{ app.request.get('_route') == 'app_contact' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-500' }} py-2 pl-3 pr-4 text-base font-medium\">
                 Nous Contacter
               </a>
             </div>
@@ -980,7 +980,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
         </header>
       </div>
-      <div class=\"container mx-auto px-4 py-8 mt-20\">
+      <div class=\"container mx-auto px-4 py-8 mt-4 sm:mt-16\">
           {% for message in app.flashes('success') %}
               <div class=\"alert-message bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6\" role=\"alert\">
                   {{ message }}

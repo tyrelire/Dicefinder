@@ -4,19 +4,6 @@
 
 {% block body %}
 
-<style>
-    .card {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-
-    .card.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-</style>
-
 <div class="container mx-auto px-4 p-6">
     <h1 class="text-2xl md:text-4xl font-bold text-center mb-10 text-white">Les Univers</h1>
 
@@ -73,7 +60,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {% for groupe_j_d_r in groupe_j_d_rs %}
-            <div class="card bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative">
+            <div class=" bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative">
                 <div class="relative">
                     <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }} image" class="rounded-lg mb-4 w-full h-[20rem] object-cover">
                     <div class="absolute top-2 right-2">
@@ -141,7 +128,6 @@
     document.addEventListener('DOMContentLoaded', function() {
         const moreCategoriesBtn = document.getElementById('more-categories-btn');
         const moreCategoriesMenu = document.getElementById('more-categories-menu');
-        const cards = document.querySelectorAll('.card');
 
         moreCategoriesBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -153,16 +139,6 @@
                 moreCategoriesMenu.classList.add('hidden');
             }
         });
-
-        function revealCards() {
-            for (let i = 0; i < cards.length; i++) {
-                setTimeout(function() {
-                    cards[i].classList.add('visible');
-                }, i * 150);
-            }
-        }
-        revealCards();
     });
 </script>
-
 {% endblock %}

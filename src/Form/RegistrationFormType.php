@@ -58,28 +58,6 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('roles', ChoiceType::class, [
-                'choices' => [
-                    'Maître de Jeu' => 'ROLE_MJ',
-                    'Joueur' => 'ROLE_JOUEUR',
-                ],
-                'multiple' => true,
-                'expanded' => true,
-                'label' => 'Roles',
-                'label_attr' => [
-                    'class' => 'block text-sm font-medium text-gray-700',
-                ],
-                'attr' => [
-                    'class' => 'flex items-center space-x-2 font-bold text-dark',
-                ],
-                'choice_attr' => [
-                    'ROLE_MJ' => ['class' => 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 rounded border-gray-300'],
-                    'ROLE_JOUEUR' => ['class' => 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 rounded border-gray-300'],
-                ],
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez sélectionner au moins un rôle.']),
-                ],
-            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'J\'accepte les conditions générales.',

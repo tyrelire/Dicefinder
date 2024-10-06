@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-20">
+<div class="min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-6 sm:mt-20">
     <div class="max-w-md w-full space-y-8">
         <div>
             <img class="mx-auto h-24 w-auto mb-3 hidden sm:block" src="{{ asset('images/logo-dicefinder.png') }}" alt="DiceFinder Logo">
@@ -62,23 +62,12 @@
                     {% endif %}
                 </div>
             </div>
-
-            <div>
-                {{ form_label(registrationForm.roles, 'Choisissez vos rôles:', {'label_attr': {'class': 'block text-base text-dark'}}) }}
-                {{ form_widget(registrationForm.roles) }}
-            </div>
-            {% if form_errors(registrationForm.roles) %}
-                <p class="text-red-500 text-xs italic mt-2">
-                    {{ form_errors(registrationForm.roles) }}
-                </p>
-            {% endif %}
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'}}) }}
                     {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'ml-2 block text-sm text-dark'}}) }}
                 </div>
             </div>
-
             <div>
                 <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-lg font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                     Créer un compte

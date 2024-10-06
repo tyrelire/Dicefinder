@@ -97,7 +97,7 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "<div class=\"min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-36\">
+        yield "<div class=\"min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-4 sm:mt-36\">
     <div class=\"w-full max-w-md space-y-8\">
         <div>
             <img class=\"mx-auto h-24 w-auto mb-3 hidden sm:block\" src=\"";
@@ -221,7 +221,7 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
 {% block title %}DiceFinder | Connexion{% endblock %}
 
 {% block body %}
-<div class=\"min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-36\">
+<div class=\"min-h-screen flex justify-center py-8 px-4 sm:px-6 lg:px-8 mt-4 sm:mt-36\">
     <div class=\"w-full max-w-md space-y-8\">
         <div>
             <img class=\"mx-auto h-24 w-auto mb-3 hidden sm:block\" src=\"{{ asset('images/logo-dicefinder.png') }}\" alt=\"DiceFinder Logo\">

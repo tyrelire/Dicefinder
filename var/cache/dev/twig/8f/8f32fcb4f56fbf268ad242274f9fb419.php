@@ -98,29 +98,16 @@ class __TwigTemplate_6ac6e39aeb26c8776dc434bae93febd7 extends Template
 
         // line 6
         yield "
-<style>
-    .card {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-
-    .card.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-</style>
-
 <div class=\"container mx-auto px-4 p-6\">
     <h1 class=\"text-2xl md:text-4xl font-bold text-center mb-10 text-white\">Les Univers</h1>
 
     <form method=\"get\" action=\"";
-        // line 23
+        // line 10
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
         yield "\" class=\"mb-8 flex items-center space-x-2\">
         <input type=\"text\" name=\"search\" placeholder=\"Rechercher un Univers...\" value=\"";
-        // line 24
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["searchTerm"]) || array_key_exists("searchTerm", $context) ? $context["searchTerm"] : (function () { throw new RuntimeError('Variable "searchTerm" does not exist.', 24, $this->source); })()), "html", null, true);
+        // line 11
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["searchTerm"]) || array_key_exists("searchTerm", $context) ? $context["searchTerm"] : (function () { throw new RuntimeError('Variable "searchTerm" does not exist.', 11, $this->source); })()), "html", null, true);
         yield "\" class=\"w-full p-3 bg-gray-800 border border-white text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500\">
 
         <button type=\"submit\" class=\"bg-blue-500 text-white p-2.5 md:p-3 rounded-lg shadow hover:bg-blue-600 text-center flex items-center justify-center space-x-2 md:w-auto\">
@@ -133,59 +120,59 @@ class __TwigTemplate_6ac6e39aeb26c8776dc434bae93febd7 extends Template
 
     <div class=\"flex flex-wrap justify-center space-x-2 mb-4\">
         ";
-        // line 35
-        if ((isset($context["searchTerm"]) || array_key_exists("searchTerm", $context) ? $context["searchTerm"] : (function () { throw new RuntimeError('Variable "searchTerm" does not exist.', 35, $this->source); })())) {
-            // line 36
+        // line 22
+        if ((isset($context["searchTerm"]) || array_key_exists("searchTerm", $context) ? $context["searchTerm"] : (function () { throw new RuntimeError('Variable "searchTerm" does not exist.', 22, $this->source); })())) {
+            // line 23
             yield "            <div class=\"px-3 py-2 bg-blue-600 text-white rounded-lg\">
                 Recherche: \"";
-            // line 37
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["searchTerm"]) || array_key_exists("searchTerm", $context) ? $context["searchTerm"] : (function () { throw new RuntimeError('Variable "searchTerm" does not exist.', 37, $this->source); })()), "html", null, true);
+            // line 24
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["searchTerm"]) || array_key_exists("searchTerm", $context) ? $context["searchTerm"] : (function () { throw new RuntimeError('Variable "searchTerm" does not exist.', 24, $this->source); })()), "html", null, true);
             yield "\"
                 <a href=\"";
-            // line 38
+            // line 25
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
             yield "\" class=\"ml-2 text-sm text-white\">&times;</a>
             </div>
         ";
         }
-        // line 41
+        // line 28
         yield "
         ";
-        // line 42
-        if ((isset($context["selectedCategory"]) || array_key_exists("selectedCategory", $context) ? $context["selectedCategory"] : (function () { throw new RuntimeError('Variable "selectedCategory" does not exist.', 42, $this->source); })())) {
-            // line 43
+        // line 29
+        if ((isset($context["selectedCategory"]) || array_key_exists("selectedCategory", $context) ? $context["selectedCategory"] : (function () { throw new RuntimeError('Variable "selectedCategory" does not exist.', 29, $this->source); })())) {
+            // line 30
             yield "            <div class=\"px-3 py-2 bg-blue-600 text-white rounded-lg\">
                 Catégorie: \"";
-            // line 44
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["selectedCategory"]) || array_key_exists("selectedCategory", $context) ? $context["selectedCategory"] : (function () { throw new RuntimeError('Variable "selectedCategory" does not exist.', 44, $this->source); })()), "name", [], "any", false, false, false, 44), "html", null, true);
+            // line 31
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["selectedCategory"]) || array_key_exists("selectedCategory", $context) ? $context["selectedCategory"] : (function () { throw new RuntimeError('Variable "selectedCategory" does not exist.', 31, $this->source); })()), "name", [], "any", false, false, false, 31), "html", null, true);
             yield "\"
                 <a href=\"";
-            // line 45
+            // line 32
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
             yield "\" class=\"ml-2 text-sm text-white\">&times;</a>
             </div>
         ";
         }
-        // line 48
+        // line 35
         yield "    </div>
 
     <div class=\"flex flex-wrap justify-center mb-8\">
         <a href=\"";
-        // line 51
+        // line 38
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
         yield "\" class=\"m-2 px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-blue-600\">Toutes</a>
         ";
-        // line 52
+        // line 39
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 52, $this->source); })()), 0, 5));
+        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 39, $this->source); })()), 0, 5));
         foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-            // line 53
+            // line 40
             yield "            <a href=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index", ["category" => CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 53)]), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index", ["category" => CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 40)]), "html", null, true);
             yield "\" class=\"m-2 px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-blue-600\">
                 ";
-            // line 54
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 54), "html", null, true);
+            // line 41
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 41), "html", null, true);
             yield "
             </a>
         ";
@@ -193,29 +180,29 @@ class __TwigTemplate_6ac6e39aeb26c8776dc434bae93febd7 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['category'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 57
+        // line 44
         yield "
         ";
-        // line 58
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 58, $this->source); })())) > 5)) {
-            // line 59
+        // line 45
+        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 45, $this->source); })())) > 5)) {
+            // line 46
             yield "            <div class=\"relative\">
                 <button class=\"m-2 px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-blue-600 focus:outline-none\" id=\"more-categories-btn\">
                     Plus
                 </button>
                 <div id=\"more-categories-menu\" class=\"hidden absolute mt-2 bg-gray-700 text-white rounded-lg shadow-lg p-2 w-40 z-10\">
                     ";
-            // line 64
+            // line 51
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 64, $this->source); })()), 5, null));
+            $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 51, $this->source); })()), 5, null));
             foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-                // line 65
+                // line 52
                 yield "                        <a href=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index", ["category" => CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 65)]), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index", ["category" => CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 52)]), "html", null, true);
                 yield "\" class=\"block px-3 py-2 hover:bg-blue-600 rounded\">
                             ";
-                // line 66
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 66), "html", null, true);
+                // line 53
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 53), "html", null, true);
                 yield "
                         </a>
                     ";
@@ -223,160 +210,160 @@ class __TwigTemplate_6ac6e39aeb26c8776dc434bae93febd7 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['category'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 69
+            // line 56
             yield "                </div>
             </div>
         ";
         }
-        // line 72
+        // line 59
         yield "    </div>
 
     <div class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6\">
         ";
-        // line 75
+        // line 62
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["groupe_j_d_rs"]) || array_key_exists("groupe_j_d_rs", $context) ? $context["groupe_j_d_rs"] : (function () { throw new RuntimeError('Variable "groupe_j_d_rs" does not exist.', 75, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["groupe_j_d_rs"]) || array_key_exists("groupe_j_d_rs", $context) ? $context["groupe_j_d_rs"] : (function () { throw new RuntimeError('Variable "groupe_j_d_rs" does not exist.', 62, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["groupe_j_d_r"]) {
-            // line 76
-            yield "            <div class=\"card bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative\">
+            // line 63
+            yield "            <div class=\" bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative\">
                 <div class=\"relative\">
                     <img src=\"";
-            // line 78
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "picture", [], "any", false, false, false, 78))), "html", null, true);
+            // line 65
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "picture", [], "any", false, false, false, 65))), "html", null, true);
             yield "\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 78), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 65), "html", null, true);
             yield " image\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
                     <div class=\"absolute top-2 right-2\">
                         <span class=\"text-sm font-bold px-2 py-1 rounded 
                             ";
-            // line 81
-            if ((CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "status", [], "any", false, false, false, 81) == "preparation")) {
+            // line 68
+            if ((CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "status", [], "any", false, false, false, 68) == "preparation")) {
                 yield " bg-yellow-500
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 82
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 82) == "pret_a_jouer")) {
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 69
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 69) == "pret_a_jouer")) {
                 yield " bg-green-500
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 83
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 83) == "en_cours")) {
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 70
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 70) == "en_cours")) {
                 yield " bg-blue-500
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 84
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 84) == "complet")) {
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 71
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 71) == "complet")) {
                 yield " bg-red-500
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 85
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 85) == "pause")) {
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 72
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 72) == "pause")) {
                 yield " bg-gray-500
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 86
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 86) == "termine")) {
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 73
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 73) == "termine")) {
                 yield " bg-purple-500
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 87
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 87) == "annule")) {
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 74
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 74) == "annule")) {
                 yield " bg-gray-400
                             ";
             } else {
-                // line 88
+                // line 75
                 yield " bg-gray-700
                             ";
             }
-            // line 89
+            // line 76
             yield " text-white\">
                             ";
-            // line 90
-            if ((CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "status", [], "any", false, false, false, 90) == "preparation")) {
-                // line 91
+            // line 77
+            if ((CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "status", [], "any", false, false, false, 77) == "preparation")) {
+                // line 78
                 yield "                                En Préparation
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 92
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 92) == "pret_a_jouer")) {
-                // line 93
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 79
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 79) == "pret_a_jouer")) {
+                // line 80
                 yield "                                Prêt à jouer
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 94
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 94) == "en_cours")) {
-                // line 95
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 81
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 81) == "en_cours")) {
+                // line 82
                 yield "                                En Cours
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 96
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 96) == "complet")) {
-                // line 97
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 83
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 83) == "complet")) {
+                // line 84
                 yield "                                Complet
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 98
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 98) == "pause")) {
-                // line 99
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 85
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 85) == "pause")) {
+                // line 86
                 yield "                                En Pause
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 100
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 100) == "termine")) {
-                // line 101
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 87
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 87) == "termine")) {
+                // line 88
                 yield "                                Terminé
                             ";
-            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 102
-$context["groupe_j_d_r"], "status", [], "any", false, false, false, 102) == "annule")) {
-                // line 103
+            } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 89
+$context["groupe_j_d_r"], "status", [], "any", false, false, false, 89) == "annule")) {
+                // line 90
                 yield "                                Annulé
                             ";
             } else {
-                // line 105
+                // line 92
                 yield "                                Statut inconnu
                             ";
             }
-            // line 107
+            // line 94
             yield "                        </span>
                     </div>
                 </div>
 
                 <div class=\"flex justify-between items-center mb-2\">
                     <a href=\"";
-            // line 112
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 112)]), "html", null, true);
+            // line 99
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 99)]), "html", null, true);
             yield "\" class=\"font-semibold\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 112), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 99), "html", null, true);
             yield "</a>
                     <a href=\"";
-            // line 113
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 113)]), "html", null, true);
+            // line 100
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 100)]), "html", null, true);
             yield "\" class=\"bg-blue-600 text-white px-2 py-1 rounded text-xs\">Voir</a>
                 </div>
 
                 <div class=\"flex justify-between items-center mt-2\">
                     <div class=\"flex items-center\">
                         ";
-            // line 118
-            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 118), "avatar", [], "any", false, false, false, 118)) {
-                // line 119
+            // line 105
+            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 105), "avatar", [], "any", false, false, false, 105)) {
+                // line 106
                 yield "                            <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 119), "avatar", [], "any", false, false, false, 119))), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 106), "avatar", [], "any", false, false, false, 106))), "html", null, true);
                 yield "\" alt=\"MJ photo\" class=\"rounded h-8 w-8 object-cover\">
                         ";
             } else {
-                // line 121
+                // line 108
                 yield "                            <img class=\"rounded h-8 w-8 object-cover\" src=\"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
                 yield "\" alt=\"Default profile photo\">
                         ";
             }
-            // line 123
+            // line 110
             yield "                        <div class=\"ml-2\">
                             <p class=\"text-xs text-gray-400\">MJ</p>
                             <p class=\"text-xs text-white\">";
-            // line 125
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 125), "username", [], "any", false, false, false, 125), "html", null, true);
+            // line 112
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 112), "username", [], "any", false, false, false, 112), "html", null, true);
             yield "</p>
                         </div>
                     </div>
                     <div class=\"text-right\">
                         <p class=\"text-xs text-gray-400\">Nombre de joueur</p>
                         <p class=\"text-lg font-bold text-white\">";
-            // line 130
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "players", [], "any", false, false, false, 130)), "html", null, true);
+            // line 117
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "players", [], "any", false, false, false, 117)), "html", null, true);
             yield " / ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "maxPlayer", [], "any", false, false, false, 130), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "maxPlayer", [], "any", false, false, false, 117), "html", null, true);
             yield "</p>
                     </div>
                 </div>
@@ -385,14 +372,14 @@ $context["groupe_j_d_r"], "status", [], "any", false, false, false, 102) == "ann
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 135
+            // line 122
             yield "            <p class=\"text-gray-700 text-lg\">Aucun résultat trouvé</p>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['groupe_j_d_r'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 137
+        // line 124
         yield "    </div>
 </div>
 
@@ -400,7 +387,6 @@ $context["groupe_j_d_r"], "status", [], "any", false, false, false, 102) == "ann
     document.addEventListener('DOMContentLoaded', function() {
         const moreCategoriesBtn = document.getElementById('more-categories-btn');
         const moreCategoriesMenu = document.getElementById('more-categories-menu');
-        const cards = document.querySelectorAll('.card');
 
         moreCategoriesBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -412,18 +398,8 @@ $context["groupe_j_d_r"], "status", [], "any", false, false, false, 102) == "ann
                 moreCategoriesMenu.classList.add('hidden');
             }
         });
-
-        function revealCards() {
-            for (let i = 0; i < cards.length; i++) {
-                setTimeout(function() {
-                    cards[i].classList.add('visible');
-                }, i * 150);
-            }
-        }
-        revealCards();
     });
 </script>
-
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -455,7 +431,7 @@ $context["groupe_j_d_r"], "status", [], "any", false, false, false, 102) == "ann
      */
     public function getDebugInfo(): array
     {
-        return array (  396 => 137,  389 => 135,  377 => 130,  369 => 125,  365 => 123,  359 => 121,  353 => 119,  351 => 118,  343 => 113,  337 => 112,  330 => 107,  326 => 105,  322 => 103,  320 => 102,  317 => 101,  315 => 100,  312 => 99,  310 => 98,  307 => 97,  305 => 96,  302 => 95,  300 => 94,  297 => 93,  295 => 92,  292 => 91,  290 => 90,  287 => 89,  283 => 88,  278 => 87,  274 => 86,  270 => 85,  266 => 84,  262 => 83,  258 => 82,  254 => 81,  246 => 78,  242 => 76,  237 => 75,  232 => 72,  227 => 69,  218 => 66,  213 => 65,  209 => 64,  202 => 59,  200 => 58,  197 => 57,  188 => 54,  183 => 53,  179 => 52,  175 => 51,  170 => 48,  164 => 45,  160 => 44,  157 => 43,  155 => 42,  152 => 41,  146 => 38,  142 => 37,  139 => 36,  137 => 35,  123 => 24,  119 => 23,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  383 => 124,  376 => 122,  364 => 117,  356 => 112,  352 => 110,  346 => 108,  340 => 106,  338 => 105,  330 => 100,  324 => 99,  317 => 94,  313 => 92,  309 => 90,  307 => 89,  304 => 88,  302 => 87,  299 => 86,  297 => 85,  294 => 84,  292 => 83,  289 => 82,  287 => 81,  284 => 80,  282 => 79,  279 => 78,  277 => 77,  274 => 76,  270 => 75,  265 => 74,  261 => 73,  257 => 72,  253 => 71,  249 => 70,  245 => 69,  241 => 68,  233 => 65,  229 => 63,  224 => 62,  219 => 59,  214 => 56,  205 => 53,  200 => 52,  196 => 51,  189 => 46,  187 => 45,  184 => 44,  175 => 41,  170 => 40,  166 => 39,  162 => 38,  157 => 35,  151 => 32,  147 => 31,  144 => 30,  142 => 29,  139 => 28,  133 => 25,  129 => 24,  126 => 23,  124 => 22,  110 => 11,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -465,19 +441,6 @@ $context["groupe_j_d_r"], "status", [], "any", false, false, false, 102) == "ann
 {% block title %}DiceFinder | Les Univers{% endblock %}
 
 {% block body %}
-
-<style>
-    .card {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-
-    .card.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-</style>
 
 <div class=\"container mx-auto px-4 p-6\">
     <h1 class=\"text-2xl md:text-4xl font-bold text-center mb-10 text-white\">Les Univers</h1>
@@ -535,7 +498,7 @@ $context["groupe_j_d_r"], "status", [], "any", false, false, false, 102) == "ann
 
     <div class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6\">
         {% for groupe_j_d_r in groupe_j_d_rs %}
-            <div class=\"card bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative\">
+            <div class=\" bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative\">
                 <div class=\"relative\">
                     <img src=\"{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}\" alt=\"{{ groupe_j_d_r.title }} image\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
                     <div class=\"absolute top-2 right-2\">
@@ -603,7 +566,6 @@ $context["groupe_j_d_r"], "status", [], "any", false, false, false, 102) == "ann
     document.addEventListener('DOMContentLoaded', function() {
         const moreCategoriesBtn = document.getElementById('more-categories-btn');
         const moreCategoriesMenu = document.getElementById('more-categories-menu');
-        const cards = document.querySelectorAll('.card');
 
         moreCategoriesBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -615,18 +577,8 @@ $context["groupe_j_d_r"], "status", [], "any", false, false, false, 102) == "ann
                 moreCategoriesMenu.classList.add('hidden');
             }
         });
-
-        function revealCards() {
-            for (let i = 0; i < cards.length; i++) {
-                setTimeout(function() {
-                    cards[i].classList.add('visible');
-                }, i * 150);
-            }
-        }
-        revealCards();
     });
 </script>
-
 {% endblock %}
 ", "groupe_jdr/index.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\templates\\groupe_jdr\\index.html.twig");
     }

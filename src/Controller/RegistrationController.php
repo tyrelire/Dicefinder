@@ -39,8 +39,8 @@ class RegistrationController extends AbstractController
             if ($existingUser) {
                 $form->get('username')->addError(new FormError('Ce nom d’utilisateur est déjà pris.'));
             } else {
-                $roles = $form->get('roles')->getData();
-                $user->setRoles($roles);
+                $user->setRoles(['ROLE_MJ', 'ROLE_JOUEUR']);
+                
                 $plainPassword = $form->get('password')->getData();
                 $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
     
@@ -54,7 +54,8 @@ class RegistrationController extends AbstractController
                         ->subject('Veuillez confirmer votre email')
                         ->htmlTemplate('registration/confirmation_email.html.twig')
                 );
-                $this->addFlash('emailsent', 'Pour finaliser votre inscription, veuillez cliquer sur le lien inclus dans l\'e-mail que nous vous avons envoyé. Cela activera votre compte et confirmera votre inscription sur notre plateforme. Merci de votre confiance !');
+    
+                $this->addFlash('emailsent', 'Pour finaliser votre inscription, veuillez cliquer sur le lien inclus dans l\'e-mail que nous vous avons envoyé. Cela activera votre compte.');
             }
         }
     
@@ -62,6 +63,7 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+    
 
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response
