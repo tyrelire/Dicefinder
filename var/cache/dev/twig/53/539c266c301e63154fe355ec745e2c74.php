@@ -148,8 +148,8 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         // line 52
         if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 52, $this->source); })()), "user", [], "any", false, false, false, 52)) {
             // line 53
-            yield "                      <button id=\"notificationDropdown\" type=\"button\" class=\"relative w-12 h-12 flex items-center justify-center text-white border-none outline-none bg-gray-800 rounded-full transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none shadow-lg\">
-                          <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18px\" class=\"cursor-pointer fill-current\" viewBox=\"0 0 371.263 371.263\">
+            yield "                      <button id=\"notificationDropdown\" type=\"button\" class=\"relative w-12 h-12 flex items-center justify-center text-white border-none outline-none bg-gray-500 rounded-full transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none shadow-lg\">
+                          <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18px\" class=\"text-gray-100 cursor-pointer fill-current\" viewBox=\"0 0 371.263 371.263\">
                               <path
                                   d=\"M305.402 234.794v-70.54c0-52.396-33.533-98.085-79.702-115.151.539-2.695.838-5.449.838-8.204C226.539 18.324 208.215 0 185.64 0s-40.899 18.324-40.899 40.899c0 2.695.299 5.389.778 7.964-15.868 5.629-30.539 14.551-43.054 26.647-23.593 22.755-36.587 53.354-36.587 86.169v73.115c0 2.575-2.096 4.731-4.731 4.731-22.096 0-40.959 16.647-42.995 37.845-1.138 11.797 2.755 23.533 10.719 32.276 7.904 8.683 19.222 13.713 31.018 13.713h72.217c2.994 26.887 25.869 47.905 53.534 47.905s50.54-21.018 53.534-47.905h72.217c11.797 0 23.114-5.03 31.018-13.713 7.904-8.743 11.797-20.479 10.719-32.276-2.036-21.198-20.958-37.845-42.995-37.845a4.704 4.704 0 0 1-4.731-4.731zM185.64 23.952c9.341 0 16.946 7.605 16.946 16.946 0 .778-.12 1.497-.24 2.275-4.072-.599-8.204-1.018-12.336-1.138-7.126-.24-14.132.24-21.078 1.198-.12-.778-.24-1.497-.24-2.275.002-9.401 7.607-17.006 16.948-17.006zm0 323.358c-14.431 0-26.527-10.3-29.342-23.952h58.683c-2.813 13.653-14.909 23.952-29.341 23.952zm143.655-67.665c.479 5.15-1.138 10.12-4.551 13.892-3.533 3.773-8.204 5.868-13.353 5.868H59.89c-5.15 0-9.82-2.096-13.294-5.868-3.473-3.772-5.09-8.743-4.611-13.892.838-9.042 9.282-16.168 19.162-16.168 15.809 0 28.683-12.874 28.683-28.683v-73.115c0-26.228 10.419-50.719 29.282-68.923 18.024-17.425 41.498-26.887 66.528-26.887 1.198 0 2.335 0 3.533.06 50.839 1.796 92.277 45.929 92.277 98.325v70.54c0 15.809 12.874 28.683 28.683 28.683 9.88 0 18.264 7.126 19.162 16.168z\"
                               />
@@ -160,7 +160,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                       </button>
                       <div id=\"dropdown-menu\" class=\"hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\">
                           <div class=\"py-1\" role=\"none\">
-                              <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notification</p>
+                              <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notifications</p>
                               <div id=\"invitations-list\"></div>
                           </div>
                           <a href=\"";
@@ -178,7 +178,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
         // line 74
         if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 74, $this->source); })()), "user", [], "any", false, false, false, 74)) {
             // line 75
-            yield "                      <button id=\"user-menu-toggle\" type=\"button\" class=\"flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 shadow-lg\" aria-expanded=\"false\" aria-haspopup=\"true\">
+            yield "                      <button id=\"user-menu-toggle\" type=\"button\" class=\"flex items-center justify-center w-12 h-12 rounded-full bg-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 shadow-lg\" aria-expanded=\"false\" aria-haspopup=\"true\">
                           <span class=\"sr-only\">Open user menu</span>
                           ";
             // line 77
@@ -365,6 +365,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
               </div>
           </div>
       </div>
+
       <a href=\"https://discord.gg/7Qu49xxXga\" target=\"_blank\" class=\"fixed bottom-5 right-5 z-50\">
         <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"5rem\" height=\"5rem\" viewBox=\"0 0 256 256\" class=\"w-12 h-12 rounded-full hover:scale-110 transition-transform duration-300\">
           <g fill=\"none\">
@@ -417,21 +418,21 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
                       <a href=\"";
-        // line 217
+        // line 218
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_cgv");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales de Vente </a>
                     </li>
 
                     <li>
                       <a href=\"";
-        // line 221
+        // line 222
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_cgu");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales d'Utilisation </a>
                     </li>
 
                     <li>
                       <a href=\"";
-        // line 225
+        // line 226
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_policy");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Politique de Confidentialité </a>
                     </li>
@@ -442,21 +443,21 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
                       <a href=\"";
-        // line 233
+        // line 234
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_team");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Notre équipe </a>
                     </li>
 
                     <li>
                       <a href=\"";
-        // line 237
+        // line 238
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_about");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> À propos de nous </a>
                     </li>
 
                     <li>
                       <a href=\"";
-        // line 241
+        // line 242
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_faq");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> FAQ </a>
                     </li>
@@ -469,7 +470,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
                         <a href=\"";
-        // line 251
+        // line 252
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Nous contacter </a>
                     </li>
@@ -558,7 +559,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const acceptBtn = document.getElementById('accept-btn');
     const rejectBtn = document.getElementById('reject-btn');
 
-    // Fonction pour ouvrir la modale d'invitation
     function openInvitationModal(invitation) {
         if (!modal) {
             console.error('Modal not found');
@@ -567,7 +567,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const groupTitle = invitation.title;
         const requesterName = invitation.requester;
-        const groupDescription = invitation.description || 'Description non disponible';
+        const message = invitation.message || 'Pas de message fourni';
         const initiatedBy = invitation.type;
 
         let modalMessage;
@@ -582,25 +582,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         document.getElementById('modal-group-title').textContent = groupTitle;
-        document.getElementById('modal-invitation-message').textContent = modalMessage;
+        document.getElementById('modal-invitation-message').textContent = modalMessage + `\\n\\nMessage: \${message}`;
         document.getElementById('modal-action').textContent = modalAction;
         modal.classList.remove('hidden');
 
-        acceptBtn.replaceWith(acceptBtn.cloneNode(true));
-        rejectBtn.replaceWith(rejectBtn.cloneNode(true));
+        // Attacher directement les événements sur les boutons après l'ouverture de la modale
+        document.getElementById('accept-btn').onclick = function () {
+            handleInvitationResponse(invitation.id, 'accept');
+        };
 
-        const newAcceptBtn = document.getElementById('accept-btn');
-        const newRejectBtn = document.getElementById('reject-btn');
-        const invitationId = invitation.id;
-
-        newAcceptBtn.addEventListener('click', function () {
-            handleInvitationResponse(invitationId, 'accept');
-        });
-
-        newRejectBtn.addEventListener('click', function () {
-            handleInvitationResponse(invitationId, 'refuse');
-        });
+        document.getElementById('reject-btn').onclick = function () {
+            handleInvitationResponse(invitation.id, 'refuse');
+        };
     }
+
 
     // Fonction pour gérer la réponse à une invitation
     function handleInvitationResponse(invitationId, response) {
@@ -623,6 +618,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error processing the invitation:', error);
         });
     }
+
 
     // Fonction pour récupérer les invitations
     function fetchInvitations() {
@@ -660,32 +656,41 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     data.invitations.forEach(invitation => {
-                        const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
-                        const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
-                        const message = invitation.message || 'Pas de message';
-                        const initiatedBy = invitation.initiatedBy || 'user';
+                    const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
+                    const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
+                    const message = invitation.message || 'Pas de message';
+                    const initiatedBy = invitation.initiatedBy || 'user';
 
-                        let displayMessage;
-                        if (initiatedBy === 'owner') {
-                            displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
-                        } else {
-                            displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
-                        }
+                    let displayMessage;
+                    if (initiatedBy === 'owner') {
+                        displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
+                    } else {
+                        displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
+                    }
 
-                        const invitationItem = document.createElement('div');
-                        invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
-                        invitationItem.textContent = displayMessage;
-                        invitationsList.appendChild(invitationItem);
+                    const invitationItem = document.createElement('div');
+                    invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
+                    
+                    // Ajout du message de l'invitation
+                    invitationItem.innerHTML = `
+                        <p>\${displayMessage}</p>
+                        <p class=\"text-xs text-gray-500\">\${message}</p>
+                    `;
 
-                        invitationItem.addEventListener('click', function () {
-                            openInvitationModal({
-                                id: invitation.id,
-                                title: groupTitle,
-                                type: initiatedBy === 'owner' ? 'invite' : 'request',
-                                requester: requesterName
-                            });
+                    invitationsList.appendChild(invitationItem);
+
+                    // Ouvrir la modale au clic
+                    invitationItem.addEventListener('click', function () {
+                        openInvitationModal({
+                            id: invitation.id,
+                            title: groupTitle,
+                            type: initiatedBy === 'owner' ? 'invite' : 'request',
+                            requester: requesterName,
+                            message: message
                         });
                     });
+                });
+
                 } else {
                     if (noInvitationMsg) {
                         noInvitationMsg.classList.remove('hidden');
@@ -847,7 +852,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     public function getDebugInfo(): array
     {
-        return array (  808 => 142,  785 => 15,  774 => 16,  771 => 15,  758 => 14,  736 => 12,  714 => 5,  473 => 251,  460 => 241,  453 => 237,  446 => 233,  435 => 225,  428 => 221,  421 => 217,  345 => 143,  343 => 142,  340 => 141,  331 => 138,  328 => 137,  324 => 136,  321 => 135,  312 => 132,  309 => 131,  305 => 130,  297 => 124,  291 => 122,  286 => 120,  282 => 119,  277 => 118,  275 => 117,  266 => 111,  262 => 110,  255 => 106,  251 => 105,  244 => 101,  240 => 100,  233 => 96,  229 => 95,  223 => 91,  217 => 89,  211 => 86,  207 => 85,  203 => 84,  199 => 82,  193 => 80,  187 => 78,  185 => 77,  181 => 75,  179 => 74,  174 => 71,  168 => 68,  151 => 53,  149 => 52,  139 => 45,  129 => 42,  119 => 39,  109 => 36,  94 => 24,  90 => 23,  82 => 17,  80 => 14,  77 => 13,  75 => 12,  69 => 9,  64 => 7,  59 => 5,  53 => 1,);
+        return array (  813 => 142,  790 => 15,  779 => 16,  776 => 15,  763 => 14,  741 => 12,  719 => 5,  474 => 252,  461 => 242,  454 => 238,  447 => 234,  436 => 226,  429 => 222,  422 => 218,  345 => 143,  343 => 142,  340 => 141,  331 => 138,  328 => 137,  324 => 136,  321 => 135,  312 => 132,  309 => 131,  305 => 130,  297 => 124,  291 => 122,  286 => 120,  282 => 119,  277 => 118,  275 => 117,  266 => 111,  262 => 110,  255 => 106,  251 => 105,  244 => 101,  240 => 100,  233 => 96,  229 => 95,  223 => 91,  217 => 89,  211 => 86,  207 => 85,  203 => 84,  199 => 82,  193 => 80,  187 => 78,  185 => 77,  181 => 75,  179 => 74,  174 => 71,  168 => 68,  151 => 53,  149 => 52,  139 => 45,  129 => 42,  119 => 39,  109 => 36,  94 => 24,  90 => 23,  82 => 17,  80 => 14,  77 => 13,  75 => 12,  69 => 9,  64 => 7,  59 => 5,  53 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -904,8 +909,8 @@ document.addEventListener('DOMContentLoaded', function () {
               <div class=\"relative flex items-center\">
                   <div class=\"relative w-max mx-auto mr-10\">
                     {% if app.user %}
-                      <button id=\"notificationDropdown\" type=\"button\" class=\"relative w-12 h-12 flex items-center justify-center text-white border-none outline-none bg-gray-800 rounded-full transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none shadow-lg\">
-                          <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18px\" class=\"cursor-pointer fill-current\" viewBox=\"0 0 371.263 371.263\">
+                      <button id=\"notificationDropdown\" type=\"button\" class=\"relative w-12 h-12 flex items-center justify-center text-white border-none outline-none bg-gray-500 rounded-full transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:outline-none shadow-lg\">
+                          <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18px\" class=\"text-gray-100 cursor-pointer fill-current\" viewBox=\"0 0 371.263 371.263\">
                               <path
                                   d=\"M305.402 234.794v-70.54c0-52.396-33.533-98.085-79.702-115.151.539-2.695.838-5.449.838-8.204C226.539 18.324 208.215 0 185.64 0s-40.899 18.324-40.899 40.899c0 2.695.299 5.389.778 7.964-15.868 5.629-30.539 14.551-43.054 26.647-23.593 22.755-36.587 53.354-36.587 86.169v73.115c0 2.575-2.096 4.731-4.731 4.731-22.096 0-40.959 16.647-42.995 37.845-1.138 11.797 2.755 23.533 10.719 32.276 7.904 8.683 19.222 13.713 31.018 13.713h72.217c2.994 26.887 25.869 47.905 53.534 47.905s50.54-21.018 53.534-47.905h72.217c11.797 0 23.114-5.03 31.018-13.713 7.904-8.743 11.797-20.479 10.719-32.276-2.036-21.198-20.958-37.845-42.995-37.845a4.704 4.704 0 0 1-4.731-4.731zM185.64 23.952c9.341 0 16.946 7.605 16.946 16.946 0 .778-.12 1.497-.24 2.275-4.072-.599-8.204-1.018-12.336-1.138-7.126-.24-14.132.24-21.078 1.198-.12-.778-.24-1.497-.24-2.275.002-9.401 7.607-17.006 16.948-17.006zm0 323.358c-14.431 0-26.527-10.3-29.342-23.952h58.683c-2.813 13.653-14.909 23.952-29.341 23.952zm143.655-67.665c.479 5.15-1.138 10.12-4.551 13.892-3.533 3.773-8.204 5.868-13.353 5.868H59.89c-5.15 0-9.82-2.096-13.294-5.868-3.473-3.772-5.09-8.743-4.611-13.892.838-9.042 9.282-16.168 19.162-16.168 15.809 0 28.683-12.874 28.683-28.683v-73.115c0-26.228 10.419-50.719 29.282-68.923 18.024-17.425 41.498-26.887 66.528-26.887 1.198 0 2.335 0 3.533.06 50.839 1.796 92.277 45.929 92.277 98.325v70.54c0 15.809 12.874 28.683 28.683 28.683 9.88 0 18.264 7.126 19.162 16.168z\"
                               />
@@ -916,7 +921,7 @@ document.addEventListener('DOMContentLoaded', function () {
                       </button>
                       <div id=\"dropdown-menu\" class=\"hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\">
                           <div class=\"py-1\" role=\"none\">
-                              <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notification</p>
+                              <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notifications</p>
                               <div id=\"invitations-list\"></div>
                           </div>
                           <a href=\"{{ path('app_invitations_index') }}\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100\">Voir toutes les invitations</a>
@@ -926,7 +931,7 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
               <div class=\"relative ml-3\">
                   {% if app.user %}
-                      <button id=\"user-menu-toggle\" type=\"button\" class=\"flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 shadow-lg\" aria-expanded=\"false\" aria-haspopup=\"true\">
+                      <button id=\"user-menu-toggle\" type=\"button\" class=\"flex items-center justify-center w-12 h-12 rounded-full bg-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-700 shadow-lg\" aria-expanded=\"false\" aria-haspopup=\"true\">
                           <span class=\"sr-only\">Open user menu</span>
                           {% if app.user.avatar %}
                               <img class=\"h-10 w-10 rounded-full object-cover\" src=\"{{ asset('uploads/avatars/' ~ app.user.avatar) }}\" alt=\"Profile photo\">
@@ -1017,6 +1022,7 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
           </div>
       </div>
+
       <a href=\"https://discord.gg/7Qu49xxXga\" target=\"_blank\" class=\"fixed bottom-5 right-5 z-50\">
         <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"5rem\" height=\"5rem\" viewBox=\"0 0 256 256\" class=\"w-12 h-12 rounded-full hover:scale-110 transition-transform duration-300\">
           <g fill=\"none\">
@@ -1189,7 +1195,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const acceptBtn = document.getElementById('accept-btn');
     const rejectBtn = document.getElementById('reject-btn');
 
-    // Fonction pour ouvrir la modale d'invitation
     function openInvitationModal(invitation) {
         if (!modal) {
             console.error('Modal not found');
@@ -1198,7 +1203,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const groupTitle = invitation.title;
         const requesterName = invitation.requester;
-        const groupDescription = invitation.description || 'Description non disponible';
+        const message = invitation.message || 'Pas de message fourni';
         const initiatedBy = invitation.type;
 
         let modalMessage;
@@ -1213,25 +1218,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         document.getElementById('modal-group-title').textContent = groupTitle;
-        document.getElementById('modal-invitation-message').textContent = modalMessage;
+        document.getElementById('modal-invitation-message').textContent = modalMessage + `\\n\\nMessage: \${message}`;
         document.getElementById('modal-action').textContent = modalAction;
         modal.classList.remove('hidden');
 
-        acceptBtn.replaceWith(acceptBtn.cloneNode(true));
-        rejectBtn.replaceWith(rejectBtn.cloneNode(true));
+        // Attacher directement les événements sur les boutons après l'ouverture de la modale
+        document.getElementById('accept-btn').onclick = function () {
+            handleInvitationResponse(invitation.id, 'accept');
+        };
 
-        const newAcceptBtn = document.getElementById('accept-btn');
-        const newRejectBtn = document.getElementById('reject-btn');
-        const invitationId = invitation.id;
-
-        newAcceptBtn.addEventListener('click', function () {
-            handleInvitationResponse(invitationId, 'accept');
-        });
-
-        newRejectBtn.addEventListener('click', function () {
-            handleInvitationResponse(invitationId, 'refuse');
-        });
+        document.getElementById('reject-btn').onclick = function () {
+            handleInvitationResponse(invitation.id, 'refuse');
+        };
     }
+
 
     // Fonction pour gérer la réponse à une invitation
     function handleInvitationResponse(invitationId, response) {
@@ -1254,6 +1254,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error processing the invitation:', error);
         });
     }
+
 
     // Fonction pour récupérer les invitations
     function fetchInvitations() {
@@ -1291,32 +1292,41 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     data.invitations.forEach(invitation => {
-                        const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
-                        const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
-                        const message = invitation.message || 'Pas de message';
-                        const initiatedBy = invitation.initiatedBy || 'user';
+                    const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
+                    const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
+                    const message = invitation.message || 'Pas de message';
+                    const initiatedBy = invitation.initiatedBy || 'user';
 
-                        let displayMessage;
-                        if (initiatedBy === 'owner') {
-                            displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
-                        } else {
-                            displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
-                        }
+                    let displayMessage;
+                    if (initiatedBy === 'owner') {
+                        displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
+                    } else {
+                        displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
+                    }
 
-                        const invitationItem = document.createElement('div');
-                        invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
-                        invitationItem.textContent = displayMessage;
-                        invitationsList.appendChild(invitationItem);
+                    const invitationItem = document.createElement('div');
+                    invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
+                    
+                    // Ajout du message de l'invitation
+                    invitationItem.innerHTML = `
+                        <p>\${displayMessage}</p>
+                        <p class=\"text-xs text-gray-500\">\${message}</p>
+                    `;
 
-                        invitationItem.addEventListener('click', function () {
-                            openInvitationModal({
-                                id: invitation.id,
-                                title: groupTitle,
-                                type: initiatedBy === 'owner' ? 'invite' : 'request',
-                                requester: requesterName
-                            });
+                    invitationsList.appendChild(invitationItem);
+
+                    // Ouvrir la modale au clic
+                    invitationItem.addEventListener('click', function () {
+                        openInvitationModal({
+                            id: invitation.id,
+                            title: groupTitle,
+                            type: initiatedBy === 'owner' ? 'invite' : 'request',
+                            requester: requesterName,
+                            message: message
                         });
                     });
+                });
+
                 } else {
                     if (noInvitationMsg) {
                         noInvitationMsg.classList.remove('hidden');

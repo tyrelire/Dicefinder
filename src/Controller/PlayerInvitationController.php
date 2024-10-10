@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PlayerInvitationController extends AbstractController
@@ -99,8 +100,7 @@ class PlayerInvitationController extends AbstractController
                 'redirect' => $this->generateUrl('app_groupe_j_d_r_edit', ['id' => $groupeJdr->getId()])
             ], 200);
         }
-    
-        // Si l'utilisateur n'était pas dans le groupe
+
         return new JsonResponse(['success' => false, 'message' => 'Utilisateur non trouvé dans ce groupe'], 404);
     }
     
@@ -239,5 +239,27 @@ class PlayerInvitationController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJdr->getId()]);
+    }
+
+    #[Route('/api/remove_invitation/{invitationId}', name: 'remove_invitation', methods: ['DELETE'])]
+    public function removeInvitation(
+        int $invitationId, 
+        InvitationRepository $invitationRepository, 
+        EntityManagerInterface $entityManager
+    ): JsonResponse {
+        $invitation = $invitationRepository->find($invitationId);
+        
+        if (!$invitation) {
+            return new JsonResponse(['success' => false, 'message' => 'Invitation non trouvée'], 404);
+        }
+    
+        try {
+            $entityManager->remove($invitation);
+            $entityManager->flush();
+    
+            return new JsonResponse(['success' => true], 200);
+        } catch (\Exception $e) {
+            return new JsonResponse(['success' => false, 'message' => 'Erreur lors de la suppression de l\'invitation'], 500);
+        }
     }
 }

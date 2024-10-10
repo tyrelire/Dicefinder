@@ -164,7 +164,10 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
                     <label for=\"remember-me\" class=\"ml-2 block text-sm text-white\">Se souvenir de moi</label>
                 </div>
                 <div class=\"text-sm\">
-                    <a href=\"#\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Mot de passe oublié ?</a>
+                    <a href=\"";
+        // line 45
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_forgot_password_request");
+        yield "\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Mot de passe oublié ?</a>
                 </div>
             </div>
             <div>
@@ -211,7 +214,7 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  153 => 32,  145 => 28,  137 => 25,  134 => 24,  131 => 23,  125 => 20,  122 => 19,  120 => 18,  113 => 14,  105 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  169 => 45,  153 => 32,  145 => 28,  137 => 25,  134 => 24,  131 => 23,  125 => 20,  122 => 19,  120 => 18,  113 => 14,  105 => 9,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -260,7 +263,7 @@ class __TwigTemplate_9a9f9bb32bf59bda12a2c8b62c23df43 extends Template
                     <label for=\"remember-me\" class=\"ml-2 block text-sm text-white\">Se souvenir de moi</label>
                 </div>
                 <div class=\"text-sm\">
-                    <a href=\"#\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Mot de passe oublié ?</a>
+                    <a href=\"{{ path('app_forgot_password_request') }}\" class=\"font-medium text-indigo-600 hover:text-indigo-500\">Mot de passe oublié ?</a>
                 </div>
             </div>
             <div>

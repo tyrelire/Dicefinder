@@ -7,6 +7,7 @@ use App\Entity\GroupeJDR;
 use App\Entity\Invitation;
 use App\Form\GroupeJDRType;
 use App\Repository\UserRepository;
+use App\Entity\NotificationHistory;
 use App\Repository\CategoryRepository;
 use App\Repository\GroupeJDRRepository;
 use App\Repository\InvitationRepository;
@@ -26,23 +27,20 @@ final class GroupeJDRController extends AbstractController
     public function index(Request $request, GroupeJDRRepository $groupeJDRRepository, CategoryRepository $categoryRepository): Response
     {
         $searchTerm = $request->query->get('search');
-        $categoryId = $request->query->get('category');
+        $status = $request->query->get('status');
+        $recrutement = $request->query->get('recrutement');
+        $categoriesIds = $request->query->all('categories');
+        $categories = $categoryRepository->findBy(['id' => $categoriesIds]);
 
-        $categories = $categoryRepository->findAll();
-        $selectedCategory = null;
-
-        if ($categoryId) {
-            $selectedCategory = $categoryRepository->find($categoryId);
-        }
-
-        $jdrs = $groupeJDRRepository->findBySearchAndCategory($searchTerm, $selectedCategory ? $selectedCategory->getId() : null);
+        $jdrs = $groupeJDRRepository->findByFilters($searchTerm, $categories, $status, $recrutement);
 
         return $this->render('groupe_jdr/index.html.twig', [
             'groupe_j_d_rs' => $jdrs,
-            'user' => $this->getUser(),
             'searchTerm' => $searchTerm,
-            'categories' => $categories,
-            'selectedCategory' => $selectedCategory,
+            'categories' => $categoryRepository->findAll(),
+            'selectedCategories' => $categoriesIds,
+            'selectedStatus' => $status,
+            'selectedRecrutement' => $recrutement,
         ]);
     }
 
@@ -204,8 +202,16 @@ final class GroupeJDRController extends AbstractController
     public function delete(Request $request, GroupeJDR $groupeJDR, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $groupeJDR->getId(), $request->request->get('_token'))) {
+
             if ($groupeJDR->getPicture()) {
                 $this->deleteImage($groupeJDR->getPicture());
+            }
+
+            $notificationRepository = $entityManager->getRepository(NotificationHistory::class);
+            $notifications = $notificationRepository->findBy(['groupeJDR' => $groupeJDR]); // Utilisation correcte de la relation
+
+            foreach ($notifications as $notification) {
+                $entityManager->remove($notification);
             }
 
             foreach ($groupeJDR->getEvents() as $event) {
@@ -215,8 +221,8 @@ final class GroupeJDRController extends AbstractController
             $entityManager->remove($groupeJDR);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('app_groupe_j_d_r_index', [], Response::HTTP_SEE_OTHER);
+    
+        return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
     }
 
     private function uploadImage($file, SluggerInterface $slugger): string

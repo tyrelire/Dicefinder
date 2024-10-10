@@ -7,56 +7,60 @@
 <div class="container mx-auto px-4 p-6">
     <h1 class="text-2xl md:text-4xl font-bold text-center mb-10 text-white">Les Univers</h1>
 
-    <form method="get" action="{{ path('app_groupe_j_d_r_index') }}" class="mb-8 flex items-center space-x-2">
-        <input type="text" name="search" placeholder="Rechercher un Univers..." value="{{ searchTerm }}" class="w-full p-3 bg-gray-800 border border-white text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <form method="get" action="{{ path('app_groupe_j_d_r_index') }}" class="mb-8 space-y-4">
+        <div class="space-y-4 md:flex md:space-y-0 md:space-x-4">
+            <input type="text" name="search" placeholder="Rechercher un Univers..." value="{{ searchTerm }}" class="w-full p-3 bg-gray-800 border border-white text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            
+            <select name="status" class="w-full md:w-48 p-2.5 bg-gray-800 border border-white text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">Tous les statuts</option>
+                <option value="preparation" {% if selectedStatus == 'preparation' %}selected{% endif %}>En Préparation</option>
+                <option value="pret_a_jouer" {% if selectedStatus == 'pret_a_jouer' %}selected{% endif %}>Prêt à Jouer</option>
+                <option value="en_cours" {% if selectedStatus == 'en_cours' %}selected{% endif %}>En Cours</option>
+                <option value="complet" {% if selectedStatus == 'complet' %}selected{% endif %}>Complet</option>
+                <option value="pause" {% if selectedStatus == 'pause' %}selected{% endif %}>En Pause</option>
+                <option value="termine" {% if selectedStatus == 'termine' %}selected{% endif %}>Terminé</option>
+                <option value="annule" {% if selectedStatus == 'annule' %}selected{% endif %}>Annulé</option>
+            </select>
 
-        <button type="submit" class="bg-blue-500 text-white p-2.5 md:p-3 rounded-lg shadow hover:bg-blue-600 text-center flex items-center justify-center space-x-2 md:w-auto">
-            <span class="hidden md:block">Rechercher</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-            </svg>
-        </button>
+            <div class="flex items-center space-x-2">
+                <label class="inline-flex items-center me-5 cursor-pointer">
+                    <input type="checkbox" name="recrutement" value="1" {% if selectedRecrutement %}checked{% endif %} class="sr-only peer">
+                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:outline-none peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
+                    <span class="ms-3 text-sm font-medium text-white">Recrutement Ouvert</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="md:hidden">
+            <button type="button" id="toggle-categories" class="w-full bg-blue-500 text-white p-2.5 rounded-lg shadow hover:bg-blue-600">
+                Voir les catégories
+            </button>
+        </div>
+
+        <div id="categories-section" class="hidden md:block mt-8">
+            <p class="text-white mb-4">Sélectionnez jusqu'à 3 catégories.</p>
+            <div class="flex flex-wrap justify-center mb-8 space-x-2">
+                {% for category in categories %}
+                    <label class="m-2 px-3 py-2 rounded-lg flex items-center category-label
+                        {% if selectedCategories and category.id in selectedCategories %}
+                            bg-green-600 text-white
+                        {% else %}
+                            bg-gray-700 text-white
+                        {% endif %}">
+                        <input type="checkbox" name="categories[]" value="{{ category.id }}" class="mr-2 category-checkbox"
+                            {% if selectedCategories and category.id in selectedCategories %}checked{% endif %}>
+                        {{ category.name }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="flex justify-center">
+            <button type="submit" class="bg-blue-500 text-white p-2.5 md:p-3 rounded-lg shadow hover:bg-blue-600 text-center flex items-center justify-center space-x-2 md:w-auto">
+                <span>Rechercher</span>
+            </button>
+        </div>
     </form>
-
-    <div class="flex flex-wrap justify-center space-x-2 mb-4">
-        {% if searchTerm %}
-            <div class="px-3 py-2 bg-blue-600 text-white rounded-lg">
-                Recherche: "{{ searchTerm }}"
-                <a href="{{ path('app_groupe_j_d_r_index') }}" class="ml-2 text-sm text-white">&times;</a>
-            </div>
-        {% endif %}
-
-        {% if selectedCategory %}
-            <div class="px-3 py-2 bg-blue-600 text-white rounded-lg">
-                Catégorie: "{{ selectedCategory.name }}"
-                <a href="{{ path('app_groupe_j_d_r_index') }}" class="ml-2 text-sm text-white">&times;</a>
-            </div>
-        {% endif %}
-    </div>
-
-    <div class="flex flex-wrap justify-center mb-8">
-        <a href="{{ path('app_groupe_j_d_r_index') }}" class="m-2 px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-blue-600">Toutes</a>
-        {% for category in categories[:5] %}
-            <a href="{{ path('app_groupe_j_d_r_index', {'category': category.id}) }}" class="m-2 px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-blue-600">
-                {{ category.name }}
-            </a>
-        {% endfor %}
-
-        {% if categories|length > 5 %}
-            <div class="relative">
-                <button class="m-2 px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-blue-600 focus:outline-none" id="more-categories-btn">
-                    Plus
-                </button>
-                <div id="more-categories-menu" class="hidden absolute mt-2 bg-gray-700 text-white rounded-lg shadow-lg p-2 w-40 z-10">
-                    {% for category in categories[5:] %}
-                        <a href="{{ path('app_groupe_j_d_r_index', {'category': category.id}) }}" class="block px-3 py-2 hover:bg-blue-600 rounded">
-                            {{ category.name }}
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-    </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {% for groupe_j_d_r in groupe_j_d_rs %}
@@ -113,8 +117,12 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <p class="text-xs text-gray-400">Nombre de joueur</p>
-                        <p class="text-lg font-bold text-white">{{ groupe_j_d_r.players|length }} / {{ groupe_j_d_r.maxPlayer }}</p>
+                        <p class="text-xs text-gray-400">Nombre de joueurs</p>
+                        {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %}
+                            <p class="text-lg font-bold text-red-500">Complet</p>
+                        {% else %}
+                            <p class="text-lg font-bold text-white">{{ groupe_j_d_r.players|length }} / {{ groupe_j_d_r.maxPlayer }}</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -126,19 +134,35 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const moreCategoriesBtn = document.getElementById('more-categories-btn');
-        const moreCategoriesMenu = document.getElementById('more-categories-menu');
+        const toggleCategoriesBtn = document.getElementById('toggle-categories');
+        const categoriesSection = document.getElementById('categories-section');
 
-        moreCategoriesBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            moreCategoriesMenu.classList.toggle('hidden');
+        toggleCategoriesBtn.addEventListener('click', function() {
+            categoriesSection.classList.toggle('hidden');
         });
 
-        document.addEventListener('click', function(event) {
-            if (!moreCategoriesBtn.contains(event.target) && !moreCategoriesMenu.contains(event.target)) {
-                moreCategoriesMenu.classList.add('hidden');
-            }
+        const checkboxes = document.querySelectorAll('.category-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                let label = this.closest('.category-label');
+                if (this.checked) {
+                    label.classList.add('bg-green-600');
+                    label.classList.remove('bg-gray-700');
+                } else {
+                    label.classList.remove('bg-green-600');
+                    label.classList.add('bg-gray-700');
+                }
+                
+                let checkedCount = document.querySelectorAll('.category-checkbox:checked').length;
+                if (checkedCount > 3) {
+                    this.checked = false;
+                    label.classList.remove('bg-green-600');
+                    label.classList.add('bg-gray-700');
+                    alert("Vous ne pouvez sélectionner que 3 catégories au maximum.");
+                }
+            });
         });
     });
 </script>
+
 {% endblock %}

@@ -16,33 +16,44 @@ class GroupeJDRRepository extends ServiceEntityRepository
         parent::__construct($registry, GroupeJDR::class);
     }
 
-    public function findBySearchAndCategory(?string $searchTerm, ?int $categoryId): array
+    public function findByFilters(?string $searchTerm, array $categories, ?string $status, ?bool $recrutement): array
     {
-        $dql = 'SELECT g FROM App\Entity\GroupeJDR g';
-        
-        $parameters = [];
-        $conditions = [];
+        $qb = $this->createQueryBuilder('g');
     
+        // Filtre par terme de recherche
         if ($searchTerm) {
-            $conditions[] = '(g.title LIKE :searchTerm OR g.description LIKE :searchTerm)';
-            $parameters['searchTerm'] = '%' . $searchTerm . '%';
+            $qb->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm')
+               ->setParameter('searchTerm', '%' . $searchTerm . '%');
         }
     
-        if ($categoryId) {
-            $dql .= ' JOIN g.categories c';
-            $conditions[] = 'c.id = :categoryId';
-            $parameters['categoryId'] = $categoryId;
+        // Filtre par catégories multiples
+        if (count($categories) > 0) {
+            $qb->join('g.categories', 'c')  // Joins the categories relation
+               ->andWhere('c.id IN (:categories)')
+               ->setParameter('categories', array_map(function($category) {
+                   return $category->getId();  // Extracts the category IDs
+               }, $categories));
         }
     
-        if (!empty($conditions)) {
-            $dql .= ' WHERE ' . implode(' AND ', $conditions);
+        // Filtre par statut
+        if ($status) {
+            $qb->andWhere('g.status = :status')
+               ->setParameter('status', $status);
         }
-
-        $query = $this->getEntityManager()->createQuery($dql)->setParameters($parameters);
     
-        return $query->getResult();
+        // Filtre par recrutement
+        if (null !== $recrutement) {
+            $qb->andWhere('g.recrutement = :recrutement')
+               ->setParameter('recrutement', $recrutement);
+        }
+    
+        // Tri par date de création
+        $qb->orderBy('g.created_at', 'DESC');
+    
+        return $qb->getQuery()->getResult();
     }
     
+
     //    /**
     //     * @return GroupeJDR[] Returns an array of GroupeJDR objects
     //     */

@@ -29,7 +29,7 @@ class GroupeJDRFixtures extends Fixture
         $owner->setRoles(['ROLE_USER']);
         $manager->persist($owner);
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $groupeJDR = new GroupeJDR();
             $groupeJDR->setTitle("Groupe JDR n°$i");
             $groupeJDR->setDescription("test test test test");

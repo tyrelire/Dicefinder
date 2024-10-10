@@ -54,7 +54,6 @@
             {{ form_errors(form.recrutement) }}
         </div>
 
-        <!-- Catégories -->
         <h2 class="text-lg font-semibold mb-4">Catégories</h2>
         <div id="alert-max-selection" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
             <strong class="font-bold">Attention!</strong>
@@ -74,13 +73,12 @@
         {{ form_errors(form.categories) }}
     </div>
 
-    <!-- Événements -->
     <div class="p-4 sm:p-6">
         <h2 class="text-lg font-semibold mb-4 text-gray-800">Événements</h2>
         <div id="events-wrapper" data-prototype="{{ form_widget(form.events.vars.prototype)|e }}">
             {% for event in form.events %}
                 <div class="event-item bg-white border border-gray-200 p-4 rounded-md mb-2 shadow-sm">
-                    <div class="flex items-center justify-between mb-4"> <!-- Align items on the same line -->
+                    <div class="flex items-center justify-between mb-4">
                         <div class="flex space-x-4 items-center w-full">
                             <div class="w-1/2">
                                 {{ form_label(event.dayOfWeek, 'Jour', {'label_attr': {'class': 'text-sm font-medium text-gray-700'}}) }}
@@ -107,7 +105,6 @@
         </button>
     </div>
 
-    <!-- Gestion des membres -->
     <div class="p-4 sm:p-6">
         <h2 class="text-lg font-semibold mb-4 text-gray-800">Nombre maximum de membres</h2>
         <div class="flex items-center space-x-2">
@@ -131,9 +128,10 @@
     {% if groupe_j_d_r.id is not null %}
         <div class="p-4 sm:p-6">
             <h2 class="text-lg font-semibold mb-4">Gestion des membres</h2>
+            
             <div class="mb-4">
                 <h4 class="text-gray-700 font-medium">Membres actuels de l'Univers</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="existing-members-container">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5" id="existing-members-container">
                     {% for player in groupe_j_d_r.players %}
                         <div class="relative bg-gray-800 p-4 rounded-lg shadow flex items-center space-x-4" data-user-id="{{ player.id }}">
                             <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" onclick="removePlayer('{{ player.id }}')">
@@ -146,7 +144,7 @@
                             {% else %}
                                 <img class="w-12 h-12 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('images/default-avatar.png') }}">
                             {% endif %}
-                            <div>
+                            <div class="flex-1">
                                 <p class="text-white font-semibold">{{ player.username }}</p>
                             </div>
                         </div>
@@ -154,33 +152,56 @@
                 </div>
             </div>
             <div class="mb-4">
+                <h4 class="text-gray-700 font-medium">Invitations en attente</h4>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5" id="invited-members-container">
+                    {% for invitation in groupe_j_d_r.invitations %}
+                        {% if invitation.status == 'pending' %}
+                            <div class="relative bg-yellow-200 p-4 rounded-lg shadow flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:items-center invitation-item">
+                                {% if invitation.user.avatar %}
+                                    <img class="w-12 h-12 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('uploads/avatars/' ~ invitation.user.avatar) }}">
+                                {% else %}
+                                    <img class="w-12 h-12 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('images/default-avatar.png') }}">
+                                {% endif %}
+                                <div class="flex-1">
+                                    <p class="text-yellow-800 font-semibold">{{ invitation.user.username }}</p>
+                                    <p class="text-sm text-yellow-600 break-words">En attente de confirmation</p>
+                                </div>
+
+                                <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" data-invitation-id="{{ invitation.id }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="mb-4">
                 <input type="text" id="pseudo-input" class="mt-1 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-white bg-gray-800 sm:text-sm" placeholder="Entrer le pseudo">
                 <button type="button" id="add-member-btn" class="bg-green-500 text-white px-4 py-2 rounded-md shadow mt-2">Ajouter</button>
             </div>
-            <div id="error-message" class="text-red-500 hidden">Utilisateur non trouvé ou déjà ajouté a l'Univers</div>
+            <div id="error-message" class="text-red-500 hidden">Utilisateur non trouvé ou déjà ajouté à l'Univers</div>
             <div class="mb-4" id="added-members-section" style="display: none;">
                 <h4 class="text-gray-700 font-medium">Membres ajoutés</h4>
                 <ul class="list-disc pl-5" id="added-members-list"></ul>
             </div>
         {% endif %}
-
         <div class="flex justify-end mt-6">
             <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 {{ button_label|default('Save') }}
             </button>
         </div>
     </div>
-
     {{ form_end(form) }}
 </div>
 
 <script>
-
-    function updateCharCount(textarea) {
-        const maxChars = 255;
-        const remainingChars = maxChars - textarea.value.length;
-        document.getElementById('charCount').textContent = remainingChars + " caractères restants";
-    }
+function updateCharCount(textarea) {
+    const maxChars = 255;
+    const remainingChars = maxChars - textarea.value.length;
+    document.getElementById('charCount').textContent = remainingChars + " caractères restants";
+}
 document.addEventListener('DOMContentLoaded', function () {
     const decrementButton = document.getElementById('decrement-button');
     const incrementButton = document.getElementById('increment-button');
@@ -393,6 +414,35 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    document.querySelectorAll('button[data-invitation-id]').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const invitationId = this.getAttribute('data-invitation-id');
+            removeInvitation(invitationId);
+        });
+    });
+
+    function removeInvitation(invitationId) {
+        console.log(`Suppression de l'invitation avec l'ID : ${invitationId}`);
+        fetch(`/api/remove_invitation/${invitationId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Invitation supprimée avec succès');
+                document.querySelector(`[data-invitation-id="${invitationId}"]`).closest('.invitation-item').remove();
+            } else {
+                console.error(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la suppression de l\'invitation:', error);
+        });
+    }
 
     updateMemberLimit();
 

@@ -62,6 +62,7 @@ class GroupeJDR
      * @var Collection<int, Category>
      */
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'groupeJDRs')]
+    #[ORM\JoinTable(name: 'groupejdr_category')]
     private Collection $categories;
 
     #[ORM\Column]

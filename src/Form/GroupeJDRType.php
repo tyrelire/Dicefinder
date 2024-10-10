@@ -67,10 +67,10 @@ class GroupeJDRType extends AbstractType
                     'Préparation' => 'preparation',
                     'Prêt à jouer' => 'pret_a_jouer',
                     'En cours' => 'en_cours',
-                    'Complet' => 'complet', // bloque la création de groupe
+                    'Complet' => 'complet',
                     'Pause' => 'pause',
-                    'Terminé' => 'termine', // bloque la création de groupe
-                    'Annulé' => 'annule', // bloque la création de groupe
+                    'Terminé' => 'termine',
+                    'Annulé' => 'annule',
                 ],
                 'placeholder' => 'Sélectionner un statut',
                 'required' => true,
@@ -81,7 +81,11 @@ class GroupeJDRType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => GroupeJDR::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'csrf_token_id'   => 'groupe_jdr',
             'is_edit' => false,
         ]);
     }
+
 }

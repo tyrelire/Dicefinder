@@ -620,8 +620,15 @@ class __TwigTemplate_82a570a5cc75e585ca0ba5b3206667b5 extends Template
                     Vous devez avoir le grade de joueur pour rejoindre ce JDR.
                 </button>
             ";
-        } else {
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 241
+(isset($context["groupe_j_d_r"]) || array_key_exists("groupe_j_d_r", $context) ? $context["groupe_j_d_r"] : (function () { throw new RuntimeError('Variable "groupe_j_d_r" does not exist.', 241, $this->source); })()), "recrutement", [], "any", false, false, false, 241) == false)) {
             // line 242
+            yield "                <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
+                    Le recrutement est fermé pour cet Univers
+                </button>
+            ";
+        } else {
+            // line 246
             yield "                <button id=\"participate-button\" class=\"w-full sm:w-[80%] md:w-[60%] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-2xl hover:bg-blue-800 transition-all duration-300 ease-in-out transform hover:scale-105\">
                     <svg class=\"inline-block w-6 h-6 mr-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
                         <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 13l4 4L19 7\"></path>
@@ -630,7 +637,7 @@ class __TwigTemplate_82a570a5cc75e585ca0ba5b3206667b5 extends Template
                 </button>
             ";
         }
-        // line 249
+        // line 253
         yield "        </div>
     </div>
     <div id=\"request-join-modal\" class=\"hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center transition-opacity duration-300 ease-in-out\">
@@ -642,8 +649,8 @@ class __TwigTemplate_82a570a5cc75e585ca0ba5b3206667b5 extends Template
             </button>
             <h3 class=\"text-lg font-semibold\">Postuler pour rejoindre cet Univers</h3>
             <form id=\"request-join-form\" method=\"POST\" action=\"";
-        // line 259
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("request_join", ["groupeId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["groupe_j_d_r"]) || array_key_exists("groupe_j_d_r", $context) ? $context["groupe_j_d_r"] : (function () { throw new RuntimeError('Variable "groupe_j_d_r" does not exist.', 259, $this->source); })()), "id", [], "any", false, false, false, 259)]), "html", null, true);
+        // line 263
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("request_join", ["groupeId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["groupe_j_d_r"]) || array_key_exists("groupe_j_d_r", $context) ? $context["groupe_j_d_r"] : (function () { throw new RuntimeError('Variable "groupe_j_d_r" does not exist.', 263, $this->source); })()), "id", [], "any", false, false, false, 263)]), "html", null, true);
         yield "\">
                 <div class=\"mb-4\">
                     <label for=\"message\" class=\"block text-base font-semibold text-gray-900 mb-2\">Votre message</label>
@@ -712,7 +719,7 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '";
-        // line 326
+        // line 330
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("submit_invitation_request"), "html", null, true);
         yield "'
             },
@@ -764,7 +771,7 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     public function getDebugInfo(): array
     {
-        return array (  716 => 326,  646 => 259,  634 => 249,  625 => 242,  619 => 238,  617 => 237,  612 => 235,  609 => 234,  607 => 233,  602 => 230,  600 => 229,  595 => 226,  593 => 225,  586 => 221,  581 => 218,  579 => 217,  572 => 212,  565 => 210,  555 => 205,  547 => 200,  543 => 198,  537 => 196,  529 => 194,  527 => 193,  520 => 189,  516 => 188,  509 => 186,  506 => 185,  501 => 184,  495 => 181,  487 => 175,  480 => 173,  466 => 170,  463 => 169,  460 => 168,  457 => 167,  454 => 166,  451 => 165,  448 => 164,  445 => 163,  443 => 162,  440 => 161,  437 => 160,  435 => 159,  432 => 158,  430 => 157,  428 => 149,  426 => 148,  423 => 147,  418 => 146,  409 => 140,  391 => 124,  383 => 120,  381 => 119,  374 => 115,  370 => 114,  363 => 109,  357 => 108,  349 => 103,  346 => 102,  340 => 100,  332 => 98,  330 => 97,  327 => 96,  324 => 95,  320 => 94,  313 => 90,  310 => 89,  304 => 87,  296 => 85,  294 => 84,  285 => 77,  266 => 75,  263 => 74,  245 => 73,  243 => 72,  231 => 65,  224 => 61,  216 => 56,  208 => 51,  200 => 45,  196 => 43,  192 => 41,  190 => 40,  187 => 39,  185 => 38,  182 => 37,  180 => 36,  177 => 35,  175 => 34,  172 => 33,  170 => 32,  167 => 31,  165 => 30,  162 => 29,  160 => 28,  157 => 27,  153 => 26,  148 => 25,  144 => 24,  140 => 23,  136 => 22,  132 => 21,  128 => 20,  124 => 19,  116 => 16,  104 => 7,  101 => 6,  88 => 5,  64 => 3,  41 => 1,);
+        return array (  723 => 330,  653 => 263,  641 => 253,  632 => 246,  626 => 242,  624 => 241,  619 => 238,  617 => 237,  612 => 235,  609 => 234,  607 => 233,  602 => 230,  600 => 229,  595 => 226,  593 => 225,  586 => 221,  581 => 218,  579 => 217,  572 => 212,  565 => 210,  555 => 205,  547 => 200,  543 => 198,  537 => 196,  529 => 194,  527 => 193,  520 => 189,  516 => 188,  509 => 186,  506 => 185,  501 => 184,  495 => 181,  487 => 175,  480 => 173,  466 => 170,  463 => 169,  460 => 168,  457 => 167,  454 => 166,  451 => 165,  448 => 164,  445 => 163,  443 => 162,  440 => 161,  437 => 160,  435 => 159,  432 => 158,  430 => 157,  428 => 149,  426 => 148,  423 => 147,  418 => 146,  409 => 140,  391 => 124,  383 => 120,  381 => 119,  374 => 115,  370 => 114,  363 => 109,  357 => 108,  349 => 103,  346 => 102,  340 => 100,  332 => 98,  330 => 97,  327 => 96,  324 => 95,  320 => 94,  313 => 90,  310 => 89,  304 => 87,  296 => 85,  294 => 84,  285 => 77,  266 => 75,  263 => 74,  245 => 73,  243 => 72,  231 => 65,  224 => 61,  216 => 56,  208 => 51,  200 => 45,  196 => 43,  192 => 41,  190 => 40,  187 => 39,  185 => 38,  182 => 37,  180 => 36,  177 => 35,  175 => 34,  172 => 33,  170 => 32,  167 => 31,  165 => 30,  162 => 29,  160 => 28,  157 => 27,  153 => 26,  148 => 25,  144 => 24,  140 => 23,  136 => 22,  132 => 21,  128 => 20,  124 => 19,  116 => 16,  104 => 7,  101 => 6,  88 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1008,6 +1015,10 @@ document.addEventListener('DOMContentLoaded', function() {
             {% elseif 'ROLE_JOUEUR' not in app.user.getRoles() %}
                 <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
                     Vous devez avoir le grade de joueur pour rejoindre ce JDR.
+                </button>
+            {% elseif groupe_j_d_r.recrutement == false %}
+                <button class=\"w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed\">
+                    Le recrutement est fermé pour cet Univers
                 </button>
             {% else %}
                 <button id=\"participate-button\" class=\"w-full sm:w-[80%] md:w-[60%] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-2xl hover:bg-blue-800 transition-all duration-300 ease-in-out transform hover:scale-105\">

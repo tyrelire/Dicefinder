@@ -17,7 +17,7 @@ class NotificationHistory
     #[ORM\ManyToOne(inversedBy: 'notificationHistories')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'notificationHistories')]
+    #[ORM\ManyToOne(targetEntity: groupeJDR::class, inversedBy: 'notificationHistories')]
     private ?groupeJDR $groupeJDR = null;
 
     #[ORM\Column(length: 255)]

@@ -127,7 +127,7 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
             <div class=\"mb-6\">
                 ";
         // line 37
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["contactForm"]) || array_key_exists("contactForm", $context) ? $context["contactForm"] : (function () { throw new RuntimeError('Variable "contactForm" does not exist.', 37, $this->source); })()), "message", [], "any", false, false, false, 37), 'row', ["label" => "Votre message", "attr" => ["class" => "shadow-sm bg-white border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full", "placeholder" => "Décrivez votre message ici", "rows" => 6], "label_attr" => ["class" => "text-white font-semibold mb-2"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["contactForm"]) || array_key_exists("contactForm", $context) ? $context["contactForm"] : (function () { throw new RuntimeError('Variable "contactForm" does not exist.', 37, $this->source); })()), "message", [], "any", false, false, false, 37), 'row', ["label" => "Votre message", "attr" => ["class" => "shadow-sm bg-white border border-gray-300 text-dark text-sm rounded-lg p-2.5 w-full", "placeholder" => "Décrivez votre message ici", "rows" => 6], "label_attr" => ["class" => "text-white font-semibold mb-2"]]);
         // line 45
         yield "
             </div>
@@ -219,7 +219,7 @@ class __TwigTemplate_b3c242ed50d34049c2a724719d769b9b extends Template
                 {{ form_row(contactForm.message, {
                     'label': 'Votre message',
                     'attr': {
-                        'class': 'shadow-sm bg-white border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full',
+                        'class': 'shadow-sm bg-white border border-gray-300 text-dark text-sm rounded-lg p-2.5 w-full',
                         'placeholder': 'Décrivez votre message ici',
                         'rows': 6
                     },
