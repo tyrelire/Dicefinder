@@ -50,7 +50,7 @@
     </div>
 
     <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-        <article class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25">
+        <article class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25">
             <span class="inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M12 14l9-5-9-5-9 5z" />
@@ -68,7 +68,7 @@
                 En savoir plus <span aria-hidden="true" class="block transition-all group-hover:ml-0.5">&rarr;</span>
             </a>
         </article>
-        <article class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25">
+        <article class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25">
             <span class="inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M12 14l9-5-9-5-9 5z" />
@@ -86,7 +86,7 @@
                 En savoir plus <span aria-hidden="true" class="block transition-all group-hover:ml-0.5">&rarr;</span>
             </a>
         </article>
-        <article class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25">
+        <article class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25">
             <span class="inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M12 14l9-5-9-5-9 5z" />
@@ -104,7 +104,7 @@
                 En savoir plus <span aria-hidden="true" class="block transition-all group-hover:ml-0.5">&rarr;</span>
             </a>
         </article>
-        <article class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25">
+        <article class="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25">
             <span class="inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M12 14l9-5-9-5-9 5z" />
@@ -131,7 +131,7 @@
         </div>
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {% for groupe in nouveaux_groupes|reverse %}
-                <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full">
+                <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105">
                     <img src="{{ asset('uploads/images-jdr/' ~ groupe.picture) }}" alt="{{ groupe.title }}" class="rounded-lg mb-4 w-full h-[20rem] object-cover">
                     <div class="flex justify-between items-center">
                         <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}" class="font-semibold">{{ groupe.title }}</a>
@@ -168,7 +168,7 @@
 
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {% for groupe in groupes_recrutement_ouvert|slice(0, 4) %}
-                <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full">
+                <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105">
                     <img src="{{ asset('uploads/images-jdr/' ~ groupe.picture) }}" alt="{{ groupe.title }}" class="rounded-lg mb-4 w-full h-[20rem] object-cover">
                     <div class="flex justify-between items-center">
                         <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}" class="font-semibold">{{ groupe.title }}</a>
@@ -200,38 +200,12 @@
     <div class="container mx-auto flex flex-col mt-12 z-30 relative">
         <div class="flex justify-between items-center">
             <h2 class="text-2xl font-bold text-white">Parties populaires</h2>
-            <div class="flex flex-wrap space-x-2" id="categories-container">
-                {% for category in categories|slice(0, 4) %}
-                    <label class="m-2 px-3 py-2 rounded-lg flex items-center category-label bg-gray-700 text-white cursor-pointer hover:bg-gray-600 transition-colors duration-300">
-                        <input type="checkbox" name="category" value="{{ category.id }}" class="mr-2 category-radio">
-                        {{ category.name }}
-                    </label>
-                {% endfor %}
-
-                {% if categories|length > 4 %}
-                    <div class="relative">
-                        <label id="show-more-categories" class="m-2 px-3 py-2 rounded-lg flex items-center bg-blue-700 text-white cursor-pointer hover:bg-blue-600 transition-colors duration-300">
-                            Plus +
-                        </label>
-                        <div id="dropdown-categories" class="absolute left-0 mt-2 w-[360px] bg-gray-700 rounded-lg shadow-lg p-4 hidden z-40">
-                            <div class="grid grid-cols-2 gap-4">
-                                <!-- Afficher les autres catégories ici -->
-                                {% for category in categories|slice(4) %}
-                                    <label class="px-3 py-2 rounded-lg flex items-center category-label bg-gray-800 text-white cursor-pointer hover:bg-gray-600 transition-colors duration-300">
-                                        <input type="checkbox" name="category" value="{{ category.id }}" class="mr-2 category-radio">
-                                        {{ category.name }}
-                                    </label>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
+            <a href="{{ path('app_groupe_j_d_r_index') }}" class="text-blue-600 text-sm font-semibold">Voir plus →</a>
         </div>
-        <p class="text-white mb-4">Sélectionnez une ou plusieurs catégories (maximum 3).</p>
-        <div id="univers-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center items-center min-h-[150px]">
+
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {% for groupe_j_d_r in groupes %}
-                <div class="univers bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105" data-category-ids="{{ groupe_j_d_r.categories|join(',') }}">
+                <div class="univers bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105">
                     <div class="relative">
                         <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }}" class="rounded-lg mb-4 w-full h-[20rem] object-cover transition-opacity hover:opacity-90">
                     </div>
@@ -258,23 +232,27 @@
                     </div>
                 </div>
             {% else %}
-                <p class="text-center text-gray-700 text-lg w-full">Aucun univers disponible pour cette catégorie.</p>
+                <p class="text-center text-gray-700 text-lg w-full">Aucun univers disponible.</p>
             {% endfor %}
         </div>
 
         <div class="text-center mt-8 flex justify-center">
-            <button id="show-more-btn" class="bg-blue-600 text-white px-4 py-2 rounded transition-colors duration-300 hover:bg-blue-500">Afficher plus</button>
+            <a href="{{ path('app_groupe_j_d_r_index') }}" class="bg-blue-600 text-white px-4 py-2 rounded transition-colors duration-300 hover:bg-blue-500">Afficher plus</a>
         </div>
     </div>
-    <div class="container mx-auto flex flex-col items-center justify-center py-12">
-        <div class="bg-gradient-to-br from-[rgba(30, 58, 138, 0.8)] via-[rgba(55, 48, 163, 0.8)] to-[rgba(76, 29, 149, 0.8)] rounded-lg p-8 shadow-lg text-center max-w-3xl border border-[#4338CA]">
-            <h2 class="text-3xl font-bold text-white mb-4">Créer Votre Propre Partie</h2>
-            <p class="text-gray-300 mb-6">
+
+    <div class="container mx-auto flex flex-col items-center justify-center py-8 sm:py-12">
+        <div class="bg-gradient-to-br from-[rgba(30, 58, 138, 0.8)] via-[rgba(55, 48, 163, 0.8)] to-[rgba(76, 29, 149, 0.8)] rounded-lg p-6 sm:p-8 shadow-lg text-center max-w-xl sm:max-w-2xl lg:max-w-3xl border border-[#4338CA]">
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Créer Votre Propre Partie</h2>
+            <p class="text-gray-300 mb-6 text-sm sm:text-base">
                 Envie de lancer ta propre aventure ? Avec DiceFinder, crée ta partie personnalisée en quelques clics. Définis ton univers, sélectionne tes règles, et invite des joueurs passionnés à rejoindre ton monde. Que tu sois un maître de jeu chevronné ou débutant, tout est pensé pour faciliter la création d'une expérience immersive.
             </p>
-            <a href="{{ path('app_register') }}" class="bg-indigo-600 text-white py-2 px-6 rounded-full font-semibold hover:bg-indigo-700 transition-colors">Rejoindre La Communauté</a>
+            <a href="{{ path('app_register') }}" class="inline-block bg-indigo-600 text-white py-2 px-4 sm:px-6 rounded-full font-semibold hover:bg-indigo-700 transition-colors whitespace-nowrap">
+                Rejoindre La Communauté
+            </a>
         </div>
     </div>
+
     <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
         <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
     </div>
@@ -296,80 +274,9 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Typed.js n\'a pas été chargé correctement.');
     }
 
-    const showMoreCategoriesButton = document.getElementById('show-more-categories');
-    const dropdownCategories = document.getElementById('dropdown-categories');
-    const categoryRadios = document.querySelectorAll('.category-radio');
-    const universElements = document.querySelectorAll('.univers');
-    const universContainer = document.getElementById('univers-container');
     const showMoreButton = document.getElementById('show-more-btn');
-    let selectedCategories = [];
+    const universElements = document.querySelectorAll('.univers');
     let currentUniversCount = 8;
-
-    if (showMoreCategoriesButton) {
-        showMoreCategoriesButton.addEventListener('click', function() {
-            if (dropdownCategories.classList.contains('hidden')) {
-                dropdownCategories.classList.remove('hidden');
-            } else {
-                dropdownCategories.classList.add('hidden');
-            }
-        });
-    }
-
-    function filterUnivers() {
-        let visibleUniversCount = 0;
-
-        universElements.forEach(univers => {
-            const categoryIds = univers.getAttribute('data-category-ids').split(',').map(id => id.trim());
-
-            if (selectedCategories.length === 0 || selectedCategories.some(id => categoryIds.includes(id))) {
-                univers.style.display = 'block';
-                visibleUniversCount++;
-            } else {
-                univers.style.display = 'none';
-            }
-        });
-
-        Array.from(universElements).slice(8).forEach(univers => {
-            univers.style.display = 'none';
-        });
-
-        if (visibleUniversCount === 0) {
-            universContainer.classList.remove('grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4', 'gap-6');
-            universContainer.classList.add('flex', 'justify-center', 'items-center', 'min-h-[150px]');
-            
-            if (!noUniversMessage.parentNode) {
-                universContainer.appendChild(noUniversMessage);
-            }
-            showMoreButton.style.display = 'none';
-        } else {
-            universContainer.classList.remove('flex', 'justify-center', 'items-center');
-            universContainer.classList.add('grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4', 'gap-6');
-
-            if (noUniversMessage.parentNode) {
-                noUniversMessage.parentNode.removeChild(noUniversMessage);
-            }
-
-            showMoreButton.style.display = visibleUniversCount > 8 ? 'block' : 'none';
-        }
-
-        currentUniversCount = 8;
-    }
-
-    categoryRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                if (selectedCategories.length < 3) {
-                    selectedCategories.push(this.value);
-                } else {
-                    this.checked = false;
-                    alert('Vous ne pouvez sélectionner que 3 catégories maximum.');
-                }
-            } else {
-                selectedCategories = selectedCategories.filter(id => id !== this.value);
-            }
-            filterUnivers();
-        });
-    });
 
     function showMoreUnivers() {
         const universToShow = Array.from(universElements).slice(currentUniversCount, currentUniversCount + 8);
@@ -391,5 +298,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-
 {% endblock %}

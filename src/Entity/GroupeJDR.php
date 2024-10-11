@@ -20,7 +20,11 @@ class GroupeJDR
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
+    #[Assert\Length(
+        max: 750, 
+        maxMessage: 'La description ne peut pas dépasser {{ limit }} caractères'
+    )]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]

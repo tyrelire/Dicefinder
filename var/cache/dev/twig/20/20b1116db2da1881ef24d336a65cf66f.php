@@ -285,18 +285,26 @@ $context["jdr"], "status", [], "any", false, false, false, 71) == "annule")) {
                 // line 98
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "id", [], "any", false, false, false, 98)]), "html", null, true);
                 yield "\" class=\"bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600\">Voir les détails</a>
-                            <button type=\"button\" class=\"text-red-500 hover:text-red-700\" onclick=\"openModal('";
-                // line 99
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "id", [], "any", false, false, false, 99), "html", null, true);
-                yield "', '";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "title", [], "any", false, false, false, 99), "html", null, true);
-                yield "', '";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "id", [], "any", false, false, false, 99))), "html", null, true);
-                yield "')\">
-                                <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\">
-                                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0\" />
-                                </svg>
-                            </button>
+                            <button type=\"button\" 
+                                class=\"text-red-500 hover:text-red-700\" 
+                                data-id=\"";
+                // line 101
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "id", [], "any", false, false, false, 101), "html", null, true);
+                yield "\" 
+                                data-title=\"";
+                // line 102
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "title", [], "any", false, false, false, 102), "html_attr");
+                yield "\" 
+                                data-csrf=\"";
+                // line 103
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "id", [], "any", false, false, false, 103))), "html", null, true);
+                yield "\" 
+                                onclick=\"openModalFromData(this)\">
+                            <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\">
+                                <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0\" />
+                            </svg>
+                        </button>
+
                         </div>
                     </div>
                 </div>
@@ -305,15 +313,15 @@ $context["jdr"], "status", [], "any", false, false, false, 71) == "annule")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['jdr'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 108
+            // line 114
             yield "        </div>
     ";
         } else {
-            // line 110
+            // line 116
             yield "        <p class=\"text-center text-gray-500 mb-20 mt-20\">Vous n'êtes MJ dans aucun parties pour le moment.</p>
     ";
         }
-        // line 112
+        // line 118
         yield "<div id=\"deleteModal\" class=\"fixed z-50 inset-0 overflow-y-auto hidden\" aria-labelledby=\"modal-title\" aria-modal=\"true\" role=\"dialog\">
     <div class=\"flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0\">
         <div class=\"fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity\"></div>
@@ -341,150 +349,150 @@ $context["jdr"], "status", [], "any", false, false, false, 71) == "annule")) {
 
     <h2 class=\"text-xl md:text-2xl font-bold mb-6 text-white\">Parties où je suis Joueur</h2>
     ";
-        // line 138
-        if ( !Twig\Extension\CoreExtension::testEmpty((isset($context["playerJdrs"]) || array_key_exists("playerJdrs", $context) ? $context["playerJdrs"] : (function () { throw new RuntimeError('Variable "playerJdrs" does not exist.', 138, $this->source); })()))) {
-            // line 139
+        // line 144
+        if ( !Twig\Extension\CoreExtension::testEmpty((isset($context["playerJdrs"]) || array_key_exists("playerJdrs", $context) ? $context["playerJdrs"] : (function () { throw new RuntimeError('Variable "playerJdrs" does not exist.', 144, $this->source); })()))) {
+            // line 145
             yield "        <div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8\">
             ";
-            // line 140
+            // line 146
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["playerJdrs"]) || array_key_exists("playerJdrs", $context) ? $context["playerJdrs"] : (function () { throw new RuntimeError('Variable "playerJdrs" does not exist.', 140, $this->source); })()));
+            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["playerJdrs"]) || array_key_exists("playerJdrs", $context) ? $context["playerJdrs"] : (function () { throw new RuntimeError('Variable "playerJdrs" does not exist.', 146, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["jdr"]) {
-                // line 141
+                // line 147
                 yield "                <div class=\"bg-gray-800 rounded-xl shadow-lg overflow-hidden\">
                     <div class=\"relative\">
                         <img src=\"";
-                // line 143
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "picture", [], "any", false, false, false, 143))), "html", null, true);
+                // line 149
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "picture", [], "any", false, false, false, 149))), "html", null, true);
                 yield "\" alt=\"Image de la partie\" class=\"w-full h-48 object-cover\">
                         <div class=\"absolute top-2 right-2\">
                             <span class=\"text-xs font-bold px-2 py-1 rounded 
                                 ";
-                // line 146
-                if ((CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "status", [], "any", false, false, false, 146) == "preparation")) {
+                // line 152
+                if ((CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "status", [], "any", false, false, false, 152) == "preparation")) {
                     yield " bg-yellow-500
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 147
-$context["jdr"], "status", [], "any", false, false, false, 147) == "pret_a_jouer")) {
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 153
+$context["jdr"], "status", [], "any", false, false, false, 153) == "pret_a_jouer")) {
                     yield " bg-green-500
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 148
-$context["jdr"], "status", [], "any", false, false, false, 148) == "en_cours")) {
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 154
+$context["jdr"], "status", [], "any", false, false, false, 154) == "en_cours")) {
                     yield " bg-blue-500
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 149
-$context["jdr"], "status", [], "any", false, false, false, 149) == "complet")) {
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 155
+$context["jdr"], "status", [], "any", false, false, false, 155) == "complet")) {
                     yield " bg-red-500
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 150
-$context["jdr"], "status", [], "any", false, false, false, 150) == "pause")) {
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 156
+$context["jdr"], "status", [], "any", false, false, false, 156) == "pause")) {
                     yield " bg-gray-500
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 151
-$context["jdr"], "status", [], "any", false, false, false, 151) == "termine")) {
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 157
+$context["jdr"], "status", [], "any", false, false, false, 157) == "termine")) {
                     yield " bg-purple-500
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 152
-$context["jdr"], "status", [], "any", false, false, false, 152) == "annule")) {
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 158
+$context["jdr"], "status", [], "any", false, false, false, 158) == "annule")) {
                     yield " bg-gray-400
                                 ";
                 } else {
-                    // line 153
+                    // line 159
                     yield " bg-gray-700
                                 ";
                 }
-                // line 154
+                // line 160
                 yield " text-white\">
                                 ";
-                // line 155
-                if ((CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "status", [], "any", false, false, false, 155) == "preparation")) {
-                    // line 156
+                // line 161
+                if ((CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "status", [], "any", false, false, false, 161) == "preparation")) {
+                    // line 162
                     yield "                                    En Préparation
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 157
-$context["jdr"], "status", [], "any", false, false, false, 157) == "pret_a_jouer")) {
-                    // line 158
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 163
+$context["jdr"], "status", [], "any", false, false, false, 163) == "pret_a_jouer")) {
+                    // line 164
                     yield "                                    Prêt à jouer
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 159
-$context["jdr"], "status", [], "any", false, false, false, 159) == "en_cours")) {
-                    // line 160
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 165
+$context["jdr"], "status", [], "any", false, false, false, 165) == "en_cours")) {
+                    // line 166
                     yield "                                    En Cours
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 161
-$context["jdr"], "status", [], "any", false, false, false, 161) == "complet")) {
-                    // line 162
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 167
+$context["jdr"], "status", [], "any", false, false, false, 167) == "complet")) {
+                    // line 168
                     yield "                                    Complet
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 163
-$context["jdr"], "status", [], "any", false, false, false, 163) == "pause")) {
-                    // line 164
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 169
+$context["jdr"], "status", [], "any", false, false, false, 169) == "pause")) {
+                    // line 170
                     yield "                                    En Pause
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 165
-$context["jdr"], "status", [], "any", false, false, false, 165) == "termine")) {
-                    // line 166
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 171
+$context["jdr"], "status", [], "any", false, false, false, 171) == "termine")) {
+                    // line 172
                     yield "                                    Terminé
                                 ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 167
-$context["jdr"], "status", [], "any", false, false, false, 167) == "annule")) {
-                    // line 168
+                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 173
+$context["jdr"], "status", [], "any", false, false, false, 173) == "annule")) {
+                    // line 174
                     yield "                                    Annulé
                                 ";
                 } else {
-                    // line 170
+                    // line 176
                     yield "                                    Statut inconnu
                                 ";
                 }
-                // line 172
+                // line 178
                 yield "                            </span>
                         </div>
                     </div>
                     <div class=\"p-4\">
                         <div class=\"flex justify-between items-center mb-4\">
                             <a href=\"";
-                // line 177
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "id", [], "any", false, false, false, 177)]), "html", null, true);
+                // line 183
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "id", [], "any", false, false, false, 183)]), "html", null, true);
                 yield "\" class=\"text-lg font-semibold text-white\">";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "title", [], "any", false, false, false, 177), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "title", [], "any", false, false, false, 183), "html", null, true);
                 yield "</a>
                             <a href=\"";
-                // line 178
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "id", [], "any", false, false, false, 178)]), "html", null, true);
+                // line 184
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "id", [], "any", false, false, false, 184)]), "html", null, true);
                 yield "\" class=\"bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1.5 px-3 rounded-md text-sm transition-colors\">
                                 Voir
                             </a>
                         </div>
                         <div class=\"flex items-center gap-2 mb-4\">
                             ";
-                // line 183
-                if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "owner", [], "any", false, false, false, 183), "avatar", [], "any", false, false, false, 183)) {
-                    // line 184
+                // line 189
+                if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "owner", [], "any", false, false, false, 189), "avatar", [], "any", false, false, false, 189)) {
+                    // line 190
                     yield "                                <img src=\"";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "owner", [], "any", false, false, false, 184), "avatar", [], "any", false, false, false, 184))), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "owner", [], "any", false, false, false, 190), "avatar", [], "any", false, false, false, 190))), "html", null, true);
                     yield "\" alt=\"Avatar MJ\" class=\"w-8 h-8 rounded-full\">
                             ";
                 } else {
-                    // line 186
+                    // line 192
                     yield "                                <img src=\"";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
                     yield "\" alt=\"Avatar MJ\" class=\"rounded h-8 w-8 object-cover\">
                             ";
                 }
-                // line 188
+                // line 194
                 yield "                            <div class=\"text-white\">
                                 <p class=\"text-sm\">MJ</p>
                                 <p class=\"text-sm font-semibold\">";
-                // line 190
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "owner", [], "any", false, false, false, 190), "username", [], "any", false, false, false, 190), "html", null, true);
+                // line 196
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "owner", [], "any", false, false, false, 196), "username", [], "any", false, false, false, 196), "html", null, true);
                 yield "</p>
                             </div>
                         </div>
                         <div class=\"flex justify-between items-center text-white\">
                             <p class=\"text-sm\">Places Disponibles</p>
                             <p class=\"text-xl font-bold\">";
-                // line 195
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "maxPlayer", [], "any", false, false, false, 195) - Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "players", [], "any", false, false, false, 195))), "html", null, true);
+                // line 201
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "maxPlayer", [], "any", false, false, false, 201) - Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "players", [], "any", false, false, false, 201))), "html", null, true);
                 yield "</p>
                         </div>
                     </div>
@@ -494,15 +502,15 @@ $context["jdr"], "status", [], "any", false, false, false, 167) == "annule")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['jdr'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 200
+            // line 206
             yield "        </div>
     ";
         } else {
-            // line 202
+            // line 208
             yield "        <p class=\"text-center text-gray-500 mb-20 mt-20\">Vous ne participez à aucun parties pour le moment.</p>
     ";
         }
-        // line 204
+        // line 210
         yield "</div>
 
 
@@ -526,11 +534,24 @@ $context["jdr"], "status", [], "any", false, false, false, 167) == "annule")) {
         document.getElementById('errorText').classList.add('hidden');
     }
 
+    function normalizeString(str) {
+        return str.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\").toLowerCase();
+    }
+
+    function openModalFromData(button) {
+        const jdrId = button.getAttribute('data-id');
+        const jdrTitle = button.getAttribute('data-title');
+        const csrfToken = button.getAttribute('data-csrf');
+
+        openModal(jdrId, jdrTitle, csrfToken);
+    }
+
     function confirmDeletion() {
-        const input = document.getElementById('confirmInput').value;
+        const input = normalizeString(document.getElementById('confirmInput').value);
+        const title = normalizeString(currentJdrTitle);
         const errorText = document.getElementById('errorText');
 
-        if (input === currentJdrTitle) {
+        if (input === title) {
             const form = document.createElement('form');
             form.method = 'POST';
             form.action = `/groupe/jdr/\${currentJdrId}`;
@@ -573,7 +594,7 @@ $context["jdr"], "status", [], "any", false, false, false, 167) == "annule")) {
      */
     public function getDebugInfo(): array
     {
-        return array (  506 => 204,  502 => 202,  498 => 200,  487 => 195,  479 => 190,  475 => 188,  469 => 186,  463 => 184,  461 => 183,  453 => 178,  447 => 177,  440 => 172,  436 => 170,  432 => 168,  430 => 167,  427 => 166,  425 => 165,  422 => 164,  420 => 163,  417 => 162,  415 => 161,  412 => 160,  410 => 159,  407 => 158,  405 => 157,  402 => 156,  400 => 155,  397 => 154,  393 => 153,  388 => 152,  384 => 151,  380 => 150,  376 => 149,  372 => 148,  368 => 147,  364 => 146,  358 => 143,  354 => 141,  350 => 140,  347 => 139,  345 => 138,  317 => 112,  313 => 110,  309 => 108,  290 => 99,  286 => 98,  279 => 94,  271 => 89,  267 => 87,  261 => 85,  255 => 83,  253 => 82,  248 => 80,  242 => 76,  238 => 74,  234 => 72,  232 => 71,  229 => 70,  227 => 69,  224 => 68,  222 => 67,  219 => 66,  217 => 65,  214 => 64,  212 => 63,  209 => 62,  207 => 61,  204 => 60,  202 => 59,  199 => 58,  195 => 57,  190 => 56,  186 => 55,  182 => 54,  178 => 53,  174 => 52,  170 => 51,  166 => 50,  160 => 47,  156 => 45,  152 => 44,  149 => 43,  147 => 42,  137 => 35,  113 => 14,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  514 => 210,  510 => 208,  506 => 206,  495 => 201,  487 => 196,  483 => 194,  477 => 192,  471 => 190,  469 => 189,  461 => 184,  455 => 183,  448 => 178,  444 => 176,  440 => 174,  438 => 173,  435 => 172,  433 => 171,  430 => 170,  428 => 169,  425 => 168,  423 => 167,  420 => 166,  418 => 165,  415 => 164,  413 => 163,  410 => 162,  408 => 161,  405 => 160,  401 => 159,  396 => 158,  392 => 157,  388 => 156,  384 => 155,  380 => 154,  376 => 153,  372 => 152,  366 => 149,  362 => 147,  358 => 146,  355 => 145,  353 => 144,  325 => 118,  321 => 116,  317 => 114,  300 => 103,  296 => 102,  292 => 101,  286 => 98,  279 => 94,  271 => 89,  267 => 87,  261 => 85,  255 => 83,  253 => 82,  248 => 80,  242 => 76,  238 => 74,  234 => 72,  232 => 71,  229 => 70,  227 => 69,  224 => 68,  222 => 67,  219 => 66,  217 => 65,  214 => 64,  212 => 63,  209 => 62,  207 => 61,  204 => 60,  202 => 59,  199 => 58,  195 => 57,  190 => 56,  186 => 55,  182 => 54,  178 => 53,  174 => 52,  170 => 51,  166 => 50,  160 => 47,  156 => 45,  152 => 44,  149 => 43,  147 => 42,  137 => 35,  113 => 14,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -676,11 +697,17 @@ $context["jdr"], "status", [], "any", false, false, false, 167) == "annule")) {
 
                         <div class=\"mt-4 flex justify-between items-center\">
                             <a href=\"{{ path('app_groupe_j_d_r_show', { 'id': jdr.id }) }}\" class=\"bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600\">Voir les détails</a>
-                            <button type=\"button\" class=\"text-red-500 hover:text-red-700\" onclick=\"openModal('{{ jdr.id }}', '{{ jdr.title }}', '{{ csrf_token('delete' ~ jdr.id) }}')\">
-                                <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\">
-                                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0\" />
-                                </svg>
-                            </button>
+                            <button type=\"button\" 
+                                class=\"text-red-500 hover:text-red-700\" 
+                                data-id=\"{{ jdr.id }}\" 
+                                data-title=\"{{ jdr.title|e('html_attr') }}\" 
+                                data-csrf=\"{{ csrf_token('delete' ~ jdr.id) }}\" 
+                                onclick=\"openModalFromData(this)\">
+                            <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\">
+                                <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0\" />
+                            </svg>
+                        </button>
+
                         </div>
                     </div>
                 </div>
@@ -804,11 +831,24 @@ $context["jdr"], "status", [], "any", false, false, false, 167) == "annule")) {
         document.getElementById('errorText').classList.add('hidden');
     }
 
+    function normalizeString(str) {
+        return str.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\").toLowerCase();
+    }
+
+    function openModalFromData(button) {
+        const jdrId = button.getAttribute('data-id');
+        const jdrTitle = button.getAttribute('data-title');
+        const csrfToken = button.getAttribute('data-csrf');
+
+        openModal(jdrId, jdrTitle, csrfToken);
+    }
+
     function confirmDeletion() {
-        const input = document.getElementById('confirmInput').value;
+        const input = normalizeString(document.getElementById('confirmInput').value);
+        const title = normalizeString(currentJdrTitle);
         const errorText = document.getElementById('errorText');
 
-        if (input === currentJdrTitle) {
+        if (input === title) {
             const form = document.createElement('form');
             form.method = 'POST';
             form.action = `/groupe/jdr/\${currentJdrId}`;

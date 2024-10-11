@@ -26,7 +26,10 @@ class GroupeJDRType extends AbstractType
         $builder
             ->add('title')
             ->add('description', TextareaType::class, [
-                'attr' => ['rows' => 5],
+                'attr' => [
+                    'rows' => 6,
+                    'maxlength' => 750,
+                ],
                 'label' => 'Description',
             ])
             ->add('picture', FileType::class, [

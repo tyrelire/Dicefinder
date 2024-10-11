@@ -161,7 +161,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
     </div>
 
     <div class=\"container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8\">
-        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
+        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
                     <path d=\"M12 14l9-5-9-5-9 5z\" />
@@ -185,7 +185,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
+        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
                     <path d=\"M12 14l9-5-9-5-9 5z\" />
@@ -209,7 +209,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
+        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
                     <path d=\"M12 14l9-5-9-5-9 5z\" />
@@ -227,7 +227,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
+        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
                     <path d=\"M12 14l9-5-9-5-9 5z\" />
@@ -269,7 +269,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["groupe"]) {
             // line 134
-            yield "                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
+            yield "                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105\">
                     <img src=\"";
             // line 135
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "picture", [], "any", false, false, false, 135))), "html", null, true);
@@ -354,7 +354,7 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["groupe"]) {
             // line 171
-            yield "                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
+            yield "                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105\">
                     <img src=\"";
             // line 172
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe"], "picture", [], "any", false, false, false, 172))), "html", null, true);
@@ -425,136 +425,74 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
     <div class=\"container mx-auto flex flex-col mt-12 z-30 relative\">
         <div class=\"flex justify-between items-center\">
             <h2 class=\"text-2xl font-bold text-white\">Parties populaires</h2>
-            <div class=\"flex flex-wrap space-x-2\" id=\"categories-container\">
-                ";
-        // line 204
-        $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 204, $this->source); })()), 0, 4));
-        foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-            // line 205
-            yield "                    <label class=\"m-2 px-3 py-2 rounded-lg flex items-center category-label bg-gray-700 text-white cursor-pointer hover:bg-gray-600 transition-colors duration-300\">
-                        <input type=\"checkbox\" name=\"category\" value=\"";
-            // line 206
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 206), "html", null, true);
-            yield "\" class=\"mr-2 category-radio\">
-                        ";
-            // line 207
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 207), "html", null, true);
-            yield "
-                    </label>
-                ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_key'], $context['category'], $context['_parent']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 210
-        yield "
-                ";
-        // line 211
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 211, $this->source); })())) > 4)) {
-            // line 212
-            yield "                    <div class=\"relative\">
-                        <label id=\"show-more-categories\" class=\"m-2 px-3 py-2 rounded-lg flex items-center bg-blue-700 text-white cursor-pointer hover:bg-blue-600 transition-colors duration-300\">
-                            Plus +
-                        </label>
-                        <div id=\"dropdown-categories\" class=\"absolute left-0 mt-2 w-[360px] bg-gray-700 rounded-lg shadow-lg p-4 hidden z-40\">
-                            <div class=\"grid grid-cols-2 gap-4\">
-                                <!-- Afficher les autres catégories ici -->
-                                ";
-            // line 219
-            $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 219, $this->source); })()), 4));
-            foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-                // line 220
-                yield "                                    <label class=\"px-3 py-2 rounded-lg flex items-center category-label bg-gray-800 text-white cursor-pointer hover:bg-gray-600 transition-colors duration-300\">
-                                        <input type=\"checkbox\" name=\"category\" value=\"";
-                // line 221
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 221), "html", null, true);
-                yield "\" class=\"mr-2 category-radio\">
-                                        ";
-                // line 222
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 222), "html", null, true);
-                yield "
-                                    </label>
-                                ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_key'], $context['category'], $context['_parent']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 225
-            yield "                            </div>
-                        </div>
-                    </div>
-                ";
-        }
-        // line 229
-        yield "            </div>
+            <a href=\"";
+        // line 203
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
+        yield "\" class=\"text-blue-600 text-sm font-semibold\">Voir plus →</a>
         </div>
-        <p class=\"text-white mb-4\">Sélectionnez une ou plusieurs catégories (maximum 3).</p>
-        <div id=\"univers-container\" class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center items-center min-h-[150px]\">
+
+        <div class=\"mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">
             ";
-        // line 233
+        // line 207
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["groupes"]) || array_key_exists("groupes", $context) ? $context["groupes"] : (function () { throw new RuntimeError('Variable "groupes" does not exist.', 233, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["groupes"]) || array_key_exists("groupes", $context) ? $context["groupes"] : (function () { throw new RuntimeError('Variable "groupes" does not exist.', 207, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["groupe_j_d_r"]) {
-            // line 234
-            yield "                <div class=\"univers bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105\" data-category-ids=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::join(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "categories", [], "any", false, false, false, 234), ","), "html", null, true);
-            yield "\">
+            // line 208
+            yield "                <div class=\"univers bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105\">
                     <div class=\"relative\">
                         <img src=\"";
-            // line 236
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "picture", [], "any", false, false, false, 236))), "html", null, true);
+            // line 210
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "picture", [], "any", false, false, false, 210))), "html", null, true);
             yield "\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 236), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 210), "html", null, true);
             yield "\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover transition-opacity hover:opacity-90\">
                     </div>
                     <div class=\"flex justify-between items-center mb-2\">
                         <a href=\"";
-            // line 239
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 239)]), "html", null, true);
+            // line 213
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 213)]), "html", null, true);
             yield "\" class=\"font-semibold hover:underline\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 239), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 213), "html", null, true);
             yield "</a>
                         <a href=\"";
-            // line 240
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 240)]), "html", null, true);
+            // line 214
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 214)]), "html", null, true);
             yield "\" class=\"bg-blue-600 text-white px-2 py-1 rounded text-xs transition-colors duration-300 hover:bg-blue-500\">Voir</a>
                     </div>
                     <div class=\"flex justify-between items-center mt-2\">
                         <div class=\"flex items-center\">
                             ";
-            // line 244
-            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 244), "avatar", [], "any", false, false, false, 244)) {
-                // line 245
+            // line 218
+            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 218), "avatar", [], "any", false, false, false, 218)) {
+                // line 219
                 yield "                                <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 245), "avatar", [], "any", false, false, false, 245))), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 219), "avatar", [], "any", false, false, false, 219))), "html", null, true);
                 yield "\" alt=\"MJ\" class=\"rounded h-8 w-8 object-cover\">
                             ";
             } else {
-                // line 247
+                // line 221
                 yield "                                <img class=\"rounded h-8 w-8 object-cover\" src=\"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
                 yield "\" alt=\"Default profile\">
                             ";
             }
-            // line 249
+            // line 223
             yield "                            <div class=\"ml-2\">
                                 <p class=\"text-xs text-gray-400\">MJ</p>
                                 <p class=\"text-xs text-white\">";
-            // line 251
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 251), "username", [], "any", false, false, false, 251), "html", null, true);
+            // line 225
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 225), "username", [], "any", false, false, false, 225), "html", null, true);
             yield "</p>
                             </div>
                         </div>
                         <div class=\"text-right\">
                             <p class=\"text-xs text-gray-400\">Nombre de joueurs</p>
                             <p class=\"text-lg font-bold text-white\">";
-            // line 256
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "players", [], "any", false, false, false, 256)), "html", null, true);
+            // line 230
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "players", [], "any", false, false, false, 230)), "html", null, true);
             yield " / ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "maxPlayer", [], "any", false, false, false, 256), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "maxPlayer", [], "any", false, false, false, 230), "html", null, true);
             yield "</p>
                         </div>
                     </div>
@@ -563,32 +501,39 @@ class __TwigTemplate_baa08d5ec19672bdf5d258caeda4c657 extends Template
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 261
-            yield "                <p class=\"text-center text-gray-700 text-lg w-full\">Aucun univers disponible pour cette catégorie.</p>
+            // line 235
+            yield "                <p class=\"text-center text-gray-700 text-lg w-full\">Aucun univers disponible.</p>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['groupe_j_d_r'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 263
+        // line 237
         yield "        </div>
 
         <div class=\"text-center mt-8 flex justify-center\">
-            <button id=\"show-more-btn\" class=\"bg-blue-600 text-white px-4 py-2 rounded transition-colors duration-300 hover:bg-blue-500\">Afficher plus</button>
+            <a href=\"";
+        // line 240
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_index");
+        yield "\" class=\"bg-blue-600 text-white px-4 py-2 rounded transition-colors duration-300 hover:bg-blue-500\">Afficher plus</a>
         </div>
     </div>
-    <div class=\"container mx-auto flex flex-col items-center justify-center py-12\">
-        <div class=\"bg-gradient-to-br from-[rgba(30, 58, 138, 0.8)] via-[rgba(55, 48, 163, 0.8)] to-[rgba(76, 29, 149, 0.8)] rounded-lg p-8 shadow-lg text-center max-w-3xl border border-[#4338CA]\">
-            <h2 class=\"text-3xl font-bold text-white mb-4\">Créer Votre Propre Partie</h2>
-            <p class=\"text-gray-300 mb-6\">
+
+    <div class=\"container mx-auto flex flex-col items-center justify-center py-8 sm:py-12\">
+        <div class=\"bg-gradient-to-br from-[rgba(30, 58, 138, 0.8)] via-[rgba(55, 48, 163, 0.8)] to-[rgba(76, 29, 149, 0.8)] rounded-lg p-6 sm:p-8 shadow-lg text-center max-w-xl sm:max-w-2xl lg:max-w-3xl border border-[#4338CA]\">
+            <h2 class=\"text-2xl sm:text-3xl font-bold text-white mb-4\">Créer Votre Propre Partie</h2>
+            <p class=\"text-gray-300 mb-6 text-sm sm:text-base\">
                 Envie de lancer ta propre aventure ? Avec DiceFinder, crée ta partie personnalisée en quelques clics. Définis ton univers, sélectionne tes règles, et invite des joueurs passionnés à rejoindre ton monde. Que tu sois un maître de jeu chevronné ou débutant, tout est pensé pour faciliter la création d'une expérience immersive.
             </p>
             <a href=\"";
-        // line 275
+        // line 250
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
-        yield "\" class=\"bg-indigo-600 text-white py-2 px-6 rounded-full font-semibold hover:bg-indigo-700 transition-colors\">Rejoindre La Communauté</a>
+        yield "\" class=\"inline-block bg-indigo-600 text-white py-2 px-4 sm:px-6 rounded-full font-semibold hover:bg-indigo-700 transition-colors whitespace-nowrap\">
+                Rejoindre La Communauté
+            </a>
         </div>
     </div>
+
     <div class=\"absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]\" aria-hidden=\"true\">
         <div class=\"relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]\" style=\"clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)\"></div>
     </div>
@@ -610,80 +555,9 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Typed.js n\\'a pas été chargé correctement.');
     }
 
-    const showMoreCategoriesButton = document.getElementById('show-more-categories');
-    const dropdownCategories = document.getElementById('dropdown-categories');
-    const categoryRadios = document.querySelectorAll('.category-radio');
-    const universElements = document.querySelectorAll('.univers');
-    const universContainer = document.getElementById('univers-container');
     const showMoreButton = document.getElementById('show-more-btn');
-    let selectedCategories = [];
+    const universElements = document.querySelectorAll('.univers');
     let currentUniversCount = 8;
-
-    if (showMoreCategoriesButton) {
-        showMoreCategoriesButton.addEventListener('click', function() {
-            if (dropdownCategories.classList.contains('hidden')) {
-                dropdownCategories.classList.remove('hidden');
-            } else {
-                dropdownCategories.classList.add('hidden');
-            }
-        });
-    }
-
-    function filterUnivers() {
-        let visibleUniversCount = 0;
-
-        universElements.forEach(univers => {
-            const categoryIds = univers.getAttribute('data-category-ids').split(',').map(id => id.trim());
-
-            if (selectedCategories.length === 0 || selectedCategories.some(id => categoryIds.includes(id))) {
-                univers.style.display = 'block';
-                visibleUniversCount++;
-            } else {
-                univers.style.display = 'none';
-            }
-        });
-
-        Array.from(universElements).slice(8).forEach(univers => {
-            univers.style.display = 'none';
-        });
-
-        if (visibleUniversCount === 0) {
-            universContainer.classList.remove('grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4', 'gap-6');
-            universContainer.classList.add('flex', 'justify-center', 'items-center', 'min-h-[150px]');
-            
-            if (!noUniversMessage.parentNode) {
-                universContainer.appendChild(noUniversMessage);
-            }
-            showMoreButton.style.display = 'none';
-        } else {
-            universContainer.classList.remove('flex', 'justify-center', 'items-center');
-            universContainer.classList.add('grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4', 'gap-6');
-
-            if (noUniversMessage.parentNode) {
-                noUniversMessage.parentNode.removeChild(noUniversMessage);
-            }
-
-            showMoreButton.style.display = visibleUniversCount > 8 ? 'block' : 'none';
-        }
-
-        currentUniversCount = 8;
-    }
-
-    categoryRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                if (selectedCategories.length < 3) {
-                    selectedCategories.push(this.value);
-                } else {
-                    this.checked = false;
-                    alert('Vous ne pouvez sélectionner que 3 catégories maximum.');
-                }
-            } else {
-                selectedCategories = selectedCategories.filter(id => id !== this.value);
-            }
-            filterUnivers();
-        });
-    });
 
     function showMoreUnivers() {
         const universToShow = Array.from(universElements).slice(currentUniversCount, currentUniversCount + 8);
@@ -705,7 +579,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -737,7 +610,7 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     public function getDebugInfo(): array
     {
-        return array (  588 => 275,  574 => 263,  567 => 261,  555 => 256,  547 => 251,  543 => 249,  537 => 247,  531 => 245,  529 => 244,  522 => 240,  516 => 239,  508 => 236,  502 => 234,  497 => 233,  491 => 229,  485 => 225,  476 => 222,  472 => 221,  469 => 220,  465 => 219,  456 => 212,  454 => 211,  451 => 210,  442 => 207,  438 => 206,  435 => 205,  431 => 204,  423 => 198,  416 => 196,  406 => 191,  398 => 186,  394 => 184,  388 => 182,  382 => 180,  380 => 179,  373 => 175,  367 => 174,  360 => 172,  357 => 171,  352 => 170,  345 => 166,  338 => 161,  331 => 159,  321 => 154,  313 => 149,  309 => 147,  303 => 145,  297 => 143,  295 => 142,  288 => 138,  282 => 137,  275 => 135,  272 => 134,  267 => 133,  261 => 130,  249 => 121,  240 => 115,  207 => 85,  198 => 79,  183 => 67,  174 => 61,  147 => 37,  137 => 30,  130 => 25,  122 => 21,  114 => 17,  112 => 16,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  530 => 250,  517 => 240,  512 => 237,  505 => 235,  493 => 230,  485 => 225,  481 => 223,  475 => 221,  469 => 219,  467 => 218,  460 => 214,  454 => 213,  446 => 210,  442 => 208,  437 => 207,  430 => 203,  423 => 198,  416 => 196,  406 => 191,  398 => 186,  394 => 184,  388 => 182,  382 => 180,  380 => 179,  373 => 175,  367 => 174,  360 => 172,  357 => 171,  352 => 170,  345 => 166,  338 => 161,  331 => 159,  321 => 154,  313 => 149,  309 => 147,  303 => 145,  297 => 143,  295 => 142,  288 => 138,  282 => 137,  275 => 135,  272 => 134,  267 => 133,  261 => 130,  249 => 121,  240 => 115,  207 => 85,  198 => 79,  183 => 67,  174 => 61,  147 => 37,  137 => 30,  130 => 25,  122 => 21,  114 => 17,  112 => 16,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -794,7 +667,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <div class=\"container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8\">
-        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
+        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
                     <path d=\"M12 14l9-5-9-5-9 5z\" />
@@ -812,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
+        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
                     <path d=\"M12 14l9-5-9-5-9 5z\" />
@@ -830,7 +703,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
+        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
                     <path d=\"M12 14l9-5-9-5-9 5z\" />
@@ -848,7 +721,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 En savoir plus <span aria-hidden=\"true\" class=\"block transition-all group-hover:ml-0.5\">&rarr;</span>
             </a>
         </article>
-        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
+        <article class=\"flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-700 ease-in-out hover:shadow-[0_4px_15px_5px_rgba(192,192,192,0.4)] hover:scale-105 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25\">
             <span class=\"inline-block rounded bg-blue-600 p-2 text-white dark:bg-blue-700\">
                 <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"size-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
                     <path d=\"M12 14l9-5-9-5-9 5z\" />
@@ -875,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class=\"mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">
             {% for groupe in nouveaux_groupes|reverse %}
-                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
+                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105\">
                     <img src=\"{{ asset('uploads/images-jdr/' ~ groupe.picture) }}\" alt=\"{{ groupe.title }}\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
                     <div class=\"flex justify-between items-center\">
                         <a href=\"{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}\" class=\"font-semibold\">{{ groupe.title }}</a>
@@ -912,7 +785,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <div class=\"mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">
             {% for groupe in groupes_recrutement_ouvert|slice(0, 4) %}
-                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white w-full\">
+                <div class=\"bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105\">
                     <img src=\"{{ asset('uploads/images-jdr/' ~ groupe.picture) }}\" alt=\"{{ groupe.title }}\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover\">
                     <div class=\"flex justify-between items-center\">
                         <a href=\"{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}\" class=\"font-semibold\">{{ groupe.title }}</a>
@@ -944,38 +817,12 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class=\"container mx-auto flex flex-col mt-12 z-30 relative\">
         <div class=\"flex justify-between items-center\">
             <h2 class=\"text-2xl font-bold text-white\">Parties populaires</h2>
-            <div class=\"flex flex-wrap space-x-2\" id=\"categories-container\">
-                {% for category in categories|slice(0, 4) %}
-                    <label class=\"m-2 px-3 py-2 rounded-lg flex items-center category-label bg-gray-700 text-white cursor-pointer hover:bg-gray-600 transition-colors duration-300\">
-                        <input type=\"checkbox\" name=\"category\" value=\"{{ category.id }}\" class=\"mr-2 category-radio\">
-                        {{ category.name }}
-                    </label>
-                {% endfor %}
-
-                {% if categories|length > 4 %}
-                    <div class=\"relative\">
-                        <label id=\"show-more-categories\" class=\"m-2 px-3 py-2 rounded-lg flex items-center bg-blue-700 text-white cursor-pointer hover:bg-blue-600 transition-colors duration-300\">
-                            Plus +
-                        </label>
-                        <div id=\"dropdown-categories\" class=\"absolute left-0 mt-2 w-[360px] bg-gray-700 rounded-lg shadow-lg p-4 hidden z-40\">
-                            <div class=\"grid grid-cols-2 gap-4\">
-                                <!-- Afficher les autres catégories ici -->
-                                {% for category in categories|slice(4) %}
-                                    <label class=\"px-3 py-2 rounded-lg flex items-center category-label bg-gray-800 text-white cursor-pointer hover:bg-gray-600 transition-colors duration-300\">
-                                        <input type=\"checkbox\" name=\"category\" value=\"{{ category.id }}\" class=\"mr-2 category-radio\">
-                                        {{ category.name }}
-                                    </label>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
+            <a href=\"{{ path('app_groupe_j_d_r_index') }}\" class=\"text-blue-600 text-sm font-semibold\">Voir plus →</a>
         </div>
-        <p class=\"text-white mb-4\">Sélectionnez une ou plusieurs catégories (maximum 3).</p>
-        <div id=\"univers-container\" class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center items-center min-h-[150px]\">
+
+        <div class=\"mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">
             {% for groupe_j_d_r in groupes %}
-                <div class=\"univers bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105\" data-category-ids=\"{{ groupe_j_d_r.categories|join(',') }}\">
+                <div class=\"univers bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105\">
                     <div class=\"relative\">
                         <img src=\"{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}\" alt=\"{{ groupe_j_d_r.title }}\" class=\"rounded-lg mb-4 w-full h-[20rem] object-cover transition-opacity hover:opacity-90\">
                     </div>
@@ -1002,23 +849,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             {% else %}
-                <p class=\"text-center text-gray-700 text-lg w-full\">Aucun univers disponible pour cette catégorie.</p>
+                <p class=\"text-center text-gray-700 text-lg w-full\">Aucun univers disponible.</p>
             {% endfor %}
         </div>
 
         <div class=\"text-center mt-8 flex justify-center\">
-            <button id=\"show-more-btn\" class=\"bg-blue-600 text-white px-4 py-2 rounded transition-colors duration-300 hover:bg-blue-500\">Afficher plus</button>
+            <a href=\"{{ path('app_groupe_j_d_r_index') }}\" class=\"bg-blue-600 text-white px-4 py-2 rounded transition-colors duration-300 hover:bg-blue-500\">Afficher plus</a>
         </div>
     </div>
-    <div class=\"container mx-auto flex flex-col items-center justify-center py-12\">
-        <div class=\"bg-gradient-to-br from-[rgba(30, 58, 138, 0.8)] via-[rgba(55, 48, 163, 0.8)] to-[rgba(76, 29, 149, 0.8)] rounded-lg p-8 shadow-lg text-center max-w-3xl border border-[#4338CA]\">
-            <h2 class=\"text-3xl font-bold text-white mb-4\">Créer Votre Propre Partie</h2>
-            <p class=\"text-gray-300 mb-6\">
+
+    <div class=\"container mx-auto flex flex-col items-center justify-center py-8 sm:py-12\">
+        <div class=\"bg-gradient-to-br from-[rgba(30, 58, 138, 0.8)] via-[rgba(55, 48, 163, 0.8)] to-[rgba(76, 29, 149, 0.8)] rounded-lg p-6 sm:p-8 shadow-lg text-center max-w-xl sm:max-w-2xl lg:max-w-3xl border border-[#4338CA]\">
+            <h2 class=\"text-2xl sm:text-3xl font-bold text-white mb-4\">Créer Votre Propre Partie</h2>
+            <p class=\"text-gray-300 mb-6 text-sm sm:text-base\">
                 Envie de lancer ta propre aventure ? Avec DiceFinder, crée ta partie personnalisée en quelques clics. Définis ton univers, sélectionne tes règles, et invite des joueurs passionnés à rejoindre ton monde. Que tu sois un maître de jeu chevronné ou débutant, tout est pensé pour faciliter la création d'une expérience immersive.
             </p>
-            <a href=\"{{ path('app_register') }}\" class=\"bg-indigo-600 text-white py-2 px-6 rounded-full font-semibold hover:bg-indigo-700 transition-colors\">Rejoindre La Communauté</a>
+            <a href=\"{{ path('app_register') }}\" class=\"inline-block bg-indigo-600 text-white py-2 px-4 sm:px-6 rounded-full font-semibold hover:bg-indigo-700 transition-colors whitespace-nowrap\">
+                Rejoindre La Communauté
+            </a>
         </div>
     </div>
+
     <div class=\"absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]\" aria-hidden=\"true\">
         <div class=\"relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]\" style=\"clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)\"></div>
     </div>
@@ -1040,80 +891,9 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Typed.js n\\'a pas été chargé correctement.');
     }
 
-    const showMoreCategoriesButton = document.getElementById('show-more-categories');
-    const dropdownCategories = document.getElementById('dropdown-categories');
-    const categoryRadios = document.querySelectorAll('.category-radio');
-    const universElements = document.querySelectorAll('.univers');
-    const universContainer = document.getElementById('univers-container');
     const showMoreButton = document.getElementById('show-more-btn');
-    let selectedCategories = [];
+    const universElements = document.querySelectorAll('.univers');
     let currentUniversCount = 8;
-
-    if (showMoreCategoriesButton) {
-        showMoreCategoriesButton.addEventListener('click', function() {
-            if (dropdownCategories.classList.contains('hidden')) {
-                dropdownCategories.classList.remove('hidden');
-            } else {
-                dropdownCategories.classList.add('hidden');
-            }
-        });
-    }
-
-    function filterUnivers() {
-        let visibleUniversCount = 0;
-
-        universElements.forEach(univers => {
-            const categoryIds = univers.getAttribute('data-category-ids').split(',').map(id => id.trim());
-
-            if (selectedCategories.length === 0 || selectedCategories.some(id => categoryIds.includes(id))) {
-                univers.style.display = 'block';
-                visibleUniversCount++;
-            } else {
-                univers.style.display = 'none';
-            }
-        });
-
-        Array.from(universElements).slice(8).forEach(univers => {
-            univers.style.display = 'none';
-        });
-
-        if (visibleUniversCount === 0) {
-            universContainer.classList.remove('grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4', 'gap-6');
-            universContainer.classList.add('flex', 'justify-center', 'items-center', 'min-h-[150px]');
-            
-            if (!noUniversMessage.parentNode) {
-                universContainer.appendChild(noUniversMessage);
-            }
-            showMoreButton.style.display = 'none';
-        } else {
-            universContainer.classList.remove('flex', 'justify-center', 'items-center');
-            universContainer.classList.add('grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4', 'gap-6');
-
-            if (noUniversMessage.parentNode) {
-                noUniversMessage.parentNode.removeChild(noUniversMessage);
-            }
-
-            showMoreButton.style.display = visibleUniversCount > 8 ? 'block' : 'none';
-        }
-
-        currentUniversCount = 8;
-    }
-
-    categoryRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                if (selectedCategories.length < 3) {
-                    selectedCategories.push(this.value);
-                } else {
-                    this.checked = false;
-                    alert('Vous ne pouvez sélectionner que 3 catégories maximum.');
-                }
-            } else {
-                selectedCategories = selectedCategories.filter(id => id !== this.value);
-            }
-            filterUnivers();
-        });
-    });
 
     function showMoreUnivers() {
         const universToShow = Array.from(universElements).slice(currentUniversCount, currentUniversCount + 8);
@@ -1135,7 +915,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-
 {% endblock %}
 ", "home/index.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\templates\\home\\index.html.twig");
     }
