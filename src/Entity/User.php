@@ -89,7 +89,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Collection<int, Invitation>
      */
     #[ORM\OneToMany(targetEntity: Invitation::class, mappedBy: 'requestedBy')]
-    private Collection $invitationPending; // Groupes auxquels l'utilisateur a rejoint
+    private Collection $invitationPending;
+
+    /**
+     * @var Collection<int, PlayerMembership>
+     */
+    #[ORM\OneToMany(targetEntity: PlayerMembership::class, mappedBy: 'player')]
+    private Collection $playerMemberships;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $discordPseudo = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $TwitterPseudo = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $roll20Pseudo = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $YoutubeChannelLink = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $TwitchChannelLink = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $competence = null; // Groupes auxquels l'utilisateur a rejoint
 
     public function __construct()
     {
@@ -98,6 +122,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->invitations = new ArrayCollection();
         $this->notificationHistories = new ArrayCollection();
         $this->invitationPending = new ArrayCollection();
+        $this->playerMemberships = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -423,6 +448,108 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $invitationPending->setRequestedBy(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlayerMembership>
+     */
+    public function getPlayerMemberships(): Collection
+    {
+        return $this->playerMemberships;
+    }
+
+    public function addPlayerMembership(PlayerMembership $playerMembership): static
+    {
+        if (!$this->playerMemberships->contains($playerMembership)) {
+            $this->playerMemberships->add($playerMembership);
+            $playerMembership->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayerMembership(PlayerMembership $playerMembership): static
+    {
+        if ($this->playerMemberships->removeElement($playerMembership)) {
+            // set the owning side to null (unless already changed)
+            if ($playerMembership->getPlayer() === $this) {
+                $playerMembership->setPlayer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDiscordPseudo(): ?string
+    {
+        return $this->discordPseudo;
+    }
+
+    public function setDiscordPseudo(?string $discordPseudo): static
+    {
+        $this->discordPseudo = $discordPseudo;
+
+        return $this;
+    }
+
+    public function getTwitterPseudo(): ?string
+    {
+        return $this->TwitterPseudo;
+    }
+
+    public function setTwitterPseudo(?string $TwitterPseudo): static
+    {
+        $this->TwitterPseudo = $TwitterPseudo;
+
+        return $this;
+    }
+
+    public function getRoll20Pseudo(): ?string
+    {
+        return $this->roll20Pseudo;
+    }
+
+    public function setRoll20Pseudo(?string $roll20Pseudo): static
+    {
+        $this->roll20Pseudo = $roll20Pseudo;
+
+        return $this;
+    }
+
+    public function getYoutubeChannelLink(): ?string
+    {
+        return $this->YoutubeChannelLink;
+    }
+
+    public function setYoutubeChannelLink(?string $YoutubeChannelLink): static
+    {
+        $this->YoutubeChannelLink = $YoutubeChannelLink;
+
+        return $this;
+    }
+
+    public function getTwitchChannelLink(): ?string
+    {
+        return $this->TwitchChannelLink;
+    }
+
+    public function setTwitchChannelLink(?string $TwitchChannelLink): static
+    {
+        $this->TwitchChannelLink = $TwitchChannelLink;
+
+        return $this;
+    }
+
+    public function getCompetence(): ?string
+    {
+        return $this->competence;
+    }
+
+    public function setCompetence(?string $competence): static
+    {
+        $this->competence = $competence;
 
         return $this;
     }

@@ -64,9 +64,13 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {% for groupe_j_d_r in groupe_j_d_rs %}
-            <div class=" bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative">
+            <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white relative">
                 <div class="relative">
-                    <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }} image" class="rounded-lg mb-4 w-full h-[20rem] object-cover">
+                    <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" 
+                        alt="{{ groupe_j_d_r.title }} image" 
+                        class="rounded-lg mb-4 w-full h-[20rem] object-cover 
+                        {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %} blur {% endif %}">
+                    
                     <div class="absolute top-2 right-2">
                         <span class="text-sm font-bold px-2 py-1 rounded 
                             {% if groupe_j_d_r.status == 'preparation' %} bg-yellow-500

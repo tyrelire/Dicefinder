@@ -3,31 +3,53 @@
 namespace App\Controller;
 
 use App\Form\UserType;
+use App\Entity\GroupeJDR;
+use App\Entity\PlayerMembership;
 use App\Form\PasswordChangeType;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\SocialMediaAndCompetenceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile/show', name: 'app_profile')]
-    public function index(): Response
+    #[Route('/profile/show', name: 'app_profile', methods: ['GET'])]
+    public function index(EntityManagerInterface $entityManager): Response
     {
-        return $this->render('profile/show.html.twig');
+        $user = $this->getUser();
+
+        $ownedJDRs = $entityManager->getRepository(\App\Entity\GroupeJDR::class)
+            ->findBy(['owner' => $user]);
+
+        $playerMemberships = $entityManager->getRepository(\App\Entity\PlayerMembership::class)
+            ->findBy(['player' => $user]);
+
+        $joinedJDRs = [];
+        foreach ($playerMemberships as $membership) {
+            $joinedJDRs[] = [
+                'groupe' => $membership->getGroupeJDR(),
+                'joined_at' => $membership->getJoinedAt(),
+            ];
+        }
+
+        return $this->render('profile/show.html.twig', [
+            'ownedJDRs' => $ownedJDRs,
+            'joinedJDRs' => $joinedJDRs,
+        ]);
     }
 
     #[Route('/profile/edit', name: 'app_profile_edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, SluggerInterface $slugger): Response
     {
         $user = $this->getUser();
-    
+        
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
     
@@ -43,16 +65,26 @@ class ProfileController extends AbstractController
             ->getForm();
         $avatarForm->handleRequest($request);
     
+        $socialMediaAndCompetenceForm = $this->createForm(SocialMediaAndCompetenceType::class, $user);
+        $socialMediaAndCompetenceForm->handleRequest($request);
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $this->handleFormSubmission($entityManager, $user, 'Profil mis à jour avec succès.');
             return $this->redirectToRoute('app_profile_edit');
         }
+    
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
             $this->handlePasswordChange($passwordForm, $passwordHasher, $entityManager, $user);
             return $this->redirectToRoute('app_profile_edit');
         }
+    
         if ($avatarForm->isSubmitted() && $avatarForm->isValid()) {
             $this->handleAvatarUpload($avatarForm, $request, $slugger, $entityManager, $user);
+            return $this->redirectToRoute('app_profile_edit');
+        }
+    
+        if ($socialMediaAndCompetenceForm->isSubmitted() && $socialMediaAndCompetenceForm->isValid()) {
+            $this->handleFormSubmission($entityManager, $user, 'Votre profil a été mis à jour avec succès.');
             return $this->redirectToRoute('app_profile_edit');
         }
     
@@ -60,8 +92,9 @@ class ProfileController extends AbstractController
             'form' => $form->createView(),
             'passwordForm' => $passwordForm->createView(),
             'avatarForm' => $avatarForm->createView(),
+            'socialMediaAndCompetenceForm' => $socialMediaAndCompetenceForm->createView(),
         ]);
-    }
+    }    
 
     private function handleFormSubmission(EntityManagerInterface $entityManager, $user, string $message): void
     {
@@ -85,7 +118,7 @@ class ProfileController extends AbstractController
         } else {
             $this->addFlash('error', 'Le mot de passe actuel est incorrect.');
         }
-    }    
+    }
 
     private function handleAvatarUpload($avatarForm, Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager, $user): void
     {

@@ -103,67 +103,105 @@ class __TwigTemplate_edb8274032781659eacf7d097ba873c0 extends Template
 
         ";
         // line 10
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["invitations"]) || array_key_exists("invitations", $context) ? $context["invitations"] : (function () { throw new RuntimeError('Variable "invitations" does not exist.', 10, $this->source); })())) > 0)) {
+        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["invitationsData"]) || array_key_exists("invitationsData", $context) ? $context["invitationsData"] : (function () { throw new RuntimeError('Variable "invitationsData" does not exist.', 10, $this->source); })())) > 0)) {
             // line 11
             yield "            <div class=\"space-y-4\">
                 ";
             // line 12
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["invitations"]) || array_key_exists("invitations", $context) ? $context["invitations"] : (function () { throw new RuntimeError('Variable "invitations" does not exist.', 12, $this->source); })()));
-            foreach ($context['_seq'] as $context["_key"] => $context["invitation"]) {
+            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["invitationsData"]) || array_key_exists("invitationsData", $context) ? $context["invitationsData"] : (function () { throw new RuntimeError('Variable "invitationsData" does not exist.', 12, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["invitationData"]) {
                 // line 13
+                yield "                    ";
+                $context["invitation"] = CoreExtension::getAttribute($this->env, $this->source, $context["invitationData"], "invitation", [], "any", false, false, false, 13);
+                // line 14
                 yield "                    <div class=\"bg-slate-900 p-4 rounded-lg shadow flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0\">
-                        <div>
-                            <p class=\"text-lg font-bold text-white\">";
-                // line 15
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["invitation"], "groupeJDR", [], "any", false, false, false, 15), "title", [], "any", false, false, false, 15), "html", null, true);
-                yield "</p>
-                            
+                        <div class=\"flex items-center\">
                             ";
-                // line 17
-                if ((CoreExtension::getAttribute($this->env, $this->source, $context["invitation"], "initiatedBy", [], "any", false, false, false, 17) == "owner")) {
-                    // line 18
-                    yield "                                <p class=\"text-sm text-white\">Invité par le propriétaire à rejoindre ce groupe</p>
+                // line 16
+                if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 16, $this->source); })()), "groupeJDR", [], "any", false, false, false, 16), "owner", [], "any", false, false, false, 16), "avatar", [], "any", false, false, false, 16)) {
+                    // line 17
+                    yield "                                <img src=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 17, $this->source); })()), "groupeJDR", [], "any", false, false, false, 17), "owner", [], "any", false, false, false, 17), "avatar", [], "any", false, false, false, 17))), "html", null, true);
+                    yield "\" class=\"w-10 h-10 rounded-full mr-4\" alt=\"Photo de profil\">
                             ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source,                 // line 19
-$context["invitation"], "initiatedBy", [], "any", false, false, false, 19) == "user")) {
-                    // line 20
-                    yield "                                <p class=\"text-sm text-white\">";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["invitation"], "user", [], "any", false, false, false, 20), "username", [], "any", false, false, false, 20), "html", null, true);
-                    yield " a demandé à rejoindre ce groupe</p>
-                                ";
+                } elseif (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,                 // line 18
+$context["invitationData"], "requestedBy", [], "any", false, false, false, 18), "avatar", [], "any", false, false, false, 18)) {
+                    // line 19
+                    yield "                                <img src=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 19, $this->source); })()), "requestedBy", [], "any", false, false, false, 19), "avatar", [], "any", false, false, false, 19))), "html", null, true);
+                    yield "\" class=\"w-10 h-10 rounded-full mr-4\" alt=\"Photo de profil\">
+                            ";
+                } else {
                     // line 21
-                    if (CoreExtension::getAttribute($this->env, $this->source, $context["invitation"], "message", [], "any", false, false, false, 21)) {
-                        // line 22
-                        yield "                                    <p class=\"text-xs text-gray-400 mt-2\"><em>\"";
-                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["invitation"], "message", [], "any", false, false, false, 22), "html", null, true);
-                        yield "\"</em></p>
-                                ";
-                    }
-                    // line 24
-                    yield "                            ";
+                    yield "                                <img src=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("uploads/avatars/default-avatar.png"), "html", null, true);
+                    yield "\" class=\"w-10 h-10 rounded-full mr-4\" alt=\"Photo de profil\">
+                            ";
                 }
+                // line 23
+                yield "                            <div>
+                                <p class=\"text-lg font-bold text-white\">";
+                // line 24
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 24, $this->source); })()), "groupeJDR", [], "any", false, false, false, 24), "title", [], "any", false, false, false, 24), "html", null, true);
+                yield "</p>
+                                ";
                 // line 25
-                yield "                        </div>
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["invitationData"], "initiatedByUser", [], "any", false, false, false, 25)) {
+                    // line 26
+                    yield "                                    <p class=\"text-sm text-white\">
+                                        <strong>";
+                    // line 27
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 27, $this->source); })()), "requestedBy", [], "any", false, false, false, 27), "username", [], "any", false, false, false, 27), "html", null, true);
+                    yield "</strong> veut rejoindre votre univers \"<strong>";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 27, $this->source); })()), "groupeJDR", [], "any", false, false, false, 27), "title", [], "any", false, false, false, 27), "html", null, true);
+                    yield "</strong>\".
+                                    </p>
+                                    ";
+                    // line 29
+                    if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 29, $this->source); })()), "message", [], "any", false, false, false, 29)) {
+                        // line 30
+                        yield "                                        <p class=\"text-xs text-gray-400 mt-2\"><em>\"";
+                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 30, $this->source); })()), "message", [], "any", false, false, false, 30), "html", null, true);
+                        yield "\"</em></p>
+                                    ";
+                    }
+                    // line 32
+                    yield "                                ";
+                } elseif (CoreExtension::getAttribute($this->env, $this->source, $context["invitationData"], "initiatedByOwner", [], "any", false, false, false, 32)) {
+                    // line 33
+                    yield "                                    <p class=\"text-sm text-white\">
+                                        <strong>";
+                    // line 34
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 34, $this->source); })()), "groupeJDR", [], "any", false, false, false, 34), "owner", [], "any", false, false, false, 34), "username", [], "any", false, false, false, 34), "html", null, true);
+                    yield "</strong> vous a invité à rejoindre l'univers \"<strong>";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 34, $this->source); })()), "groupeJDR", [], "any", false, false, false, 34), "title", [], "any", false, false, false, 34), "html", null, true);
+                    yield "</strong>\".
+                                    </p>
+                                ";
+                }
+                // line 37
+                yield "                            </div>
+                        </div>
                         <div class=\"flex space-x-2 lg:ml-6\">
                             <form action=\"";
-                // line 27
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("respond_invitation", ["invitationId" => CoreExtension::getAttribute($this->env, $this->source, $context["invitation"], "id", [], "any", false, false, false, 27)]), "html", null, true);
+                // line 40
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("respond_invitation", ["invitationId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 40, $this->source); })()), "id", [], "any", false, false, false, 40)]), "html", null, true);
                 yield "\" method=\"POST\" class=\"inline-block\">
                                 <input type=\"hidden\" name=\"response\" value=\"accept\">
                                 <button type=\"submit\" class=\"bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-200\" aria-label=\"Accepter l'invitation pour rejoindre ";
-                // line 29
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["invitation"], "groupeJDR", [], "any", false, false, false, 29), "title", [], "any", false, false, false, 29), "html", null, true);
+                // line 42
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 42, $this->source); })()), "groupeJDR", [], "any", false, false, false, 42), "title", [], "any", false, false, false, 42), "html", null, true);
                 yield "\">Accepter</button>
                             </form>
                             <form action=\"";
-                // line 31
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("respond_invitation", ["invitationId" => CoreExtension::getAttribute($this->env, $this->source, $context["invitation"], "id", [], "any", false, false, false, 31)]), "html", null, true);
+                // line 44
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("respond_invitation", ["invitationId" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 44, $this->source); })()), "id", [], "any", false, false, false, 44)]), "html", null, true);
                 yield "\" method=\"POST\" class=\"inline-block\">
                                 <input type=\"hidden\" name=\"response\" value=\"refuse\">
-                                <button type=\"submit\" class=\"bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors duration-200\" aria-label=\"Refuser l'invitation pour rejoindre ";
-                // line 33
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["invitation"], "groupeJDR", [], "any", false, false, false, 33), "title", [], "any", false, false, false, 33), "html", null, true);
+                                <button type=\"submit\" class=\"bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors durée-200\" aria-label=\"Refuser l'invitation pour rejoindre ";
+                // line 46
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["invitation"]) || array_key_exists("invitation", $context) ? $context["invitation"] : (function () { throw new RuntimeError('Variable "invitation" does not exist.', 46, $this->source); })()), "groupeJDR", [], "any", false, false, false, 46), "title", [], "any", false, false, false, 46), "html", null, true);
                 yield "\">Refuser</button>
                             </form>
                         </div>
@@ -171,17 +209,17 @@ $context["invitation"], "initiatedBy", [], "any", false, false, false, 19) == "u
                 ";
             }
             $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_key'], $context['invitation'], $context['_parent']);
+            unset($context['_seq'], $context['_key'], $context['invitationData'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 38
+            // line 51
             yield "            </div>
         ";
         } else {
-            // line 40
+            // line 53
             yield "            <p class=\"text-gray-500\">Aucune invitation en attente.</p>
         ";
         }
-        // line 42
+        // line 55
         yield "    </div>
 </div>
 ";
@@ -215,7 +253,7 @@ $context["invitation"], "initiatedBy", [], "any", false, false, false, 19) == "u
      */
     public function getDebugInfo(): array
     {
-        return array (  185 => 42,  181 => 40,  177 => 38,  166 => 33,  161 => 31,  156 => 29,  151 => 27,  147 => 25,  144 => 24,  138 => 22,  136 => 21,  131 => 20,  129 => 19,  126 => 18,  124 => 17,  119 => 15,  115 => 13,  111 => 12,  108 => 11,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  223 => 55,  219 => 53,  215 => 51,  204 => 46,  199 => 44,  194 => 42,  189 => 40,  184 => 37,  176 => 34,  173 => 33,  170 => 32,  164 => 30,  162 => 29,  155 => 27,  152 => 26,  150 => 25,  146 => 24,  143 => 23,  137 => 21,  131 => 19,  129 => 18,  124 => 17,  122 => 16,  118 => 14,  115 => 13,  111 => 12,  108 => 11,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -229,21 +267,34 @@ $context["invitation"], "initiatedBy", [], "any", false, false, false, 19) == "u
     <div class=\"bg-white shadow rounded-lg p-6\">
         <h1 class=\"text-2xl font-bold mb-4 text-gray-800\">Mes Invitations</h1>
 
-        {% if invitations|length > 0 %}
+        {% if invitationsData|length > 0 %}
             <div class=\"space-y-4\">
-                {% for invitation in invitations %}
+                {% for invitationData in invitationsData %}
+                    {% set invitation = invitationData.invitation %}
                     <div class=\"bg-slate-900 p-4 rounded-lg shadow flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0\">
-                        <div>
-                            <p class=\"text-lg font-bold text-white\">{{ invitation.groupeJDR.title }}</p>
-                            
-                            {% if invitation.initiatedBy == 'owner' %}
-                                <p class=\"text-sm text-white\">Invité par le propriétaire à rejoindre ce groupe</p>
-                            {% elseif invitation.initiatedBy == 'user' %}
-                                <p class=\"text-sm text-white\">{{ invitation.user.username }} a demandé à rejoindre ce groupe</p>
-                                {% if invitation.message %}
-                                    <p class=\"text-xs text-gray-400 mt-2\"><em>\"{{ invitation.message }}\"</em></p>
-                                {% endif %}
+                        <div class=\"flex items-center\">
+                            {% if invitation.groupeJDR.owner.avatar %}
+                                <img src=\"{{ asset('uploads/avatars/' ~ invitation.groupeJDR.owner.avatar) }}\" class=\"w-10 h-10 rounded-full mr-4\" alt=\"Photo de profil\">
+                            {% elseif invitationData.requestedBy.avatar %}
+                                <img src=\"{{ asset('uploads/avatars/' ~ invitation.requestedBy.avatar) }}\" class=\"w-10 h-10 rounded-full mr-4\" alt=\"Photo de profil\">
+                            {% else %}
+                                <img src=\"{{ asset('uploads/avatars/default-avatar.png') }}\" class=\"w-10 h-10 rounded-full mr-4\" alt=\"Photo de profil\">
                             {% endif %}
+                            <div>
+                                <p class=\"text-lg font-bold text-white\">{{ invitation.groupeJDR.title }}</p>
+                                {% if invitationData.initiatedByUser %}
+                                    <p class=\"text-sm text-white\">
+                                        <strong>{{ invitation.requestedBy.username }}</strong> veut rejoindre votre univers \"<strong>{{ invitation.groupeJDR.title }}</strong>\".
+                                    </p>
+                                    {% if invitation.message %}
+                                        <p class=\"text-xs text-gray-400 mt-2\"><em>\"{{ invitation.message }}\"</em></p>
+                                    {% endif %}
+                                {% elseif invitationData.initiatedByOwner %}
+                                    <p class=\"text-sm text-white\">
+                                        <strong>{{ invitation.groupeJDR.owner.username }}</strong> vous a invité à rejoindre l'univers \"<strong>{{ invitation.groupeJDR.title }}</strong>\".
+                                    </p>
+                                {% endif %}
+                            </div>
                         </div>
                         <div class=\"flex space-x-2 lg:ml-6\">
                             <form action=\"{{ path('respond_invitation', { invitationId: invitation.id }) }}\" method=\"POST\" class=\"inline-block\">
@@ -252,7 +303,7 @@ $context["invitation"], "initiatedBy", [], "any", false, false, false, 19) == "u
                             </form>
                             <form action=\"{{ path('respond_invitation', { invitationId: invitation.id }) }}\" method=\"POST\" class=\"inline-block\">
                                 <input type=\"hidden\" name=\"response\" value=\"refuse\">
-                                <button type=\"submit\" class=\"bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors duration-200\" aria-label=\"Refuser l'invitation pour rejoindre {{ invitation.groupeJDR.title }}\">Refuser</button>
+                                <button type=\"submit\" class=\"bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors durée-200\" aria-label=\"Refuser l'invitation pour rejoindre {{ invitation.groupeJDR.title }}\">Refuser</button>
                             </form>
                         </div>
                     </div>

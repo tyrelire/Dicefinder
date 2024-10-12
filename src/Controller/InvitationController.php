@@ -14,19 +14,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class InvitationController extends AbstractController
 {
-    
     #[Route('/invitations', name: 'app_invitations_index', methods: ['GET'])]
     public function index(InvitationRepository $invitationRepository): Response
     {
         $user = $this->getUser();
-        
+    
         $invitations = $invitationRepository->findBy([
             'user' => $user, 
             'status' => 'pending'
         ]);
-
+    
+        $invitationsData = [];
+        foreach ($invitations as $invitation) {
+            $initiatedByOwner = ($invitation->getInitiatedBy() === 'owner');
+            $initiatedByUser = ($invitation->getInitiatedBy() === 'user');
+    
+            $invitationsData[] = [
+                'invitation' => $invitation,
+                'initiatedByOwner' => $initiatedByOwner,
+                'initiatedByUser' => $initiatedByUser,
+                'requestedBy' => $invitation->getRequestedBy(),
+            ];
+        }
+    
         return $this->render('invitation/index.html.twig', [
-            'invitations' => $invitations,
+            'invitationsData' => $invitationsData,
         ]);
     }
 

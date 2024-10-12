@@ -7,21 +7,34 @@
     <div class="bg-white shadow rounded-lg p-6">
         <h1 class="text-2xl font-bold mb-4 text-gray-800">Mes Invitations</h1>
 
-        {% if invitations|length > 0 %}
+        {% if invitationsData|length > 0 %}
             <div class="space-y-4">
-                {% for invitation in invitations %}
+                {% for invitationData in invitationsData %}
+                    {% set invitation = invitationData.invitation %}
                     <div class="bg-slate-900 p-4 rounded-lg shadow flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
-                        <div>
-                            <p class="text-lg font-bold text-white">{{ invitation.groupeJDR.title }}</p>
-                            
-                            {% if invitation.initiatedBy == 'owner' %}
-                                <p class="text-sm text-white">Invité par le propriétaire à rejoindre ce groupe</p>
-                            {% elseif invitation.initiatedBy == 'user' %}
-                                <p class="text-sm text-white">{{ invitation.user.username }} a demandé à rejoindre ce groupe</p>
-                                {% if invitation.message %}
-                                    <p class="text-xs text-gray-400 mt-2"><em>"{{ invitation.message }}"</em></p>
-                                {% endif %}
+                        <div class="flex items-center">
+                            {% if invitation.groupeJDR.owner.avatar %}
+                                <img src="{{ asset('uploads/avatars/' ~ invitation.groupeJDR.owner.avatar) }}" class="w-10 h-10 rounded-full mr-4" alt="Photo de profil">
+                            {% elseif invitationData.requestedBy.avatar %}
+                                <img src="{{ asset('uploads/avatars/' ~ invitation.requestedBy.avatar) }}" class="w-10 h-10 rounded-full mr-4" alt="Photo de profil">
+                            {% else %}
+                                <img src="{{ asset('uploads/avatars/default-avatar.png') }}" class="w-10 h-10 rounded-full mr-4" alt="Photo de profil">
                             {% endif %}
+                            <div>
+                                <p class="text-lg font-bold text-white">{{ invitation.groupeJDR.title }}</p>
+                                {% if invitationData.initiatedByUser %}
+                                    <p class="text-sm text-white">
+                                        <strong>{{ invitation.requestedBy.username }}</strong> veut rejoindre votre univers "<strong>{{ invitation.groupeJDR.title }}</strong>".
+                                    </p>
+                                    {% if invitation.message %}
+                                        <p class="text-xs text-gray-400 mt-2"><em>"{{ invitation.message }}"</em></p>
+                                    {% endif %}
+                                {% elseif invitationData.initiatedByOwner %}
+                                    <p class="text-sm text-white">
+                                        <strong>{{ invitation.groupeJDR.owner.username }}</strong> vous a invité à rejoindre l'univers "<strong>{{ invitation.groupeJDR.title }}</strong>".
+                                    </p>
+                                {% endif %}
+                            </div>
                         </div>
                         <div class="flex space-x-2 lg:ml-6">
                             <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block">
@@ -30,7 +43,7 @@
                             </form>
                             <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block">
                                 <input type="hidden" name="response" value="refuse">
-                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors duration-200" aria-label="Refuser l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Refuser</button>
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors durée-200" aria-label="Refuser l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Refuser</button>
                             </form>
                         </div>
                     </div>

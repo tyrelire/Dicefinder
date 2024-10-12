@@ -83,6 +83,12 @@ class GroupeJDR
     )]
     private Collection $events;
 
+    /**
+     * @var Collection<int, PlayerMembership>
+     */
+    #[ORM\OneToMany(targetEntity: PlayerMembership::class, mappedBy: 'groupeJDR')]
+    private Collection $playerMemberships;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
@@ -90,6 +96,7 @@ class GroupeJDR
         $this->notificationHistories = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->playerMemberships = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -338,6 +345,36 @@ class GroupeJDR
             // set the owning side to null (unless already changed)
             if ($event->getGroupeJDR() === $this) {
                 $event->setGroupeJDR(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlayerMembership>
+     */
+    public function getPlayerMemberships(): Collection
+    {
+        return $this->playerMemberships;
+    }
+
+    public function addPlayerMembership(PlayerMembership $playerMembership): static
+    {
+        if (!$this->playerMemberships->contains($playerMembership)) {
+            $this->playerMemberships->add($playerMembership);
+            $playerMembership->setGroupeJDR($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayerMembership(PlayerMembership $playerMembership): static
+    {
+        if ($this->playerMemberships->removeElement($playerMembership)) {
+            // set the owning side to null (unless already changed)
+            if ($playerMembership->getGroupeJDR() === $this) {
+                $playerMembership->setGroupeJDR(null);
             }
         }
 

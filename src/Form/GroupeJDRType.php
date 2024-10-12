@@ -55,7 +55,8 @@ class GroupeJDRType extends AbstractType
                 'attr'     => [
                     'class' => 'toggle-checkbox',
                 ],
-            ])
+                'data' => true,
+            ])            
             ->add('events', CollectionType::class, [
                 'entry_type' => EventType::class,
                 'allow_add' => true,

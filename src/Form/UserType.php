@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -64,19 +65,17 @@ class UserType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'class' => 'block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm',
-                    'placeholder' => '+33 1 23 45 67 89', 
+                    'placeholder' => '+33 1 23 45 67 89',
                     'pattern' => '\\+\\d{2} \\d{1} \\d{2} \\d{2} \\d{2} \\d{2}',
                     'title' => 'Format attendu: +33 1 23 45 67 89',
                     'required' => 'required',
                 ],
             ])
-            
             ->add('gender', ChoiceType::class, [
                 'label' => 'Genre',
                 'choices' => [
                     'Homme' => 'Homme',
                     'Femme' => 'Femme',
-                    'Autre' => 'Autre',
                 ],
                 'required' => false,
                 'expanded' => true,
@@ -84,14 +83,6 @@ class UserType extends AbstractType
                 'placeholder' => false,
                 'attr' => [
                     'class' => 'block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
-                ],
-            ])
-            ->add('bio', TextareaType::class, [
-                'label' => 'Biographie',
-                'required' => false,
-                'attr' => [
-                    'class' => 'block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
-                    'placeholder' => 'Parlez un peu de vous',
                 ],
             ]);
     }

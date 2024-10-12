@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Entity\GroupeJDR;
 use App\Entity\Invitation;
+use App\Entity\PlayerMembership;
 use App\Form\GroupeJDRType;
 use App\Repository\UserRepository;
 use App\Entity\NotificationHistory;
 use App\Repository\CategoryRepository;
 use App\Repository\GroupeJDRRepository;
 use App\Repository\InvitationRepository;
+use App\Repository\PlayerMembershipRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -143,6 +145,7 @@ final class GroupeJDRController extends AbstractController
         EntityManagerInterface $entityManager,
         UserRepository $userRepository,
         InvitationRepository $invitationRepository,
+        PlayerMembershipRepository $playerMembershipRepository,
         SluggerInterface $slugger
     ): Response {
         if ($groupeJDR->getOwner() !== $this->getUser()) {
@@ -182,6 +185,27 @@ final class GroupeJDRController extends AbstractController
             foreach ($groupeJDR->getEvents() as $event) {
                 if (!$event->getGroupeJDR()) {
                     $event->setGroupeJDR($groupeJDR);
+                }
+            }
+
+            // Ajoute un nouveau PlayerMembership
+            if ($addedPlayers) {
+                $playerIds = json_decode($addedPlayers, true);
+                foreach ($playerIds as $userId) {
+                    $user = $userRepository->find($userId);
+                    if ($user) {
+                        $existingMembership = $playerMembershipRepository->findOneBy([
+                            'player' => $user,
+                            'groupeJDR' => $groupeJDR
+                        ]);
+                        if (!$existingMembership) {
+                            $membership = new PlayerMembership();
+                            $membership->setPlayer($user);
+                            $membership->setGroupeJDR($groupeJDR);
+                            $membership->setJoinedAt(new \DateTime());
+                            $entityManager->persist($membership);
+                        }
+                    }
                 }
             }
 
