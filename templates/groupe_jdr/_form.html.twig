@@ -126,67 +126,89 @@
         </div>
     </div>
 
-    {% if groupe_j_d_r.id is not null %}
-        <div class="p-4 sm:p-6">
-            <h2 class="text-lg font-semibold mb-4">Gestion des membres</h2>
-            
-            <div class="mb-4">
-                <h4 class="text-gray-700 font-medium">Membres actuels de l'Univers</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="existing-members-container">
-                    {% for player in groupe_j_d_r.players %}
-                        <div class="relative bg-gray-800 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center" data-user-id="{{ player.id }}">
-                            <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" onclick="removePlayer('{{ player.id }}')">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                            {% if player.avatar %}
-                                <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('uploads/avatars/' ~ player.avatar) }}">
-                            {% else %}
-                                <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('images/default-avatar.png') }}">
-                            {% endif %}
-                            <div class="flex-1 w-full">
-                                <p class="text-white font-semibold truncate w-full">{{ player.username }}</p>
-                            </div>
+        {% if groupe_j_d_r.id is not null %}
+            <div class="p-4 sm:p-6">
+                <h2 class="text-lg font-semibold mb-4">Gestion des membres</h2>
+
+                {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %}
+                    {% if groupe_j_d_r.maxPlayer >= 15 %}
+                        <div class="mb-4 p-4 bg-red-100 text-red-700 border border-red-400 rounded">
+                            <strong>Attention!</strong> Vous ne pouvez plus inviter de joueurs, car l'univers est à sa capacité maximale de 15 joueurs.
                         </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="mb-4">
-                <h4 class="text-gray-700 font-medium">Invitations en attente</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="invited-members-container">
-                    {% for invitation in groupe_j_d_r.invitations %}
-                        {% if invitation.status == 'pending' and invitation.user != groupe_j_d_r.owner %}
-                            <div class="relative bg-yellow-200 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center">
-                                {% if invitation.user.avatar %}
-                                    <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('uploads/avatars/' ~ invitation.user.avatar) }}">
-                                {% else %}
-                                    <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('images/default-avatar.png') }}">
-                                {% endif %}
-                                <div class="flex-1 w-full">
-                                    <p class="text-yellow-800 font-semibold truncate w-full">{{ invitation.user.username }}</p>
-                                    <p class="text-sm text-yellow-600 break-words w-full">En attente de confirmation</p>
-                                </div>
-                                <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" data-invitation-id="{{ invitation.id }}">
+                    {% else %}
+                        <div class="mb-4 p-4 bg-yellow-100 text-yellow-700 border border-yellow-400 rounded">
+                            <strong>Note:</strong> Votre univers est actuellement plein. Augmentez la capacité de votre univers pour inviter d'autres joueurs.
+                        </div>
+                    {% endif %}
+                {% endif %}
+                
+                <div class="mb-4">
+                    <h4 class="text-gray-700 font-medium">Membres actuels de l'Univers</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="existing-members-container">
+                        {% for player in groupe_j_d_r.players %}
+                            <div class="relative bg-gray-800 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center" data-user-id="{{ player.id }}">
+                                <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" onclick="removePlayer('{{ player.id }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </button>
+                                {% if player.avatar %}
+                                    <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('uploads/avatars/' ~ player.avatar) }}">
+                                {% else %}
+                                    <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('images/default-avatar.png') }}">
+                                {% endif %}
+                                <div class="flex-1 w-full">
+                                    <p class="text-white font-semibold truncate w-full">{{ player.username }}</p>
+                                </div>
                             </div>
-                        {% endif %}
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {% if groupe_j_d_r.players|length < groupe_j_d_r.maxPlayer %}
+                    <div class="mb-4">
+                        <h4 class="text-gray-700 font-medium">Invitations en attente</h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="invited-members-container">
+                            {% for invitation in groupe_j_d_r.invitations %}
+                                {% if invitation.status == 'pending' and invitation.user != groupe_j_d_r.owner %}
+                                    <div class="relative bg-yellow-200 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center">
+                                        {% if invitation.user.avatar %}
+                                            <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('uploads/avatars/' ~ invitation.user.avatar) }}">
+                                        {% else %}
+                                            <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('images/default-avatar.png') }}">
+                                        {% endif %}
+                                        <div class="flex-1 w-full">
+                                            <p class="text-yellow-800 font-semibold truncate w-full">{{ invitation.user.username }}</p>
+                                            <p class="text-sm text-yellow-600 break-words w-full">En attente de confirmation</p>
+                                        </div>
+                                        <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" data-invitation-id="{{ invitation.id }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if groupe_j_d_r.players|length < groupe_j_d_r.maxPlayer %}
+                    <div class="mb-4">
+                        <input type="text" id="pseudo-input" class="mt-1 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-white bg-gray-800 sm:text-sm" placeholder="Entrer le pseudo">
+                        <button type="button" id="add-member-btn" class="bg-green-500 text-white px-4 py-2 rounded-md shadow mt-2">Ajouter</button>
+                    </div>
+                    <div id="error-message" class="text-red-500 hidden">Utilisateur non trouvé ou déjà ajouté à l'Univers</div>
+                {% endif %}
+
+                <div class="mb-4" id="added-members-section" style="display: none;">
+                    <h4 class="text-gray-700 font-medium">Membres ajoutés</h4>
+                    <ul class="list-disc pl-5" id="added-members-list"></ul>
                 </div>
             </div>
-            <div class="mb-4">
-                <input type="text" id="pseudo-input" class="mt-1 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-white bg-gray-800 sm:text-sm" placeholder="Entrer le pseudo">
-                <button type="button" id="add-member-btn" class="bg-green-500 text-white px-4 py-2 rounded-md shadow mt-2">Ajouter</button>
-            </div>
-            <div id="error-message" class="text-red-500 hidden">Utilisateur non trouvé ou déjà ajouté à l'Univers</div>
-            <div class="mb-4" id="added-members-section" style="display: none;">
-                <h4 class="text-gray-700 font-medium">Membres ajoutés</h4>
-                <ul class="list-disc pl-5" id="added-members-list"></ul>
-            </div>
         {% endif %}
+
+
         <div class="flex justify-end mt-6">
             <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 {{ button_label|default('Save') }}

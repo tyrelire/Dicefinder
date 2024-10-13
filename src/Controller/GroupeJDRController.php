@@ -264,6 +264,29 @@ final class GroupeJDRController extends AbstractController
         return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[Route('/{id}/leave', name: 'leave_jdr', methods: ['POST'])]
+    public function leave(GroupeJDR $groupeJDR, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+
+        if (!$user) {
+            $this->addFlash('error', 'Vous devez être connecté pour quitter un univers.');
+            return $this->redirectToRoute('app_groupe_j_d_r_index');
+        }
+
+        if ($groupeJDR->getPlayers()->contains($user)) {
+            $groupeJDR->removePlayer($user);
+            $entityManager->persist($groupeJDR);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Vous avez quitté cet univers.');
+        } else {
+            $this->addFlash('error', 'Vous ne faites pas partie de cet univers.');
+        }
+
+        return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJDR->getId()]);
+    }
+
     private function uploadImage($file, SluggerInterface $slugger): string
     {
         $maxSize = 2 * 1024 * 1024;
@@ -293,4 +316,5 @@ final class GroupeJDRController extends AbstractController
             unlink($filePath);
         }
     }
+    
 }

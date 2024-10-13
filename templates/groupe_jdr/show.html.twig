@@ -14,6 +14,7 @@
         <div class="flex flex-col space-y-8 lg:space-y-0 lg:flex-row items-start lg:items-start justify-between lg:space-x-10">
             <div class="w-full lg:w-1/2 space-y-8 relative">
                 <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" alt="{{ groupe_j_d_r.title }}" class="rounded-lg shadow-lg w-full h-auto lg:h-[500px] object-cover">
+                
                 <div class="absolute top-2 right-2">
                     <span class="text-xs sm:text-sm font-bold px-2 py-1 rounded 
                         {% if groupe_j_d_r.status == 'preparation' %} bg-yellow-500
@@ -44,6 +45,21 @@
                         {% endif %}
                     </span>
                 </div>
+
+                {% if is_member and not is_owner %}
+                    <form action="{{ path('leave_jdr', {'id': groupe_j_d_r.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir quitter cet univers ?');" class="mt-4">
+                        <input type="hidden" name="_token" value="{{ csrf_token('leave' ~ groupe_j_d_r.id) }}">
+                        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded w-full hover:bg-red-700 transition-all duration-300">
+                            Quitter l'univers
+                        </button>
+                    </form>
+                {% endif %}
+
+                                {% if app.user and app.user.id == groupe_j_d_r.owner.id %}
+                    <a href="{{ path('app_groupe_j_d_r_edit', { id: groupe_j_d_r.id }) }}" class="w-full bg-green-600 text-white font-bold py-3 rounded mt-4 hover:bg-green-700 block text-center">
+                        Editer mon Univers
+                    </a>
+                {% endif %}
             </div>
 
             <div class="w-full lg:w-1/2 space-y-6">
@@ -109,19 +125,12 @@
                     </div>
                 </div>
 
-
                 <div class="bg-gray-800 p-6 rounded-lg space-y-4">
                     <h3 class="font-semibold">Recrutement</h3>
                     <p class="text-lg font-semibold {{ groupe_j_d_r.recrutement ? 'text-green-500' : 'text-red-500' }}">
                         {{ groupe_j_d_r.recrutement ? 'Ouvert' : 'Fermé' }}
                     </p>
                 </div>
-
-                {% if app.user and app.user.id == groupe_j_d_r.owner.id %}
-                    <a href="{{ path('app_groupe_j_d_r_edit', { id: groupe_j_d_r.id }) }}" class="w-full bg-green-600 text-white font-bold py-3 rounded mt-4 hover:bg-green-700 block text-center">
-                        Editer mon Univers
-                    </a>
-                {% endif %}
             </div>
         </div>
 
@@ -214,44 +223,46 @@
         </div>
     </div>
     <div class="flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4">
-        <div class="flex justify-center fixed bottom-0 left-0 right-0 bg-gray-900 p-4">
-            {% if app.user is null %}
-                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
-                    Vous devez avoir un compte et être connecté pour rejoindre un univers.
-                </button>
-            {% elseif is_owner %} 
-                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
-                    Vous êtes le MJ
-                </button>
-            {% elseif is_member %}
-                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
-                    Vous êtes déjà membre
-                </button>
-            {% elseif request_in_progress %}
-                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
-                    En attente d'acceptation de la demande
-                </button>
-            {% elseif is_closed %}
-                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
-                    Ce groupe est {{ groupe_j_d_r.status }} et ne recrute plus
-                </button>
-            {% elseif 'ROLE_JOUEUR' not in app.user.getRoles() %}
-                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
-                    Vous devez avoir le grade de joueur pour rejoindre ce JDR.
-                </button>
-            {% elseif groupe_j_d_r.recrutement == false %}
-                <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
-                    Le recrutement est fermé pour cet Univers
-                </button>
-            {% else %}
-                <button id="participate-button" class="w-full sm:w-[80%] md:w-[60%] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-2xl hover:bg-blue-800 transition-all duration-300 ease-in-out transform hover:scale-105">
-                    <svg class="inline-block w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    Je Participe
-                </button>
-            {% endif %}
-        </div>
+        {% if app.user is null %}
+            <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                Vous devez avoir un compte et être connecté pour rejoindre un univers.
+            </button>
+        {% elseif is_owner %}
+            <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                Vous êtes le MJ
+            </button>
+        {% elseif is_member %}
+            <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                Vous êtes déjà membre
+            </button>
+        {% elseif request_in_progress %}
+            <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                En attente d'acceptation de la demande
+            </button>
+        {% elseif is_closed %}
+            <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                Ce groupe est {{ groupe_j_d_r.status }} et ne recrute plus
+            </button>
+        {% elseif 'ROLE_JOUEUR' not in app.user.getRoles() %}
+            <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                Vous devez avoir le grade de joueur pour rejoindre ce JDR.
+            </button>
+        {% elseif groupe_j_d_r.recrutement == false %}
+            <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                Le recrutement est fermé pour cet Univers
+            </button>
+        {% elseif groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %}
+            <button class="w-full sm:w-[80%] md:w-[60%] bg-gray-500 text-white font-bold py-3 rounded-lg shadow-lg cursor-not-allowed">
+                Cet univers est complet. Pas de places disponibles.
+            </button>
+        {% else %}
+            <button id="participate-button" class="w-full sm:w-[80%] md:w-[60%] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-2xl hover:bg-blue-800 transition-all duration-300 ease-in-out transform hover:scale-105">
+                <svg class="inline-block w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Je Participe
+            </button>
+        {% endif %}
     </div>
     <div id="request-join-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center transition-opacity duration-300 ease-in-out">
         <div class="bg-white p-6 rounded-lg space-y-4 shadow-2xl max-w-md w-full relative">

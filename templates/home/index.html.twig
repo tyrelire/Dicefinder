@@ -147,11 +147,13 @@
         </div>
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {% for groupe in nouveaux_groupes|reverse %}
-                <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}" class="block bg-gray-500 rounded-lg backdrop-blur-2xl bg-opacity-30 border border-gray-100 shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:bg-opacity-20"  style="will-change: transform, opacity;">
+                <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}" 
+                class="block bg-gray-500 rounded-lg bg-opacity-30 border border-gray-100 shadow-md p-6 pb-5 text-white transition-all duration-300 hover:translate-y-[-10px] hover:shadow-2xl hover:bg-opacity-20"  
+                style="will-change: transform;">
                     <img src="{{ asset('uploads/images-jdr/' ~ groupe.picture) }}" 
                         alt="{{ groupe.title }} image" 
                         class="rounded-lg mb-4 w-full h-[20rem] object-cover 
-                        {% if groupe.players|length >= groupe.maxPlayer %} blur {% endif %}">
+                        {% if groupe.players|length >= groupe.maxPlayer %} blur-sm {% endif %}">
                     <div class="flex justify-between items-center">
                         <p class="font-semibold hover:underline truncate max-w-[90%]">{{ groupe.title }}</p>
                     </div>
@@ -173,7 +175,7 @@
                                 <p class="text-lg font-bold text-red-500">Complet</p>
                             {% else %}
                                 <p class="text-lg font-bold text-white">{{ groupe.players|length }} / {{ groupe.maxPlayer }}</p>
-                        {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                 </a>
@@ -190,11 +192,13 @@
 
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {% for groupe in groupes_recrutement_ouvert|slice(0, 4) %}
-                <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}" class="block bg-gray-500 rounded-lg backdrop-blur-2xl bg-opacity-30 border border-gray-100 shadow-md p-6 pb-5 text-white transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:bg-opacity-20"  style="will-change: transform, opacity;">
+                <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}" 
+                class="block bg-gray-500 rounded-lg bg-opacity-30 border border-gray-100 shadow-md p-6 pb-5 text-white transition-all duration-300 hover:translate-y-[-10px] hover:shadow-2xl hover:bg-opacity-20"  
+                style="will-change: transform;">
                     <img src="{{ asset('uploads/images-jdr/' ~ groupe.picture) }}" 
                         alt="{{ groupe.title }} image" 
                         class="rounded-lg mb-4 w-full h-[20rem] object-cover 
-                        {% if groupe.players|length >= groupe.maxPlayer %} blur {% endif %}">
+                        {% if groupe.players|length >= groupe.maxPlayer %} blur-sm {% endif %}">
                     <div class="flex justify-between items-center">
                         <p class="font-semibold hover:underline truncate max-w-[90%]">{{ groupe.title }}</p>
                     </div>
@@ -224,7 +228,6 @@
                 <p class="text-gray-400">Aucune partie ne recrute actuellement.</p>
             {% endfor %}
         </div>
-
     </div>
     <div class="container mx-auto flex flex-col mt-12 z-30 relative">
         <div class="flex justify-between items-center">
@@ -235,15 +238,15 @@
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {% for groupe_j_d_r in groupes|slice(0, 8) %}
                 <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}" 
-                class="block bg-gray-500 rounded-lg backdrop-blur-2xl bg-opacity-30 border border-gray-100 shadow-md p-6 pb-5 text-white 
-                        transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:bg-opacity-20" 
-                style="will-change: transform, opacity;">
+                class="block bg-gray-500 rounded-lg bg-opacity-30 border border-gray-100 shadow-md p-6 pb-5 text-white 
+                transition-all duration-300 hover:translate-y-[-10px] hover:shadow-2xl hover:bg-opacity-20" 
+                style="will-change: transform;">
                     <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" 
                         alt="{{ groupe_j_d_r.title }} image" 
                         class="rounded-lg mb-4 w-full h-[20rem] object-cover 
-                        {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %} blur {% endif %}">
+                        {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %} blur-sm {% endif %}">
                     <div class="flex justify-between items-center mb-2">
-                        <p class="font-semibold hover:underline truncate max-w-[90%]" style="will-change: auto;">{{ groupe_j_d_r.title }}</p>
+                        <p class="font-semibold hover:underline truncate max-w-[90%]">{{ groupe_j_d_r.title }}</p>
                     </div>
                     <div class="flex justify-between items-center mt-2">
                         <div class="flex items-center">
@@ -271,8 +274,6 @@
                 <p class="text-center text-gray-700 text-lg w-full">Aucun univers disponible.</p>
             {% endfor %}
         </div>
-
-
         <div class="text-center mt-8 flex justify-center">
             <a href="{{ path('app_groupe_j_d_r_index') }}" class="bg-blue-600 text-white px-4 py-2 rounded transition-colors duration-300 hover:bg-blue-500">Afficher plus</a>
         </div>
@@ -284,9 +285,15 @@
             <p class="text-gray-300 mb-6 text-sm sm:text-base">
                 Envie de lancer ta propre aventure ? Avec DiceFinder, crée ta partie personnalisée en quelques clics. Définis ton univers, sélectionne tes règles, et invite des joueurs passionnés à rejoindre ton monde. Que tu sois un maître de jeu chevronné ou débutant, tout est pensé pour faciliter la création d'une expérience immersive.
             </p>
-            <a href="{{ path('app_register') }}" class="inline-block bg-indigo-600 text-white py-2 px-4 sm:px-6 rounded-full font-semibold hover:bg-indigo-700 transition-colors whitespace-nowrap">
-                Rejoindre La Communauté
-            </a>
+            {% if app.user %}
+                <a href="{{ path('app_groupe_j_d_r_index') }}" class="inline-block bg-indigo-600 text-white py-2 px-4 sm:px-6 rounded-full font-semibold hover:bg-indigo-700 transition-colors whitespace-nowrap">
+                    Commencer
+                </a>
+            {% else %}
+                <a href="{{ path('app_register') }}" class="inline-block bg-indigo-600 text-white py-2 px-4 sm:px-6 rounded-full font-semibold hover:bg-indigo-700 transition-colors whitespace-nowrap">
+                    Rejoindre La Communauté
+                </a>
+            {% endif %}
         </div>
     </div>
 

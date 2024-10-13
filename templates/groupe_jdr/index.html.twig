@@ -105,18 +105,17 @@
         {% endif %}
         <input type="hidden" name="sort" value="{{ sort }}">
         <input type="hidden" name="recruitment" value="{{ recruitment ? '1' : '0' }}">
-
     </form>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {% for groupe_j_d_r in groupe_j_d_rs %}
-            <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}" 
-            class="block bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border border-gray-500 rounded-lg shadow-lg p-6 pb-5 text-white relative transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:bg-opacity-20"
-            style="will-change: transform, opacity;">
+            <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}"
+                class="block bg-white bg-opacity-10 border border-gray-500 rounded-lg shadow-lg p-6 pb-5 text-white relative transition-all duration-300 hover:translate-y-[-10px] hover:shadow-2xl hover:bg-opacity-20"
+                style="will-change: transform;">
                 <div class="relative">
                     <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" 
                         alt="{{ groupe_j_d_r.title }} image" 
-                        class="rounded-lg mb-4 w-full h-[20rem] object-cover {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %} blur {% endif %}">
+                        class="rounded-lg mb-4 w-full h-[20rem] object-cover {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %} blur-sm {% endif %}">
                     <div class="absolute top-2 right-2">
                         <span class="text-sm font-bold px-2 py-1 rounded 
                             {% if groupe_j_d_r.status == 'preparation' %} bg-yellow-500
@@ -173,6 +172,7 @@
                     </div>
                 </div>
             </a>
+
         {% else %}
             <p class="text-gray-700 text-lg">Aucun résultat trouvé</p>
         {% endfor %}
