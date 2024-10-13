@@ -65,10 +65,6 @@ class UserType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'class' => 'block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm',
-                    'placeholder' => '+33 1 23 45 67 89',
-                    'pattern' => '\\+\\d{2} \\d{1} \\d{2} \\d{2} \\d{2} \\d{2}',
-                    'title' => 'Format attendu: +33 1 23 45 67 89',
-                    'required' => 'required',
                 ],
             ])
             ->add('gender', ChoiceType::class, [

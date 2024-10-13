@@ -192,9 +192,11 @@
                     <img id="avatarPreview" class="w-40 h-40 rounded-full ring-4 ring-indigo-300 object-cover transition-transform duration-300 hover:scale-110"
                         src="{{ app.user.avatar ? asset('uploads/avatars/' ~ app.user.avatar) : asset('images/default-avatar.png') }}"
                         alt="Photo de profil">
-                    <button type="submit" name="delete_avatar" value="1" class="text-red-600 text-xs mt-2 underline hover:text-red-800">
-                        Supprimer la photo
-                    </button>
+                    {% if app.user.avatar %}
+                        <button type="submit" name="delete_avatar" value="1" class="text-red-600 text-xs mt-2 underline hover:text-red-800">
+                            Supprimer la photo
+                        </button>
+                    {% endif %}
                 </div>
                 <div class="ml-6">
                     {{ form_widget(avatarForm.avatar, {'attr': {'class': 'hidden', 'onchange': 'previewAvatar(this)'}}) }}
@@ -245,9 +247,9 @@
     }
 
     function validateTwitterPseudo(input) {
-        if (input.value !== "") {
+        if (input.value.trim() !== "") {
             const regex = /^@?(\w){1,15}$/;
-            if (!regex.test(input.value)) {
+            if (!regex.test(input.value.trim())) {
                 input.setCustomValidity('Veuillez entrer un pseudo Twitter valide, exemple: @username');
             } else {
                 input.setCustomValidity('');
@@ -282,7 +284,6 @@
             input.setCustomValidity('');
         }
 }
-
 
     function previewAvatar(input) {
         var preview = document.getElementById('avatarPreview');

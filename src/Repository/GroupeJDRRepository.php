@@ -16,43 +16,48 @@ class GroupeJDRRepository extends ServiceEntityRepository
         parent::__construct($registry, GroupeJDR::class);
     }
 
-    public function findByFilters(?string $searchTerm, array $categories, ?string $status, ?bool $recrutement): array
+    public function findByFilters(
+        ?string $searchTerm, 
+        array $categories, 
+        ?string $sort, 
+        ?bool $recruitment, 
+        ?string $mjSearch
+    ): array
     {
         $qb = $this->createQueryBuilder('g');
     
-        // Filtre par terme de recherche
         if ($searchTerm) {
             $qb->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm')
-               ->setParameter('searchTerm', '%' . $searchTerm . '%');
+                ->setParameter('searchTerm', '%' . $searchTerm . '%');
         }
     
-        // Filtre par catégories multiples
+        if ($mjSearch) {
+            $qb->join('g.owner', 'o')
+                ->andWhere('o.username LIKE :mjSearch')
+                ->setParameter('mjSearch', '%' . $mjSearch . '%');
+        }
+        if ($recruitment !== null) {
+            $qb->andWhere('g.recrutement = :recruitment')
+                ->setParameter('recruitment', $recruitment);
+        }
         if (count($categories) > 0) {
-            $qb->join('g.categories', 'c')  // Joins the categories relation
-               ->andWhere('c.id IN (:categories)')
-               ->setParameter('categories', array_map(function($category) {
-                   return $category->getId();  // Extracts the category IDs
-               }, $categories));
+            foreach ($categories as $index => $category) {
+                $alias = 'c' . $index;
+                $qb->join('g.categories', $alias)
+                    ->andWhere($alias . '.id = :category' . $index)
+                    ->setParameter('category' . $index, $category->getId());
+            }
         }
     
-        // Filtre par statut
-        if ($status) {
-            $qb->andWhere('g.status = :status')
-               ->setParameter('status', $status);
+        // Gestion du tri
+        if ($sort === 'newest') {
+            $qb->orderBy('g.created_at', 'DESC');
+        } elseif ($sort === 'oldest') {
+            $qb->orderBy('g.created_at', 'ASC');
         }
-    
-        // Filtre par recrutement
-        if (null !== $recrutement) {
-            $qb->andWhere('g.recrutement = :recrutement')
-               ->setParameter('recrutement', $recrutement);
-        }
-    
-        // Tri par date de création
-        $qb->orderBy('g.created_at', 'DESC');
     
         return $qb->getQuery()->getResult();
     }
-    
 
     //    /**
     //     * @return GroupeJDR[] Returns an array of GroupeJDR objects

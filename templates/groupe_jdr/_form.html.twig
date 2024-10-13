@@ -132,21 +132,21 @@
             
             <div class="mb-4">
                 <h4 class="text-gray-700 font-medium">Membres actuels de l'Univers</h4>
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5" id="existing-members-container">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="existing-members-container">
                     {% for player in groupe_j_d_r.players %}
-                        <div class="relative bg-gray-800 p-4 rounded-lg shadow flex items-center space-x-4" data-user-id="{{ player.id }}">
+                        <div class="relative bg-gray-800 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center" data-user-id="{{ player.id }}">
                             <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" onclick="removePlayer('{{ player.id }}')">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                             {% if player.avatar %}
-                                <img class="w-12 h-12 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('uploads/avatars/' ~ player.avatar) }}">
+                                <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('uploads/avatars/' ~ player.avatar) }}">
                             {% else %}
-                                <img class="w-12 h-12 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('images/default-avatar.png') }}">
+                                <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('images/default-avatar.png') }}">
                             {% endif %}
-                            <div class="flex-1">
-                                <p class="text-white font-semibold">{{ player.username }}</p>
+                            <div class="flex-1 w-full">
+                                <p class="text-white font-semibold truncate w-full">{{ player.username }}</p>
                             </div>
                         </div>
                     {% endfor %}
@@ -154,20 +154,19 @@
             </div>
             <div class="mb-4">
                 <h4 class="text-gray-700 font-medium">Invitations en attente</h4>
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5" id="invited-members-container">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="invited-members-container">
                     {% for invitation in groupe_j_d_r.invitations %}
                         {% if invitation.status == 'pending' and invitation.user != groupe_j_d_r.owner %}
-                            <div class="relative bg-yellow-200 p-4 rounded-lg shadow flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:items-center invitation-item">
+                            <div class="relative bg-yellow-200 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center">
                                 {% if invitation.user.avatar %}
-                                    <img class="w-12 h-12 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('uploads/avatars/' ~ invitation.user.avatar) }}">
+                                    <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('uploads/avatars/' ~ invitation.user.avatar) }}">
                                 {% else %}
-                                    <img class="w-12 h-12 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('images/default-avatar.png') }}">
+                                    <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('images/default-avatar.png') }}">
                                 {% endif %}
-                                <div class="flex-1">
-                                    <p class="text-yellow-800 font-semibold">{{ invitation.user.username }}</p>
-                                    <p class="text-sm text-yellow-600 break-words">En attente de confirmation</p>
+                                <div class="flex-1 w-full">
+                                    <p class="text-yellow-800 font-semibold truncate w-full">{{ invitation.user.username }}</p>
+                                    <p class="text-sm text-yellow-600 break-words w-full">En attente de confirmation</p>
                                 </div>
-
                                 <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" data-invitation-id="{{ invitation.id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

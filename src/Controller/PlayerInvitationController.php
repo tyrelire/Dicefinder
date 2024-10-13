@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\GroupeJDR;
 use App\Entity\Invitation;
 use Psr\Log\LoggerInterface;
+use App\Entity\PlayerMembership;
 use App\Repository\UserRepository;
 use App\Entity\NotificationHistory;
 use App\Repository\GroupeJDRRepository;
 use App\Repository\InvitationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\PlayerMembershipRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -86,15 +88,26 @@ class PlayerInvitationController extends AbstractController
     ): JsonResponse {
         $user = $userRepository->find($userId);
         $groupeJdr = $groupeJdrRepository->find($jdrId);
-    
+        
         if (!$user || !$groupeJdr) {
             return new JsonResponse(['success' => false, 'message' => 'Utilisateur ou groupe non trouvé'], 404);
         }
-    
+        
         if ($groupeJdr->getPlayers()->contains($user)) {
             $groupeJdr->removePlayer($user);
-            $entityManager->flush();
     
+            $playerMembershipRepository = $entityManager->getRepository(PlayerMembership::class);
+            $membership = $playerMembershipRepository->findOneBy([
+                'player' => $user,
+                'groupeJDR' => $groupeJdr
+            ]);
+            
+            if ($membership) {
+                $entityManager->remove($membership);
+            }
+
+            $entityManager->flush();
+
             return new JsonResponse([
                 'success' => true, 
                 'redirect' => $this->generateUrl('app_groupe_j_d_r_edit', ['id' => $groupeJdr->getId()])
@@ -103,7 +116,6 @@ class PlayerInvitationController extends AbstractController
 
         return new JsonResponse(['success' => false, 'message' => 'Utilisateur non trouvé dans ce groupe'], 404);
     }
-    
 
     #[Route('/api/request_join/{groupeId}', name: 'request_join', methods: ['POST'])]
     public function requestJoin(
@@ -187,37 +199,53 @@ class PlayerInvitationController extends AbstractController
     public function respondInvitation(
         int $invitationId,
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        PlayerMembershipRepository $playerMembershipRepository
     ): Response {
         $currentUser = $this->getUser();
         if (!$currentUser) {
             $this->addFlash('error', 'Vous devez être connecté pour faire cette action.');
             return $this->redirectToRoute('app_login');
         }
-
+    
         $invitation = $entityManager->getRepository(Invitation::class)->find($invitationId);
         if (!$invitation || $invitation->getUser() !== $currentUser) {
             $this->addFlash('error', 'Invitation non trouvée ou accès non autorisé.');
             return $this->redirectToRoute('app_groupe_j_d_r_index');
         }
-
+    
         $response = $request->request->get('response');
         $groupeJdr = $invitation->getGroupeJDR();
-
+    
         $notificationHistory = new NotificationHistory();
         $notificationHistory->setUser($invitation->getRequestedBy());
         $notificationHistory->setGroupeJDR($groupeJdr);
         $notificationHistory->setCreatedAt(new \DateTime());
-
+    
         if ($response === 'accept') {
             if ($invitation->getInitiatedBy() === 'user') {
                 $invitedUser = $invitation->getRequestedBy();
             } else {
                 $invitedUser = $invitation->getUser();
             }
-
+    
             if (!$groupeJdr->getPlayers()->contains($invitedUser)) {
                 $groupeJdr->addPlayer($invitedUser);
+                
+                $existingMembership = $playerMembershipRepository->findOneBy([
+                    'player' => $invitedUser,
+                    'groupeJDR' => $groupeJdr
+                ]);
+                
+                if (!$existingMembership) {
+                    $membership = new PlayerMembership();
+                    $membership->setPlayer($invitedUser);
+                    $membership->setGroupeJDR($groupeJdr);
+                    $membership->setJoinedAt(new \DateTime());
+    
+                    $entityManager->persist($membership);
+                }
+    
                 $invitation->setStatus('accepted');
                 $this->addFlash('success', 'L\'utilisateur a été ajouté avec succès au groupe.');
                 $notificationHistory->setStatus('accepted');
@@ -233,11 +261,11 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('danger', 'Réponse invalide.');
             return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJdr->getId()]);
         }
-
+    
         $entityManager->persist($notificationHistory);
         $entityManager->remove($invitation);
         $entityManager->flush();
-
+    
         return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJdr->getId()]);
     }
 

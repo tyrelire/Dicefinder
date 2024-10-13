@@ -38,7 +38,7 @@ class ProfileController extends AbstractController
                 'joined_at' => $membership->getJoinedAt(),
             ];
         }
-
+        
         return $this->render('profile/show.html.twig', [
             'ownedJDRs' => $ownedJDRs,
             'joinedJDRs' => $joinedJDRs,

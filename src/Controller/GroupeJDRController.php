@@ -28,21 +28,58 @@ final class GroupeJDRController extends AbstractController
     #[Route('/', name: 'app_groupe_j_d_r_index', methods: ['GET'])]
     public function index(Request $request, GroupeJDRRepository $groupeJDRRepository, CategoryRepository $categoryRepository): Response
     {
-        $searchTerm = $request->query->get('search');
-        $status = $request->query->get('status');
-        $recrutement = $request->query->get('recrutement');
-        $categoriesIds = $request->query->all('categories');
-        $categories = $categoryRepository->findBy(['id' => $categoriesIds]);
+        $searchTerm = $request->query->get('search', '');
+        $selectedCategories = $request->query->all('category');
+        
+        $sort = $request->query->get('sort');
+        if (empty($sort) || $sort === 'undefined') {
+            $sort = 'newest';
+        }
+        
+        $recruitment = $request->query->getBoolean('recruitment', false);
 
-        $jdrs = $groupeJDRRepository->findByFilters($searchTerm, $categories, $status, $recrutement);
+        if (!in_array($sort, ['newest', 'oldest'])) {
+            $sort = 'newest';
+        }
+
+        $categories = $categoryRepository->findAll();
+
+        $queryBuilder = $groupeJDRRepository->createQueryBuilder('g')
+            ->leftJoin('g.owner', 'o');
+
+        if ($searchTerm) {
+            $queryBuilder
+                ->andWhere('g.title LIKE :searchTerm OR o.username LIKE :searchTerm')
+                ->setParameter('searchTerm', '%' . $searchTerm . '%');
+        }
+
+        if (!empty($selectedCategories)) {
+            foreach ($selectedCategories as $key => $categoryId) {
+                $queryBuilder
+                    ->andWhere(':categoryId' . $key . ' MEMBER OF g.categories')
+                    ->setParameter('categoryId' . $key, $categoryId);
+            }
+        }
+
+        if ($sort === 'newest') {
+            $queryBuilder->orderBy('g.created_at', 'DESC');
+        } else {
+            $queryBuilder->orderBy('g.created_at', 'ASC');
+        }
+
+        if ($recruitment) {
+            $queryBuilder->andWhere('g.recrutement = true');
+        }
+
+        $groupeJDRs = $queryBuilder->getQuery()->getResult();
 
         return $this->render('groupe_jdr/index.html.twig', [
-            'groupe_j_d_rs' => $jdrs,
+            'groupe_j_d_rs' => $groupeJDRs,
             'searchTerm' => $searchTerm,
-            'categories' => $categoryRepository->findAll(),
-            'selectedCategories' => $categoriesIds,
-            'selectedStatus' => $status,
-            'selectedRecrutement' => $recrutement,
+            'selectedCategories' => $selectedCategories,
+            'sort' => $sort,
+            'recruitment' => $recruitment,
+            'categories' => $categories,
         ]);
     }
 
@@ -145,17 +182,16 @@ final class GroupeJDRController extends AbstractController
         EntityManagerInterface $entityManager,
         UserRepository $userRepository,
         InvitationRepository $invitationRepository,
-        PlayerMembershipRepository $playerMembershipRepository,
         SluggerInterface $slugger
     ): Response {
         if ($groupeJDR->getOwner() !== $this->getUser()) {
             $this->addFlash('error', 'Vous n\'êtes pas autorisé à modifier cette Univers.');
             return $this->redirectToRoute('app_groupe_j_d_r_index');
         }
-
+    
         $form = $this->createForm(GroupeJDRType::class, $groupeJDR, ['is_edit' => true]);
         $form->handleRequest($request);
-
+    
         $addedPlayers = $request->request->get('added_players');
         if ($addedPlayers) {
             $playerIds = json_decode($addedPlayers, true);
@@ -172,49 +208,28 @@ final class GroupeJDRController extends AbstractController
                 }
             }
         }
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form->get('picture')->getData();
             if ($file) {
                 $newFilename = $this->uploadImage($file, $slugger);
                 $groupeJDR->setPicture($newFilename);
             }
-
+    
             $groupeJDR->setEditAt(new \DateTime());
-
+    
             foreach ($groupeJDR->getEvents() as $event) {
                 if (!$event->getGroupeJDR()) {
                     $event->setGroupeJDR($groupeJDR);
                 }
             }
-
-            // Ajoute un nouveau PlayerMembership
-            if ($addedPlayers) {
-                $playerIds = json_decode($addedPlayers, true);
-                foreach ($playerIds as $userId) {
-                    $user = $userRepository->find($userId);
-                    if ($user) {
-                        $existingMembership = $playerMembershipRepository->findOneBy([
-                            'player' => $user,
-                            'groupeJDR' => $groupeJDR
-                        ]);
-                        if (!$existingMembership) {
-                            $membership = new PlayerMembership();
-                            $membership->setPlayer($user);
-                            $membership->setGroupeJDR($groupeJDR);
-                            $membership->setJoinedAt(new \DateTime());
-                            $entityManager->persist($membership);
-                        }
-                    }
-                }
-            }
-
+    
             $entityManager->flush();
             $this->addFlash('success', 'L\'Univers a été mis à jour avec succès.');
-
+    
             return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->render('groupe_jdr/edit.html.twig', [
             'groupe_j_d_r' => $groupeJDR,
             'form' => $form,

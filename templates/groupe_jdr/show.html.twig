@@ -86,8 +86,8 @@
                             {% else %}
                                 <img class="rounded-full w-12 h-12 object-cover" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
                             {% endif %}
-                            <div>
-                                <p class="font-semibold">{{ groupe_j_d_r.owner.username }}</p>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-semibold truncate max-w-full">{{ groupe_j_d_r.owner.username }}</p>
                                 <span class="text-gray-400 text-sm">MJ</span>
                             </div>
                         </div>
@@ -99,8 +99,8 @@
                                     {% else %}
                                         <img class="rounded-full w-12 h-12 object-cover" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
                                     {% endif %}
-                                    <div>
-                                        <p class="font-semibold">{{ player.username }}</p>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="font-semibold truncate max-w-full">{{ player.username }}</p>
                                         <span class="text-gray-400 text-sm">Joueur</span>
                                     </div>
                                 </div>
@@ -108,6 +108,7 @@
                         {% endfor %}
                     </div>
                 </div>
+
 
                 <div class="bg-gray-800 p-6 rounded-lg space-y-4">
                     <h3 class="font-semibold">Recrutement</h3>
