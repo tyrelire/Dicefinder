@@ -155,18 +155,18 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                               />
                           </svg>
                           <div id=\"invitation-notification\" class=\"absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 hidden\">
-                              0
+                            0
                           </div>
                       </button>
                       <div id=\"dropdown-menu\" class=\"hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\">
                           <div class=\"py-1\" role=\"none\">
-                              <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notifications</p>
-                              <div id=\"invitations-list\"></div>
+                              <p id=\"no-notifications-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notifications</p>
+                              <div id=\"notifications-list\"></div>
                           </div>
                           <a href=\"";
             // line 68
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_invitations_index");
-            yield "\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100\">Voir toutes les invitations</a>
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_notifications_index");
+            yield "\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100\">Voir toutes les notifications</a>
                       </div>
                     ";
         }
@@ -348,12 +348,19 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
               <div class=\"fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity\" aria-hidden=\"true\"></div>
               <span class=\"hidden sm:inline-block sm:align-middle sm:h-screen\" aria-hidden=\"true\">&#8203;</span>
               <div class=\"inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full fade-in\">
+                  
+                  <button id=\"close-modal-btn\" class=\"absolute top-0 right-0 p-2 text-gray-400 hover:text-gray-600\">
+                      &times;
+                  </button>
+
                   <h3 class=\"text-lg leading-6 font-medium text-gray-900\" id=\"modal-title\">
                       <span id=\"modal-action\"></span> pour rejoindre <span id=\"modal-group-title\"></span>
                   </h3>
+
                   <div class=\"mt-2\">
                       <p class=\"text-sm text-gray-500\"><span id=\"modal-invitation-message\"></span></p>
                   </div>
+
                   <div class=\"mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense\">
                       <button id=\"accept-btn\" type=\"button\" class=\"w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm\">
                           Accepter
@@ -361,10 +368,15 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                       <button id=\"reject-btn\" type=\"button\" class=\"mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm\">
                           Refuser
                       </button>
+
+                      <button id=\"respond-later-btn\" type=\"button\" class=\"mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:col-span-2 sm:text-sm\">
+                          Répondre plus tard
+                      </button>
                   </div>
               </div>
           </div>
       </div>
+
 
       <a href=\"https://discord.gg/7Qu49xxXga\" target=\"_blank\" class=\"fixed bottom-5 right-5 z-50\">
         <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"5rem\" height=\"5rem\" viewBox=\"0 0 256 256\" class=\"w-12 h-12 rounded-full hover:scale-110 transition-transform duration-300\">
@@ -417,21 +429,21 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
                       <a href=\"";
-        // line 217
+        // line 229
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_cgv");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales de Vente </a>
                     </li>
 
                     <li>
                       <a href=\"";
-        // line 221
+        // line 233
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_cgu");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales d'Utilisation </a>
                     </li>
 
                     <li>
                       <a href=\"";
-        // line 225
+        // line 237
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_policy");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Politique de Confidentialité </a>
                     </li>
@@ -442,19 +454,19 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
                       <a href=\"";
-        // line 233
+        // line 245
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_team");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Notre équipe </a>
                     </li>
                     <li>
                       <a href=\"";
-        // line 236
+        // line 248
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_about");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> À propos de nous </a>
                     </li>
                     <li>
                       <a href=\"";
-        // line 239
+        // line 251
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_faq");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> FAQ </a>
                     </li>
@@ -467,7 +479,7 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
                   <ul role=\"list\" class=\"mt-4 space-y-4\">
                     <li>
                         <a href=\"";
-        // line 249
+        // line 261
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_contact");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Nous contacter </a>
                     </li>
@@ -500,22 +512,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const userMenu = document.getElementById('user-menu');
     const notificationDropdown = document.getElementById('notificationDropdown');
     const dropdownMenu = document.getElementById('dropdown-menu');
+    const notificationBadge = document.getElementById('invitation-notification');
+    const notificationsList = document.getElementById('notifications-list');
+    const modal = document.getElementById('invitationModal');
+    const acceptBtn = document.getElementById('accept-btn');
+    const rejectBtn = document.getElementById('reject-btn');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const respondLaterBtn = document.getElementById('respond-later-btn');
 
-    // Fonction pour fermer le menu utilisateur
     function closeUserMenu() {
         if (userMenu && !userMenu.classList.contains('hidden')) {
             userMenu.classList.add('hidden');
         }
     }
 
-    // Fonction pour fermer le menu de notifications
     function closeNotificationMenu() {
         if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
             dropdownMenu.classList.add('hidden');
         }
     }
 
-    // Toggle du menu utilisateur avec fermeture du menu de notifications
     if (userMenuToggle) {
         userMenuToggle.addEventListener('click', function () {
             closeNotificationMenu();
@@ -527,7 +543,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Toggle du menu de notifications avec fermeture du menu utilisateur
     if (notificationDropdown) {
         notificationDropdown.addEventListener('click', function () {
             closeUserMenu();
@@ -539,7 +554,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Gestion du menu mobile
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function () {
             const menu = document.getElementById('mobile-menu');
@@ -549,28 +563,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const invitationNotification = document.getElementById('invitation-notification');
-    const invitationsList = document.getElementById('invitations-list');
-    const noInvitationMsg = document.getElementById('no-invitation-msg');
-    const modal = document.getElementById('invitationModal');
-    const acceptBtn = document.getElementById('accept-btn');
-    const rejectBtn = document.getElementById('reject-btn');
-
     function openInvitationModal(invitation) {
         if (!modal) {
             console.error('Modal not found');
             return;
         }
 
-        const groupTitle = invitation.title;
-        const requesterName = invitation.requester;
+        const groupTitle = invitation.groupeJDR.title;
+        const requesterName = invitation.requestedBy;
         const message = invitation.message || 'Pas de message fourni';
-        const initiatedBy = invitation.type;
+        const initiatedBy = invitation.initiatedBy;
 
         let modalMessage;
         let modalAction;
 
-        if (initiatedBy === 'invite') {
+        if (initiatedBy === 'owner') {
             modalMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
             modalAction = 'Invitation';
         } else {
@@ -583,7 +590,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('modal-action').textContent = modalAction;
         modal.classList.remove('hidden');
 
-        // Attacher directement les événements sur les boutons après l'ouverture de la modale
         document.getElementById('accept-btn').onclick = function () {
             handleInvitationResponse(invitation.id, 'accept');
         };
@@ -591,10 +597,15 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('reject-btn').onclick = function () {
             handleInvitationResponse(invitation.id, 'refuse');
         };
+
+        respondLaterBtn.onclick = closeModal;
+        closeModalBtn.onclick = closeModal;
     }
 
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
 
-    // Fonction pour gérer la réponse à une invitation
     function handleInvitationResponse(invitationId, response) {
         fetch(`/api/respond_invitation/\${invitationId}`, {
             method: 'POST',
@@ -616,88 +627,64 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Fonction pour récupérer les invitations
-    function fetchInvitations() {
-        fetch('/api/invitations_pending')
-            .then(response => {
-                if (response.status === 403) {
-                    const invitationNotification = document.getElementById('invitation-notification');
-                    if (invitationNotification) {
-                        invitationNotification.classList.add('hidden');
-                    }
-                    return;
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (!data) return;
-                if (data.count && data.count > 0) {
-                    if (invitationNotification) {
-                        invitationNotification.innerText = data.count;
-                        invitationNotification.classList.remove('hidden');
-                    }
-                } else {
-                    if (invitationNotification) {
-                        invitationNotification.classList.add('hidden');
-                    }
-                }
+    function fetchNotificationsAndInvitations() {
+        Promise.all([
+            fetch('/api/notifications_pending').then(response => response.json()),
+            fetch('/api/invitations_pending').then(response => response.json())
+        ])
+        .then(([notificationData, invitationData]) => {
+            notificationsList.innerHTML = '';
+            let totalNotifications = 0;
 
-                if (invitationsList) {
-                    invitationsList.innerHTML = '';
-                }
-
-                if (Array.isArray(data.invitations) && data.invitations.length > 0) {
-                    if (noInvitationMsg) {
-                        noInvitationMsg.classList.add('hidden');
-                    }
-
-                    data.invitations.forEach(invitation => {
-                    const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
-                    const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
-                    const message = invitation.message || 'Pas de message';
-                    const initiatedBy = invitation.initiatedBy || 'user';
-
-                    let displayMessage;
-                    if (initiatedBy === 'owner') {
-                        displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
-                    } else {
-                        displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
-                    }
-
-                    const invitationItem = document.createElement('div');
-                    invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
-                    
-                    // Ajout du message de l'invitation
-                    invitationItem.innerHTML = `
-                        <p>\${displayMessage}</p>
-                        <p class=\"text-xs text-gray-500\">\${message}</p>
-                    `;
-
-                    invitationsList.appendChild(invitationItem);
-
-                    // Ouvrir la modale au clic
-                    invitationItem.addEventListener('click', function () {
-                        openInvitationModal({
-                            id: invitation.id,
-                            title: groupTitle,
-                            type: initiatedBy === 'owner' ? 'invite' : 'request',
-                            requester: requesterName,
-                            message: message
-                        });
-                    });
+            const notificationSection = document.createElement('div');
+            notificationSection.innerHTML = '<h4 class=\"px-4 py-2 text-sm font-semibold text-gray-500\">Notifications</h4>';
+            if (notificationData.notifications.length > 0) {
+                notificationData.notifications.slice().reverse().slice(0, 2).forEach(notification => {
+                    const notificationItem = document.createElement('div');
+                    notificationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
+                    notificationItem.innerHTML = `<p>\${notification.message}</p><p class=\"text-xs text-gray-500\">\${notification.date}</p>`;
+                    notificationSection.appendChild(notificationItem);
                 });
+                totalNotifications += notificationData.notifications.length;
+            } else {
+                notificationSection.innerHTML += '<p class=\"px-4 py-2 text-sm text-gray-500\">Pas de nouvelles notifications</p>';
+            }
+            notificationsList.appendChild(notificationSection);
 
-                } else {
-                    if (noInvitationMsg) {
-                        noInvitationMsg.classList.remove('hidden');
-                    }
-                }
-            })
-            .catch(error => console.error('Error fetching invitations:', error));
+            const invitationSection = document.createElement('div');
+            invitationSection.innerHTML = '<h4 class=\"px-4 py-2 text-sm font-semibold text-gray-500\">Invitations</h4>';
+            if (invitationData.invitations.length > 0) {
+                invitationData.invitations.slice().reverse().slice(0, 2).forEach(invitation => {
+                    const invitationItem = document.createElement('div');
+                    invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100', 'cursor-pointer');
+                    invitationItem.innerHTML = `<p>Invitation pour l'univers \"\${invitation.groupeJDR.title}\"</p>`;
+                    invitationItem.onclick = function () {
+                        openInvitationModal(invitation);
+                    };
+                    invitationSection.appendChild(invitationItem);
+                });
+                totalNotifications += invitationData.invitations.length;
+            } else {
+                invitationSection.innerHTML += '<p class=\"px-4 py-2 text-sm text-gray-500\">Pas d\\'invitations en attente</p>';
+            }
+            notificationsList.appendChild(invitationSection);
+
+            const totalCount = notificationData.notifications.length + invitationData.invitations.length;
+            if (totalCount > 0) {
+                notificationBadge.innerText = totalCount;
+                notificationBadge.classList.remove('hidden');
+            } else {
+                notificationBadge.classList.add('hidden');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching notifications and invitations:', error);
+        });
     }
 
-    fetchInvitations();
-    setInterval(fetchInvitations, 30000);
+    fetchNotificationsAndInvitations();
+
+    setInterval(fetchNotificationsAndInvitations, 30000);
 });
 </script>
 </html>
@@ -848,7 +835,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     public function getDebugInfo(): array
     {
-        return array (  809 => 142,  786 => 15,  775 => 16,  772 => 15,  759 => 14,  737 => 12,  715 => 5,  471 => 249,  458 => 239,  452 => 236,  446 => 233,  435 => 225,  428 => 221,  421 => 217,  345 => 143,  343 => 142,  340 => 141,  331 => 138,  328 => 137,  324 => 136,  321 => 135,  312 => 132,  309 => 131,  305 => 130,  297 => 124,  291 => 122,  286 => 120,  282 => 119,  277 => 118,  275 => 117,  266 => 111,  262 => 110,  255 => 106,  251 => 105,  244 => 101,  240 => 100,  233 => 96,  229 => 95,  223 => 91,  217 => 89,  211 => 86,  207 => 85,  203 => 84,  199 => 82,  193 => 80,  187 => 78,  185 => 77,  181 => 75,  179 => 74,  174 => 71,  168 => 68,  151 => 53,  149 => 52,  139 => 45,  129 => 42,  119 => 39,  109 => 36,  94 => 24,  90 => 23,  82 => 17,  80 => 14,  77 => 13,  75 => 12,  69 => 9,  64 => 7,  59 => 5,  53 => 1,);
+        return array (  796 => 142,  773 => 15,  762 => 16,  759 => 15,  746 => 14,  724 => 12,  702 => 5,  483 => 261,  470 => 251,  464 => 248,  458 => 245,  447 => 237,  440 => 233,  433 => 229,  345 => 143,  343 => 142,  340 => 141,  331 => 138,  328 => 137,  324 => 136,  321 => 135,  312 => 132,  309 => 131,  305 => 130,  297 => 124,  291 => 122,  286 => 120,  282 => 119,  277 => 118,  275 => 117,  266 => 111,  262 => 110,  255 => 106,  251 => 105,  244 => 101,  240 => 100,  233 => 96,  229 => 95,  223 => 91,  217 => 89,  211 => 86,  207 => 85,  203 => 84,  199 => 82,  193 => 80,  187 => 78,  185 => 77,  181 => 75,  179 => 74,  174 => 71,  168 => 68,  151 => 53,  149 => 52,  139 => 45,  129 => 42,  119 => 39,  109 => 36,  94 => 24,  90 => 23,  82 => 17,  80 => 14,  77 => 13,  75 => 12,  69 => 9,  64 => 7,  59 => 5,  53 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -912,15 +899,15 @@ document.addEventListener('DOMContentLoaded', function () {
                               />
                           </svg>
                           <div id=\"invitation-notification\" class=\"absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 hidden\">
-                              0
+                            0
                           </div>
                       </button>
                       <div id=\"dropdown-menu\" class=\"hidden absolute right-0 w-64 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none\">
                           <div class=\"py-1\" role=\"none\">
-                              <p id=\"no-invitation-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notifications</p>
-                              <div id=\"invitations-list\"></div>
+                              <p id=\"no-notifications-msg\" class=\"px-4 py-2 text-sm text-gray-700 hidden\">Pas de nouvelles notifications</p>
+                              <div id=\"notifications-list\"></div>
                           </div>
-                          <a href=\"{{ path('app_invitations_index') }}\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100\">Voir toutes les invitations</a>
+                          <a href=\"{{ path('app_notifications_index') }}\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100\">Voir toutes les notifications</a>
                       </div>
                     {% endif %}
                   </div>
@@ -1001,12 +988,19 @@ document.addEventListener('DOMContentLoaded', function () {
               <div class=\"fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity\" aria-hidden=\"true\"></div>
               <span class=\"hidden sm:inline-block sm:align-middle sm:h-screen\" aria-hidden=\"true\">&#8203;</span>
               <div class=\"inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full fade-in\">
+                  
+                  <button id=\"close-modal-btn\" class=\"absolute top-0 right-0 p-2 text-gray-400 hover:text-gray-600\">
+                      &times;
+                  </button>
+
                   <h3 class=\"text-lg leading-6 font-medium text-gray-900\" id=\"modal-title\">
                       <span id=\"modal-action\"></span> pour rejoindre <span id=\"modal-group-title\"></span>
                   </h3>
+
                   <div class=\"mt-2\">
                       <p class=\"text-sm text-gray-500\"><span id=\"modal-invitation-message\"></span></p>
                   </div>
+
                   <div class=\"mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense\">
                       <button id=\"accept-btn\" type=\"button\" class=\"w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm\">
                           Accepter
@@ -1014,10 +1008,15 @@ document.addEventListener('DOMContentLoaded', function () {
                       <button id=\"reject-btn\" type=\"button\" class=\"mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm\">
                           Refuser
                       </button>
+
+                      <button id=\"respond-later-btn\" type=\"button\" class=\"mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:col-span-2 sm:text-sm\">
+                          Répondre plus tard
+                      </button>
                   </div>
               </div>
           </div>
       </div>
+
 
       <a href=\"https://discord.gg/7Qu49xxXga\" target=\"_blank\" class=\"fixed bottom-5 right-5 z-50\">
         <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"5rem\" height=\"5rem\" viewBox=\"0 0 256 256\" class=\"w-12 h-12 rounded-full hover:scale-110 transition-transform duration-300\">
@@ -1132,22 +1131,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const userMenu = document.getElementById('user-menu');
     const notificationDropdown = document.getElementById('notificationDropdown');
     const dropdownMenu = document.getElementById('dropdown-menu');
+    const notificationBadge = document.getElementById('invitation-notification');
+    const notificationsList = document.getElementById('notifications-list');
+    const modal = document.getElementById('invitationModal');
+    const acceptBtn = document.getElementById('accept-btn');
+    const rejectBtn = document.getElementById('reject-btn');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const respondLaterBtn = document.getElementById('respond-later-btn');
 
-    // Fonction pour fermer le menu utilisateur
     function closeUserMenu() {
         if (userMenu && !userMenu.classList.contains('hidden')) {
             userMenu.classList.add('hidden');
         }
     }
 
-    // Fonction pour fermer le menu de notifications
     function closeNotificationMenu() {
         if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
             dropdownMenu.classList.add('hidden');
         }
     }
 
-    // Toggle du menu utilisateur avec fermeture du menu de notifications
     if (userMenuToggle) {
         userMenuToggle.addEventListener('click', function () {
             closeNotificationMenu();
@@ -1159,7 +1162,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Toggle du menu de notifications avec fermeture du menu utilisateur
     if (notificationDropdown) {
         notificationDropdown.addEventListener('click', function () {
             closeUserMenu();
@@ -1171,7 +1173,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Gestion du menu mobile
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function () {
             const menu = document.getElementById('mobile-menu');
@@ -1181,28 +1182,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const invitationNotification = document.getElementById('invitation-notification');
-    const invitationsList = document.getElementById('invitations-list');
-    const noInvitationMsg = document.getElementById('no-invitation-msg');
-    const modal = document.getElementById('invitationModal');
-    const acceptBtn = document.getElementById('accept-btn');
-    const rejectBtn = document.getElementById('reject-btn');
-
     function openInvitationModal(invitation) {
         if (!modal) {
             console.error('Modal not found');
             return;
         }
 
-        const groupTitle = invitation.title;
-        const requesterName = invitation.requester;
+        const groupTitle = invitation.groupeJDR.title;
+        const requesterName = invitation.requestedBy;
         const message = invitation.message || 'Pas de message fourni';
-        const initiatedBy = invitation.type;
+        const initiatedBy = invitation.initiatedBy;
 
         let modalMessage;
         let modalAction;
 
-        if (initiatedBy === 'invite') {
+        if (initiatedBy === 'owner') {
             modalMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
             modalAction = 'Invitation';
         } else {
@@ -1215,7 +1209,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('modal-action').textContent = modalAction;
         modal.classList.remove('hidden');
 
-        // Attacher directement les événements sur les boutons après l'ouverture de la modale
         document.getElementById('accept-btn').onclick = function () {
             handleInvitationResponse(invitation.id, 'accept');
         };
@@ -1223,10 +1216,15 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('reject-btn').onclick = function () {
             handleInvitationResponse(invitation.id, 'refuse');
         };
+
+        respondLaterBtn.onclick = closeModal;
+        closeModalBtn.onclick = closeModal;
     }
 
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
 
-    // Fonction pour gérer la réponse à une invitation
     function handleInvitationResponse(invitationId, response) {
         fetch(`/api/respond_invitation/\${invitationId}`, {
             method: 'POST',
@@ -1248,88 +1246,64 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Fonction pour récupérer les invitations
-    function fetchInvitations() {
-        fetch('/api/invitations_pending')
-            .then(response => {
-                if (response.status === 403) {
-                    const invitationNotification = document.getElementById('invitation-notification');
-                    if (invitationNotification) {
-                        invitationNotification.classList.add('hidden');
-                    }
-                    return;
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (!data) return;
-                if (data.count && data.count > 0) {
-                    if (invitationNotification) {
-                        invitationNotification.innerText = data.count;
-                        invitationNotification.classList.remove('hidden');
-                    }
-                } else {
-                    if (invitationNotification) {
-                        invitationNotification.classList.add('hidden');
-                    }
-                }
+    function fetchNotificationsAndInvitations() {
+        Promise.all([
+            fetch('/api/notifications_pending').then(response => response.json()),
+            fetch('/api/invitations_pending').then(response => response.json())
+        ])
+        .then(([notificationData, invitationData]) => {
+            notificationsList.innerHTML = '';
+            let totalNotifications = 0;
 
-                if (invitationsList) {
-                    invitationsList.innerHTML = '';
-                }
-
-                if (Array.isArray(data.invitations) && data.invitations.length > 0) {
-                    if (noInvitationMsg) {
-                        noInvitationMsg.classList.add('hidden');
-                    }
-
-                    data.invitations.forEach(invitation => {
-                    const groupTitle = invitation.groupeJDR?.title || 'Groupe Inconnu';
-                    const requesterName = invitation.requestedBy || 'Utilisateur Inconnu';
-                    const message = invitation.message || 'Pas de message';
-                    const initiatedBy = invitation.initiatedBy || 'user';
-
-                    let displayMessage;
-                    if (initiatedBy === 'owner') {
-                        displayMessage = `\${requesterName} vous a invité à rejoindre l'univers \"\${groupTitle}\"`;
-                    } else {
-                        displayMessage = `\${requesterName} veut rejoindre votre univers \"\${groupTitle}\"`;
-                    }
-
-                    const invitationItem = document.createElement('div');
-                    invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
-                    
-                    // Ajout du message de l'invitation
-                    invitationItem.innerHTML = `
-                        <p>\${displayMessage}</p>
-                        <p class=\"text-xs text-gray-500\">\${message}</p>
-                    `;
-
-                    invitationsList.appendChild(invitationItem);
-
-                    // Ouvrir la modale au clic
-                    invitationItem.addEventListener('click', function () {
-                        openInvitationModal({
-                            id: invitation.id,
-                            title: groupTitle,
-                            type: initiatedBy === 'owner' ? 'invite' : 'request',
-                            requester: requesterName,
-                            message: message
-                        });
-                    });
+            const notificationSection = document.createElement('div');
+            notificationSection.innerHTML = '<h4 class=\"px-4 py-2 text-sm font-semibold text-gray-500\">Notifications</h4>';
+            if (notificationData.notifications.length > 0) {
+                notificationData.notifications.slice().reverse().slice(0, 2).forEach(notification => {
+                    const notificationItem = document.createElement('div');
+                    notificationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100');
+                    notificationItem.innerHTML = `<p>\${notification.message}</p><p class=\"text-xs text-gray-500\">\${notification.date}</p>`;
+                    notificationSection.appendChild(notificationItem);
                 });
+                totalNotifications += notificationData.notifications.length;
+            } else {
+                notificationSection.innerHTML += '<p class=\"px-4 py-2 text-sm text-gray-500\">Pas de nouvelles notifications</p>';
+            }
+            notificationsList.appendChild(notificationSection);
 
-                } else {
-                    if (noInvitationMsg) {
-                        noInvitationMsg.classList.remove('hidden');
-                    }
-                }
-            })
-            .catch(error => console.error('Error fetching invitations:', error));
+            const invitationSection = document.createElement('div');
+            invitationSection.innerHTML = '<h4 class=\"px-4 py-2 text-sm font-semibold text-gray-500\">Invitations</h4>';
+            if (invitationData.invitations.length > 0) {
+                invitationData.invitations.slice().reverse().slice(0, 2).forEach(invitation => {
+                    const invitationItem = document.createElement('div');
+                    invitationItem.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100', 'cursor-pointer');
+                    invitationItem.innerHTML = `<p>Invitation pour l'univers \"\${invitation.groupeJDR.title}\"</p>`;
+                    invitationItem.onclick = function () {
+                        openInvitationModal(invitation);
+                    };
+                    invitationSection.appendChild(invitationItem);
+                });
+                totalNotifications += invitationData.invitations.length;
+            } else {
+                invitationSection.innerHTML += '<p class=\"px-4 py-2 text-sm text-gray-500\">Pas d\\'invitations en attente</p>';
+            }
+            notificationsList.appendChild(invitationSection);
+
+            const totalCount = notificationData.notifications.length + invitationData.invitations.length;
+            if (totalCount > 0) {
+                notificationBadge.innerText = totalCount;
+                notificationBadge.classList.remove('hidden');
+            } else {
+                notificationBadge.classList.add('hidden');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching notifications and invitations:', error);
+        });
     }
 
-    fetchInvitations();
-    setInterval(fetchInvitations, 30000);
+    fetchNotificationsAndInvitations();
+
+    setInterval(fetchNotificationsAndInvitations, 30000);
 });
 </script>
 </html>

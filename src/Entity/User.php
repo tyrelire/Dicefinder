@@ -113,7 +113,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $TwitchChannelLink = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $competence = null; // Groupes auxquels l'utilisateur a rejoint
+    private ?string $competence = null;
+
+    /**
+     * @var Collection<int, Notification>
+     */
+    #[ORM\OneToMany(targetEntity: Notification::class, mappedBy: 'recipient')]
+    private Collection $notifications; // Groupes auxquels l'utilisateur a rejoint
 
     public function __construct()
     {
@@ -123,6 +129,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->notificationHistories = new ArrayCollection();
         $this->invitationPending = new ArrayCollection();
         $this->playerMemberships = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,7 +156,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
     /**
@@ -550,6 +557,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCompetence(?string $competence): static
     {
         $this->competence = $competence;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notification>
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): static
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotification(Notification $notification): static
+    {
+        if ($this->notifications->removeElement($notification)) {
+            // set the owning side to null (unless already changed)
+            if ($notification->getRecipient() === $this) {
+                $notification->setRecipient(null);
+            }
+        }
 
         return $this;
     }

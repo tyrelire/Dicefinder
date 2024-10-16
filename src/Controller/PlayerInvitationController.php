@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Entity\GroupeJDR;
 use App\Entity\Invitation;
+use App\Entity\Notification;
 use Psr\Log\LoggerInterface;
 use App\Entity\PlayerMembership;
 use App\Repository\UserRepository;
 use App\Entity\NotificationHistory;
+use App\Service\NotificationService;
 use App\Repository\GroupeJDRRepository;
 use App\Repository\InvitationRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,10 +24,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PlayerInvitationController extends AbstractController
 {
     private LoggerInterface $logger;
+    private NotificationService $notificationService;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(LoggerInterface $logger, NotificationService $notificationService)
     {
         $this->logger = $logger;
+        $this->notificationService = $notificationService;
     }
 
     #[Route('/api/check_user/{pseudo}/{jdrId}', name: 'check_user', methods: ['GET'])]
@@ -84,18 +88,19 @@ class PlayerInvitationController extends AbstractController
         int $jdrId, 
         UserRepository $userRepository, 
         GroupeJDRRepository $groupeJdrRepository, 
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        NotificationService $notificationService
     ): JsonResponse {
         $user = $userRepository->find($userId);
         $groupeJdr = $groupeJdrRepository->find($jdrId);
-        
+
         if (!$user || !$groupeJdr) {
             return new JsonResponse(['success' => false, 'message' => 'Utilisateur ou groupe non trouvé'], 404);
         }
-        
+
         if ($groupeJdr->getPlayers()->contains($user)) {
             $groupeJdr->removePlayer($user);
-    
+
             $playerMembershipRepository = $entityManager->getRepository(PlayerMembership::class);
             $membership = $playerMembershipRepository->findOneBy([
                 'player' => $user,
@@ -105,6 +110,20 @@ class PlayerInvitationController extends AbstractController
             if ($membership) {
                 $entityManager->remove($membership);
             }
+
+            $notificationService->createNotification(
+                $user,
+                'user_removed_from_group',
+                'Vous avez été retiré de l\'univers "' . $groupeJdr->getTitle() . '".',
+                $groupeJdr
+            );
+
+            $notificationService->createNotification(
+                $groupeJdr->getOwner(),
+                'user_removed_from_group',
+                'Vous avez retiré ' . $user->getUsername() . ' de l\'univers "' . $groupeJdr->getTitle() . '".',
+                $groupeJdr
+            );
 
             $entityManager->flush();
 
@@ -123,7 +142,8 @@ class PlayerInvitationController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         GroupeJDRRepository $groupeJdrRepository,
-        InvitationRepository $invitationRepository
+        InvitationRepository $invitationRepository,
+        NotificationService $notificationService
     ): Response {
         $currentUser = $this->getUser();
         if (!$currentUser) {
@@ -133,7 +153,7 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Vous devez être connecté pour faire cette action.');
             return $this->redirectToRoute('app_login');
         }
-    
+
         $groupeJdr = $groupeJdrRepository->find($groupeId);
         if (!$groupeJdr) {
             if ($request->isXmlHttpRequest()) {
@@ -142,13 +162,13 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Univers non trouvé.');
             return $this->redirectToRoute('app_groupe_j_d_r_index');
         }
-    
+
         $pendingInvitation = $invitationRepository->findOneBy([
             'requestedBy' => $currentUser,
             'groupeJDR' => $groupeJdr,
             'status' => 'pending'
         ]);
-    
+
         if ($pendingInvitation) {
             if ($request->isXmlHttpRequest()) {
                 return $this->json(['error' => 'Vous avez déjà une demande en attente pour cet Univers.'], Response::HTTP_CONFLICT);
@@ -156,7 +176,7 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Vous avez déjà une demande en attente pour cet Univers.');
             return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeId]);
         }
-    
+
         if ($groupeJdr->getOwner() === $currentUser) {
             if ($request->isXmlHttpRequest()) {
                 return $this->json(['error' => 'Vous ne pouvez pas rejoindre votre propre Univers.'], Response::HTTP_BAD_REQUEST);
@@ -164,7 +184,7 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Vous ne pouvez pas rejoindre votre propre Univers.');
             return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeId]);
         }
-    
+
         if ($groupeJdr->getPlayers()->contains($currentUser)) {
             if ($request->isXmlHttpRequest()) {
                 return $this->json(['error' => 'Vous êtes déjà dans ce groupe.'], Response::HTTP_CONFLICT);
@@ -172,10 +192,10 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Vous êtes déjà dans ce groupe.');
             return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeId]);
         }
-    
+
         $data = json_decode($request->getContent(), true);
         $message = $data['message'] ?? '';
-    
+
         $invitation = new Invitation();
         $invitation->setUser($groupeJdr->getOwner());
         $invitation->setGroupeJDR($groupeJdr);
@@ -183,90 +203,26 @@ class PlayerInvitationController extends AbstractController
         $invitation->setInitiatedBy('user');
         $invitation->setMessage($message);
         $invitation->setRequestedBy($currentUser);
-    
+
+        $notificationService->createNotification(
+            $currentUser,
+            'join_request_confirmation',
+            'Votre demande pour rejoindre l\'univers ' . $groupeJdr->getTitle() . ' a été envoyée avec succès.',
+            $groupeJdr
+        );
+        
+        $entityManager->flush();
+
+
         $entityManager->persist($invitation);
         $entityManager->flush();
-    
+
         if ($request->isXmlHttpRequest()) {
             return $this->json(['success' => 'Demande envoyée avec succès.'], Response::HTTP_OK);
         }
-    
+
         $this->addFlash('success', 'Demande envoyée avec succès.');
         return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeId]);
-    }
-
-    #[Route('/api/respond_invitation/{invitationId}', name: 'respond_invitation', methods: ['POST'])]
-    public function respondInvitation(
-        int $invitationId,
-        Request $request,
-        EntityManagerInterface $entityManager,
-        PlayerMembershipRepository $playerMembershipRepository
-    ): Response {
-        $currentUser = $this->getUser();
-        if (!$currentUser) {
-            $this->addFlash('error', 'Vous devez être connecté pour faire cette action.');
-            return $this->redirectToRoute('app_login');
-        }
-    
-        $invitation = $entityManager->getRepository(Invitation::class)->find($invitationId);
-        if (!$invitation || $invitation->getUser() !== $currentUser) {
-            $this->addFlash('error', 'Invitation non trouvée ou accès non autorisé.');
-            return $this->redirectToRoute('app_groupe_j_d_r_index');
-        }
-    
-        $response = $request->request->get('response');
-        $groupeJdr = $invitation->getGroupeJDR();
-    
-        $notificationHistory = new NotificationHistory();
-        $notificationHistory->setUser($invitation->getRequestedBy());
-        $notificationHistory->setGroupeJDR($groupeJdr);
-        $notificationHistory->setCreatedAt(new \DateTime());
-    
-        if ($response === 'accept') {
-            if ($invitation->getInitiatedBy() === 'user') {
-                $invitedUser = $invitation->getRequestedBy();
-            } else {
-                $invitedUser = $invitation->getUser();
-            }
-    
-            if (!$groupeJdr->getPlayers()->contains($invitedUser)) {
-                $groupeJdr->addPlayer($invitedUser);
-                
-                $existingMembership = $playerMembershipRepository->findOneBy([
-                    'player' => $invitedUser,
-                    'groupeJDR' => $groupeJdr
-                ]);
-                
-                if (!$existingMembership) {
-                    $membership = new PlayerMembership();
-                    $membership->setPlayer($invitedUser);
-                    $membership->setGroupeJDR($groupeJdr);
-                    $membership->setJoinedAt(new \DateTime());
-    
-                    $entityManager->persist($membership);
-                }
-    
-                $invitation->setStatus('accepted');
-                $this->addFlash('success', 'L\'utilisateur a été ajouté avec succès au groupe.');
-                $notificationHistory->setStatus('accepted');
-            } else {
-                $this->addFlash('warning', 'Cet utilisateur est déjà dans le groupe.');
-                return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJdr->getId()]);
-            }
-        } elseif ($response === 'refuse') {
-            $invitation->setStatus('refused');
-            $this->addFlash('info', 'Invitation refusée.');
-            $notificationHistory->setStatus('refused');
-        } else {
-            $this->addFlash('danger', 'Réponse invalide.');
-            return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJdr->getId()]);
-        }
-    
-        $entityManager->persist($notificationHistory);
-        $entityManager->remove($invitation);
-        $entityManager->flush();
-    
-        return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJdr->getId()]);
     }
 
     #[Route('/api/remove_invitation/{invitationId}', name: 'remove_invitation', methods: ['DELETE'])]
@@ -290,4 +246,127 @@ class PlayerInvitationController extends AbstractController
             return new JsonResponse(['success' => false, 'message' => 'Erreur lors de la suppression de l\'invitation'], 500);
         }
     }
+
+    #[Route('/api/respond_invitation/{invitationId}', name: 'respond_invitation', methods: ['POST'])]
+    public function respondInvitation(
+        int $invitationId,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        PlayerMembershipRepository $playerMembershipRepository,
+        NotificationService $notificationService
+    ): Response {
+        $currentUser = $this->getUser();
+        if (!$currentUser) {
+            $this->addFlash('error', 'Vous devez être connecté pour faire cette action.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $invitation = $entityManager->getRepository(Invitation::class)->find($invitationId);
+        if (!$invitation) {
+            $this->addFlash('error', 'Invitation non trouvée.');
+            return $this->redirectToRoute('app_groupe_j_d_r_index');
+        }
+
+        $response = $request->request->get('response');
+        $groupeJdr = $invitation->getGroupeJDR();
+
+        if (!$this->isAuthorized($currentUser, $invitation)) {
+            $this->addFlash('error', 'Accès non autorisé.');
+            return $this->redirectToRoute('app_groupe_j_d_r_index');
+        }
+
+        if ($response === 'accept') {
+            $this->handleAcceptResponse($invitation, $groupeJdr, $entityManager, $playerMembershipRepository);
+        } elseif ($response === 'refuse') {
+            $this->addFlash('info', 'Invitation refusée.');
+        } else {
+            $this->addFlash('danger', 'Réponse invalide.');
+            return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJdr->getId()]);
+        }
+
+        $this->sendNotifications($response, $invitation, $groupeJdr, $notificationService);
+
+        $entityManager->remove($invitation);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJdr->getId()]);
+    }
+
+    private function isAuthorized($currentUser, Invitation $invitation): bool
+    {
+        return $invitation->getUser() === $currentUser || $invitation->getInitiatedBy() === 'owner';
+    }
+
+    private function handleAcceptResponse(
+        Invitation $invitation,
+        $groupeJdr,
+        EntityManagerInterface $entityManager,
+        PlayerMembershipRepository $playerMembershipRepository
+    ): void {
+        if ($invitation->getInitiatedBy() === 'owner') {
+            $player = $invitation->getUser();
+        } else {
+            $player = $invitation->getRequestedBy();
+        }
+
+        if (!$groupeJdr->getPlayers()->contains($player)) {
+            $groupeJdr->addPlayer($player);
+
+            $existingMembership = $playerMembershipRepository->findOneBy([
+                'player' => $player,
+                'groupeJDR' => $groupeJdr,
+            ]);
+
+            if (!$existingMembership) {
+                $membership = new PlayerMembership();
+                $membership->setPlayer($player);
+                $membership->setGroupeJDR($groupeJdr);
+                $membership->setJoinedAt(new \DateTime());
+
+                $entityManager->persist($membership);
+            }
+
+            $this->addFlash('success', 'L\'utilisateur a été ajouté avec succès au groupe.');
+        } else {
+            $this->addFlash('warning', 'Cet utilisateur est déjà dans le groupe.');
+        }
+
+        $entityManager->persist($groupeJdr);
+    }
+
+    private function sendNotifications(
+        string $response,
+        Invitation $invitation,
+        $groupeJdr,
+        NotificationService $notificationService
+    ): void {
+        $requestedBy = $invitation->getRequestedBy();
+        $user = $invitation->getUser();
+
+        $notificationService->createNotification(
+            $requestedBy,
+            $response === 'accept' ? 'accepted' : 'refused',
+            $response === 'accept'
+                ? 'Votre demande d\'invitation a été acceptée.'
+                : 'Votre demande d\'invitation a été refusée.',
+            $groupeJdr
+        );
+
+        if ($response === 'accept') {
+            $notificationService->createNotification(
+                $user,
+                'acceptance_confirmation',
+                'Vous avez accepté la demande de ' . $requestedBy->getUsername() . ' pour rejoindre l\'univers : ' . $groupeJdr->getTitle() . '.',
+                $groupeJdr
+            );
+        } elseif ($response === 'refuse') {
+            $notificationService->createNotification(
+                $user,
+                'refusal_confirmation',
+                'Vous avez refusé la demande de ' . $requestedBy->getUsername() . ' pour rejoindre l\'univers : ' . $groupeJdr->getTitle() . '.',
+                $groupeJdr
+            );
+        }
+    }
+
 }

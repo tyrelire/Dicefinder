@@ -68,13 +68,9 @@ class GroupeJDRType extends AbstractType
             ])
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    'Préparation' => 'preparation',
-                    'Prêt à jouer' => 'pret_a_jouer',
+                    'Nouveau' => 'nouveau',
                     'En cours' => 'en_cours',
-                    'Complet' => 'complet',
-                    'Pause' => 'pause',
                     'Terminé' => 'termine',
-                    'Annulé' => 'annule',
                 ],
                 'placeholder' => 'Sélectionner un statut',
                 'required' => true,

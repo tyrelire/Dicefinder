@@ -5,16 +5,18 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Entity\GroupeJDR;
 use App\Entity\Invitation;
-use App\Entity\PlayerMembership;
 use App\Form\GroupeJDRType;
+use App\Entity\Notification;
+use App\Entity\PlayerMembership;
 use App\Repository\UserRepository;
 use App\Entity\NotificationHistory;
+use App\Service\NotificationService;
 use App\Repository\CategoryRepository;
 use App\Repository\GroupeJDRRepository;
 use App\Repository\InvitationRepository;
-use App\Repository\PlayerMembershipRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\PlayerMembershipRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -182,52 +184,60 @@ final class GroupeJDRController extends AbstractController
         EntityManagerInterface $entityManager,
         UserRepository $userRepository,
         InvitationRepository $invitationRepository,
-        SluggerInterface $slugger
+        SluggerInterface $slugger,
+        NotificationService $notificationService
     ): Response {
-        if ($groupeJDR->getOwner() !== $this->getUser()) {
-            $this->addFlash('error', 'Vous n\'êtes pas autorisé à modifier cette Univers.');
-            return $this->redirectToRoute('app_groupe_j_d_r_index');
-        }
-    
-        $form = $this->createForm(GroupeJDRType::class, $groupeJDR, ['is_edit' => true]);
-        $form->handleRequest($request);
-    
-        $addedPlayers = $request->request->get('added_players');
-        if ($addedPlayers) {
-            $playerIds = json_decode($addedPlayers, true);
-            foreach ($playerIds as $userId) {
-                $user = $userRepository->find($userId);
-                if ($user && !$invitationRepository->findOneBy(['groupeJDR' => $groupeJDR, 'user' => $user])) {
-                    $invitation = new Invitation();
-                    $invitation->setUser($user);
-                    $invitation->setGroupeJDR($groupeJDR);
-                    $invitation->setStatus('pending');
-                    $invitation->setInitiatedBy('owner');
-                    $invitation->setRequestedBy($this->getUser());
-                    $entityManager->persist($invitation);
+            if ($groupeJDR->getOwner() !== $this->getUser()) {
+                $this->addFlash('error', 'Vous n\'êtes pas autorisé à modifier cette Univers.');
+                return $this->redirectToRoute('app_groupe_j_d_r_index');
+            }
+        
+            $form = $this->createForm(GroupeJDRType::class, $groupeJDR, ['is_edit' => true]);
+            $form->handleRequest($request);
+        
+            $addedPlayers = $request->request->get('added_players');
+            if ($addedPlayers) {
+                $playerIds = json_decode($addedPlayers, true);
+                foreach ($playerIds as $userId) {
+                    $user = $userRepository->find($userId);
+                    if ($user && !$invitationRepository->findOneBy(['groupeJDR' => $groupeJDR, 'user' => $user])) {
+                        $invitation = new Invitation();
+                        $invitation->setUser($user);
+                        $invitation->setGroupeJDR($groupeJDR);
+                        $invitation->setStatus('pending');
+                        $invitation->setInitiatedBy('owner');
+                        $invitation->setRequestedBy($this->getUser());
+                        $entityManager->persist($invitation);
+
+                        $notificationService->createNotification(
+                            $this->getUser(),
+                            'invitation_sent',
+                            'Vous avez invité ' . $user->getUsername() . ' à rejoindre l\'univers : ' . $groupeJDR->getTitle() . '.',
+                            $groupeJDR
+                        );
+                    }
                 }
             }
-        }
-    
-        if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form->get('picture')->getData();
-            if ($file) {
-                $newFilename = $this->uploadImage($file, $slugger);
-                $groupeJDR->setPicture($newFilename);
-            }
-    
-            $groupeJDR->setEditAt(new \DateTime());
-    
-            foreach ($groupeJDR->getEvents() as $event) {
-                if (!$event->getGroupeJDR()) {
-                    $event->setGroupeJDR($groupeJDR);
+        
+            if ($form->isSubmitted() && $form->isValid()) {
+                $file = $form->get('picture')->getData();
+                if ($file) {
+                    $newFilename = $this->uploadImage($file, $slugger);
+                    $groupeJDR->setPicture($newFilename);
                 }
-            }
-    
-            $entityManager->flush();
-            $this->addFlash('success', 'L\'Univers a été mis à jour avec succès.');
-    
-            return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
+        
+                $groupeJDR->setEditAt(new \DateTime());
+        
+                foreach ($groupeJDR->getEvents() as $event) {
+                    if (!$event->getGroupeJDR()) {
+                        $event->setGroupeJDR($groupeJDR);
+                    }
+                }
+        
+                $entityManager->flush();
+                $this->addFlash('success', 'L\'Univers a été mis à jour avec succès.');
+        
+                return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
         }
     
         return $this->render('groupe_jdr/edit.html.twig', [
@@ -247,7 +257,7 @@ final class GroupeJDRController extends AbstractController
             }
 
             $notificationRepository = $entityManager->getRepository(NotificationHistory::class);
-            $notifications = $notificationRepository->findBy(['groupeJDR' => $groupeJDR]); // Utilisation correcte de la relation
+            $notifications = $notificationRepository->findBy(['groupeJDR' => $groupeJDR]);
 
             foreach ($notifications as $notification) {
                 $entityManager->remove($notification);
@@ -265,19 +275,44 @@ final class GroupeJDRController extends AbstractController
     }
 
     #[Route('/{id}/leave', name: 'leave_jdr', methods: ['POST'])]
-    public function leave(GroupeJDR $groupeJDR, EntityManagerInterface $entityManager): Response
+    public function leave(GroupeJDR $groupeJDR, EntityManagerInterface $entityManager, NotificationService $notificationService): Response
     {
         $user = $this->getUser();
-
+    
         if (!$user) {
             $this->addFlash('error', 'Vous devez être connecté pour quitter un univers.');
             return $this->redirectToRoute('app_groupe_j_d_r_index');
         }
-
+    
         if ($groupeJDR->getPlayers()->contains($user)) {
             $groupeJDR->removePlayer($user);
+
+            $playerMembershipRepository = $entityManager->getRepository(PlayerMembership::class);
+            $membership = $playerMembershipRepository->findOneBy([
+                'player' => $user,
+                'groupeJDR' => $groupeJDR
+            ]);
+
+            if ($membership) {
+                $entityManager->remove($membership);
+            }
+    
             $entityManager->persist($groupeJDR);
             $entityManager->flush();
+
+            $notificationService->createNotification(
+                $user,
+                'leave',
+                'Vous avez quitté l\'univers : ' . $groupeJDR->getTitle() . '.',
+                $groupeJDR
+            );
+
+            $notificationService->createNotification(
+                $groupeJDR->getOwner(),
+                'player_left',
+                'Le joueur ' . $user->getUserIdentifier() . ' a quitté l\'univers : ' . $groupeJDR->getTitle() . '.',
+                $groupeJDR
+            );
 
             $this->addFlash('success', 'Vous avez quitté cet univers.');
         } else {

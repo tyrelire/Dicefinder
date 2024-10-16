@@ -23,21 +23,23 @@ class MyGameController extends AbstractController
         $searchTerm = $request->query->get('search');
 
         $ownedJdrsQuery = $jdrRepository->createQueryBuilder('g')
+            ->leftJoin('g.owner', 'o')
             ->where('g.owner = :userId')
             ->setParameter('userId', $user->getId());
 
         $playerJdrsQuery = $jdrRepository->createQueryBuilder('g')
             ->innerJoin('g.players', 'p')
+            ->leftJoin('g.owner', 'o')
             ->where('p.id = :userId')
             ->setParameter('userId', $user->getId());
 
         if ($searchTerm) {
             $ownedJdrsQuery
-                ->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm')
+                ->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm OR o.username LIKE :searchTerm')
                 ->setParameter('searchTerm', '%' . $searchTerm . '%');
 
             $playerJdrsQuery
-                ->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm')
+                ->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm OR o.username LIKE :searchTerm')
                 ->setParameter('searchTerm', '%' . $searchTerm . '%');
         }
 

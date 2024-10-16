@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invitations et Notifications{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white shadow rounded-lg p-6">
+        <h1 class="text-2xl font-bold mb-4 text-gray-800">Mes Invitations</h1>
+
+        {% if invitationsData|length > 0 %}
+            <div class="space-y-4">
+                {% for invitationData in invitationsData %}
+                    {% set invitation = invitationData.invitation %}
+                    <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 p-4 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-in-out flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+                        <div class="flex items-center">
+                            {% if invitationData.initiatedByOwner %}
+                                {% if invitation.groupeJDR.owner.avatar %}
+                                    <img src="{{ asset('uploads/avatars/' ~ invitation.groupeJDR.owner.avatar) }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil du propriétaire">
+                                {% else %}
+                                    <img src="{{ asset('images/default-avatar.png') }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil par défaut">
+                                {% endif %}
+                            {% elseif invitationData.initiatedByUser %}
+                                {% if invitation.requestedBy.avatar %}
+                                    <img src="{{ asset('uploads/avatars/' ~ invitation.requestedBy.avatar) }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil de l'utilisateur">
+                                {% else %}
+                                    <img src="{{ asset('images/default-avatar.png') }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil par défaut">
+                                {% endif %}
+                            {% else %}
+                                <img src="{{ asset('images/default-avatar.png') }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil par défaut">
+                            {% endif %}
+                            <div>
+                                <p class="text-lg font-bold text-white">{{ invitation.groupeJDR.title }}</p>
+                                {% if invitationData.initiatedByUser %}
+                                    <p class="text-sm text-white">
+                                        <strong>{{ invitation.requestedBy.username }}</strong> veut rejoindre votre univers "<strong>{{ invitation.groupeJDR.title }}</strong>".
+                                    </p>
+                                    {% if invitation.message %}
+                                        <p class="text-xs text-gray-400 mt-2"><em>"{{ invitation.message }}"</em></p>
+                                    {% endif %}
+                                {% elseif invitationData.initiatedByOwner %}
+                                    <p class="text-sm text-white">
+                                        <strong>{{ invitation.groupeJDR.owner.username }}</strong> vous a invité à rejoindre l'univers "<strong>{{ invitation.groupeJDR.title }}</strong>".
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 lg:ml-6">
+                            <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block">
+                                <input type="hidden" name="response" value="accept">
+                                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-200 hover:shadow-lg" aria-label="Accepter l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Accepter</button>
+                            </form>
+                            <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block">
+                                <input type="hidden" name="response" value="refuse">
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors durée-200 hover:shadow-lg" aria-label="Refuser l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Refuser</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-500">Aucune invitation en attente.</p>
+        {% endif %}
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-6 mt-8">
+        <!-- Conteneur pour le titre et le bouton alignés sur une ligne -->
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold text-gray-800">Mes Notifications</h1>
+            {% if notifications|length > 0 %}
+                <form action="{{ path('app_notifications_clear_all') }}" method="POST" class="inline-block">
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors duration-200 hover:shadow-lg">
+                        Effacer toutes les notifications
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+
+        {% if notifications|length > 0 %}
+            <div class="space-y-4">
+                {% for notification in notifications %}
+                    <div class="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 p-4 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-in-out flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-lg font-bold text-white">{{ notification.groupeJDR.title }}</p>
+                                <p class="text-sm text-white">
+                                    {{ notification.message }}
+                                </p>
+                                <p class="text-xs text-gray-400 mt-2">{{ notification.createdAt|date('d/m/Y H:i') }}</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 lg:ml-6">
+                            <form action="{{ path('app_notifications_respond', { id: notification.id }) }}" method="POST" class="inline-block">
+                                <input type="hidden" name="response" value="read">
+                                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200 hover:shadow-lg" aria-label="Marquer comme lue">Marquer comme lu</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-500">Aucune notification en attente.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
