@@ -6,7 +6,7 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         app_user_provider:
-            id: App\Security\CustomUserProvider
+            id: App\Service\CustomUserProvider
 
     firewalls:
         dev:

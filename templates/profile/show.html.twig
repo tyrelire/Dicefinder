@@ -1,94 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Profil{% endblock %}
+{% block title %}Profil de {{ user.username }}{% endblock %}
 
 {% block body %}
 <div class="container mx-auto px-4 py-8">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1">
-            <div class="bg-white shadow rounded-lg p-6 relative overflow-hidden">
-                <div class="absolute top-2 right-2">
-                    <a href="{{ path('app_profile_edit') }}" title="Paramètres">
-                        <svg class="h-6 w-6 text-gray-500 hover:text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                    </a>
-                </div>
+            <div class="glassmorphism p-8 relative overflow-hidden hover:shadow-2xl transition-transform duration-300 rounded-lg">
+                {% if app.user and app.user.id == user.id %}
+                    <div class="absolute top-4 right-4">
+                        <a href="{{ path('app_profile_edit') }}" title="Paramètres" class="button-hover">
+                            <svg class="h-6 w-6 text-white hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                        </a>
+                    </div>
+                {% endif %}
                 <div class="flex flex-col items-center text-center">
-                    {% if app.user.avatar %}
-                        <img src="{{ asset('uploads/avatars/' ~ app.user.avatar) }}" class="w-24 h-24 md:w-32 md:h-32 bg-gray-300 rounded-full mb-4" alt="Photo de profil">
+                    {% if user.avatar %}
+                        <img src="{{ asset('uploads/avatars/' ~ user.avatar) }}" class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-white shadow-lg mb-6" alt="Photo de profil">
                     {% else %}
-                        <img src="{{ asset('images/default-avatar.png') }}" class="w-24 h-24 md:w-32 md:h-32 bg-gray-300 rounded-full mb-4" alt="Photo de profil par défaut">
+                        <img src="{{ asset('images/default-avatar.png') }}" class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-white shadow-lg mb-6" alt="Photo de profil par défaut">
                     {% endif %}
-                    <h1 class="text-lg md:text-xl font-bold truncate w-full max-w-full md:max-w-[80%]">{{ app.user.username }}</h1>
+                    <h1 class="text-2xl md:text-3xl font-bold text-white truncate w-full max-w-full md:max-w-[80%]">{{ user.username }}</h1>
                 </div>
-                <hr class="my-6 border-t border-gray-300">
-                <div class="mb-6">
-                    <span class="text-gray-700 uppercase font-bold tracking-wider mb-2 block">Contact</span>
-                    <ul class="space-y-2 text-sm md:text-base">
-                        {% if app.user.discordPseudo or app.user.TwitterPseudo or app.user.YoutubeChannelLink or app.user.TwitchChannelLink %}
-                            {% if app.user.discordPseudo %}
+                <hr class="my-8 border-t border-gray-500">
+                <div class="mb-8">
+                    <span class="text-white uppercase font-bold tracking-wider mb-4 block">Contact</span>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        {% if user.discordPseudo or user.TwitterPseudo or user.YoutubeChannelLink or user.TwitchChannelLink %}
+                            {% if user.discordPseudo %}
                                 <li>
-                                    <a class="text-blue-600 dark:text-blue-500 hover:underline" target="_blank">{{ app.user.discordPseudo }}</a>
+                                    <a class="text-blue-300 hover:underline" target="_blank">{{ user.discordPseudo }}</a>
                                 </li>
                             {% endif %}
-                            {% if app.user.TwitterPseudo %}
+                            {% if user.TwitterPseudo %}
                                 <li>
-                                    <a href="https://twitter.com/{{ app.user.TwitterPseudo | replace({'@': ''}) }}" class="text-blue-600 dark:text-blue-500 hover:underline" target="_blank">X / Twitter</a>
+                                    <a href="https://twitter.com/{{ user.TwitterPseudo | replace({'@': ''}) }}" class="text-blue-300 hover:underline" target="_blank">X / Twitter</a>
                                 </li>
                             {% endif %}
-                            {% if app.user.YoutubeChannelLink %}
+                            {% if user.YoutubeChannelLink %}
                                 <li>
-                                    <a href="{{ app.user.YoutubeChannelLink }}" class="text-blue-600 dark:text-blue-500 hover:underline" target="_blank">YouTube</a>
+                                    <a href="{{ user.YoutubeChannelLink }}" class="text-blue-300 hover:underline" target="_blank">YouTube</a>
                                 </li>
                             {% endif %}
-                            {% if app.user.TwitchChannelLink %}
+                            {% if user.TwitchChannelLink %}
                                 <li>
-                                    <a href="{{ app.user.TwitchChannelLink }}" class="text-blue-600 dark:text-blue-500 hover:underline" target="_blank">Twitch</a>
+                                    <a href="{{ user.TwitchChannelLink }}" class="text-blue-300 hover:underline" target="_blank">Twitch</a>
                                 </li>
                             {% endif %}
                         {% else %}
-                            <li class="text-gray-500">Aucun contact renseigné.</li>
+                            <li class="text-gray-400">Aucun contact renseigné.</li>
                         {% endif %}
                     </ul>
                 </div>
-                <div class="mb-6">
-                    <span class="text-gray-700 uppercase font-bold tracking-wider mb-2 block">Compétences</span>
-                    <ul class="space-y-2 text-sm md:text-base break-words">
-                        <li class="whitespace-pre-line">{{ app.user.competence ? app.user.competence : 'Pas de compétence spécifiée' }}</li>
+                <div class="mb-8">
+                    <span class="text-white uppercase font-bold tracking-wider mb-4 block">Compétences</span>
+                    <ul class=" space-y-3 text-sm md:text-base break-words">
+                        <li class="text-gray-400 whitespace-pre-line">{{ user.competence ? user.competence : 'Pas de compétence spécifiée' }}</li>
                     </ul>
                 </div>
-                {% if app.user.gender %}
-                    <div class="mb-6">
-                        <span class="text-gray-700 uppercase font-bold tracking-wider mb-2 block">Genre</span>
-                        <p class="text-sm md:text-base">{{ app.user.gender }}</p>
+                {% if user.gender %}
+                    <div class="mb-8">
+                        <span class="text-white uppercase font-bold tracking-wider mb-4 block">Genre</span>
+                        <p class="text-sm md:text-base text-white">{{ user.gender }}</p>
                     </div>
                 {% endif %}
             </div>
         </div>
 
         <div class="col-span-1 md:col-span-3">
-            <div class="bg-white shadow rounded-lg p-6">
-            <h2 class="text-xl font-bold mb-4">À propos de moi</h2>
-            <p class="text-gray-700 text-sm md:text-base break-words overflow-hidden text-ellipsis max-h-40">{{ app.user.bio ? app.user.bio : 'Pas de biographie disponible' }}</p>
+            <div class="glassmorphism p-10 rounded-lg hover:shadow-2xl transition-transform duration-300">
+                <h2 class="text-2xl font-bold text-white mb-8">À propos de moi</h2>
+                <p class="text-gray-100 text-sm md:text-base break-words overflow-hidden text-ellipsis max-h-40 mb-8">{{ user.bio ? user.bio : 'Pas de biographie disponible' }}</p>
 
-
-                <h2 class="text-xl font-bold mt-6 mb-4">Mes Parties (MJ)</h2>
-                <div class="mb-6">
+                <h2 class="text-2xl font-bold text-white mb-8">Mes Parties (MJ)</h2>
+                <div class="mb-10 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 p-6 glassmorphism rounded-lg">
                     {% for jdr in ownedJDRs %}
-                        <div class="mb-4 border-b pb-4">
-                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center flex-wrap gap-2 w-full">
-                                <span class="text-gray-800 font-bold text-base md:text-lg">Campagne : {{ jdr.title }}</span>
-                                <p class="text-gray-600 text-sm md:text-base">
+                        <div class="glassmorphism-invitation-accepted mb-8 border-b pb-4 hover:bg-white hover:bg-opacity-10 transition-colors duration-300 p-6 rounded-lg">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center flex-wrap gap-4 w-full">
+                                <span class="text-white font-bold text-lg md:text-xl">Campagne : {{ jdr.title }}</span>
+                                <p class="text-gray-300 text-sm md:text-base">
                                     Rôle : Maître du Jeu
                                     <br>
-                                    Créée le : <span class="text-blue-500">{{ jdr.createdAt ? jdr.createdAt|date('d/m/Y') : 'Date inconnue' }}</span>
+                                    Créée le : <span class="text-blue-400">{{ jdr.createdAt ? jdr.createdAt|date('d/m/Y') : 'Date inconnue' }}</span>
                                     {% if jdr.createdAt %}
                                         {% set now = date() %}
                                         {% set interval = now.diff(jdr.createdAt) %}
                                         <br>
-                                        <span class="font-semibold text-gray-800">Durée :</span> 
+                                        <span class="font-semibold text-white">Durée :</span> 
                                         {% if interval.days > 0 %}
                                             {{ interval.days }} jour{% if interval.days > 1 %}s{% endif %}
                                             {% if interval.h > 0 %}
@@ -107,27 +108,26 @@
                             </div>
                         </div>
                     {% else %}
-                        <p class="text-center text-gray-500">Pas encore de campagnes créées.</p>
+                        <p class="text-center text-gray-400">Pas encore de campagnes créées.</p>
                     {% endfor %}
                 </div>
 
-
-                <h2 class="text-xl font-bold mt-6 mb-4">Parties où je suis Joueur</h2>
-                <div class="mb-6">
+                <h2 class="text-2xl font-bold text-white mb-8">Parties où je suis Joueur</h2>
+                <div class="mb-10 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 p-6 glassmorphism rounded-lg">
                     {% for joinedJDR in joinedJDRs %}
-                        <div class="mb-4 border-b pb-4">
-                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center flex-wrap gap-2 w-full">
-                                <span class="text-gray-800 font-bold text-base md:text-lg">Campagne : {{ joinedJDR.groupe.title }}</span>
-                                <p class="text-gray-600 text-sm md:text-base">
+                        <div class="glassmorphism-player-left mb-8 border-b pb-4 hover:bg-white hover:bg-opacity-10 transition-colors duration-300 p-6 rounded-lg">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center flex-wrap gap-4 w-full">
+                                <span class="text-white font-bold text-lg md:text-xl">Campagne : {{ joinedJDR.groupe.title }}</span>
+                                <p class="text-gray-300 text-sm md:text-base">
                                     Rôle : Joueur
                                     <br>
                                     Depuis le : 
-                                    <span class="text-blue-500">{{ joinedJDR.joined_at ? joinedJDR.joined_at|date('d/m/Y') : 'Date inconnue' }}</span>
+                                    <span class="text-blue-400">{{ joinedJDR.joined_at ? joinedJDR.joined_at|date('d/m/Y') : 'Date inconnue' }}</span>
                                     {% if joinedJDR.joined_at %}
                                         {% set now = date() %}
                                         {% set interval = now.diff(joinedJDR.joined_at) %}
                                         <br>
-                                        <span class="font-semibold text-gray-800">Durée :</span> 
+                                        <span class="font-semibold text-white">Durée :</span> 
                                         {% if interval.days > 0 %}
                                             {{ interval.days }} jour{% if interval.days > 1 %}s{% endif %}
                                             {% if interval.h > 0 %}
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                     {% else %}
-                        <p class="text-center text-gray-500">Pas encore de campagnes associées.</p>
+                        <p class="text-center text-gray-400">Pas encore de campagnes associées.</p>
                     {% endfor %}
                 </div>
             </div>

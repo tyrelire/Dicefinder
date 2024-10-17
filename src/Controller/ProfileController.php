@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\UserType;
 use App\Entity\GroupeJDR;
 use App\Entity\PlayerMembership;
@@ -20,17 +21,21 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile/show', name: 'app_profile', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
+    #[Route('/profile/{id<\d+>}', name: 'app_profile_show', methods: ['GET'])]
+    public function show(int $id, EntityManagerInterface $entityManager): Response
     {
-        $user = $this->getUser();
-
-        $ownedJDRs = $entityManager->getRepository(\App\Entity\GroupeJDR::class)
+        $user = $entityManager->getRepository(User::class)->find($id);
+    
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
+        }
+    
+        $ownedJDRs = $entityManager->getRepository(GroupeJDR::class)
             ->findBy(['owner' => $user]);
-
-        $playerMemberships = $entityManager->getRepository(\App\Entity\PlayerMembership::class)
+    
+        $playerMemberships = $entityManager->getRepository(PlayerMembership::class)
             ->findBy(['player' => $user]);
-
+    
         $joinedJDRs = [];
         foreach ($playerMemberships as $membership) {
             $joinedJDRs[] = [
@@ -38,12 +43,14 @@ class ProfileController extends AbstractController
                 'joined_at' => $membership->getJoinedAt(),
             ];
         }
-        
+    
         return $this->render('profile/show.html.twig', [
+            'user' => $user,
             'ownedJDRs' => $ownedJDRs,
             'joinedJDRs' => $joinedJDRs,
         ]);
     }
+    
 
     #[Route('/profile/edit', name: 'app_profile_edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, SluggerInterface $slugger): Response
