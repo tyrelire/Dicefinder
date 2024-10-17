@@ -247,6 +247,49 @@ class PlayerInvitationController extends AbstractController
         }
     }
 
+    #[Route('/api/respond_invitation_base/{invitationId}', name: 'respond_invitation_base', methods: ['POST'])]
+    public function respondInvitationBase(
+        int $invitationId,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        PlayerMembershipRepository $playerMembershipRepository,
+        NotificationService $notificationService
+    ): JsonResponse {
+        $currentUser = $this->getUser();
+        if (!$currentUser) {
+            return new JsonResponse(['success' => false, 'message' => 'Vous devez être connecté pour faire cette action.'], JsonResponse::HTTP_UNAUTHORIZED);
+        }
+    
+        $invitation = $entityManager->getRepository(Invitation::class)->find($invitationId);
+        if (!$invitation) {
+            return new JsonResponse(['success' => false, 'message' => 'Invitation non trouvée.'], JsonResponse::HTTP_NOT_FOUND);
+        }
+    
+        $data = json_decode($request->getContent(), true);
+        $response = $data['response'] ?? null;
+    
+        if (!$this->isAuthorized($currentUser, $invitation)) {
+            return new JsonResponse(['success' => false, 'message' => 'Accès non autorisé.'], JsonResponse::HTTP_FORBIDDEN);
+        }
+    
+        $groupeJdr = $invitation->getGroupeJDR();
+    
+        if ($response === 'accept') {
+            $this->handleAcceptResponse($invitation, $groupeJdr, $entityManager, $playerMembershipRepository);
+        } elseif ($response === 'refuse') {
+            return new JsonResponse(['success' => true, 'message' => 'Invitation refusée.']);
+        } else {
+            return new JsonResponse(['success' => false, 'message' => 'Réponse invalide.'], JsonResponse::HTTP_BAD_REQUEST);
+        }
+    
+        $this->sendNotifications($response, $invitation, $groupeJdr, $notificationService);
+    
+        $entityManager->remove($invitation);
+        $entityManager->flush();
+    
+        return new JsonResponse(['success' => true, 'message' => $response === 'accept' ? 'Invitation acceptée.' : 'Invitation refusée.']);
+    }
+    
     #[Route('/api/respond_invitation/{invitationId}', name: 'respond_invitation', methods: ['POST'])]
     public function respondInvitation(
         int $invitationId,
@@ -368,5 +411,4 @@ class PlayerInvitationController extends AbstractController
             );
         }
     }
-
 }

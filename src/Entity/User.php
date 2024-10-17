@@ -119,7 +119,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Collection<int, Notification>
      */
     #[ORM\OneToMany(targetEntity: Notification::class, mappedBy: 'recipient')]
-    private Collection $notifications; // Groupes auxquels l'utilisateur a rejoint
+    private Collection $notifications;
+
+    /**
+     * @var Collection<int, GroupeJDR>
+     */
+    #[ORM\ManyToMany(targetEntity: GroupeJDR::class, inversedBy: 'usersFavorited')]
+    #[ORM\JoinTable(name: 'user_favorite_jdr')]
+    private Collection $favoriteGroupeJDR;
+
 
     public function __construct()
     {
@@ -130,6 +138,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->invitationPending = new ArrayCollection();
         $this->playerMemberships = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->favoriteGroupeJDR = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -587,6 +596,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $notification->setRecipient(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GroupeJDR>
+     */
+    public function getFavoriteGroupeJDR(): Collection
+    {
+        return $this->favoriteGroupeJDR;
+    }
+
+    public function addFavoriteGroupeJDR(GroupeJDR $favoriteGroupeJDR): static
+    {
+        if (!$this->favoriteGroupeJDR->contains($favoriteGroupeJDR)) {
+            $this->favoriteGroupeJDR->add($favoriteGroupeJDR);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteGroupeJDR(GroupeJDR $favoriteGroupeJDR): static
+    {
+        $this->favoriteGroupeJDR->removeElement($favoriteGroupeJDR);
 
         return $this;
     }

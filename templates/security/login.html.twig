@@ -27,9 +27,13 @@
             {% endif %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <div class="-space-y-px rounded-md shadow-sm">
-                <div>
+                {# <div>
                     <label for="username" class="sr-only">Adresse e-mail</label>
-                    <input id="username" name="_username" type="email" value="{{ last_username }}" autocomplete="email" required autofocus class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-black placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="toi@exemple.com">
+                    <input id="username" name="_username" type="text" value="{{ last_username }}" autocomplete="email" required autofocus class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-black placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="toi@exemple.com">
+                </div> #}
+                <div>
+                    <label for="username" class="sr-only">Identifiant</label>
+                    <input id="username" name="_username" type="text" value="{{ last_username }}" autocomplete="username" required autofocus class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-black placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Pseudo ou email">
                 </div>
                 <div>
                     <label for="password" class="sr-only">Mot de passe</label>

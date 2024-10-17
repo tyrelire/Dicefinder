@@ -3,103 +3,135 @@
 {% block title %}Invitations et Notifications{% endblock %}
 
 {% block body %}
-<div class="container mx-auto px-4 py-8">
-    <div class="bg-white shadow rounded-lg p-6">
-        <h1 class="text-2xl font-bold mb-4 text-gray-800">Mes Invitations</h1>
 
+
+<div class="container mx-auto px-4 py-8">
+    <div class="glassmorphism shadow-2xl rounded-lg p-6 mb-10">
+        <h1 class="text-3xl font-bold mb-6 text-white">Mes Invitations</h1>
         {% if invitationsData|length > 0 %}
-            <div class="space-y-4">
+            <div class="space-y-6">
                 {% for invitationData in invitationsData %}
                     {% set invitation = invitationData.invitation %}
-                    <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 p-4 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-in-out flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+                    <div class="glassmorphism-invitation-accepted p-4 rounded-lg shadow-lg hover:shadow-md transition-all transform hover:translate-y-1 duration-150 ease-in-out flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
                         <div class="flex items-center">
                             {% if invitationData.initiatedByOwner %}
                                 {% if invitation.groupeJDR.owner.avatar %}
-                                    <img src="{{ asset('uploads/avatars/' ~ invitation.groupeJDR.owner.avatar) }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil du propriétaire">
+                                    <img src="{{ asset('uploads/avatars/' ~ invitation.groupeJDR.owner.avatar) }}" class="jdr-avatar" alt="Photo de profil du propriétaire">
                                 {% else %}
-                                    <img src="{{ asset('images/default-avatar.png') }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil par défaut">
+                                    <img src="{{ asset('images/default-avatar.png') }}" class="jdr-avatar" alt="Photo de profil par défaut">
                                 {% endif %}
                             {% elseif invitationData.initiatedByUser %}
                                 {% if invitation.requestedBy.avatar %}
-                                    <img src="{{ asset('uploads/avatars/' ~ invitation.requestedBy.avatar) }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil de l'utilisateur">
+                                    <img src="{{ asset('uploads/avatars/' ~ invitation.requestedBy.avatar) }}" class="jdr-avatar" alt="Photo de profil de l'utilisateur">
                                 {% else %}
-                                    <img src="{{ asset('images/default-avatar.png') }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil par défaut">
+                                    <img src="{{ asset('images/default-avatar.png') }}" class="jdr-avatar" alt="Photo de profil par défaut">
                                 {% endif %}
                             {% else %}
-                                <img src="{{ asset('images/default-avatar.png') }}" class="w-10 h-10 rounded-full mr-4 ring-2 ring-gray-700" alt="Photo de profil par défaut">
+                                <img src="{{ asset('images/default-avatar.png') }}" class="jdr-avatar" alt="Photo de profil par défaut">
                             {% endif %}
                             <div>
                                 <p class="text-lg font-bold text-white">{{ invitation.groupeJDR.title }}</p>
                                 {% if invitationData.initiatedByUser %}
-                                    <p class="text-sm text-white">
+                                    <p class="text-md text-white">
                                         <strong>{{ invitation.requestedBy.username }}</strong> veut rejoindre votre univers "<strong>{{ invitation.groupeJDR.title }}</strong>".
                                     </p>
                                     {% if invitation.message %}
-                                        <p class="text-xs text-gray-400 mt-2"><em>"{{ invitation.message }}"</em></p>
+                                        <p class="text-sm text-white mt-2 italic">"{{ invitation.message }}"</p>
                                     {% endif %}
                                 {% elseif invitationData.initiatedByOwner %}
-                                    <p class="text-sm text-white">
+                                    <p class="text-md text-white">
                                         <strong>{{ invitation.groupeJDR.owner.username }}</strong> vous a invité à rejoindre l'univers "<strong>{{ invitation.groupeJDR.title }}</strong>".
                                     </p>
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="flex space-x-2 lg:ml-6">
-                            <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block">
+                        <div class="flex space-x-3 w-full md:w-auto justify-end">
+                            <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block w-full md:w-auto">
                                 <input type="hidden" name="response" value="accept">
-                                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-200 hover:shadow-lg" aria-label="Accepter l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Accepter</button>
+                                <button type="submit" class="w-full md:w-auto glassmorphism-acceptance text-white px-4 py-2 rounded-md hover:bg-green-500 transition-all duration-300 ease-in-out hover:shadow-lg winter-button-accept" aria-label="Accepter l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Accepter</button>
                             </form>
-                            <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block">
+                            <form action="{{ path('respond_invitation', { invitationId: invitation.id }) }}" method="POST" class="inline-block w-full md:w-auto">
                                 <input type="hidden" name="response" value="refuse">
-                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors durée-200 hover:shadow-lg" aria-label="Refuser l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Refuser</button>
+                                <button type="submit" class="w-full md:w-auto glassmorphism-player-left text-white px-4 py-2 rounded-md hover:bg-red-500 transition-all duration-300 ease-in-out hover:shadow-lg winter-button-refuse" aria-label="Refuser l'invitation pour rejoindre {{ invitation.groupeJDR.title }}">Refuser</button>
                             </form>
                         </div>
                     </div>
                 {% endfor %}
             </div>
         {% else %}
-            <p class="text-gray-500">Aucune invitation en attente.</p>
+            <p class="text-white mt-6">Aucune invitation en attente.</p>
         {% endif %}
     </div>
 
-    <div class="bg-white shadow rounded-lg p-6 mt-8">
-        <!-- Conteneur pour le titre et le bouton alignés sur une ligne -->
-        <div class="flex justify-between items-center mb-4">
-            <h1 class="text-2xl font-bold text-gray-800">Mes Notifications</h1>
+    <div class="glassmorphism shadow-2xl rounded-lg p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-white">Mes Notifications</h1>
             {% if notifications|length > 0 %}
                 <form action="{{ path('app_notifications_clear_all') }}" method="POST" class="inline-block">
-                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors duration-200 hover:shadow-lg">
-                        Effacer toutes les notifications
+                    <button type="submit" class="flex items-center justify-center gap-2 glassmorphism-warning text-white px-4 py-2 rounded-lg hover:bg-yellow-500 transition-all duration-300 ease-in-out hover:shadow-lg winter-button-clear focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9L14.394 18M9.606 18L9.26 9M19.228 5.79c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                        </svg>
+                        <span class="hidden sm:inline">Effacer toutes les notifications</span>
                     </button>
                 </form>
             {% endif %}
         </div>
 
         {% if notifications|length > 0 %}
-            <div class="space-y-4">
+            <div class="space-y-6">
                 {% for notification in notifications %}
-                    <div class="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 p-4 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-in-out flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+                    {% set bg_color = 'glassmorphism-invitation-accepted' %}
+                    {% set emoji = 'ℹ️' %}
+                    {% set message = notification.message %}
+                    {% if notification.type == 'acceptance_confirmation' %}
+                        {% set bg_color = 'glassmorphism-acceptance' %}
+                        {% set emoji = '✅' %}
+                    {% elseif notification.type == 'refusal_confirmation' %}
+                        {% set bg_color = 'glassmorphism-player-left' %}
+                        {% set emoji = '❌' %}
+                    {% elseif notification.type == 'join_request_confirmation' %}
+                        {% set bg_color = 'glassmorphism-warning' %}
+                        {% set emoji = '⭐' %}
+                    {% elseif notification.type == 'user_removed_from_group' %}
+                        {% set bg_color = 'glassmorphism-warning' %}
+                        {% set emoji = '⚠️' %}
+                    {% elseif notification.type == 'leave' %}
+                        {% set bg_color = 'glassmorphism-player-left' %}
+                        {% set emoji = '✋' %}
+                    {% elseif notification.type == 'player_left' %}
+                        {% set bg_color = 'glassmorphism-player-left' %}
+                        {% set emoji = '❌' %}
+                    {% elseif notification.type == 'invitation_sent' %}
+                        {% set bg_color = 'glassmorphism-invitation-accepted' %}
+                        {% set emoji = '📩' %}
+                    {% endif %}
+
+                    <div class="{{ bg_color }} glassmorphism border border-white/20 p-4 rounded-lg shadow-lg hover:shadow-md transition-all transform hover:translate-y-1 duration-150 ease-in-out flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
                         <div class="flex items-center">
+                            <div class="mr-4 text-2xl" aria-hidden="true">{{ emoji }}</div>
                             <div>
                                 <p class="text-lg font-bold text-white">{{ notification.groupeJDR.title }}</p>
-                                <p class="text-sm text-white">
-                                    {{ notification.message }}
+                                <p class="text-md text-white/90">
+                                    {{ message }}
                                 </p>
-                                <p class="text-xs text-gray-400 mt-2">{{ notification.createdAt|date('d/m/Y H:i') }}</p>
+                                <p class="text-sm text-white/70 mt-2">{{ notification.createdAt|date('d/m/Y H:i') }}</p>
                             </div>
                         </div>
-                        <div class="flex space-x-2 lg:ml-6">
-                            <form action="{{ path('app_notifications_respond', { id: notification.id }) }}" method="POST" class="inline-block">
+                        <div class="flex space-x-3 w-full md:w-auto justify-end">
+                            <form action="{{ path('app_notifications_respond', { id: notification.id }) }}" method="POST" class="inline-block w-full md:w-auto">
                                 <input type="hidden" name="response" value="read">
-                                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200 hover:shadow-lg" aria-label="Marquer comme lue">Marquer comme lu</button>
+                                <button type="submit" class="w-full md:w-auto glassmorphism-invitation-accepted text-white px-4 py-2 rounded-md hover:bg-gray-400 transition-all duration-300 ease-in-out hover:shadow-lg winter-button-read" aria-label="Marquer comme lue">Marquer comme lu</button>
                             </form>
                         </div>
                     </div>
                 {% endfor %}
             </div>
         {% else %}
-            <p class="text-gray-500">Aucune notification en attente.</p>
+            <p class="text-white mt-6">Aucune notification en attente.</p>
         {% endif %}
     </div>
 </div>
+
 {% endblock %}
+

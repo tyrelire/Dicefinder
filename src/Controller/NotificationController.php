@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Invitation;
 use App\Entity\Notification;
-use App\Service\NotificationService;
 use App\Repository\InvitationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\NotificationRepository;
@@ -13,11 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class NotificationController extends AbstractController
 {
     #[Route('/notifications', name: 'app_notifications_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function invitationsNotificationsIndex(
         InvitationRepository $invitationRepository,
         NotificationRepository $notificationRepository
@@ -54,12 +55,10 @@ class NotificationController extends AbstractController
     }
     
     #[Route('/api/invitations_pending', name: 'app_invitations_pending')]
+    #[IsGranted('ROLE_USER')]
     public function getPendingInvitations(EntityManagerInterface $entityManager): JsonResponse
     {
         $user = $this->getUser();
-        if (!$user) {
-            return new JsonResponse(['error' => 'User not connected'], 403);
-        }
     
         try {
             $invitations = $entityManager->getRepository(Invitation::class)
@@ -91,12 +90,10 @@ class NotificationController extends AbstractController
     }
 
     #[Route('/api/notifications_pending', name: 'app_notifications_pending')]
+    #[IsGranted('ROLE_USER')]
     public function getPendingNotifications(EntityManagerInterface $entityManager): JsonResponse
     {
         $user = $this->getUser();
-        if (!$user) {
-            return new JsonResponse(['error' => 'User not connected'], 403);
-        }
     
         try {
             $notifications = $entityManager->getRepository(Notification::class)
@@ -119,6 +116,7 @@ class NotificationController extends AbstractController
     }
 
     #[Route('/notifications/{id}/respond', name: 'app_notifications_respond', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
     public function respondNotification(Notification $notification, Request $request, EntityManagerInterface $entityManager): Response
     {
         $notification->setRead(true);
@@ -128,6 +126,7 @@ class NotificationController extends AbstractController
     }
 
     #[Route('/notifications/clear', name: 'app_notifications_clear_all', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
     public function clearAllNotifications(EntityManagerInterface $entityManager): RedirectResponse
     {
         $user = $this->getUser();

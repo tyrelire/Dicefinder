@@ -141,56 +141,59 @@
                         </div>
                     {% endif %}
                 {% endif %}
-                
-                <div class="mb-4">
-                    <h4 class="text-gray-700 font-medium">Membres actuels de l'Univers</h4>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="existing-members-container">
-                        {% for player in groupe_j_d_r.players %}
-                            <div class="relative bg-gray-800 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center" data-user-id="{{ player.id }}">
-                                <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" onclick="removePlayer('{{ player.id }}')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                                {% if player.avatar %}
-                                    <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('uploads/avatars/' ~ player.avatar) }}">
-                                {% else %}
-                                    <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('images/default-avatar.png') }}">
-                                {% endif %}
-                                <div class="flex-1 w-full">
-                                    <p class="text-white font-semibold truncate w-full">{{ player.username }}</p>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                {% if groupe_j_d_r.players|length < groupe_j_d_r.maxPlayer %}
+                {% if groupe_j_d_r.players|length > 0 %}
                     <div class="mb-4">
-                        <h4 class="text-gray-700 font-medium">Invitations en attente</h4>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="invited-members-container">
-                            {% for invitation in groupe_j_d_r.invitations %}
-                                {% if invitation.status == 'pending' and invitation.user != groupe_j_d_r.owner %}
-                                    <div class="relative bg-yellow-200 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center">
-                                        {% if invitation.user.avatar %}
-                                            <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('uploads/avatars/' ~ invitation.user.avatar) }}">
-                                        {% else %}
-                                            <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('images/default-avatar.png') }}">
-                                        {% endif %}
-                                        <div class="flex-1 w-full">
-                                            <p class="text-yellow-800 font-semibold truncate w-full">{{ invitation.user.username }}</p>
-                                            <p class="text-sm text-yellow-600 break-words w-full">En attente de confirmation</p>
-                                        </div>
-                                        <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" data-invitation-id="{{ invitation.id }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                        </button>
+                        <h4 class="text-gray-700 font-medium">Membres actuels de l'Univers</h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="existing-members-container">
+                            {% for player in groupe_j_d_r.players %}
+                                <div class="relative bg-gray-800 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center" data-user-id="{{ player.id }}">
+                                    <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" onclick="removePlayer('{{ player.id }}')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                    {% if player.avatar %}
+                                        <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('uploads/avatars/' ~ player.avatar) }}">
+                                    {% else %}
+                                        <img class="w-16 h-16 rounded-full object-cover" alt="{{ player.username }}" src="{{ asset('images/default-avatar.png') }}">
+                                    {% endif %}
+                                    <div class="flex-1 w-full">
+                                        <p class="text-white font-semibold truncate w-full">{{ player.username }}</p>
                                     </div>
-                                {% endif %}
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
+                {% endif %}
+
+                {% if groupe_j_d_r.players|length < groupe_j_d_r.maxPlayer %}
+                    {% if groupe_j_d_r.invitations|length > 0 %}
+                        <div class="mb-4">
+                            <h4 class="text-gray-700 font-medium">Invitations en attente</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="invited-members-container">
+                                {% for invitation in groupe_j_d_r.invitations %}
+                                    {% if invitation.status == 'pending' and invitation.user != groupe_j_d_r.owner %}
+                                        <div class="relative bg-yellow-200 p-4 rounded-lg shadow flex flex-col items-center space-y-4 text-center">
+                                            {% if invitation.user.avatar %}
+                                                <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('uploads/avatars/' ~ invitation.user.avatar) }}">
+                                            {% else %}
+                                                <img class="w-16 h-16 rounded-full object-cover" alt="{{ invitation.user.username }}" src="{{ asset('images/default-avatar.png') }}">
+                                            {% endif %}
+                                            <div class="flex-1 w-full">
+                                                <p class="text-yellow-800 font-semibold truncate w-full">{{ invitation.user.username }}</p>
+                                                <p class="text-sm text-yellow-600 break-words w-full">En attente de confirmation</p>
+                                            </div>
+                                            <button class="absolute top-2 right-2 text-red-500 hover:text-red-700" data-invitation-id="{{ invitation.id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
                 {% endif %}
 
                 {% if groupe_j_d_r.players|length < groupe_j_d_r.maxPlayer %}
@@ -208,7 +211,6 @@
             </div>
         {% endif %}
 
-
         <div class="flex justify-end mt-6">
             <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 {{ button_label|default('Save') }}
@@ -224,6 +226,7 @@ function updateCharCount(textarea) {
     const remainingChars = maxChars - textarea.value.length;
     document.getElementById('charCount').textContent = remainingChars + " caractères restants";
 }
+
 function updateTitleCharCount(input) {
     const maxLength = 29;
     const remainingChars = maxLength - input.value.length;
@@ -359,12 +362,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    const pseudoInput = document.getElementById('pseudo-input');
+    
+    if (pseudoInput) {
+        pseudoInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                addMemberBtn.click();
+            }
+        });
+    }
+
     const addMemberBtn = document.getElementById('add-member-btn');
     if (addMemberBtn) {
         addMemberBtn.addEventListener('click', function () {
-            const pseudoInput = document.getElementById('pseudo-input');
             const pseudo = pseudoInput.value.trim();
             const errorMessage = document.getElementById('error-message');
+            
             if (pseudo.length > 0 && jdrId !== null) {
                 fetch(`/api/check_user/${pseudo}/${jdrId}`)
                     .then(response => response.json())
@@ -394,7 +408,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 errorMessage.classList.remove('hidden');
                 errorMessage.textContent = jdrId === null ? "Univers ID non défini." : "Le pseudo est vide.";
             }
-            updateMemberLimit();
         });
     }
 

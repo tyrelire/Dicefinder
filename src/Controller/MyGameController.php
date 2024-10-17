@@ -7,6 +7,7 @@ use App\Repository\GroupeJDRRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MyGameController extends AbstractController
@@ -45,11 +46,13 @@ class MyGameController extends AbstractController
 
         $ownedJdrs = $ownedJdrsQuery->getQuery()->getResult();
         $playerJdrs = $playerJdrsQuery->getQuery()->getResult();
+        $favorites = $user->getFavoriteGroupeJDR();
 
         return $this->render('my_game/index.html.twig', [
             'ownedJdrs' => $ownedJdrs,
             'playerJdrs' => $playerJdrs,
             'searchTerm' => $searchTerm,
+            'favoriteJdrs' => $favorites,
         ]);
     }
 }

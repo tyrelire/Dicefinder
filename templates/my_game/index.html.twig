@@ -47,29 +47,17 @@
                         <img src="{{ asset('uploads/images-jdr/' ~ jdr.picture) }}" alt="Image de la partie" class="w-full h-48 object-cover">
                         <div class="absolute top-2 right-2">
                             <span class="text-xs font-bold px-2 py-1 rounded 
-                                {% if jdr.status == 'preparation' %} bg-yellow-500
-                                {% elseif jdr.status == 'pret_a_jouer' %} bg-green-500
+                                {% if jdr.status == 'nouveau' %} bg-green-500
                                 {% elseif jdr.status == 'en_cours' %} bg-blue-500
-                                {% elseif jdr.status == 'complet' %} bg-red-500
-                                {% elseif jdr.status == 'pause' %} bg-gray-500
-                                {% elseif jdr.status == 'termine' %} bg-purple-500
-                                {% elseif jdr.status == 'annule' %} bg-gray-400
+                                {% elseif jdr.status == 'termine' %} bg-red-500
                                 {% else %} bg-gray-700
                                 {% endif %} text-white">
-                                {% if jdr.status == 'preparation' %}
-                                    En Préparation
-                                {% elseif jdr.status == 'pret_a_jouer' %}
-                                    Prêt à jouer
+                                {% if jdr.status == 'nouveau' %}
+                                    Nouveau
                                 {% elseif jdr.status == 'en_cours' %}
                                     En Cours
-                                {% elseif jdr.status == 'complet' %}
-                                    Complet
-                                {% elseif jdr.status == 'pause' %}
-                                    En Pause
                                 {% elseif jdr.status == 'termine' %}
                                     Terminé
-                                {% elseif jdr.status == 'annule' %}
-                                    Annulé
                                 {% else %}
                                     Statut inconnu
                                 {% endif %}
@@ -149,29 +137,17 @@
                         <img src="{{ asset('uploads/images-jdr/' ~ jdr.picture) }}" alt="Image de la partie" class="w-full h-48 object-cover">
                         <div class="absolute top-2 right-2">
                             <span class="text-xs font-bold px-2 py-1 rounded 
-                                {% if jdr.status == 'preparation' %} bg-yellow-500
-                                {% elseif jdr.status == 'pret_a_jouer' %} bg-green-500
+                                {% if jdr.status == 'nouveau' %} bg-green-500
                                 {% elseif jdr.status == 'en_cours' %} bg-blue-500
-                                {% elseif jdr.status == 'complet' %} bg-red-500
-                                {% elseif jdr.status == 'pause' %} bg-gray-500
-                                {% elseif jdr.status == 'termine' %} bg-purple-500
-                                {% elseif jdr.status == 'annule' %} bg-gray-400
+                                {% elseif jdr.status == 'termine' %} bg-red-500
                                 {% else %} bg-gray-700
                                 {% endif %} text-white">
-                                {% if jdr.status == 'preparation' %}
-                                    En Préparation
-                                {% elseif jdr.status == 'pret_a_jouer' %}
-                                    Prêt à jouer
+                                {% if jdr.status == 'nouveau' %}
+                                    Nouveau
                                 {% elseif jdr.status == 'en_cours' %}
                                     En Cours
-                                {% elseif jdr.status == 'complet' %}
-                                    Complet
-                                {% elseif jdr.status == 'pause' %}
-                                    En Pause
                                 {% elseif jdr.status == 'termine' %}
                                     Terminé
-                                {% elseif jdr.status == 'annule' %}
-                                    Annulé
                                 {% else %}
                                     Statut inconnu
                                 {% endif %}
@@ -207,8 +183,63 @@
     {% else %}
         <p class="text-center text-gray-500 mb-20 mt-20">Vous ne participez à aucun parties pour le moment.</p>
     {% endif %}
-</div>
 
+    <h2 class="text-xl md:text-2xl font-bold mb-6 text-white">Mes Favoris</h2>
+    {% if favoriteJdrs is not empty %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+            {% for jdr in favoriteJdrs %}
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="{{ asset('uploads/images-jdr/' ~ jdr.picture) }}" alt="Image de la partie" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2">
+                            <span class="text-xs font-bold px-2 py-1 rounded 
+                                {% if jdr.status == 'nouveau' %} bg-green-500
+                                {% elseif jdr.status == 'en_cours' %} bg-blue-500
+                                {% elseif jdr.status == 'termine' %} bg-red-500
+                                {% else %} bg-gray-700
+                                {% endif %} text-white">
+                                {% if jdr.status == 'nouveau' %}
+                                    Nouveau
+                                {% elseif jdr.status == 'en_cours' %}
+                                    En Cours
+                                {% elseif jdr.status == 'termine' %}
+                                    Terminé
+                                {% else %}
+                                    Statut inconnu
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <a href="{{ path('app_groupe_j_d_r_show', {'id': jdr.id}) }}" class="text-lg font-semibold text-white">{{ jdr.title }}</a>
+                            <a href="{{ path('remove_favorite', {'id': jdr.id}) }}" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-1.5 px-3 rounded-md text-sm transition-colors">
+                                Retirer des Favoris
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4">
+                            {% if jdr.owner.avatar %}
+                                <img src="{{ asset('uploads/avatars/' ~ jdr.owner.avatar) }}" alt="Avatar MJ" class="w-8 h-8 rounded-full">
+                            {% else %}
+                                <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar MJ" class="rounded h-8 w-8 object-cover">
+                            {% endif %}
+                            <div class="text-white">
+                                <p class="text-sm">MJ</p>
+                                <p class="text-sm font-semibold">{{ jdr.owner.username }}</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-white">
+                            <p class="text-sm">Places Disponibles</p>
+                            <p class="text-xl font-bold">{{ jdr.maxPlayer - jdr.players|length }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-gray-500 mb-20 mt-20">Vous n'avez aucun jeu de rôle en favori pour le moment.</p>
+    {% endif %}
+</div>
 
 <script>
     let currentJdrId = null;

@@ -117,29 +117,17 @@
                         class="rounded-lg mb-4 w-full h-[20rem] object-cover {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %} blur-sm {% endif %}">
                     <div class="absolute top-2 right-2">
                         <span class="text-sm font-bold px-2 py-1 rounded 
-                            {% if groupe_j_d_r.status == 'preparation' %} bg-yellow-500
-                            {% elseif groupe_j_d_r.status == 'pret_a_jouer' %} bg-green-500
+                            {% if groupe_j_d_r.status == 'nouveau' %} bg-green-500
                             {% elseif groupe_j_d_r.status == 'en_cours' %} bg-blue-500
-                            {% elseif groupe_j_d_r.status == 'complet' %} bg-red-500
-                            {% elseif groupe_j_d_r.status == 'pause' %} bg-gray-500
-                            {% elseif groupe_j_d_r.status == 'termine' %} bg-purple-500
-                            {% elseif groupe_j_d_r.status == 'annule' %} bg-gray-400
+                            {% elseif groupe_j_d_r.status == 'termine' %} bg-red-500
                             {% else %} bg-gray-700
                             {% endif %} text-white">
-                            {% if groupe_j_d_r.status == 'preparation' %}
-                                En Préparation
-                            {% elseif groupe_j_d_r.status == 'pret_a_jouer' %}
-                                Prêt à jouer
+                            {% if groupe_j_d_r.status == 'nouveau' %}
+                                Nouveau
                             {% elseif groupe_j_d_r.status == 'en_cours' %}
                                 En Cours
-                            {% elseif groupe_j_d_r.status == 'complet' %}
-                                Complet
-                            {% elseif groupe_j_d_r.status == 'pause' %}
-                                En Pause
                             {% elseif groupe_j_d_r.status == 'termine' %}
                                 Terminé
-                            {% elseif groupe_j_d_r.status == 'annule' %}
-                                Annulé
                             {% else %}
                                 Statut inconnu
                             {% endif %}

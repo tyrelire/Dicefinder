@@ -95,6 +95,12 @@ class GroupeJDR
     #[ORM\OneToMany(targetEntity: Notification::class, mappedBy: 'groupeJDR')]
     private Collection $notifications;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteGroupeJDR')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
@@ -104,6 +110,7 @@ class GroupeJDR
         $this->events = new ArrayCollection();
         $this->playerMemberships = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -413,6 +420,33 @@ class GroupeJDR
             if ($notification->getGroupeJDR() === $this) {
                 $notification->setGroupeJDR(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addFavoriteGroupeJDR($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFavoriteGroupeJDR($this);
         }
 
         return $this;

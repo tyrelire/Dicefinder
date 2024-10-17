@@ -1,17 +1,13 @@
-# This file is the entry point to configure your own services.
-# Files in the packages/ subdirectory configure your dependencies.
-
-# Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
-parameters:
-    avatars_directory: '%kernel.project_dir%/public/uploads/avatars'
-    uploads_directory: '%kernel.project_dir%/public/uploads/images-jdr'
-
 services:
     # default configuration for services in *this* file
     App\Security\UserChecker:
         tags:
             - { name: 'security.user_checker' }
+    
+    App\Security\CustomUserProvider:
+        autowire: true
+        autoconfigure: true
+
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
@@ -24,6 +20,3 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
