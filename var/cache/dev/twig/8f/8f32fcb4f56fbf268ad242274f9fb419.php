@@ -275,141 +275,149 @@ class __TwigTemplate_6ac6e39aeb26c8776dc434bae93febd7 extends Template
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["groupe_j_d_r"]) {
             // line 111
-            yield "            <a href=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 111)]), "html", null, true);
-            yield "\"
-                class=\"block bg-white bg-opacity-10 border border-gray-500 rounded-lg shadow-lg p-6 pb-5 text-white relative transition-all duration-300 hover:translate-y-[-10px] hover:shadow-2xl hover:bg-opacity-20\"
+            yield "            <div class=\"bg-white bg-opacity-10 border border-gray-500 rounded-lg shadow-lg p-6 pb-5 text-white relative transition-all duration-300 hover:translate-y-[-10px] hover:shadow-2xl hover:bg-opacity-20 card-item\"
                 style=\"will-change: transform;\">
-                <div class=\"relative\">
-                    <img src=\"";
+                <a href=\"";
+            // line 113
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 113)]), "html", null, true);
+            yield "\" class=\"block\">
+                    <div class=\"relative\">
+                        <img src=\"";
             // line 115
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images-jdr/" . CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "picture", [], "any", false, false, false, 115))), "html", null, true);
             yield "\" 
-                        alt=\"";
+                            alt=\"";
             // line 116
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 116), "html", null, true);
             yield " image\" 
-                        class=\"rounded-lg mb-4 w-full h-[20rem] object-cover ";
+                            class=\"rounded-lg mb-4 w-full h-[20rem] object-cover ";
             // line 117
             if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "players", [], "any", false, false, false, 117)) >= CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "maxPlayer", [], "any", false, false, false, 117))) {
                 yield " blur-sm ";
             }
-            yield "\">
-                    <div class=\"absolute top-2 right-2\">
-                        <span class=\"text-sm font-bold px-2 py-1 rounded 
-                            ";
+            yield " tokenImage\">
+                        <div class=\"absolute top-2 right-2\">
+                            <span class=\"text-sm font-bold px-2 py-1 rounded 
+                                ";
             // line 120
             if ((CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "status", [], "any", false, false, false, 120) == "nouveau")) {
-                yield " bg-green-500
-                            ";
+                yield " bg-green-600
+                                ";
             } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 121
 $context["groupe_j_d_r"], "status", [], "any", false, false, false, 121) == "en_cours")) {
                 yield " bg-blue-500
-                            ";
+                                ";
             } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 122
 $context["groupe_j_d_r"], "status", [], "any", false, false, false, 122) == "termine")) {
                 yield " bg-red-500
-                            ";
+                                ";
             } else {
                 // line 123
                 yield " bg-gray-700
-                            ";
+                                ";
             }
             // line 124
             yield " text-white\">
-                            ";
+                                ";
             // line 125
             if ((CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "status", [], "any", false, false, false, 125) == "nouveau")) {
                 // line 126
-                yield "                                Nouveau
-                            ";
+                yield "                                    Nouveau
+                                ";
             } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 127
 $context["groupe_j_d_r"], "status", [], "any", false, false, false, 127) == "en_cours")) {
                 // line 128
-                yield "                                En Cours
-                            ";
+                yield "                                    En Cours
+                                ";
             } elseif ((CoreExtension::getAttribute($this->env, $this->source,             // line 129
 $context["groupe_j_d_r"], "status", [], "any", false, false, false, 129) == "termine")) {
                 // line 130
-                yield "                                Terminé
-                            ";
+                yield "                                    Terminé
+                                ";
             } else {
                 // line 132
-                yield "                                Statut inconnu
-                            ";
+                yield "                                    Statut inconnu
+                                ";
             }
             // line 134
-            yield "                        </span>
+            yield "                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class=\"flex justify-between items-center mb-2\">
-                    <p class=\"font-semibold hover:underline truncate max-w-[100%]\">";
-            // line 138
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 138), "html", null, true);
-            yield "</p>
+                </a>
+                <div class=\"mb-2\">
+                    <a href=\"";
+            // line 139
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_groupe_j_d_r_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "id", [], "any", false, false, false, 139)]), "html", null, true);
+            yield "\" class=\"font-semibold hover:underline truncate max-w-[100%] block\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "title", [], "any", false, false, false, 139), "html", null, true);
+            yield "</a>
                 </div>
                 <div class=\"flex justify-between items-center mt-2\">
-                    <div class=\"flex items-center\">
-                        ";
+                    <a href=\"";
             // line 142
-            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 142), "avatar", [], "any", false, false, false, 142)) {
-                // line 143
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 142), "id", [], "any", false, false, false, 142)]), "html", null, true);
+            yield "\" class=\"flex items-center group transition-all duration-300 hover:bg-opacity-20 p-1 rounded-lg\">
+                        ";
+            // line 143
+            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 143), "avatar", [], "any", false, false, false, 143)) {
+                // line 144
                 yield "                            <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 143), "avatar", [], "any", false, false, false, 143))), "html", null, true);
-                yield "\" alt=\"MJ photo\" class=\"rounded h-8 w-8 object-cover\">
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 144), "avatar", [], "any", false, false, false, 144))), "html", null, true);
+                yield "\" alt=\"MJ photo\" class=\"rounded-full h-8 w-8 object-cover border-2 border-gray-500 group-hover:border-blue-500 transition-all duration-300\">
                         ";
             } else {
-                // line 145
-                yield "                            <img class=\"rounded h-8 w-8 object-cover\" src=\"";
+                // line 146
+                yield "                            <img class=\"rounded-full h-8 w-8 object-cover border-2 border-gray-500 group-hover:border-blue-500 transition-all duration-300\" src=\"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
                 yield "\" alt=\"Default profile photo\">
                         ";
             }
-            // line 147
+            // line 148
             yield "                        <div class=\"ml-2\">
-                            <p class=\"text-xs text-gray-400\">MJ</p>
-                            <p class=\"text-xs text-white\">";
-            // line 149
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 149), "username", [], "any", false, false, false, 149), "html", null, true);
+                            <p class=\"text-xs text-gray-400 group-hover:text-white transition-colors duration-300\">MJ</p>
+                            <p class=\"text-xs text-white group-hover:underline transition-colors duration-300\">";
+            // line 150
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "owner", [], "any", false, false, false, 150), "username", [], "any", false, false, false, 150), "html", null, true);
             yield "</p>
                         </div>
-                    </div>
-                    <div class=\"text-right\">
-                        <p class=\"text-xs text-gray-400\">Nombre de joueurs</p>
+                    </a>
+                    <div class=\"flex items-center text-right gap-1\">
+                        <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-5 h-5 text-gray-400\">
+                            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z\" />
+                        </svg>
                         ";
-            // line 154
-            if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "players", [], "any", false, false, false, 154)) >= CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "maxPlayer", [], "any", false, false, false, 154))) {
-                // line 155
+            // line 157
+            if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "players", [], "any", false, false, false, 157)) >= CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "maxPlayer", [], "any", false, false, false, 157))) {
+                // line 158
                 yield "                            <p class=\"text-lg font-bold text-red-500\">Complet</p>
                         ";
             } else {
-                // line 157
-                yield "                            <p class=\"text-lg font-bold text-white\">";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "players", [], "any", false, false, false, 157)), "html", null, true);
+                // line 160
+                yield "                            <p class=\"font-bold text-white pl-2\">";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "players", [], "any", false, false, false, 160)), "html", null, true);
                 yield " / ";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "maxPlayer", [], "any", false, false, false, 157), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["groupe_j_d_r"], "maxPlayer", [], "any", false, false, false, 160), "html", null, true);
                 yield "</p>
                         ";
             }
-            // line 159
+            // line 162
             yield "                    </div>
                 </div>
-            </a>
-
-        ";
+            </div>
+            ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 164
-            yield "            <p class=\"text-gray-700 text-lg\">Aucun résultat trouvé</p>
-        ";
+            // line 166
+            yield "                <p class=\"text-gray-700 text-lg\">Aucun résultat trouvé</p>
+            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['groupe_j_d_r'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 166
-        yield "    </div>
-</div>
+        // line 168
+        yield "        </div>
+    </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -454,8 +462,8 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', updateSortButtonPosition);
 
     const selectedCategories = ";
-        // line 211
-        yield json_encode((isset($context["selectedCategories"]) || array_key_exists("selectedCategories", $context) ? $context["selectedCategories"] : (function () { throw new RuntimeError('Variable "selectedCategories" does not exist.', 211, $this->source); })()));
+        // line 213
+        yield json_encode((isset($context["selectedCategories"]) || array_key_exists("selectedCategories", $context) ? $context["selectedCategories"] : (function () { throw new RuntimeError('Variable "selectedCategories" does not exist.', 213, $this->source); })()));
         yield ";
     categoryButtons.forEach(button => {
         const categoryId = button.dataset.categoryId;
@@ -656,7 +664,7 @@ categoryButtons.forEach(button => {
      */
     public function getDebugInfo(): array
     {
-        return array (  458 => 211,  411 => 166,  404 => 164,  395 => 159,  387 => 157,  383 => 155,  381 => 154,  373 => 149,  369 => 147,  363 => 145,  357 => 143,  355 => 142,  348 => 138,  342 => 134,  338 => 132,  334 => 130,  332 => 129,  329 => 128,  327 => 127,  324 => 126,  322 => 125,  319 => 124,  315 => 123,  310 => 122,  306 => 121,  302 => 120,  294 => 117,  290 => 116,  286 => 115,  278 => 111,  273 => 110,  266 => 106,  261 => 105,  258 => 104,  249 => 102,  244 => 101,  242 => 100,  235 => 95,  226 => 92,  221 => 91,  217 => 90,  207 => 82,  198 => 79,  193 => 78,  189 => 77,  172 => 63,  164 => 58,  160 => 57,  155 => 55,  117 => 20,  110 => 16,  100 => 8,  87 => 7,  64 => 5,  41 => 3,);
+        return array (  466 => 213,  419 => 168,  412 => 166,  404 => 162,  396 => 160,  392 => 158,  390 => 157,  380 => 150,  376 => 148,  370 => 146,  364 => 144,  362 => 143,  358 => 142,  350 => 139,  343 => 134,  339 => 132,  335 => 130,  333 => 129,  330 => 128,  328 => 127,  325 => 126,  323 => 125,  320 => 124,  316 => 123,  311 => 122,  307 => 121,  303 => 120,  295 => 117,  291 => 116,  287 => 115,  282 => 113,  278 => 111,  273 => 110,  266 => 106,  261 => 105,  258 => 104,  249 => 102,  244 => 101,  242 => 100,  235 => 95,  226 => 92,  221 => 91,  217 => 90,  207 => 82,  198 => 79,  193 => 78,  189 => 77,  172 => 63,  164 => 58,  160 => 57,  155 => 55,  117 => 20,  110 => 16,  100 => 8,  87 => 7,  64 => 5,  41 => 3,);
     }
 
     public function getSourceContext(): Source
@@ -771,63 +779,65 @@ categoryButtons.forEach(button => {
 
     <div class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6\">
         {% for groupe_j_d_r in groupe_j_d_rs %}
-            <a href=\"{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}\"
-                class=\"block bg-white bg-opacity-10 border border-gray-500 rounded-lg shadow-lg p-6 pb-5 text-white relative transition-all duration-300 hover:translate-y-[-10px] hover:shadow-2xl hover:bg-opacity-20\"
+            <div class=\"bg-white bg-opacity-10 border border-gray-500 rounded-lg shadow-lg p-6 pb-5 text-white relative transition-all duration-300 hover:translate-y-[-10px] hover:shadow-2xl hover:bg-opacity-20 card-item\"
                 style=\"will-change: transform;\">
-                <div class=\"relative\">
-                    <img src=\"{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}\" 
-                        alt=\"{{ groupe_j_d_r.title }} image\" 
-                        class=\"rounded-lg mb-4 w-full h-[20rem] object-cover {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %} blur-sm {% endif %}\">
-                    <div class=\"absolute top-2 right-2\">
-                        <span class=\"text-sm font-bold px-2 py-1 rounded 
-                            {% if groupe_j_d_r.status == 'nouveau' %} bg-green-500
-                            {% elseif groupe_j_d_r.status == 'en_cours' %} bg-blue-500
-                            {% elseif groupe_j_d_r.status == 'termine' %} bg-red-500
-                            {% else %} bg-gray-700
-                            {% endif %} text-white\">
-                            {% if groupe_j_d_r.status == 'nouveau' %}
-                                Nouveau
-                            {% elseif groupe_j_d_r.status == 'en_cours' %}
-                                En Cours
-                            {% elseif groupe_j_d_r.status == 'termine' %}
-                                Terminé
-                            {% else %}
-                                Statut inconnu
-                            {% endif %}
-                        </span>
-                    </div>
-                </div>
-                <div class=\"flex justify-between items-center mb-2\">
-                    <p class=\"font-semibold hover:underline truncate max-w-[100%]\">{{ groupe_j_d_r.title }}</p>
-                </div>
-                <div class=\"flex justify-between items-center mt-2\">
-                    <div class=\"flex items-center\">
-                        {% if groupe_j_d_r.owner.avatar %}
-                            <img src=\"{{ asset('uploads/avatars/' ~ groupe_j_d_r.owner.avatar) }}\" alt=\"MJ photo\" class=\"rounded h-8 w-8 object-cover\">
-                        {% else %}
-                            <img class=\"rounded h-8 w-8 object-cover\" src=\"{{ asset('images/default-avatar.png') }}\" alt=\"Default profile photo\">
-                        {% endif %}
-                        <div class=\"ml-2\">
-                            <p class=\"text-xs text-gray-400\">MJ</p>
-                            <p class=\"text-xs text-white\">{{ groupe_j_d_r.owner.username }}</p>
+                <a href=\"{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}\" class=\"block\">
+                    <div class=\"relative\">
+                        <img src=\"{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}\" 
+                            alt=\"{{ groupe_j_d_r.title }} image\" 
+                            class=\"rounded-lg mb-4 w-full h-[20rem] object-cover {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %} blur-sm {% endif %} tokenImage\">
+                        <div class=\"absolute top-2 right-2\">
+                            <span class=\"text-sm font-bold px-2 py-1 rounded 
+                                {% if groupe_j_d_r.status == 'nouveau' %} bg-green-600
+                                {% elseif groupe_j_d_r.status == 'en_cours' %} bg-blue-500
+                                {% elseif groupe_j_d_r.status == 'termine' %} bg-red-500
+                                {% else %} bg-gray-700
+                                {% endif %} text-white\">
+                                {% if groupe_j_d_r.status == 'nouveau' %}
+                                    Nouveau
+                                {% elseif groupe_j_d_r.status == 'en_cours' %}
+                                    En Cours
+                                {% elseif groupe_j_d_r.status == 'termine' %}
+                                    Terminé
+                                {% else %}
+                                    Statut inconnu
+                                {% endif %}
+                            </span>
                         </div>
                     </div>
-                    <div class=\"text-right\">
-                        <p class=\"text-xs text-gray-400\">Nombre de joueurs</p>
+                </a>
+                <div class=\"mb-2\">
+                    <a href=\"{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}\" class=\"font-semibold hover:underline truncate max-w-[100%] block\">{{ groupe_j_d_r.title }}</a>
+                </div>
+                <div class=\"flex justify-between items-center mt-2\">
+                    <a href=\"{{ path('app_profile_show', { 'id': groupe_j_d_r.owner.id }) }}\" class=\"flex items-center group transition-all duration-300 hover:bg-opacity-20 p-1 rounded-lg\">
+                        {% if groupe_j_d_r.owner.avatar %}
+                            <img src=\"{{ asset('uploads/avatars/' ~ groupe_j_d_r.owner.avatar) }}\" alt=\"MJ photo\" class=\"rounded-full h-8 w-8 object-cover border-2 border-gray-500 group-hover:border-blue-500 transition-all duration-300\">
+                        {% else %}
+                            <img class=\"rounded-full h-8 w-8 object-cover border-2 border-gray-500 group-hover:border-blue-500 transition-all duration-300\" src=\"{{ asset('images/default-avatar.png') }}\" alt=\"Default profile photo\">
+                        {% endif %}
+                        <div class=\"ml-2\">
+                            <p class=\"text-xs text-gray-400 group-hover:text-white transition-colors duration-300\">MJ</p>
+                            <p class=\"text-xs text-white group-hover:underline transition-colors duration-300\">{{ groupe_j_d_r.owner.username }}</p>
+                        </div>
+                    </a>
+                    <div class=\"flex items-center text-right gap-1\">
+                        <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-5 h-5 text-gray-400\">
+                            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z\" />
+                        </svg>
                         {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %}
                             <p class=\"text-lg font-bold text-red-500\">Complet</p>
                         {% else %}
-                            <p class=\"text-lg font-bold text-white\">{{ groupe_j_d_r.players|length }} / {{ groupe_j_d_r.maxPlayer }}</p>
+                            <p class=\"font-bold text-white pl-2\">{{ groupe_j_d_r.players|length }} / {{ groupe_j_d_r.maxPlayer }}</p>
                         {% endif %}
                     </div>
                 </div>
-            </a>
-
-        {% else %}
-            <p class=\"text-gray-700 text-lg\">Aucun résultat trouvé</p>
-        {% endfor %}
+            </div>
+            {% else %}
+                <p class=\"text-gray-700 text-lg\">Aucun résultat trouvé</p>
+            {% endfor %}
+        </div>
     </div>
-</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

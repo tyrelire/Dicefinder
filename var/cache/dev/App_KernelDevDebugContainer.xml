@@ -103,6 +103,8 @@
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
+    <parameter key="avatars_directory">C:\Users\benja\Documents\GitHub\dicefinder/public/uploads/avatars</parameter>
+    <parameter key="uploads_directory">C:\Users\benja\Documents\GitHub\dicefinder/public/uploads/images-jdr</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -591,7 +593,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.Wsxyxsu"/>
+      <argument type="service" id=".service_locator.fgoaLDA"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3581,7 +3583,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.Wsxyxsu"/>
+      <argument type="service" id=".service_locator.fgoaLDA"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8385,12 +8387,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.V4xD4HA" method="withContext"/>
     </service>
-    <service id=".service_locator.8bi2G4e.App\Controller\GroupeJDRController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\GroupeJDRController::delete()"/>
-      <argument>App\Controller\GroupeJDRController::delete()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.8bi2G4e" method="withContext"/>
-    </service>
     <service id=".service_locator.f8sH7ah" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8398,6 +8394,12 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="notificationService" type="service_closure" id="App\Service\NotificationService"/>
       </argument>
+    </service>
+    <service id=".service_locator.f8sH7ah.App\Controller\GroupeJDRController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\GroupeJDRController::delete()"/>
+      <argument>App\Controller\GroupeJDRController::delete()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.f8sH7ah" method="withContext"/>
     </service>
     <service id=".service_locator.f8sH7ah.App\Controller\GroupeJDRController::leave()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\GroupeJDRController::leave()"/>
@@ -8633,7 +8635,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.mXDaS5b" method="withContext"/>
     </service>
-    <service id=".service_locator.Wsxyxsu" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.fgoaLDA" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.4wc4Ag1.kernel::registerContainerConfiguration()"/>
@@ -8647,7 +8649,7 @@
         <argument key="App\Controller\GroupeJDRController::new" type="service_closure" id=".service_locator..fUBbna.App\Controller\GroupeJDRController::new()"/>
         <argument key="App\Controller\GroupeJDRController::show" type="service_closure" id=".service_locator.gIBvJd7.App\Controller\GroupeJDRController::show()"/>
         <argument key="App\Controller\GroupeJDRController::edit" type="service_closure" id=".service_locator.V4xD4HA.App\Controller\GroupeJDRController::edit()"/>
-        <argument key="App\Controller\GroupeJDRController::delete" type="service_closure" id=".service_locator.8bi2G4e.App\Controller\GroupeJDRController::delete()"/>
+        <argument key="App\Controller\GroupeJDRController::delete" type="service_closure" id=".service_locator.f8sH7ah.App\Controller\GroupeJDRController::delete()"/>
         <argument key="App\Controller\GroupeJDRController::leave" type="service_closure" id=".service_locator.f8sH7ah.App\Controller\GroupeJDRController::leave()"/>
         <argument key="App\Controller\HomeController::index" type="service_closure" id=".service_locator.SE5FUJN.App\Controller\HomeController::index()"/>
         <argument key="App\Controller\MyGameController::index" type="service_closure" id=".service_locator.RvFgQI_.App\Controller\MyGameController::index()"/>
@@ -8678,7 +8680,7 @@
         <argument key="App\Controller\GroupeJDRController:new" type="service_closure" id=".service_locator..fUBbna.App\Controller\GroupeJDRController::new()"/>
         <argument key="App\Controller\GroupeJDRController:show" type="service_closure" id=".service_locator.gIBvJd7.App\Controller\GroupeJDRController::show()"/>
         <argument key="App\Controller\GroupeJDRController:edit" type="service_closure" id=".service_locator.V4xD4HA.App\Controller\GroupeJDRController::edit()"/>
-        <argument key="App\Controller\GroupeJDRController:delete" type="service_closure" id=".service_locator.8bi2G4e.App\Controller\GroupeJDRController::delete()"/>
+        <argument key="App\Controller\GroupeJDRController:delete" type="service_closure" id=".service_locator.f8sH7ah.App\Controller\GroupeJDRController::delete()"/>
         <argument key="App\Controller\GroupeJDRController:leave" type="service_closure" id=".service_locator.f8sH7ah.App\Controller\GroupeJDRController::leave()"/>
         <argument key="App\Controller\HomeController:index" type="service_closure" id=".service_locator.SE5FUJN.App\Controller\HomeController::index()"/>
         <argument key="App\Controller\MyGameController:index" type="service_closure" id=".service_locator.RvFgQI_.App\Controller\MyGameController::index()"/>
@@ -10905,7 +10907,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Wsxyxsu"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.fgoaLDA"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>

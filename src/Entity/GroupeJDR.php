@@ -101,6 +101,9 @@ class GroupeJDR
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteGroupeJDR')]
     private Collection $users;
 
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private ?bool $isArchived = false;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
@@ -448,6 +451,18 @@ class GroupeJDR
         if ($this->users->removeElement($user)) {
             $user->removeFavoriteGroupeJDR($this);
         }
+
+        return $this;
+    }
+
+    public function isArchived(): ?bool
+    {
+        return $this->isArchived;
+    }
+
+    public function setArchived(bool $isArchived): static
+    {
+        $this->isArchived = $isArchived;
 
         return $this;
     }

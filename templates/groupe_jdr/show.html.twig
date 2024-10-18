@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container mx-auto px-4 p-6">
-    <a href="{{ path('app_groupe_j_d_r_index') }}" class="text-white bg-[#4447a1] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+    <a href="{{ path('app_groupe_j_d_r_index') }}" class="glassmorphism text-white bg-[#4447a1] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-3">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
         </svg>
@@ -98,14 +98,19 @@
                         <p class="text-lg font-semibold">{{ groupe_j_d_r.getCreatedAt|date('d/m/Y') }}</p>
                     </div>
                     <div>
-                        <span class="text-gray-400">Participants</span>
-                        <p class="text-lg font-semibold">{{ groupe_j_d_r.players|length }}/{{ groupe_j_d_r.maxPlayer }}</p>
+                        <span class="text-gray-400 block">Participants</span>
+                        <div class="flex items-center gap-2">
+                            <p class="text-lg font-semibold">{{ groupe_j_d_r.players|length }}/{{ groupe_j_d_r.maxPlayer }}</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
-                <div id="category-container" class="mt-6">
-                    <h3 class="font-semibold">Catégories</h3>
-                    <div class="flex flex-wrap gap-2 mt-2">
+                <div id="category-container" class="mt-6 glassmorphism p-6 rounded-lg">
+                    <h3 class="font-semibold mb-4">Catégories</h3>
+                    <div class="flex flex-wrap gap-2">
                         {% set colors = ['bg-blue-200 text-blue-800', 'bg-green-200 text-green-800', 'bg-yellow-200 text-yellow-800', 'bg-red-200 text-red-800'] %}
                         {% for category in groupe_j_d_r.categories %}
                             {% set color = colors[loop.index0 % colors|length] %}
@@ -114,7 +119,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-800 p-6 rounded-lg space-y-4">
+                <div class="glassmorphism p-6 rounded-lg space-y-4">
                     <h3 class="font-semibold">MJ et Joueurs</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="flex items-center space-x-4">
@@ -146,7 +151,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-800 p-6 rounded-lg space-y-4">
+                <div class="glassmorphism p-6 rounded-lg space-y-4">
                     <h3 class="font-semibold">Recrutement</h3>
                     <p class="text-lg font-semibold {{ groupe_j_d_r.recrutement ? 'text-green-500' : 'text-red-500' }}">
                         {{ groupe_j_d_r.recrutement ? 'Ouvert' : 'Fermé' }}
@@ -211,29 +216,60 @@
                 <h2 class="text-2xl font-bold">Parties Qui Recrutent</h2>
                 <a href="{{ path('app_groupe_j_d_r_index') }}" class="text-blue-500 border border-blue-500 rounded-full py-2 px-6 hover:bg-blue-500 hover:text-white">Voir Plus</a>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {% for jdr in recruiting_jdrs|slice(0, 3) %}
-                    <div class="bg-gray-800 rounded-lg shadow-md p-6 pb-5 text-white">
-                        <img src="{{ asset('uploads/images-jdr/' ~ jdr.picture) }}" alt="{{ jdr.title }}" class="rounded-lg mb-4 w-full h-[20rem] object-cover">
-                        <div class="flex justify-between items-center">
-                            <span class="font-semibold text-lg">{{ jdr.title }}</span>
-                            <a href="{{ path('app_groupe_j_d_r_show', { id: jdr.id }) }}" class="bg-blue-600 text-white px-3 py-2 rounded text-xs">GO</a>
-                        </div>
-                        <div class="flex justify-between items-center mt-4">
-                            <div class="flex items-center">
-                                {% if jdr.owner.avatar %}
-                                    <img src="{{ asset('uploads/avatars/' ~ jdr.owner.avatar) }}" alt="{{ jdr.owner.username }}" class="rounded h-10 w-10 object-cover">
-                                {% else %}
-                                    <img class="rounded h-10 w-10 object-cover" src="{{ asset('images/default-avatar.png') }}" alt="MJ photo">
-                                {% endif %}
-                                <div class="ml-3">
-                                    <p class="text-sm text-gray-400">MJ</p>
-                                    <p class="text-sm text-white">{{ jdr.owner.username }}</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                {% for jdr in recruiting_jdrs|slice(0, 4) %}
+                    <div class="bg-white bg-opacity-10 border border-gray-500 rounded-lg shadow-lg p-6 pb-5 text-white relative transition-all duration-300 hover:translate-y-[-10px] hover:shadow-2xl hover:bg-opacity-20 card-item"
+                        style="will-change: transform;">
+                        <a href="{{ path('app_groupe_j_d_r_show', {'id': jdr.id}) }}" class="block">
+                            <div class="relative">
+                                <img src="{{ asset('uploads/images-jdr/' ~ jdr.picture) }}" 
+                                    alt="{{ jdr.title }} image" 
+                                    class="rounded-lg mb-4 w-full h-[20rem] object-cover {% if jdr.players|length >= jdr.maxPlayer %} blur-sm {% endif %} tokenImage">
+                                <div class="absolute top-2 right-2">
+                                    <span class="text-sm font-bold px-2 py-1 rounded 
+                                        {% if jdr.status == 'nouveau' %} bg-green-600
+                                        {% elseif jdr.status == 'en_cours' %} bg-blue-500
+                                        {% elseif jdr.status == 'termine' %} bg-red-500
+                                        {% else %} bg-gray-700
+                                        {% endif %} text-white">
+                                        {% if jdr.status == 'nouveau' %}
+                                            Nouveau
+                                        {% elseif jdr.status == 'en_cours' %}
+                                            En Cours
+                                        {% elseif jdr.status == 'termine' %}
+                                            Terminé
+                                        {% else %}
+                                            Statut inconnu
+                                        {% endif %}
+                                    </span>
                                 </div>
                             </div>
-                            <div class="text-right">
-                                <p class="text-sm text-gray-400">Places disponibles</p>
-                                <p class="text-lg font-bold text-white">{{ jdr.maxPlayer - jdr.players|length }}</p>
+                        </a>
+                        <div class="mb-2">
+                            <a href="{{ path('app_groupe_j_d_r_show', {'id': jdr.id}) }}" class="font-semibold hover:underline truncate max-w-[100%] block">{{ jdr.title }}</a>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <a href="{{ path('app_profile_show', { 'id': jdr.owner.id }) }}" class="flex items-center group transition-all duration-300 hover:bg-opacity-20 p-1 rounded-lg">
+                                {% if jdr.owner.avatar %}
+                                    <img src="{{ asset('uploads/avatars/' ~ jdr.owner.avatar) }}" alt="MJ photo" class="rounded-full h-8 w-8 object-cover border-2 border-gray-500 group-hover:border-blue-500 transition-all duration-300">
+                                {% else %}
+                                    <img class="rounded-full h-8 w-8 object-cover border-2 border-gray-500 group-hover:border-blue-500 transition-all duration-300" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
+                                {% endif %}
+                                <div class="ml-2">
+                                    <p class="text-xs text-gray-400 group-hover:text-white transition-colors duration-300">MJ</p>
+                                    <p class="text-xs text-white group-hover:underline transition-colors duration-300">{{ jdr.owner.username }}</p>
+                                </div>
+                            </a>
+                            <div class="flex items-center text-right gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                                </svg>
+                                {% if jdr.players|length >= jdr.maxPlayer %}
+                                    <p class="text-lg font-bold text-red-500">Complet</p>
+                                {% else %}
+                                    <p class="font-bold text-white pl-2">{{ jdr.players|length }} / {{ jdr.maxPlayer }}</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -285,7 +321,7 @@
             </button>
         {% endif %}
     </div>
-    <div id="request-join-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center transition-opacity duration-300 ease-in-out">
+    <div id="request-join-modal" class="hidden fixed inset-0 glassmorphism bg-opacity-75 flex justify-center items-center transition-opacity duration-300 ease-in-out">
         <div class="bg-white p-6 rounded-lg space-y-4 shadow-2xl max-w-md w-full relative">
             <button id="close-modal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

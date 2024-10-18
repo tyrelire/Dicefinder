@@ -1078,7 +1078,6 @@ Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inl
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator..fUBbna" to ".service_locator..fUBbna.App\Controller\GroupeJDRController::new()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.gIBvJd7" to ".service_locator.gIBvJd7.App\Controller\GroupeJDRController::show()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.V4xD4HA" to ".service_locator.V4xD4HA.App\Controller\GroupeJDRController::edit()".
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.f8sH7ah" to ".service_locator.f8sH7ah.App\Controller\GroupeJDRController::leave()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.RvFgQI_" to ".service_locator.RvFgQI_.App\Controller\MyGameController::index()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.yDVn2rI" to ".service_locator.yDVn2rI.App\Controller\NotificationController::invitationsNotificationsIndex()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.S5Dp5Zc" to ".service_locator.S5Dp5Zc.App\Controller\NotificationController::respondNotification()".

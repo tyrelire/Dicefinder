@@ -97,379 +97,106 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
-        yield "<div class=\"container mx-auto px-4 py-8\">
-    <div class=\"grid grid-cols-1 md:grid-cols-4 gap-8\">
-        <div class=\"col-span-1\">
-            <div class=\"glassmorphism p-8 relative overflow-hidden hover:shadow-2xl transition-transform duration-300 rounded-lg\">
+        // line 156
+        yield "<div class=\"relative flex flex-col w-full min-w-0 mb-6 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable\">
+    <div class=\"px-9 pt-9 flex-auto min-h-[70px] pb-0 bg-transparent\">
+        <div class=\"flex flex-wrap mb-6 xl:flex-nowrap\">
+            <div class=\"mb-5 mr-5\">
+                <div class=\"relative inline-block shrink-0 rounded-2xl\">
                 ";
-        // line 10
-        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 10, $this->source); })()), "user", [], "any", false, false, false, 10) && (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 10, $this->source); })()), "user", [], "any", false, false, false, 10), "id", [], "any", false, false, false, 10) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 10, $this->source); })()), "id", [], "any", false, false, false, 10)))) {
-            // line 11
-            yield "                    <div class=\"absolute top-4 right-4\">
-                        <a href=\"";
-            // line 12
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit");
-            yield "\" title=\"Paramètres\" class=\"button-hover\">
-                            <svg class=\"h-6 w-6 text-white hover:text-blue-500\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\">
-                                <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z\" />
-                                <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z\" />
-                            </svg>
-                        </a>
-                    </div>
+        // line 161
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 161, $this->source); })()), "avatar", [], "any", false, false, false, 161)) {
+            // line 162
+            yield "                    <img src=\"";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 162, $this->source); })()), "avatar", [], "any", false, false, false, 162))), "html", null, true);
+            yield "\" class=\"inline-block shrink-0 rounded-2xl w-[80px] h-[80px] lg:w-[160px] lg:h-[160px] object-cover\" alt=\"Photo de profil\">
                 ";
-        }
-        // line 20
-        yield "                <div class=\"flex flex-col items-center text-center\">
-                    ";
-        // line 21
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 21, $this->source); })()), "avatar", [], "any", false, false, false, 21)) {
-            // line 22
-            yield "                        <img src=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 22, $this->source); })()), "avatar", [], "any", false, false, false, 22))), "html", null, true);
-            yield "\" class=\"w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-white shadow-lg mb-6\" alt=\"Photo de profil\">
-                    ";
         } else {
-            // line 24
-            yield "                        <img src=\"";
+            // line 164
+            yield "                    <img src=\"";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
-            yield "\" class=\"w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-white shadow-lg mb-6\" alt=\"Photo de profil par défaut\">
-                    ";
-        }
-        // line 26
-        yield "                    <h1 class=\"text-2xl md:text-3xl font-bold text-white truncate w-full max-w-full md:max-w-[80%]\">";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 26, $this->source); })()), "username", [], "any", false, false, false, 26), "html", null, true);
-        yield "</h1>
-                </div>
-                <hr class=\"my-8 border-t border-gray-500\">
-                <div class=\"mb-8\">
-                    <span class=\"text-white uppercase font-bold tracking-wider mb-4 block\">Contact</span>
-                    <ul class=\"space-y-3 text-sm md:text-base\">
-                        ";
-        // line 32
-        if ((((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 32, $this->source); })()), "discordPseudo", [], "any", false, false, false, 32) || CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 32, $this->source); })()), "TwitterPseudo", [], "any", false, false, false, 32)) || CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 32, $this->source); })()), "YoutubeChannelLink", [], "any", false, false, false, 32)) || CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 32, $this->source); })()), "TwitchChannelLink", [], "any", false, false, false, 32))) {
-            // line 33
-            yield "                            ";
-            if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 33, $this->source); })()), "discordPseudo", [], "any", false, false, false, 33)) {
-                // line 34
-                yield "                                <li>
-                                    <a class=\"text-blue-300 hover:underline\" target=\"_blank\">";
-                // line 35
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 35, $this->source); })()), "discordPseudo", [], "any", false, false, false, 35), "html", null, true);
-                yield "</a>
-                                </li>
-                            ";
-            }
-            // line 38
-            yield "                            ";
-            if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 38, $this->source); })()), "TwitterPseudo", [], "any", false, false, false, 38)) {
-                // line 39
-                yield "                                <li>
-                                    <a href=\"https://twitter.com/";
-                // line 40
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::replace(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 40, $this->source); })()), "TwitterPseudo", [], "any", false, false, false, 40), ["@" => ""]), "html", null, true);
-                yield "\" class=\"text-blue-300 hover:underline\" target=\"_blank\">X / Twitter</a>
-                                </li>
-                            ";
-            }
-            // line 43
-            yield "                            ";
-            if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 43, $this->source); })()), "YoutubeChannelLink", [], "any", false, false, false, 43)) {
-                // line 44
-                yield "                                <li>
-                                    <a href=\"";
-                // line 45
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 45, $this->source); })()), "YoutubeChannelLink", [], "any", false, false, false, 45), "html", null, true);
-                yield "\" class=\"text-blue-300 hover:underline\" target=\"_blank\">YouTube</a>
-                                </li>
-                            ";
-            }
-            // line 48
-            yield "                            ";
-            if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 48, $this->source); })()), "TwitchChannelLink", [], "any", false, false, false, 48)) {
-                // line 49
-                yield "                                <li>
-                                    <a href=\"";
-                // line 50
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 50, $this->source); })()), "TwitchChannelLink", [], "any", false, false, false, 50), "html", null, true);
-                yield "\" class=\"text-blue-300 hover:underline\" target=\"_blank\">Twitch</a>
-                                </li>
-                            ";
-            }
-            // line 53
-            yield "                        ";
-        } else {
-            // line 54
-            yield "                            <li class=\"text-gray-400\">Aucun contact renseigné.</li>
-                        ";
-        }
-        // line 56
-        yield "                    </ul>
-                </div>
-                <div class=\"mb-8\">
-                    <span class=\"text-white uppercase font-bold tracking-wider mb-4 block\">Compétences</span>
-                    <ul class=\" space-y-3 text-sm md:text-base break-words\">
-                        <li class=\"text-gray-400 whitespace-pre-line\">";
-        // line 61
-        ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 61, $this->source); })()), "competence", [], "any", false, false, false, 61)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 61, $this->source); })()), "competence", [], "any", false, false, false, 61), "html", null, true)) : (yield "Pas de compétence spécifiée"));
-        yield "</li>
-                    </ul>
-                </div>
+            yield "\" class=\"inline-block shrink-0 rounded-2xl w-[80px] h-[80px] lg:w-[160px] lg:h-[160px] object-cover\" alt=\"Photo de profil par défaut\">
                 ";
-        // line 64
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 64, $this->source); })()), "gender", [], "any", false, false, false, 64)) {
-            // line 65
-            yield "                    <div class=\"mb-8\">
-                        <span class=\"text-white uppercase font-bold tracking-wider mb-4 block\">Genre</span>
-                        <p class=\"text-sm md:text-base text-white\">";
-            // line 67
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 67, $this->source); })()), "gender", [], "any", false, false, false, 67), "html", null, true);
-            yield "</p>
+        }
+        // line 166
+        yield "
+                <div class=\"group/tooltip relative\">
+                    <span class=\"w-[15px] h-[15px] absolute bg-success rounded-full bottom-0 end-0 -mb-1 -mr-2  border border-white\"></span>
+                    <span class=\"text-xs absolute z-10 transition-opacity duration-300 ease-in-out px-3 py-2 whitespace-nowrap text-center transform bg-white rounded-2xl shadow-sm bottom-0 -mb-2 start-full ml-4 font-medium text-secondary-inverse group-hover/tooltip:opacity-100 opacity-0 block\"> Status: Active </span>
+                </div>
+                </div>
+            </div>
+            <div class=\"grow\">
+                <div class=\"flex flex-wrap items-start justify-between mb-2\">
+                    <div class=\"flex flex-col\">
+                        <div class=\"flex items-center mb-2\">
+                            <a class=\"text-secondary-inverse hover:text-primary transition-colors duration-200 ease-in-out font-semibold text-[1.5rem] mr-1 text-gray-100\" href=\"javascript:void(0)\"> ";
+        // line 177
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 177, $this->source); })()), "username", [], "any", false, false, false, 177), "html", null, true);
+        yield " </a>
+                        </div>
+                        <div class=\"flex flex-wrap pr-2 mb-4 font-medium\">
+                            <a class=\"flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary\" href=\"javascript:void(0)\">
+                                <span class=\"mr-1\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-5 h-5\">
+                                    <path fill-rule=\"evenodd\" d=\"M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z\" clip-rule=\"evenodd\" />
+                                </svg>
+                                </span> New York, NY </a>
+                            <a class=\"flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary\" href=\"javascript:void(0)\">
+                            <span class=\"mr-1\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-5 h-5\">
+                                    <path d=\"M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z\" />
+                                    <path d=\"M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z\" />
+                                </svg>
+                            </span> contact@example.com </a>
+                        </div>
                     </div>
-                ";
-        }
-        // line 70
-        yield "            </div>
-        </div>
-
-        <div class=\"col-span-1 md:col-span-3\">
-            <div class=\"glassmorphism p-10 rounded-lg hover:shadow-2xl transition-transform duration-300\">
-                <h2 class=\"text-2xl font-bold text-white mb-8\">À propos de moi</h2>
-                <p class=\"text-gray-100 text-sm md:text-base break-words overflow-hidden text-ellipsis max-h-40 mb-8\">";
-        // line 76
-        ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 76, $this->source); })()), "bio", [], "any", false, false, false, 76)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 76, $this->source); })()), "bio", [], "any", false, false, false, 76), "html", null, true)) : (yield "Pas de biographie disponible"));
-        yield "</p>
-
-                <h2 class=\"text-2xl font-bold text-white mb-8\">Mes Parties (MJ)</h2>
-                <div class=\"mb-10 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 p-6 glassmorphism rounded-lg\">
-                    ";
-        // line 80
-        $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["ownedJDRs"]) || array_key_exists("ownedJDRs", $context) ? $context["ownedJDRs"] : (function () { throw new RuntimeError('Variable "ownedJDRs" does not exist.', 80, $this->source); })()));
-        $context['_iterated'] = false;
-        foreach ($context['_seq'] as $context["_key"] => $context["jdr"]) {
-            // line 81
-            yield "                        <div class=\"glassmorphism-invitation-accepted mb-8 border-b pb-4 hover:bg-white hover:bg-opacity-10 transition-colors duration-300 p-6 rounded-lg\">
-                            <div class=\"flex flex-col md:flex-row justify-between items-start md:items-center flex-wrap gap-4 w-full\">
-                                <span class=\"text-white font-bold text-lg md:text-xl\">Campagne : ";
-            // line 83
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "title", [], "any", false, false, false, 83), "html", null, true);
-            yield "</span>
-                                <p class=\"text-gray-300 text-sm md:text-base\">
-                                    Rôle : Maître du Jeu
-                                    <br>
-                                    Créée le : <span class=\"text-blue-400\">";
-            // line 87
-            ((CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "createdAt", [], "any", false, false, false, 87)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "createdAt", [], "any", false, false, false, 87), "d/m/Y"), "html", null, true)) : (yield "Date inconnue"));
-            yield "</span>
-                                    ";
-            // line 88
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "createdAt", [], "any", false, false, false, 88)) {
-                // line 89
-                yield "                                        ";
-                $context["now"] = $this->extensions['Twig\Extension\CoreExtension']->convertDate();
-                // line 90
-                yield "                                        ";
-                $context["interval"] = CoreExtension::getAttribute($this->env, $this->source, (isset($context["now"]) || array_key_exists("now", $context) ? $context["now"] : (function () { throw new RuntimeError('Variable "now" does not exist.', 90, $this->source); })()), "diff", [CoreExtension::getAttribute($this->env, $this->source, $context["jdr"], "createdAt", [], "any", false, false, false, 90)], "method", false, false, false, 90);
-                // line 91
-                yield "                                        <br>
-                                        <span class=\"font-semibold text-white\">Durée :</span> 
-                                        ";
-                // line 93
-                if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 93, $this->source); })()), "days", [], "any", false, false, false, 93) > 0)) {
-                    // line 94
-                    yield "                                            ";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 94, $this->source); })()), "days", [], "any", false, false, false, 94), "html", null, true);
-                    yield " jour";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 94, $this->source); })()), "days", [], "any", false, false, false, 94) > 1)) {
-                        yield "s";
-                    }
-                    // line 95
-                    yield "                                            ";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 95, $this->source); })()), "h", [], "any", false, false, false, 95) > 0)) {
-                        // line 96
-                        yield "                                                et ";
-                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 96, $this->source); })()), "h", [], "any", false, false, false, 96), "html", null, true);
-                        yield " heure";
-                        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 96, $this->source); })()), "h", [], "any", false, false, false, 96) > 1)) {
-                            yield "s";
-                        }
-                        // line 97
-                        yield "                                            ";
-                    }
-                    // line 98
-                    yield "                                        ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 98, $this->source); })()), "h", [], "any", false, false, false, 98) > 0)) {
-                    // line 99
-                    yield "                                            ";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 99, $this->source); })()), "h", [], "any", false, false, false, 99), "html", null, true);
-                    yield " heure";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 99, $this->source); })()), "h", [], "any", false, false, false, 99) > 1)) {
-                        yield "s";
-                    }
-                    // line 100
-                    yield "                                            ";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 100, $this->source); })()), "i", [], "any", false, false, false, 100) > 0)) {
-                        // line 101
-                        yield "                                                et ";
-                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 101, $this->source); })()), "i", [], "any", false, false, false, 101), "html", null, true);
-                        yield " minute";
-                        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 101, $this->source); })()), "i", [], "any", false, false, false, 101) > 1)) {
-                            yield "s";
-                        }
-                        // line 102
-                        yield "                                            ";
-                    }
-                    // line 103
-                    yield "                                        ";
-                } else {
-                    // line 104
-                    yield "                                            ";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 104, $this->source); })()), "i", [], "any", false, false, false, 104), "html", null, true);
-                    yield " minute";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 104, $this->source); })()), "i", [], "any", false, false, false, 104) > 1)) {
-                        yield "s";
-                    }
-                    // line 105
-                    yield "                                        ";
-                }
-                // line 106
-                yield "                                    ";
-            }
-            // line 107
-            yield "                                </p>
-                            </div>
-                        </div>
-                    ";
-            $context['_iterated'] = true;
-        }
-        if (!$context['_iterated']) {
-            // line 111
-            yield "                        <p class=\"text-center text-gray-400\">Pas encore de campagnes créées.</p>
-                    ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_key'], $context['jdr'], $context['_parent'], $context['_iterated']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 113
-        yield "                </div>
-
-                <h2 class=\"text-2xl font-bold text-white mb-8\">Parties où je suis Joueur</h2>
-                <div class=\"mb-10 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 p-6 glassmorphism rounded-lg\">
-                    ";
-        // line 117
-        $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["joinedJDRs"]) || array_key_exists("joinedJDRs", $context) ? $context["joinedJDRs"] : (function () { throw new RuntimeError('Variable "joinedJDRs" does not exist.', 117, $this->source); })()));
-        $context['_iterated'] = false;
-        foreach ($context['_seq'] as $context["_key"] => $context["joinedJDR"]) {
-            // line 118
-            yield "                        <div class=\"glassmorphism-player-left mb-8 border-b pb-4 hover:bg-white hover:bg-opacity-10 transition-colors duration-300 p-6 rounded-lg\">
-                            <div class=\"flex flex-col md:flex-row justify-between items-start md:items-center flex-wrap gap-4 w-full\">
-                                <span class=\"text-white font-bold text-lg md:text-xl\">Campagne : ";
-            // line 120
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["joinedJDR"], "groupe", [], "any", false, false, false, 120), "title", [], "any", false, false, false, 120), "html", null, true);
-            yield "</span>
-                                <p class=\"text-gray-300 text-sm md:text-base\">
-                                    Rôle : Joueur
-                                    <br>
-                                    Depuis le : 
-                                    <span class=\"text-blue-400\">";
-            // line 125
-            ((CoreExtension::getAttribute($this->env, $this->source, $context["joinedJDR"], "joined_at", [], "any", false, false, false, 125)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["joinedJDR"], "joined_at", [], "any", false, false, false, 125), "d/m/Y"), "html", null, true)) : (yield "Date inconnue"));
-            yield "</span>
-                                    ";
-            // line 126
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["joinedJDR"], "joined_at", [], "any", false, false, false, 126)) {
-                // line 127
-                yield "                                        ";
-                $context["now"] = $this->extensions['Twig\Extension\CoreExtension']->convertDate();
-                // line 128
-                yield "                                        ";
-                $context["interval"] = CoreExtension::getAttribute($this->env, $this->source, (isset($context["now"]) || array_key_exists("now", $context) ? $context["now"] : (function () { throw new RuntimeError('Variable "now" does not exist.', 128, $this->source); })()), "diff", [CoreExtension::getAttribute($this->env, $this->source, $context["joinedJDR"], "joined_at", [], "any", false, false, false, 128)], "method", false, false, false, 128);
-                // line 129
-                yield "                                        <br>
-                                        <span class=\"font-semibold text-white\">Durée :</span> 
-                                        ";
-                // line 131
-                if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 131, $this->source); })()), "days", [], "any", false, false, false, 131) > 0)) {
-                    // line 132
-                    yield "                                            ";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 132, $this->source); })()), "days", [], "any", false, false, false, 132), "html", null, true);
-                    yield " jour";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 132, $this->source); })()), "days", [], "any", false, false, false, 132) > 1)) {
-                        yield "s";
-                    }
-                    // line 133
-                    yield "                                            ";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 133, $this->source); })()), "h", [], "any", false, false, false, 133) > 0)) {
-                        // line 134
-                        yield "                                                et ";
-                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 134, $this->source); })()), "h", [], "any", false, false, false, 134), "html", null, true);
-                        yield " heure";
-                        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 134, $this->source); })()), "h", [], "any", false, false, false, 134) > 1)) {
-                            yield "s";
-                        }
-                        // line 135
-                        yield "                                            ";
-                    }
-                    // line 136
-                    yield "                                        ";
-                } elseif ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 136, $this->source); })()), "h", [], "any", false, false, false, 136) > 0)) {
-                    // line 137
-                    yield "                                            ";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 137, $this->source); })()), "h", [], "any", false, false, false, 137), "html", null, true);
-                    yield " heure";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 137, $this->source); })()), "h", [], "any", false, false, false, 137) > 1)) {
-                        yield "s";
-                    }
-                    // line 138
-                    yield "                                            ";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 138, $this->source); })()), "i", [], "any", false, false, false, 138) > 0)) {
-                        // line 139
-                        yield "                                                et ";
-                        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 139, $this->source); })()), "i", [], "any", false, false, false, 139), "html", null, true);
-                        yield " minute";
-                        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 139, $this->source); })()), "i", [], "any", false, false, false, 139) > 1)) {
-                            yield "s";
-                        }
-                        // line 140
-                        yield "                                            ";
-                    }
-                    // line 141
-                    yield "                                        ";
-                } else {
-                    // line 142
-                    yield "                                            ";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 142, $this->source); })()), "i", [], "any", false, false, false, 142), "html", null, true);
-                    yield " minute";
-                    if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["interval"]) || array_key_exists("interval", $context) ? $context["interval"] : (function () { throw new RuntimeError('Variable "interval" does not exist.', 142, $this->source); })()), "i", [], "any", false, false, false, 142) > 1)) {
-                        yield "s";
-                    }
-                    // line 143
-                    yield "                                        ";
-                }
-                // line 144
-                yield "                                    ";
-            }
-            // line 145
-            yield "                                </p>
-                            </div>
-                        </div>
-                    ";
-            $context['_iterated'] = true;
-        }
-        if (!$context['_iterated']) {
-            // line 149
-            yield "                        <p class=\"text-center text-gray-400\">Pas encore de campagnes associées.</p>
-                    ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_key'], $context['joinedJDR'], $context['_parent'], $context['_iterated']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 151
-        yield "                </div>
+                    <div class=\"flex flex-wrap my-auto\">
+                        <a href=\"javascript:void(0)\" class=\"inline-block px-6 py-3 mr-3 text-base font-medium leading-normal text-center align-middle transition-colors duration-150 ease-in-out border-0 shadow-none cursor-pointer rounded-2xl text-muted bg-light border-light hover:bg-light-dark active:bg-light-dark focus:bg-light-dark \"> Follow </a>
+                        <a href=\"javascript:void(0)\" class=\"inline-block px-6 py-3 text-base font-medium leading-normal text-center text-white align-middle transition-colors duration-150 ease-in-out border-0 shadow-none cursor-pointer rounded-2xl bg-primary hover:bg-primary-dark active:bg-primary-dark focus:bg-primary-dark \"> Hire </a>
+                    </div>
+                </div>
+                <div class=\"flex flex-wrap justify-between\">
+                    <div class=\"flex flex-wrap items-center\">
+                        <a href=\"javascript:void(0)\" class=\"mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal\">
+                            ";
+        // line 203
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["ownedJDRCount"]) || array_key_exists("ownedJDRCount", $context) ? $context["ownedJDRCount"] : (function () { throw new RuntimeError('Variable "ownedJDRCount" does not exist.', 203, $this->source); })()), "html", null, true);
+        yield " ";
+        yield ((((isset($context["ownedJDRCount"]) || array_key_exists("ownedJDRCount", $context) ? $context["ownedJDRCount"] : (function () { throw new RuntimeError('Variable "ownedJDRCount" does not exist.', 203, $this->source); })()) == 1)) ? ("Univers créé") : ("Univers créés"));
+        yield "
+                        </a>
+                        <a href=\"javascript:void(0)\" class=\"mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal\">
+                            ";
+        // line 206
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["joinedJDRCount"]) || array_key_exists("joinedJDRCount", $context) ? $context["joinedJDRCount"] : (function () { throw new RuntimeError('Variable "joinedJDRCount" does not exist.', 206, $this->source); })()), "html", null, true);
+        yield " ";
+        yield ((((isset($context["joinedJDRCount"]) || array_key_exists("joinedJDRCount", $context) ? $context["joinedJDRCount"] : (function () { throw new RuntimeError('Variable "joinedJDRCount" does not exist.', 206, $this->source); })()) == 1)) ? ("Univers rejoint") : ("Univers rejoints"));
+        yield "
+                        </a>
+                        <a href=\"javascript:void(0)\" class=\"mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal\"> 48 Deals </a>
+                    </div>
+                </div>
             </div>
         </div>
+        <hr class=\"w-full h-px border-neutral-200\">
+        <ul nav-tabs class=\"group flex flex-wrap items-stretch text-[1.15rem] font-semibold list-none border-b-2 border-transparent border-solid active-assignments\">
+            <li class=\"flex mt-2 -mb-[2px]\">
+                <a aria-controls=\"summary\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-summary]:border-primary group-[.active-summary]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> Summary </a>
+            </li>
+            <li class=\"flex mt-2 -mb-[2px]\">
+                <a aria-controls=\"assignments\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-assignments]:border-primary group-[.active-assignments]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> Assignments </a>
+            </li>
+            <li class=\"flex mt-2 -mb-[2px]\">
+                <a aria-controls=\"marketing\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-marketing]:border-primary group-[.active-marketing]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> Marketing </a>
+            </li>
+            <li class=\"flex mt-2 -mb-[2px]\">
+                <a aria-controls=\"followers\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-followers]:border-primary group-[.active-followers]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> Followers </a>
+            </li>
+            <li class=\"flex mt-2 -mb-[2px] group\">
+                <a aria-controls=\"history\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-history]:border-primary group-[.active-history]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> History </a>
+            </li>
+        </ul>
     </div>
 </div>
 ";
@@ -503,7 +230,7 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  470 => 151,  463 => 149,  455 => 145,  452 => 144,  449 => 143,  442 => 142,  439 => 141,  436 => 140,  429 => 139,  426 => 138,  419 => 137,  416 => 136,  413 => 135,  406 => 134,  403 => 133,  396 => 132,  394 => 131,  390 => 129,  387 => 128,  384 => 127,  382 => 126,  378 => 125,  370 => 120,  366 => 118,  361 => 117,  355 => 113,  348 => 111,  340 => 107,  337 => 106,  334 => 105,  327 => 104,  324 => 103,  321 => 102,  314 => 101,  311 => 100,  304 => 99,  301 => 98,  298 => 97,  291 => 96,  288 => 95,  281 => 94,  279 => 93,  275 => 91,  272 => 90,  269 => 89,  267 => 88,  263 => 87,  256 => 83,  252 => 81,  247 => 80,  240 => 76,  232 => 70,  226 => 67,  222 => 65,  220 => 64,  214 => 61,  207 => 56,  203 => 54,  200 => 53,  194 => 50,  191 => 49,  188 => 48,  182 => 45,  179 => 44,  176 => 43,  170 => 40,  167 => 39,  164 => 38,  158 => 35,  155 => 34,  152 => 33,  150 => 32,  140 => 26,  134 => 24,  128 => 22,  126 => 21,  123 => 20,  112 => 12,  109 => 11,  107 => 10,  101 => 6,  88 => 5,  64 => 3,  41 => 1,);
+        return array (  172 => 206,  164 => 203,  135 => 177,  122 => 166,  116 => 164,  110 => 162,  108 => 161,  101 => 156,  88 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -513,7 +240,7 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
 {% block title %}Profil de {{ user.username }}{% endblock %}
 
 {% block body %}
-<div class=\"container mx-auto px-4 py-8\">
+{# <div class=\"container mx-auto px-4 py-8\">
     <div class=\"grid grid-cols-1 md:grid-cols-4 gap-8\">
         <div class=\"col-span-1\">
             <div class=\"glassmorphism p-8 relative overflow-hidden hover:shadow-2xl transition-transform duration-300 rounded-lg\">
@@ -661,6 +388,83 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                 </div>
             </div>
         </div>
+    </div>
+</div> #}
+<div class=\"relative flex flex-col w-full min-w-0 mb-6 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable\">
+    <div class=\"px-9 pt-9 flex-auto min-h-[70px] pb-0 bg-transparent\">
+        <div class=\"flex flex-wrap mb-6 xl:flex-nowrap\">
+            <div class=\"mb-5 mr-5\">
+                <div class=\"relative inline-block shrink-0 rounded-2xl\">
+                {% if user.avatar %}
+                    <img src=\"{{ asset('uploads/avatars/' ~ user.avatar) }}\" class=\"inline-block shrink-0 rounded-2xl w-[80px] h-[80px] lg:w-[160px] lg:h-[160px] object-cover\" alt=\"Photo de profil\">
+                {% else %}
+                    <img src=\"{{ asset('images/default-avatar.png') }}\" class=\"inline-block shrink-0 rounded-2xl w-[80px] h-[80px] lg:w-[160px] lg:h-[160px] object-cover\" alt=\"Photo de profil par défaut\">
+                {% endif %}
+
+                <div class=\"group/tooltip relative\">
+                    <span class=\"w-[15px] h-[15px] absolute bg-success rounded-full bottom-0 end-0 -mb-1 -mr-2  border border-white\"></span>
+                    <span class=\"text-xs absolute z-10 transition-opacity duration-300 ease-in-out px-3 py-2 whitespace-nowrap text-center transform bg-white rounded-2xl shadow-sm bottom-0 -mb-2 start-full ml-4 font-medium text-secondary-inverse group-hover/tooltip:opacity-100 opacity-0 block\"> Status: Active </span>
+                </div>
+                </div>
+            </div>
+            <div class=\"grow\">
+                <div class=\"flex flex-wrap items-start justify-between mb-2\">
+                    <div class=\"flex flex-col\">
+                        <div class=\"flex items-center mb-2\">
+                            <a class=\"text-secondary-inverse hover:text-primary transition-colors duration-200 ease-in-out font-semibold text-[1.5rem] mr-1 text-gray-100\" href=\"javascript:void(0)\"> {{ user.username  }} </a>
+                        </div>
+                        <div class=\"flex flex-wrap pr-2 mb-4 font-medium\">
+                            <a class=\"flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary\" href=\"javascript:void(0)\">
+                                <span class=\"mr-1\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-5 h-5\">
+                                    <path fill-rule=\"evenodd\" d=\"M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z\" clip-rule=\"evenodd\" />
+                                </svg>
+                                </span> New York, NY </a>
+                            <a class=\"flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary\" href=\"javascript:void(0)\">
+                            <span class=\"mr-1\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-5 h-5\">
+                                    <path d=\"M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z\" />
+                                    <path d=\"M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z\" />
+                                </svg>
+                            </span> contact@example.com </a>
+                        </div>
+                    </div>
+                    <div class=\"flex flex-wrap my-auto\">
+                        <a href=\"javascript:void(0)\" class=\"inline-block px-6 py-3 mr-3 text-base font-medium leading-normal text-center align-middle transition-colors duration-150 ease-in-out border-0 shadow-none cursor-pointer rounded-2xl text-muted bg-light border-light hover:bg-light-dark active:bg-light-dark focus:bg-light-dark \"> Follow </a>
+                        <a href=\"javascript:void(0)\" class=\"inline-block px-6 py-3 text-base font-medium leading-normal text-center text-white align-middle transition-colors duration-150 ease-in-out border-0 shadow-none cursor-pointer rounded-2xl bg-primary hover:bg-primary-dark active:bg-primary-dark focus:bg-primary-dark \"> Hire </a>
+                    </div>
+                </div>
+                <div class=\"flex flex-wrap justify-between\">
+                    <div class=\"flex flex-wrap items-center\">
+                        <a href=\"javascript:void(0)\" class=\"mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal\">
+                            {{ ownedJDRCount }} {{ ownedJDRCount == 1 ? 'Univers créé' : 'Univers créés' }}
+                        </a>
+                        <a href=\"javascript:void(0)\" class=\"mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal\">
+                            {{ joinedJDRCount }} {{ joinedJDRCount == 1 ? 'Univers rejoint' : 'Univers rejoints' }}
+                        </a>
+                        <a href=\"javascript:void(0)\" class=\"mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal\"> 48 Deals </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class=\"w-full h-px border-neutral-200\">
+        <ul nav-tabs class=\"group flex flex-wrap items-stretch text-[1.15rem] font-semibold list-none border-b-2 border-transparent border-solid active-assignments\">
+            <li class=\"flex mt-2 -mb-[2px]\">
+                <a aria-controls=\"summary\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-summary]:border-primary group-[.active-summary]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> Summary </a>
+            </li>
+            <li class=\"flex mt-2 -mb-[2px]\">
+                <a aria-controls=\"assignments\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-assignments]:border-primary group-[.active-assignments]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> Assignments </a>
+            </li>
+            <li class=\"flex mt-2 -mb-[2px]\">
+                <a aria-controls=\"marketing\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-marketing]:border-primary group-[.active-marketing]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> Marketing </a>
+            </li>
+            <li class=\"flex mt-2 -mb-[2px]\">
+                <a aria-controls=\"followers\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-followers]:border-primary group-[.active-followers]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> Followers </a>
+            </li>
+            <li class=\"flex mt-2 -mb-[2px] group\">
+                <a aria-controls=\"history\" class=\"py-5 mr-1 sm:mr-3 lg:mr-10 transition-colors duration-200 ease-in-out border-b-2 border-transparent group-[.active-history]:border-primary group-[.active-history]:text-primary text-muted hover:border-primary\" href=\"javascript:void(0)\"> History </a>
+            </li>
+        </ul>
     </div>
 </div>
 {% endblock %}

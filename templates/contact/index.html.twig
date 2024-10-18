@@ -4,7 +4,8 @@
 
 {% block body %}
 <div class="container mx-auto px-4 py-8">
-    <section class="bg-gray-800 rounded-lg shadow-lg p-6 sm:p-12">
+    <!-- Application du glassmorphisme -->
+    <section class="glassmorphism p-6 sm:p-12 shadow-lg">
         <div class="text-center">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Nous Contacter</h2>
             <p class="mt-4 mb-8 text-lg text-white">Vous avez rencontré un problème technique ? Vous souhaitez nous faire part de vos commentaires ou avez besoin de détails sur nos services ? Faites-le nous savoir.</p>
@@ -15,7 +16,7 @@
                 {{ form_row(contactForm.email, {
                     'label': 'Votre Email',
                     'attr': {
-                        'class': 'shadow-sm bg-white border border-gray-300 text-dark text-sm rounded-lg p-2.5 w-full',
+                        'class': 'shadow-sm bg-white bg-opacity-10 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full backdrop-blur-lg',
                         'placeholder': 'De quoi souhaitez-vous nous parler ?'
                     },
                     'label_attr': {'class': 'text-white font-semibold mb-2'}
@@ -26,7 +27,7 @@
                 {{ form_row(contactForm.subject, {
                     'label': 'Sujet',
                     'attr': {
-                        'class': 'shadow-sm bg-white border border-gray-300 text-dark text-sm rounded-lg p-2.5 w-full',
+                        'class': 'shadow-sm bg-white bg-opacity-10 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full backdrop-blur-lg',
                         'placeholder': 'De quoi souhaitez-vous nous parler ?'
                     },
                     'label_attr': {'class': 'text-white font-semibold mb-2'}
@@ -37,7 +38,7 @@
                 {{ form_row(contactForm.message, {
                     'label': 'Votre message',
                     'attr': {
-                        'class': 'shadow-sm bg-white border border-gray-300 text-dark text-sm rounded-lg p-2.5 w-full',
+                        'class': 'shadow-sm bg-white bg-opacity-10 border border-gray-300 text-white text-sm rounded-lg p-2.5 w-full backdrop-blur-lg',
                         'placeholder': 'Décrivez votre message ici',
                         'rows': 6
                     },

@@ -27,34 +27,88 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 #[Route('/groupe/jdr')]
 final class GroupeJDRController extends AbstractController
 {
+    // #[Route('/', name: 'app_groupe_j_d_r_index', methods: ['GET'])]
+    // public function index(Request $request, GroupeJDRRepository $groupeJDRRepository, CategoryRepository $categoryRepository): Response
+    // {
+    //     $searchTerm = $request->query->get('search', '');
+    //     $selectedCategories = $request->query->all('category');
+        
+    //     $sort = $request->query->get('sort');
+    //     if (empty($sort) || $sort === 'undefined') {
+    //         $sort = 'newest';
+    //     }
+        
+    //     $recruitment = $request->query->getBoolean('recruitment', false);
+
+    //     if (!in_array($sort, ['newest', 'oldest'])) {
+    //         $sort = 'newest';
+    //     }
+
+    //     $categories = $categoryRepository->findAll();
+
+    //     $queryBuilder = $groupeJDRRepository->createQueryBuilder('g')
+    //         ->leftJoin('g.owner', 'o');
+
+    //     if ($searchTerm) {
+    //         $queryBuilder
+    //             ->andWhere('g.title LIKE :searchTerm OR o.username LIKE :searchTerm')
+    //             ->setParameter('searchTerm', '%' . $searchTerm . '%');
+    //     }
+
+    //     if (!empty($selectedCategories)) {
+    //         foreach ($selectedCategories as $key => $categoryId) {
+    //             $queryBuilder
+    //                 ->andWhere(':categoryId' . $key . ' MEMBER OF g.categories')
+    //                 ->setParameter('categoryId' . $key, $categoryId);
+    //         }
+    //     }
+
+    //     if ($sort === 'newest') {
+    //         $queryBuilder->orderBy('g.created_at', 'DESC');
+    //     } else {
+    //         $queryBuilder->orderBy('g.created_at', 'ASC');
+    //     }
+
+    //     if ($recruitment) {
+    //         $queryBuilder->andWhere('g.recrutement = true');
+    //     }
+
+    //     $groupeJDRs = $queryBuilder->getQuery()->getResult();
+
+    //     return $this->render('groupe_jdr/index.html.twig', [
+    //         'groupe_j_d_rs' => $groupeJDRs,
+    //         'searchTerm' => $searchTerm,
+    //         'selectedCategories' => $selectedCategories,
+    //         'sort' => $sort,
+    //         'recruitment' => $recruitment,
+    //         'categories' => $categories,
+    //     ]);
+    // }
+
     #[Route('/', name: 'app_groupe_j_d_r_index', methods: ['GET'])]
     public function index(Request $request, GroupeJDRRepository $groupeJDRRepository, CategoryRepository $categoryRepository): Response
     {
         $searchTerm = $request->query->get('search', '');
         $selectedCategories = $request->query->all('category');
-        
-        $sort = $request->query->get('sort');
+        $sort = $request->query->get('sort', 'newest');
+        $recruitment = $request->query->getBoolean('recruitment', false);
+    
         if (empty($sort) || $sort === 'undefined') {
             $sort = 'newest';
         }
-        
-        $recruitment = $request->query->getBoolean('recruitment', false);
-
-        if (!in_array($sort, ['newest', 'oldest'])) {
-            $sort = 'newest';
-        }
-
+    
         $categories = $categoryRepository->findAll();
-
+    
         $queryBuilder = $groupeJDRRepository->createQueryBuilder('g')
-            ->leftJoin('g.owner', 'o');
-
+            ->leftJoin('g.owner', 'o')
+            ->where('g.isArchived = false');
+    
         if ($searchTerm) {
             $queryBuilder
                 ->andWhere('g.title LIKE :searchTerm OR o.username LIKE :searchTerm')
                 ->setParameter('searchTerm', '%' . $searchTerm . '%');
         }
-
+    
         if (!empty($selectedCategories)) {
             foreach ($selectedCategories as $key => $categoryId) {
                 $queryBuilder
@@ -62,19 +116,19 @@ final class GroupeJDRController extends AbstractController
                     ->setParameter('categoryId' . $key, $categoryId);
             }
         }
-
+    
         if ($sort === 'newest') {
             $queryBuilder->orderBy('g.created_at', 'DESC');
         } else {
             $queryBuilder->orderBy('g.created_at', 'ASC');
         }
-
+    
         if ($recruitment) {
             $queryBuilder->andWhere('g.recrutement = true');
         }
-
+    
         $groupeJDRs = $queryBuilder->getQuery()->getResult();
-
+    
         return $this->render('groupe_jdr/index.html.twig', [
             'groupe_j_d_rs' => $groupeJDRs,
             'searchTerm' => $searchTerm,
@@ -84,6 +138,8 @@ final class GroupeJDRController extends AbstractController
             'categories' => $categories,
         ]);
     }
+    
+
 
     #[Route('/new', name: 'app_groupe_j_d_r_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
@@ -250,29 +306,33 @@ final class GroupeJDRController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_groupe_j_d_r_delete', methods: ['POST'])]
-    public function delete(Request $request, GroupeJDR $groupeJDR, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, GroupeJDR $groupeJDR, EntityManagerInterface $entityManager, NotificationService $notificationService): Response
     {
         if ($this->isCsrfTokenValid('delete' . $groupeJDR->getId(), $request->request->get('_token'))) {
-
-            if ($groupeJDR->getPicture()) {
-                $this->deleteImage($groupeJDR->getPicture());
+            $owner = $groupeJDR->getOwner();
+            
+            $players = $groupeJDR->getPlayers();
+            $notificationService->createNotification(
+                $owner,
+                'groupe_deleted',
+                'Votre univers "' . $groupeJDR->getTitle() . '" a été supprimé.',
+                $groupeJDR
+            );
+            
+            foreach ($players as $player) {
+                $notificationService->createNotification(
+                    $player,
+                    'groupe_deleted',
+                    'L\'univers "' . $groupeJDR->getTitle() . '" auquel vous faisiez partie a été supprimé.',
+                    $groupeJDR
+                );
             }
-
-            $notificationRepository = $entityManager->getRepository(NotificationHistory::class);
-            $notifications = $notificationRepository->findBy(['groupeJDR' => $groupeJDR]);
-
-            foreach ($notifications as $notification) {
-                $entityManager->remove($notification);
-            }
-
-            foreach ($groupeJDR->getEvents() as $event) {
-                $entityManager->remove($event);
-            }
-
-            $entityManager->remove($groupeJDR);
+            $groupeJDR->setArchived(true);
             $entityManager->flush();
+
+            $this->addFlash('success', 'L\'univers a été archivé avec succès.');
         }
-    
+
         return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
     }
 

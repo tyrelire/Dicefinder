@@ -103,34 +103,33 @@
     {% else %}
         <p class="text-center text-gray-500 mb-20 mt-20">Vous n'êtes MJ dans aucun parties pour le moment.</p>
     {% endif %}
-<div id="deleteModal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" aria-modal="true" role="dialog">
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
-        <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Confirmer la suppression</h3>
-            <div class="mt-2">
-                <p class="text-sm text-gray-500">
-                Êtes-vous sûr de vouloir supprimer <span id="jdrTitle"></span> ? Cette action est irréversible. Tapez le nom de la partie pour confirmer la suppression.
-                </p>
-            </div>
+    <div id="deleteModal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" aria-modal="true" role="dialog">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Confirmer la suppression</h3>
+                <div class="mt-2">
+                    <p class="text-sm text-gray-500">
+                    Êtes-vous sûr de vouloir supprimer <span id="jdrTitle"></span> ? Cette action est irréversible. Tapez le nom de la partie pour confirmer la suppression.
+                    </p>
+                </div>
 
-            <div class="mt-4">
-                <input type="text" id="confirmInput" placeholder="Entrez le nom du JDR" class="w-full p-2 border border-gray-300 rounded-md">
-                <span id="errorText" class="text-red-500 text-sm hidden">Le nom du JDR ne correspond pas</span>
-            </div>
+                <div class="mt-4">
+                    <input type="text" id="confirmInput" placeholder="Entrez le nom du JDR" class="w-full p-2 border border-gray-300 rounded-md">
+                    <span id="errorText" class="text-red-500 text-sm hidden">Le nom du JDR ne correspond pas</span>
+                </div>
 
-            <div class="mt-5 sm:mt-6 sm:flex sm:flex-row-reverse">
-                <button type="button" onclick="confirmDeletion()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm">Supprimer</button>
-                <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:w-auto sm:text-sm">Annuler</button>
+                <div class="mt-5 sm:mt-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="confirmDeletion()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm">Supprimer</button>
+                    <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:w-auto sm:text-sm">Annuler</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
     <h2 class="text-xl md:text-2xl font-bold mb-6 text-white">Parties où je suis Joueur</h2>
     {% if playerJdrs is not empty %}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mb-10">
             {% for jdr in playerJdrs %}
                 <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
                     <div class="relative">
@@ -183,7 +182,6 @@
     {% else %}
         <p class="text-center text-gray-500 mb-20 mt-20">Vous ne participez à aucun parties pour le moment.</p>
     {% endif %}
-
     <h2 class="text-xl md:text-2xl font-bold mb-6 text-white">Mes Favoris</h2>
     {% if favoriteJdrs is not empty %}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">

@@ -16,6 +16,20 @@ class GroupeJDRRepository extends ServiceEntityRepository
         parent::__construct($registry, GroupeJDR::class);
     }
 
+    /**
+     * Récupérer tous les groupes non archivés.
+     */
+    public function findAllNonArchived(): array
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.isArchived = false')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Récupérer les groupes selon les filtres, en excluant ceux qui sont archivés.
+     */
     public function findByFilters(
         ?string $searchTerm, 
         array $categories, 
@@ -25,12 +39,13 @@ class GroupeJDRRepository extends ServiceEntityRepository
     ): array
     {
         $qb = $this->createQueryBuilder('g');
-    
+
+        $qb->andWhere('g.isArchived = false');
+
         if ($searchTerm) {
             $qb->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm')
                 ->setParameter('searchTerm', '%' . $searchTerm . '%');
         }
-    
         if ($mjSearch) {
             $qb->join('g.owner', 'o')
                 ->andWhere('o.username LIKE :mjSearch')
@@ -41,22 +56,34 @@ class GroupeJDRRepository extends ServiceEntityRepository
                 ->setParameter('recruitment', $recruitment);
         }
         if (count($categories) > 0) {
-            foreach ($categories as $index => $category) {
+            foreach ($categories as $index => $categoryId) {
                 $alias = 'c' . $index;
                 $qb->join('g.categories', $alias)
                     ->andWhere($alias . '.id = :category' . $index)
-                    ->setParameter('category' . $index, $category->getId());
+                    ->setParameter('category' . $index, $categoryId);
             }
         }
-    
-        // Gestion du tri
+        
         if ($sort === 'newest') {
             $qb->orderBy('g.created_at', 'DESC');
         } elseif ($sort === 'oldest') {
             $qb->orderBy('g.created_at', 'ASC');
         }
-    
+
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Récupérer un groupe JDR non archivé par son ID.
+     */
+    public function findOneNonArchived(int $id): ?GroupeJDR
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.id = :id')
+            ->andWhere('g.isArchived = false')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     //    /**

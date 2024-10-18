@@ -44,10 +44,15 @@ class ProfileController extends AbstractController
             ];
         }
     
+        $ownedJDRCount = count($ownedJDRs);
+        $joinedJDRCount = count($joinedJDRs);
+    
         return $this->render('profile/show.html.twig', [
             'user' => $user,
             'ownedJDRs' => $ownedJDRs,
             'joinedJDRs' => $joinedJDRs,
+            'ownedJDRCount' => $ownedJDRCount,
+            'joinedJDRCount' => $joinedJDRCount,
         ]);
     }
     
