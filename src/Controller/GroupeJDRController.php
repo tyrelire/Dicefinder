@@ -199,6 +199,7 @@ final class GroupeJDRController extends AbstractController
         $requestInProgress = false;
         $isOwner = false;
         $isMember = false;
+        $favorites = null;
 
         if ($currentUser) {
             if ($groupeJDR->getOwner() === $currentUser) {
@@ -219,8 +220,9 @@ final class GroupeJDRController extends AbstractController
                 $requestInProgress = true;
             }
         }
-        $user = $this->getUser();
-        $favorites = $user->getFavoriteGroupeJDR();
+        if ($currentUser) {
+            $favorites = $currentUser->getFavoriteGroupeJDR();
+        }
         $isClosed = in_array($groupeJDR->getStatus(), ['complet', 'termine', 'annule']);
 
         return $this->render('groupe_jdr/show.html.twig', [

@@ -115,6 +115,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $competence = null;
 
+    #[ORM\Column(type: 'datetime', nullable: false)]
+    private ?\DateTime $createdAt = null;
+
+
     /**
      * @var Collection<int, Notification>
      */
@@ -139,6 +143,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->playerMemberships = new ArrayCollection();
         $this->notifications = new ArrayCollection();
         $this->favoriteGroupeJDR = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -154,6 +159,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

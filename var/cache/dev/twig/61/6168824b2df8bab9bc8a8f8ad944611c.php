@@ -98,8 +98,8 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 156
-        yield "<div class=\"relative flex flex-col w-full min-w-0 mb-6 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable\">
-    <div class=\"px-9 pt-9 flex-auto min-h-[70px] pb-0 bg-transparent\">
+        yield "<div class=\"relative flex flex-col w-full min-w-0 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable\">
+    <div class=\"px-9 pt-9 flex-auto min-h-[70px] pb-0 glassmorphism\">
         <div class=\"flex flex-wrap mb-6 xl:flex-nowrap\">
             <div class=\"mb-5 mr-5\">
                 <div class=\"relative inline-block shrink-0 rounded-2xl\">
@@ -119,8 +119,7 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                 ";
         }
         // line 166
-        yield "
-                <div class=\"group/tooltip relative\">
+        yield "                <div class=\"group/tooltip relative\">
                     <span class=\"w-[15px] h-[15px] absolute bg-success rounded-full bottom-0 end-0 -mb-1 -mr-2  border border-white\"></span>
                     <span class=\"text-xs absolute z-10 transition-opacity duration-300 ease-in-out px-3 py-2 whitespace-nowrap text-center transform bg-white rounded-2xl shadow-sm bottom-0 -mb-2 start-full ml-4 font-medium text-secondary-inverse group-hover/tooltip:opacity-100 opacity-0 block\"> Status: Active </span>
                 </div>
@@ -130,25 +129,107 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                 <div class=\"flex flex-wrap items-start justify-between mb-2\">
                     <div class=\"flex flex-col\">
                         <div class=\"flex items-center mb-2\">
-                            <a class=\"text-secondary-inverse hover:text-primary transition-colors duration-200 ease-in-out font-semibold text-[1.5rem] mr-1 text-gray-100\" href=\"javascript:void(0)\"> ";
-        // line 177
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 177, $this->source); })()), "username", [], "any", false, false, false, 177), "html", null, true);
+                            <a class=\"text-secondary-inverse transition-colors duration-200 ease-in-out font-semibold text-[1.5rem] mr-1 text-gray-100\" href=\"javascript:void(0)\"> ";
+        // line 176
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 176, $this->source); })()), "username", [], "any", false, false, false, 176), "html", null, true);
         yield " </a>
                         </div>
                         <div class=\"flex flex-wrap pr-2 mb-4 font-medium\">
-                            <a class=\"flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary\" href=\"javascript:void(0)\">
+                            ";
+        // line 179
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 179, $this->source); })()), "gender", [], "any", false, false, false, 179)) {
+            // line 180
+            yield "                                <a class=\"flex items-center mb-2 mr-5 text-gray-100\" href=\"javascript:void(0)\">
+                                    <span class=\"mr-1\">
+                                        <svg class=\"w-6 h-6\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 512\" style=\"color: white;\">
+                                            <path d=\"M160 0a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm8 352l0-224 6.9 0c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9 232 480c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128s0 0 0 0zM58.2 182.3c19.9-33.1 55.3-53.5 93.8-54.3l0 256s0 0 0 0l0 96c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-96-17.8 0c-10.9 0-18.6-10.7-15.2-21.1L93.3 248.1 59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l53.6-89.2z\" fill=\"currentColor\"/>
+                                        </svg>
+                                    </span>
+                                    ";
+            // line 186
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 186, $this->source); })()), "gender", [], "any", false, false, false, 186), "html", null, true);
+            yield "
+                                </a>
+                            ";
+        }
+        // line 189
+        yield "                            ";
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 189, $this->source); })()), "birthdate", [], "any", false, false, false, 189)) {
+            // line 190
+            yield "                            <a class=\"flex items-center mb-2 mr-5 text-gray-100\" href=\"javascript:void(0)\">
                                 <span class=\"mr-1\">
-                                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-5 h-5\">
-                                    <path fill-rule=\"evenodd\" d=\"M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z\" clip-rule=\"evenodd\" />
-                                </svg>
-                                </span> New York, NY </a>
-                            <a class=\"flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary\" href=\"javascript:void(0)\">
-                            <span class=\"mr-1\">
-                                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-5 h-5\">
-                                    <path d=\"M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z\" />
-                                    <path d=\"M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z\" />
-                                </svg>
-                            </span> contact@example.com </a>
+                                    <svg class=\"w-5 h-5 mr-1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\">
+                                        <path fill=\"white\" d=\"M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z\"/>
+                                    </svg>
+                                </span>
+                                ";
+            // line 196
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $this->extensions['Twig\Extension\CoreExtension']->convertDate(), "diff", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 196, $this->source); })()), "birthdate", [], "any", false, false, false, 196)], "method", false, false, false, 196), "y", [], "any", false, false, false, 196), "html", null, true);
+            yield " ans
+                            </a>
+                            ";
+        }
+        // line 199
+        yield "                            <a class=\"flex items-center mb-2 mr-5 text-gray-100\" href=\"javascript:void(0)\">
+                                <span class=\"mr-1\">
+                                    <svg class=\"w-5 h-5 mr-1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\">
+                                        <path  fill=\"white\" d=\"M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z\"/>
+                                    </svg>
+                                </span>
+                                ";
+        // line 205
+        $context["diff"] = CoreExtension::getAttribute($this->env, $this->source, $this->extensions['Twig\Extension\CoreExtension']->convertDate(), "diff", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 205, $this->source); })()), "getCreatedAt", [], "any", false, false, false, 205)], "method", false, false, false, 205);
+        // line 206
+        yield "                                ";
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 206, $this->source); })()), "y", [], "any", false, false, false, 206) > 0)) {
+            // line 207
+            yield "                                    <span class=\"member-since\">Membre depuis ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 207, $this->source); })()), "y", [], "any", false, false, false, 207), "html", null, true);
+            yield " an";
+            yield (((CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 207, $this->source); })()), "y", [], "any", false, false, false, 207) > 1)) ? ("s") : (""));
+            yield "</span>
+                                ";
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 208
+(isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 208, $this->source); })()), "m", [], "any", false, false, false, 208) > 0)) {
+            // line 209
+            yield "                                    <span class=\"member-since\">Membre depuis ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 209, $this->source); })()), "m", [], "any", false, false, false, 209), "html", null, true);
+            yield " mois</span>
+                                ";
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 210
+(isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 210, $this->source); })()), "d", [], "any", false, false, false, 210) > 0)) {
+            // line 211
+            yield "                                    <span class=\"member-since\">Membre depuis ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 211, $this->source); })()), "d", [], "any", false, false, false, 211), "html", null, true);
+            yield " jour";
+            yield (((CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 211, $this->source); })()), "d", [], "any", false, false, false, 211) > 1)) ? ("s") : (""));
+            yield "</span>
+                                ";
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 212
+(isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 212, $this->source); })()), "h", [], "any", false, false, false, 212) > 0)) {
+            // line 213
+            yield "                                    <span class=\"member-since\">Membre depuis ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 213, $this->source); })()), "h", [], "any", false, false, false, 213), "html", null, true);
+            yield " heure";
+            yield (((CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 213, $this->source); })()), "h", [], "any", false, false, false, 213) > 1)) ? ("s") : (""));
+            yield "</span>
+                                ";
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 214
+(isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 214, $this->source); })()), "i", [], "any", false, false, false, 214) > 0)) {
+            // line 215
+            yield "                                    <span class=\"member-since\">Membre depuis ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 215, $this->source); })()), "i", [], "any", false, false, false, 215), "html", null, true);
+            yield " minute";
+            yield (((CoreExtension::getAttribute($this->env, $this->source, (isset($context["diff"]) || array_key_exists("diff", $context) ? $context["diff"] : (function () { throw new RuntimeError('Variable "diff" does not exist.', 215, $this->source); })()), "i", [], "any", false, false, false, 215) > 1)) ? ("s") : (""));
+            yield "</span>
+                                ";
+        } else {
+            // line 217
+            yield "                                    <span class=\"member-since\">Membre depuis moins d'une minute</span>
+                                ";
+        }
+        // line 219
+        yield "                            </a>
                         </div>
                     </div>
                     <div class=\"flex flex-wrap my-auto\">
@@ -160,18 +241,18 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                     <div class=\"flex flex-wrap items-center\">
                         <a href=\"javascript:void(0)\" class=\"mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal\">
                             ";
-        // line 203
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["ownedJDRCount"]) || array_key_exists("ownedJDRCount", $context) ? $context["ownedJDRCount"] : (function () { throw new RuntimeError('Variable "ownedJDRCount" does not exist.', 203, $this->source); })()), "html", null, true);
+        // line 230
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["ownedJDRCount"]) || array_key_exists("ownedJDRCount", $context) ? $context["ownedJDRCount"] : (function () { throw new RuntimeError('Variable "ownedJDRCount" does not exist.', 230, $this->source); })()), "html", null, true);
         yield " ";
-        yield ((((isset($context["ownedJDRCount"]) || array_key_exists("ownedJDRCount", $context) ? $context["ownedJDRCount"] : (function () { throw new RuntimeError('Variable "ownedJDRCount" does not exist.', 203, $this->source); })()) == 1)) ? ("Univers créé") : ("Univers créés"));
+        yield ((((isset($context["ownedJDRCount"]) || array_key_exists("ownedJDRCount", $context) ? $context["ownedJDRCount"] : (function () { throw new RuntimeError('Variable "ownedJDRCount" does not exist.', 230, $this->source); })()) == 1)) ? ("Univers créé") : ("Univers créés"));
         yield "
                         </a>
                         <a href=\"javascript:void(0)\" class=\"mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal\">
                             ";
-        // line 206
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["joinedJDRCount"]) || array_key_exists("joinedJDRCount", $context) ? $context["joinedJDRCount"] : (function () { throw new RuntimeError('Variable "joinedJDRCount" does not exist.', 206, $this->source); })()), "html", null, true);
+        // line 233
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["joinedJDRCount"]) || array_key_exists("joinedJDRCount", $context) ? $context["joinedJDRCount"] : (function () { throw new RuntimeError('Variable "joinedJDRCount" does not exist.', 233, $this->source); })()), "html", null, true);
         yield " ";
-        yield ((((isset($context["joinedJDRCount"]) || array_key_exists("joinedJDRCount", $context) ? $context["joinedJDRCount"] : (function () { throw new RuntimeError('Variable "joinedJDRCount" does not exist.', 206, $this->source); })()) == 1)) ? ("Univers rejoint") : ("Univers rejoints"));
+        yield ((((isset($context["joinedJDRCount"]) || array_key_exists("joinedJDRCount", $context) ? $context["joinedJDRCount"] : (function () { throw new RuntimeError('Variable "joinedJDRCount" does not exist.', 233, $this->source); })()) == 1)) ? ("Univers rejoint") : ("Univers rejoints"));
         yield "
                         </a>
                         <a href=\"javascript:void(0)\" class=\"mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal\"> 48 Deals </a>
@@ -199,6 +280,55 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
         </ul>
     </div>
 </div>
+<div id=\"summary\" class=\"tab-content hidden\">
+    <p>Voici le résumé de la page...</p>
+</div>
+<div id=\"assignments\" class=\"tab-content hidden\">
+    <p>Voici les assignments...</p>
+</div>
+<div id=\"marketing\" class=\"tab-content hidden\">
+    <p>Voici les informations marketing...</p>
+</div>
+<div id=\"followers\" class=\"tab-content hidden\">
+    <p>Voici la liste des followers...</p>
+</div>
+<div id=\"history\" class=\"tab-content hidden\">
+    <p>Voici l'historique...</p>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabLinks = document.querySelectorAll('[nav-tabs] a');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        function resetTabs() {
+            tabLinks.forEach(link => {
+                link.parentElement.classList.remove('active');
+                link.classList.remove('text-primary', 'border-primary');
+            });
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+        }
+
+        function activateTab(tabLink) {
+            const tabId = tabLink.getAttribute('aria-controls');
+            const targetContent = document.getElementById(tabId);
+
+            if (targetContent) {
+                tabLink.parentElement.classList.add('active');
+                tabLink.classList.add('text-primary', 'border-primary');
+                targetContent.classList.remove('hidden');
+            }
+        }
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                resetTabs();
+                activateTab(this);
+            });
+        });
+    });
+</script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -230,7 +360,7 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  172 => 206,  164 => 203,  135 => 177,  122 => 166,  116 => 164,  110 => 162,  108 => 161,  101 => 156,  88 => 5,  64 => 3,  41 => 1,);
+        return array (  253 => 233,  245 => 230,  232 => 219,  228 => 217,  220 => 215,  218 => 214,  211 => 213,  209 => 212,  202 => 211,  200 => 210,  195 => 209,  193 => 208,  186 => 207,  183 => 206,  181 => 205,  173 => 199,  167 => 196,  159 => 190,  156 => 189,  150 => 186,  142 => 180,  140 => 179,  134 => 176,  122 => 166,  116 => 164,  110 => 162,  108 => 161,  101 => 156,  88 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -390,8 +520,8 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
         </div>
     </div>
 </div> #}
-<div class=\"relative flex flex-col w-full min-w-0 mb-6 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable\">
-    <div class=\"px-9 pt-9 flex-auto min-h-[70px] pb-0 bg-transparent\">
+<div class=\"relative flex flex-col w-full min-w-0 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable\">
+    <div class=\"px-9 pt-9 flex-auto min-h-[70px] pb-0 glassmorphism\">
         <div class=\"flex flex-wrap mb-6 xl:flex-nowrap\">
             <div class=\"mb-5 mr-5\">
                 <div class=\"relative inline-block shrink-0 rounded-2xl\">
@@ -400,7 +530,6 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                 {% else %}
                     <img src=\"{{ asset('images/default-avatar.png') }}\" class=\"inline-block shrink-0 rounded-2xl w-[80px] h-[80px] lg:w-[160px] lg:h-[160px] object-cover\" alt=\"Photo de profil par défaut\">
                 {% endif %}
-
                 <div class=\"group/tooltip relative\">
                     <span class=\"w-[15px] h-[15px] absolute bg-success rounded-full bottom-0 end-0 -mb-1 -mr-2  border border-white\"></span>
                     <span class=\"text-xs absolute z-10 transition-opacity duration-300 ease-in-out px-3 py-2 whitespace-nowrap text-center transform bg-white rounded-2xl shadow-sm bottom-0 -mb-2 start-full ml-4 font-medium text-secondary-inverse group-hover/tooltip:opacity-100 opacity-0 block\"> Status: Active </span>
@@ -411,22 +540,50 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
                 <div class=\"flex flex-wrap items-start justify-between mb-2\">
                     <div class=\"flex flex-col\">
                         <div class=\"flex items-center mb-2\">
-                            <a class=\"text-secondary-inverse hover:text-primary transition-colors duration-200 ease-in-out font-semibold text-[1.5rem] mr-1 text-gray-100\" href=\"javascript:void(0)\"> {{ user.username  }} </a>
+                            <a class=\"text-secondary-inverse transition-colors duration-200 ease-in-out font-semibold text-[1.5rem] mr-1 text-gray-100\" href=\"javascript:void(0)\"> {{ user.username  }} </a>
                         </div>
                         <div class=\"flex flex-wrap pr-2 mb-4 font-medium\">
-                            <a class=\"flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary\" href=\"javascript:void(0)\">
+                            {% if user.gender %}
+                                <a class=\"flex items-center mb-2 mr-5 text-gray-100\" href=\"javascript:void(0)\">
+                                    <span class=\"mr-1\">
+                                        <svg class=\"w-6 h-6\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 512\" style=\"color: white;\">
+                                            <path d=\"M160 0a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm8 352l0-224 6.9 0c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9 232 480c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128s0 0 0 0zM58.2 182.3c19.9-33.1 55.3-53.5 93.8-54.3l0 256s0 0 0 0l0 96c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-96-17.8 0c-10.9 0-18.6-10.7-15.2-21.1L93.3 248.1 59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l53.6-89.2z\" fill=\"currentColor\"/>
+                                        </svg>
+                                    </span>
+                                    {{ user.gender }}
+                                </a>
+                            {% endif %}
+                            {% if user.birthdate %}
+                            <a class=\"flex items-center mb-2 mr-5 text-gray-100\" href=\"javascript:void(0)\">
                                 <span class=\"mr-1\">
-                                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-5 h-5\">
-                                    <path fill-rule=\"evenodd\" d=\"M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z\" clip-rule=\"evenodd\" />
-                                </svg>
-                                </span> New York, NY </a>
-                            <a class=\"flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary\" href=\"javascript:void(0)\">
-                            <span class=\"mr-1\">
-                                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-5 h-5\">
-                                    <path d=\"M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z\" />
-                                    <path d=\"M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z\" />
-                                </svg>
-                            </span> contact@example.com </a>
+                                    <svg class=\"w-5 h-5 mr-1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\">
+                                        <path fill=\"white\" d=\"M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z\"/>
+                                    </svg>
+                                </span>
+                                {{ date().diff(user.birthdate).y }} ans
+                            </a>
+                            {% endif %}
+                            <a class=\"flex items-center mb-2 mr-5 text-gray-100\" href=\"javascript:void(0)\">
+                                <span class=\"mr-1\">
+                                    <svg class=\"w-5 h-5 mr-1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\">
+                                        <path  fill=\"white\" d=\"M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z\"/>
+                                    </svg>
+                                </span>
+                                {% set diff = date().diff(user.getCreatedAt) %}
+                                {% if diff.y > 0 %}
+                                    <span class=\"member-since\">Membre depuis {{ diff.y }} an{{ diff.y > 1 ? 's' }}</span>
+                                {% elseif diff.m > 0 %}
+                                    <span class=\"member-since\">Membre depuis {{ diff.m }} mois</span>
+                                {% elseif diff.d > 0 %}
+                                    <span class=\"member-since\">Membre depuis {{ diff.d }} jour{{ diff.d > 1 ? 's' }}</span>
+                                {% elseif diff.h > 0 %}
+                                    <span class=\"member-since\">Membre depuis {{ diff.h }} heure{{ diff.h > 1 ? 's' }}</span>
+                                {% elseif diff.i > 0 %}
+                                    <span class=\"member-since\">Membre depuis {{ diff.i }} minute{{ diff.i > 1 ? 's' }}</span>
+                                {% else %}
+                                    <span class=\"member-since\">Membre depuis moins d'une minute</span>
+                                {% endif %}
+                            </a>
                         </div>
                     </div>
                     <div class=\"flex flex-wrap my-auto\">
@@ -467,6 +624,55 @@ class __TwigTemplate_79ecbdbe097c7a1162d43907a7c18d88 extends Template
         </ul>
     </div>
 </div>
+<div id=\"summary\" class=\"tab-content hidden\">
+    <p>Voici le résumé de la page...</p>
+</div>
+<div id=\"assignments\" class=\"tab-content hidden\">
+    <p>Voici les assignments...</p>
+</div>
+<div id=\"marketing\" class=\"tab-content hidden\">
+    <p>Voici les informations marketing...</p>
+</div>
+<div id=\"followers\" class=\"tab-content hidden\">
+    <p>Voici la liste des followers...</p>
+</div>
+<div id=\"history\" class=\"tab-content hidden\">
+    <p>Voici l'historique...</p>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabLinks = document.querySelectorAll('[nav-tabs] a');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        function resetTabs() {
+            tabLinks.forEach(link => {
+                link.parentElement.classList.remove('active');
+                link.classList.remove('text-primary', 'border-primary');
+            });
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+        }
+
+        function activateTab(tabLink) {
+            const tabId = tabLink.getAttribute('aria-controls');
+            const targetContent = document.getElementById(tabId);
+
+            if (targetContent) {
+                tabLink.parentElement.classList.add('active');
+                tabLink.classList.add('text-primary', 'border-primary');
+                targetContent.classList.remove('hidden');
+            }
+        }
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                resetTabs();
+                activateTab(this);
+            });
+        });
+    });
+</script>
 {% endblock %}
 ", "profile/show.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\templates\\profile\\show.html.twig");
     }
