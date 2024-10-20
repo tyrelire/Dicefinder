@@ -98,15 +98,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $playerMemberships;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $discordPseudo = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $TwitterPseudo = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $roll20Pseudo = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $competence = null;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
@@ -507,42 +498,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $playerMembership->setPlayer(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getDiscordPseudo(): ?string
-    {
-        return $this->discordPseudo;
-    }
-
-    public function setDiscordPseudo(?string $discordPseudo): static
-    {
-        $this->discordPseudo = $discordPseudo;
-
-        return $this;
-    }
-
-    public function getTwitterPseudo(): ?string
-    {
-        return $this->TwitterPseudo;
-    }
-
-    public function setTwitterPseudo(?string $TwitterPseudo): static
-    {
-        $this->TwitterPseudo = $TwitterPseudo;
-
-        return $this;
-    }
-
-    public function getRoll20Pseudo(): ?string
-    {
-        return $this->roll20Pseudo;
-    }
-
-    public function setRoll20Pseudo(?string $roll20Pseudo): static
-    {
-        $this->roll20Pseudo = $roll20Pseudo;
 
         return $this;
     }

@@ -144,16 +144,16 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
     }
 
     .glassmorphism-purple {
-        background: rgba(54, 54, 114, 0.1);
+        background: rgba(128, 90, 213, 0.2);
         backdrop-filter: blur(20px);
         border-radius: 20px;
-        border: 1px solid rgba(54, 54, 114, 0.5);
-        box-shadow: 0 4px 30px rgba(54, 54, 114, 0.3);
+        border: 1px solid rgba(128, 90, 213, 0.5);
+        box-shadow: 0 4px 30px rgba(128, 90, 213, 0.3);
         transition: transform 0.3s ease-in-out;
     }
 
     .glassmorphism-purple:hover {
-        box-shadow: 0 12px 24px rgba(54, 54, 114, 0.5);
+        box-shadow: 0 12px 24px rgba(128, 90, 213, 0.5);
     }
 
     .jdr-avatar {
@@ -1194,16 +1194,16 @@ class __TwigTemplate_5f185751839422ba25658b08f3c113d5 extends Template
     }
 
     .glassmorphism-purple {
-        background: rgba(54, 54, 114, 0.1);
+        background: rgba(128, 90, 213, 0.2);
         backdrop-filter: blur(20px);
         border-radius: 20px;
-        border: 1px solid rgba(54, 54, 114, 0.5);
-        box-shadow: 0 4px 30px rgba(54, 54, 114, 0.3);
+        border: 1px solid rgba(128, 90, 213, 0.5);
+        box-shadow: 0 4px 30px rgba(128, 90, 213, 0.3);
         transition: transform 0.3s ease-in-out;
     }
 
     .glassmorphism-purple:hover {
-        box-shadow: 0 12px 24px rgba(54, 54, 114, 0.5);
+        box-shadow: 0 12px 24px rgba(128, 90, 213, 0.5);
     }
 
     .jdr-avatar {

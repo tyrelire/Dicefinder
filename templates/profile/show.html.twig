@@ -3,129 +3,69 @@
 {% block title %}Profil de {{ user.username }}{% endblock %}
 
 {% block body %}
-<div class="relative flex flex-col w-full min-w-0 mt-6 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable">
-    <div class="px-9 pt-9 flex-auto min-h-[70px] pb-0 glassmorphism">
-        <div class="flex flex-wrap mb-6 xl:flex-nowrap">
-            <div class="mb-5 mr-5">
-                <div class="relative inline-block shrink-0 rounded-2xl">
-                    {% if user.avatar %}
-                        <img src="{{ asset('uploads/avatars/' ~ user.avatar) }}" class="inline-block shrink-0 rounded-2xl w-[80px] h-[80px] lg:w-[160px] lg:h-[160px] object-cover" alt="Photo de profil">
-                    {% else %}
-                        <img src="{{ asset('images/default-avatar.png') }}" class="inline-block shrink-0 rounded-2xl w-[80px] h-[80px] lg:w-[160px] lg:h-[160px] object-cover" alt="Photo de profil par défaut">
-                    {% endif %}
-                </div>
-            </div>
-            <div class="grow">
-                <div class="flex flex-wrap items-start justify-between mb-4">
-                    <div class="flex flex-col">
-                        <div class="flex items-center mb-2">
-                            <a class="text-secondary-inverse transition-colors duration-200 ease-in-out font-semibold text-[1.5rem] mr-1 text-gray-100" href="javascript:void(0)">{{ user.username }}</a>
-                        </div>
-                        <div class="flex flex-wrap pr-2 mb-4 font-medium text-gray-100">
-                            {% if user.gender %}
-                                <div class="flex items-center mr-5 mb-2">
-                                    <span class="mr-1">
-                                        <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                                            <path d="M160 0a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm8 352l0-224 6.9 0c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9 232 480c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128s0 0 0 0zM58.2 182.3c19.9-33.1 55.3-53.5 93.8-54.3l0 256s0 0 0 0l0 96c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-96-17.8 0c-10.9 0-18.6-10.7-15.2-21.1L93.3 248.1 59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l53.6-89.2z" fill="currentColor"/>
-                                        </svg>
-                                    </span>
-                                    {{ user.gender }}
-                                </div>
-                            {% endif %}
-                            {% if user.birthdate %}
-                                <div class="flex items-center mr-5 mb-2">
-                                    <span class="mr-1">
-                                        <svg class="w-5 h-5 mr-1 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                            <path fill="currentColor" d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z"/>
-                                        </svg>
-                                    </span>
-                                    {{ date().diff(user.birthdate).y }} ans
-                                </div>
-                            {% endif %}
-                            <div class="flex items-center mr-5 mb-2">
-                                <span class="mr-1">
-                                    <svg class="w-5 h-5 mr-1 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                        <path fill="currentColor" d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z"/>
-                                    </svg>
-                                </span>
-                                {% set diff = date().diff(user.getCreatedAt) %}
-                                <span class="member-since">Membre depuis {{ diff.y > 0 ? diff.y ~ ' an' ~ (diff.y > 1 ? 's' : '') : diff.m > 0 ? diff.m ~ ' mois' : diff.d > 0 ? diff.d ~ ' jour' ~ (diff.d > 1 ? 's' : '') : 'moins d\'une minute' }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% if user.discordPseudo or user.roll20Pseudo or user.TwitterPseudo %}
-                    <div class="flex items-center mb-4 space-x-4">
-                        {% if user.discordPseudo %}
-                            <a href="" target="_blank" class="flex items-center text-gray-100 hover:text-blue-400 space-x-2">
-                                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24"><g fill="currentColor" fill-opacity="0"><circle cx="9" cy="12" r="1.5"><animate fill="freeze" attributeName="fill-opacity" begin="1.3s" dur="0.15s" values="0;1"/></circle><circle cx="15" cy="12" r="1.5"><animate fill="freeze" attributeName="fill-opacity" begin="1.45s" dur="0.15s" values="0;1"/></circle><path d="M5 5l7 0.2l7 -0.2l3 10l-3 3.4h-14l-3.5 -3.4l3.5 -10Z"><animate fill="freeze" attributeName="fill-opacity" begin="1.7s" dur="0.15s" values="0;0.3"/></path></g><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="32" stroke-dashoffset="32" d="M12 6h2l1 -2c0 0 2.5 0.5 4 1.5c3.53 2.35 3 9.5 3 10.5c-1.33 2.17 -5.5 3.5 -5.5 3.5l-1 -2M12 6h-2l-0.97 -2c0 0 -2.5 0.5 -4 1.5c-3.53 2.35 -3 9.5 -3 10.5c1.33 2.17 5.5 3.5 5.5 3.5l1 -2"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.7s" values="32;0"/></path><path stroke-dasharray="16" stroke-dashoffset="16" d="M5.5 16c5 2.5 8 2.5 13 0"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.4s" values="16;0"/></path></g></svg>
-                                <span>{{ user.discordPseudo }}</span>
-                            </a>
-                        {% endif %}
-                        {% if user.roll20Pseudo %}
-                            <a href="https://app.roll20.net/users/4643567/talep{{ user.roll20Pseudo }}" target="_blank" class="flex items-center text-gray-100 hover:text-pink-500 space-x-1">
-                                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24"><path fill="currentColor" d="M11.383 0q-.03.002-.06.014h-.037L4.03 3.654a.25.25 0 0 0-.129.211c0 .136.11.239.239.239l-.008.013a.2.2 0 0 0 .096-.021l7.181-1.567a.245.245 0 0 0 .21-.236V.225A.24.24 0 0 0 11.382 0zm1.22.008c-.128 0-.23.1-.236.222V2.3c0 .122.094.217.21.23l-.007-.013l7.182 1.574a.236.236 0 0 0 .203-.428L12.7.02h-.008l-.027-.012h-.06zm.57 3.404a.24.24 0 0 0-.237.242q0 .073.04.123l6.749 11.868c.04.06.108.101.19.101c.128 0 .229-.1.235-.223l2.428-9.921c0-.014.008-.02.008-.034a.24.24 0 0 0-.203-.23l-9.121-1.9l.013-.006s-.027-.001-.04-.008zm-2.38.012l-.06.008c-.014 0-.028-.001-.042.006l-9.12 1.9a.24.24 0 0 0-.204.23c0 .014 0 .02.006.034h.014l2.427 9.921a.24.24 0 0 0 .239.23c.081 0 .148-.04.19-.1l6.747-11.87c.02-.04.041-.073.041-.12a.24.24 0 0 0-.238-.24zm1.193.306a.24.24 0 0 0-.195.108L4.676 16.404h.008a.22.22 0 0 0-.041.13c0 .135.109.237.238.237H19.1a.236.236 0 0 0 .237-.238a.3.3 0 0 0-.041-.129L12.184 3.838a.24.24 0 0 0-.198-.108M1.543 9.305a.24.24 0 0 0-.23.209v.035l.298 8.062v.008c0 .136.108.236.237.236q.059 0 .109-.033l1.268-.754h.005l.008-.006l.014-.007a.24.24 0 0 0 .115-.203a.1.1 0 0 0-.008-.041L1.773 9.514a.24.24 0 0 0-.23-.21zm20.908.006a.24.24 0 0 0-.23.21l-1.588 7.297c0 .014-.006.028-.006.041c0 .089.047.156.115.203l.02.014s.007 0 .013.006l1.268.76a.234.234 0 0 0 .346-.209v-.008l.299-8.063v-.007l-.006-.006V9.52a.24.24 0 0 0-.23-.21zm-12.105.828c1.064 0 1.492.698 1.492 1.35c0 .86-.611 1.193-1.317 1.58c-.311.169-.671.393-.746.63h1.995s.054.028.054.055v.766s-.027.054-.054.054H8.799s-.053-.027-.053-.054v-.368h-.014c0-.99.638-1.465 1.323-1.838c.786-.42.847-.603.847-.834c0-.142-.054-.474-.556-.474c-.38 0-.623.279-.623.713a.054.054 0 0 1-.055.054h-.82s-.055-.027-.055-.054c0-.76.488-1.58 1.553-1.58m3.431.013c.794 0 1.641.59 1.641 2.252s-.847 2.25-1.64 2.25c-.794 0-1.65-.588-1.65-2.25s.856-2.252 1.65-2.252zm-.002.854c-.657 0-.724.97-.724 1.39c0 .326.053 1.383.724 1.383c.672 0 .727-1.057.727-1.383c0-.413-.069-1.39-.727-1.39M5.4 17.523a.236.236 0 0 0-.236.239c0 .074.04.142.094.19l6.578 5.993a.24.24 0 0 0 .15.055a.23.23 0 0 0 .149-.055l6.578-5.994c.054-.047.096-.109.096-.183l.005-.006a.24.24 0 0 0-.23-.239zm-1.662.143c-.054 0-.1.02-.134.047H3.59l-1.235.74a.25.25 0 0 0-.12.21c0 .087.046.162.12.202l5.975 3.522c.034.013.075.033.115.033c.136 0 .239-.11.239-.238a.24.24 0 0 0-.063-.155l.022-.007l-4.748-4.307H3.88a.26.26 0 0 0-.143-.047zm16.496.006a.24.24 0 0 0-.136.049h-.014l-4.746 4.306a.3.3 0 0 0-.063.162c0 .136.11.237.239.237c.04 0 .081-.013.115-.033l5.975-3.514a.25.25 0 0 0 .12-.21a.23.23 0 0 0-.12-.202l.013-.008l-1.234-.738h-.014a.25.25 0 0 0-.135-.05z"/></svg>
-                                <span>{{ user.roll20Pseudo }}</span>
-                            </a>
-                        {% endif %}
-                        {% if user.TwitterPseudo %}
-                            <a href="https://facebook.com/{{ user.TwitterPseudo }}" target="_blank" class="flex items-center text-gray-100 hover:text-blue-600 space-x-1">
-                                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24"><path fill="currentColor" fill-opacity="0" stroke="currentColor" stroke-dasharray="64" stroke-dashoffset="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.89 7.34c-0.09 0.33 -0.49 1.16 -1.17 1.95c-0.45 8.68 -8.87 11.5 -14.64 8.59c-0.79 -1.05 2.85 -0.62 4.18 -2.63c-5.03 -2.57 -4.63 -9.44 -3.62 -9.16c2.37 3.19 6.19 3.48 6.81 3.19c0 -0.73 -0.31 -2.32 1.41 -3.65c0.99 -0.71 3.06 -1.34 4.93 0.69c0.32 0.21 0.78 0.3 1.47 0.15c0.41 -0.21 0.95 -0.07 0.67 0.66Z"><animate fill="freeze" attributeName="fill-opacity" begin="0.6s" dur="0.15s" values="0;0.3"/><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0"/></path></svg>
-                                <span>{{ user.TwitterPseudo }}</span>
-                            </a>
-                        {% endif %}
-                    </div>
-                {% endif %}
-                <div class="flex flex-wrap mb-4">
-                    <a href="javascript:void(0)" class="mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-[#363672] hover:text-white shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 hover:rotate-1 px-4 py-2 text-sm font-semibold leading-normal">
-                        {{ ownedJDRCount }} {{ ownedJDRCount == 1 ? 'Univers créé' : 'Univers créés' }}
-                    </a>
-                    <a href="javascript:void(0)" class="mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-[#363672] hover:text-white shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 hover:rotate-1 px-4 py-2 text-sm font-semibold leading-normal">
-                        {{ joinedJDRCount }} {{ joinedJDRCount == 1 ? 'Univers rejoint' : 'Univers rejoints' }}
-                    </a>
-                    <a href="javascript:void(0)" class="mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-[#363672] hover:text-white shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 hover:rotate-1 px-4 py-2 text-sm font-semibold leading-normal">
-                        {{ favoriteJDRCount }} {{ favoriteJDRCount == 1 ? 'Univers en favori' : 'Univers en favoris' }}
-                    </a>
-                </div>
-                {% if user.bio %}
-                    <div class="flex flex-wrap items-start justify-between mb-4">
-                        <div class="w-full text-gray-100 bg-gray-800 p-4 rounded-lg">
-                            <h2 class="text-xl font-semibold mb-2">Bio</h2>
-                            <p>{{ user.bio }}</p>
-                        </div>
-                    </div>
-                {% endif %}
-                {% if user.competence %}
-                    <div class="flex flex-wrap items-start justify-between mb-4">
-                        <div class="w-full text-gray-100 bg-gray-800 p-4 rounded-lg">
-                            <h2 class="text-xl font-semibold mb-2">Compétences</h2>
-                            <p>{{ user.competence }}</p>
-                        </div>
-                    </div>
-                {% endif %}
+<div class="relative flex flex-col lg:flex-row w-full min-w-0 mt-6 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable space-y-4 lg:space-y-0 lg:space-x-6">
+    <div class="lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
+        <div class="w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center">
+            <img src="https://via.placeholder.com/150" alt="Image principale" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="absolute top-44 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-gray-900 transition-transform duration-300 hover:scale-110 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/50">
+            <img src="{{ asset('uploads/avatars/' ~ user.avatar) }}" alt="Photo de profil" class="w-full h-full rounded-full object-cover">
+        </div>
+        <div class="mt-20 text-center">
+            <h3 class="text-gray-100 font-bold text-xl">{{ user.username }}</h3>
+            <p class="mt-3 text-gray-400 text-sm italic">Chevalier de l'Ordre</p>
+            <div class="flex justify-center space-x-2 mt-4">
+                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">Badge 1</span>
+                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">Badge 2</span>
+                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full">Badge 3</span>
             </div>
         </div>
-        <hr class="w-full h-px border-neutral-200">
-        <ul nav-tabs class="group flex flex-wrap items-stretch text-[1rem] font-semibold list-none border-b-2 border-transparent border-solid active-assignments text-gray-100 m-3">
-            <li class="flex mt-2 -mb-[2px]">
-                <a class="tab-link p-3 mr-1 sm:mr-3 lg:mr-10 transition-all duration-300 ease-in-out border-b-2 hover:border-[#363672] hover:text-gray-100 transform hover:-translate-y-1 hover:scale-105 hover:shadow-md glassmorphism"
-                aria-controls="owned-jdrs" href="javascript:void(0)">
-                    {{ ownedJDRCount == 1 ? 'Univers créé' : 'Univers créés' }}
-                </a>
-            </li>
-            <li class="flex mt-2 -mb-[2px]">
-                <a class="tab-link p-3 mr-1 sm:mr-3 lg:mr-10 transition-all duration-300 ease-in-out border-b-2 hover:border-[#363672] hover:text-gray-100 transform hover:-translate-y-1 hover:scale-105 hover:shadow-md glassmorphism"
-                aria-controls="joined-jdrs" href="javascript:void(0)">
-                    {{ joinedJDRCount == 1 ? 'Univers rejoint' : 'Univers rejoints' }}
-                </a>
-            </li>
-            <li class="flex mt-2 -mb-[2px]">
-                <a class="tab-link p-3 mr-1 sm:mr-3 lg:mr-10 transition-all duration-300 ease-in-out border-b-2 hover:border-[#363672] hover:text-gray-100 transform hover:-translate-y-1 hover:scale-105 hover:shadow-md glassmorphism"
-                aria-controls="favorite-jdrs" href="javascript:void(0)">
-                    {{ favoriteJDRCount == 1 ? 'Univers en favori' : 'Univers en favoris' }}
-                </a>
-            </li>
-        </ul>
+    </div>
+
+    <div class="lg:w-3/4 w-full px-8 pt-8 pb-8 flex-auto min-h-[200px] glassmorphism space-y-6">
+        <div class="text-gray-400 text-md">
+            {% if user.gender %}
+                <div class="flex items-center space-x-2 mb-2 text-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 50 50">
+                        <circle cx="22.875" cy="4.625" r="4.125" fill="currentColor"/>
+                        <path fill="currentColor" d="M22 10h-3c-2.82 0-5 1.719-5 4.587V27c0 2 3 2 3 0V15h1v32c0 1.233.768 2 2 2c1.235 0 2-.767 2-2zm13 15l-4.017-10.357C30.634 12.322 28.29 10 25.615 10H23v23.783c.5.002 1 .075 1 .217v13c0 1.04.917 2 2 2c1.086 0 2-.961 2-2V34h3.869c.362 0 1.044-.654 1.044-1c0-.08.029-.931 0-1l-5.909-16.237l-.034-.167c0-.237.199-.429.447-.429c.211 0 .388.141.435.329L31.869 26c.267.601 1.365 1 2.087 1c.965 0 1.065-1.895 1.044-2"/>
+                    </svg>
+                    <p>{{ user.gender }}</p>
+                </div>
+            {% endif %}
+            {% if user.birthdate %}
+                <div class="flex items-center space-x-2 mb-2 text-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" d="M7.5 6V1m10 5V1m4 16v4.5h-18v-3m17.863-10H3.352M.5 18.25v.25h17.9l.15-.25l.234-.491A28 28 0 0 0 21.5 5.729V3.5h-18v2.128A28 28 0 0 1 .743 17.744z"/>
+                    </svg>
+                    <p>{{ date().diff(user.birthdate).y }} ans</p>
+                </div>
+            {% endif %}
+            {% set diff = date().diff(user.getCreatedAt) %}
+            <div class="flex items-center space-x-2 text-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M138.798 35.342L28.73 114.268l95.777 29.095l111.305-87.09zm112.986 31.082l-118.047 89.96l51.07 131.102l8.534-7.455l4.23-15.708a18.338 13.102 76.863 0 1-9.08-20.45a18.338 13.102 76.863 0 1 10.997-13.727a18.338 13.102 76.863 0 1 3.62.53a18.338 13.102 76.863 0 1 3.113 1.544l7.94-29.48a9 9 0 0 1 .353-1.04l.058-.128a9 9 0 0 1 .32-.685l.09-.153a9 9 0 0 1 .37-.625a9 9 0 0 1 .534-.723l.066-.074a9 9 0 0 1 .54-.594a9 9 0 0 1 .65-.593l.004-.002a9 9 0 0 1 .46-.342a9 9 0 0 1 .266-.197a9 9 0 0 1 .502-.3a9 9 0 0 1 .27-.157a9 9 0 0 1 .44-.208a9 9 0 0 1 .38-.178a9 9 0 0 1 .437-.152a9 9 0 0 1 .41-.143a9 9 0 0 1 .404-.1a9 9 0 0 1 .47-.114a9 9 0 0 1 .51-.07a9 9 0 0 1 .37-.05h.01l.01-.003l33.624-2.873a18.338 13.102 76.863 0 1 10.326-9.777a18.338 13.102 76.863 0 1 3.622.53a18.338 13.102 76.863 0 1 8.527 7.327l13.043-1.113L251.785 66.42zM137.25 74.03a9.8 19.77 77.916 0 1 12.798 8.734a9.8 19.77 77.916 0 1-21.938 11.998a9.8 19.77 77.916 0 1-16.57-8.602a9.8 19.77 77.916 0 1 21.938-12a9.8 19.77 77.916 0 1 3.77-.13zm100.228 23.517a18.338 13.102 76.863 0 1 .002 0a18.338 13.102 76.863 0 1 3.62.53a18.338 13.102 76.863 0 1 12.112 21.94a18.338 13.102 76.863 0 1-14.617 13.196a18.338 13.102 76.863 0 1-12.114-21.94a18.338 13.102 76.863 0 1 10.998-13.726zM24.22 131.71l46.992 114.124l94.236 40.38l-45.988-125.57l-95.24-28.935zm147.886 17.43a18.338 13.102 76.863 0 1 3.622.528a18.338 13.102 76.863 0 1 12.11 21.94a18.338 13.102 76.863 0 1-14.616 13.197a18.338 13.102 76.863 0 1-12.112-21.94a18.338 13.102 76.863 0 1 10.996-13.726zm-75.123 13.016a19.454 9.134 59.254 0 1 16.955 15.078a19.454 9.134 59.254 0 1-.425 19.485A19.454 9.134 59.254 0 1 95.6 181.78a19.454 9.134 59.254 0 1 .424-19.48a19.454 9.134 59.254 0 1 .96-.144zm263.393 40.21l-112.102 9.577l113.762 79.926l113.598-16.956l-115.258-72.55zM70.82 212.022A19.454 9.134 59.254 0 1 87.777 227.1a19.454 9.134 59.254 0 1-.425 19.484a19.454 9.134 59.254 0 1-17.913-14.938a19.454 9.134 59.254 0 1 .425-19.482a19.454 9.134 59.254 0 1 .96-.14zm157.378 7.813L186.66 374.023l115.616 99.454l47.147-168.47l-121.225-85.17zm126.987 11.168a21.76 8.898 15.267 0 1 19.693 4.783a21.76 8.898 15.267 0 1 7.607 14.244a21.76 8.898 15.267 0 1-28.886-3.182a21.76 8.898 15.267 0 1-7.61-14.244a21.76 8.898 15.267 0 1 9.195-1.6zM487.78 291.3L366.9 309.343l-46.823 167.316l116.297-31.77zm-181.808 10.8a25.834 15.573 84.277 0 1 4.238.943a25.834 15.573 84.277 0 1 12.873 31.72a25.834 15.573 84.277 0 1-18.105 17.893a25.834 15.573 84.277 0 1-12.874-31.72a25.834 15.573 84.277 0 1 13.868-18.836m154.086 11.636a13.237 21.96 28.62 0 1 7.673 4.13a13.237 21.96 28.62 0 1-6.176 28.435a13.237 21.96 28.62 0 1-21.287 3.878a13.237 21.96 28.62 0 1 6.175-28.434a13.237 21.96 28.62 0 1 13.616-8.008zM391.362 324.4a13.237 21.96 28.62 0 1 7.672 4.13a13.237 21.96 28.62 0 1-6.176 28.435a13.237 21.96 28.62 0 1-21.287 3.877a13.237 21.96 28.62 0 1 6.177-28.434a13.237 21.96 28.62 0 1 13.615-8.008zm-173.996 13.305a25.834 15.573 84.277 0 1 4.24.945a25.834 15.573 84.277 0 1 12.872 31.72a25.834 15.573 84.277 0 1-18.106 17.894a25.834 15.573 84.277 0 1-12.873-31.72a25.834 15.573 84.277 0 1 13.866-18.84zm212.278 60.87a13.237 21.96 28.62 0 1 7.67 4.13a13.237 21.96 28.62 0 1-6.174 28.434a13.237 21.96 28.62 0 1-21.287 3.874a13.237 21.96 28.62 0 1 6.176-28.434a13.237 21.96 28.62 0 1 13.616-8.007z"/>
+                </svg>
+                <p>{{ diff.y > 0 ? diff.y ~ ' an' ~ (diff.y > 1 ? 's' : '') : diff.m > 0 ? diff.m ~ ' mois' : diff.d > 0 ? diff.d ~ ' jour' ~ (diff.d > 1 ? 's' : '') : 'moins d\'une minute' }} sur DiceFinder</p>
+            </div>
+        </div>
+        {% if user.bio %}
+            <div class="w-full text-gray-100 glassmorphism p-6 rounded-lg mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Biographie</h2>
+                <p>{{ user.bio }}</p>
+            </div>
+        {% endif %} 
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="javascript:void(0)" class="tab-link p-3 transition-all duration-300 ease-in-out border-b-2 hover:border-purple-500 text-gray-100 transform hover:-translate-y-1 hover:scale-105 glassmorphism" aria-controls="owned-jdrs">
+                {{ ownedJDRCount == 1 ? 'Univers créé' : 'Univers créés' }}
+            </a>
+            <a href="javascript:void(0)" class="tab-link p-3 transition-all duration-300 ease-in-out border-b-2 hover:border-purple-500 text-gray-100 transform hover:-translate-y-1 hover:scale-105 glassmorphism" aria-controls="joined-jdrs">
+                {{ joinedJDRCount == 1 ? 'Univers rejoint' : 'Univers rejoints' }}
+            </a>
+            <a href="javascript:void(0)" class="tab-link p-3 transition-all duration-300 ease-in-out border-b-2 hover:border-purple-500 text-gray-100 transform hover:-translate-y-1 hover:scale-105 glassmorphism" aria-controls="favorite-jdrs">
+                {{ favoriteJDRCount == 1 ? 'Univers en favori' : 'Univers en favoris' }}
+            </a>
+        </div>
     </div>
 </div>
 
