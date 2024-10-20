@@ -107,17 +107,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $roll20Pseudo = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $YoutubeChannelLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $TwitchChannelLink = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $competence = null;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
     private ?\DateTime $createdAt = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVip = false;
 
     /**
      * @var Collection<int, Notification>
@@ -551,30 +547,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getYoutubeChannelLink(): ?string
-    {
-        return $this->YoutubeChannelLink;
-    }
-
-    public function setYoutubeChannelLink(?string $YoutubeChannelLink): static
-    {
-        $this->YoutubeChannelLink = $YoutubeChannelLink;
-
-        return $this;
-    }
-
-    public function getTwitchChannelLink(): ?string
-    {
-        return $this->TwitchChannelLink;
-    }
-
-    public function setTwitchChannelLink(?string $TwitchChannelLink): static
-    {
-        $this->TwitchChannelLink = $TwitchChannelLink;
-
-        return $this;
-    }
-
     public function getCompetence(): ?string
     {
         return $this->competence;
@@ -637,6 +609,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeFavoriteGroupeJDR(GroupeJDR $favoriteGroupeJDR): static
     {
         $this->favoriteGroupeJDR->removeElement($favoriteGroupeJDR);
+
+        return $this;
+    }
+
+    public function getIsVip(): bool
+    {
+        return $this->isVip;
+    }
+
+    public function setIsVip(bool $isVip): self
+    {
+        $this->isVip = $isVip;
 
         return $this;
     }

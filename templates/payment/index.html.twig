@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement VIP{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-gray-800 border-2 border-[#363672] p-8 rounded-lg shadow-lg w-full md:max-w-xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700">
+            Paiement VIP
+        </h1>
+        <p class="text-gray-300 text-center mb-8">
+            Profitez des avantages exclusifs en devenant membre VIP pour seulement 4.99€ !
+        </p>
+        
+        <div class="text-center mb-8">
+            <button id="checkout-button" class="bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                Procéder au Paiement
+            </button>
+        </div>
+
+        <p class="text-sm text-gray-500 text-center">
+            Vous serez redirigé vers Stripe pour finaliser votre paiement en toute sécurité.
+        </p>
+    </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+    var stripe = Stripe('pk_test_51QBlZ71qYsqow2KMbEgpRLuCzHNSkIpbubTwkqwIMySi0fLK4L4T22jBPuz4NtOYfnVAaKqyxYBbyyjvwbZq35EW00WG6eGtGf'); // Remplace par ta clé publique Stripe
+
+    document.getElementById('checkout-button').addEventListener('click', function () {
+        fetch('/create-checkout-session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (session) {
+            // Ici on vérifie que le session.id est bien présent
+            if (session.id) {
+                return stripe.redirectToCheckout({ sessionId: session.id });
+            } else {
+                console.error('Session ID manquant :', session);
+                alert('Erreur lors de la création de la session Stripe.');
+            }
+        })
+        .catch(function (error) {
+            console.error('Erreur:', error);
+        });
+    });
+</script>
+{% endblock %}

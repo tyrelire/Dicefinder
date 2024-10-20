@@ -15,9 +15,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(GroupeJDRRepository $groupeJDRRepository, CategoryRepository $categoryRepository): Response
     {
-        $groupes = $groupeJDRRepository->findAll();
+        $groupes = $groupeJDRRepository->createQueryBuilder('g')
+            ->where('g.isArchived = false')
+            ->getQuery()
+            ->getResult();
     
         $groupesRecrutementOuvert = array_filter($groupes, fn($groupe) => $groupe->isRecrutement());
+    
         $groupesNonPleins = array_filter($groupes, fn($groupe) => count($groupe->getPlayers()) < $groupe->getMaxPlayer());
     
         usort($groupes, fn($a, $b) => $b->getCreatedAt() <=> $a->getCreatedAt());
@@ -34,4 +38,5 @@ class HomeController extends AbstractController
             'categories' => $categories,
         ]);
     }
+    
 }

@@ -73,8 +73,22 @@
         box-shadow: 0 4px 30px rgba(234, 179, 8, 0.1);
         transition: transform 0.3s ease-in-out;
     }
+
     .glassmorphism-warning:hover {
         box-shadow: 0 12px 24px rgba(234, 179, 8, 0.3);
+    }
+
+    .glassmorphism-purple {
+        background: rgba(54, 54, 114, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(54, 54, 114, 0.5);
+        box-shadow: 0 4px 30px rgba(54, 54, 114, 0.3);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .glassmorphism-purple:hover {
+        box-shadow: 0 12px 24px rgba(54, 54, 114, 0.5);
     }
 
     .jdr-avatar {
@@ -208,7 +222,7 @@
                                         <div id="notifications-list">
                                             {% if notifications|length > 0 %}
                                                 {% for notification in notifications|reverse|slice(0, 2) %}
-                                                    <div class="notification-item flex items-center px-4 py-4 hover:bg-gray-800 rounded-md cursor-pointer mb-2">
+                                                    <div class="notification-item flex items-center px-4 py-4 hover:bg-gray-800 rounded-md cursor-pointer mb-2" onclick="window.location.href='{{ path('app_notifications_index') }}'">
                                                         {% if notification.groupeJDR and notification.groupeJDR.picture %}
                                                             <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('uploads/images-jdr/' ~ notification.groupeJDR.picture) }}" alt="JDR Picture">
                                                         {% else %}

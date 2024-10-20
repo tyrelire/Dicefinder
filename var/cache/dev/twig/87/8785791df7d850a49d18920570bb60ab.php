@@ -283,7 +283,7 @@ class __TwigTemplate_4e31d793715654bd6330fa75e96cb239 extends Template
                 $context["bg_color"] = "glassmorphism-invitation-accepted";
                 // line 85
                 yield "                    ";
-                $context["emoji"] = "ℹ️";
+                $context["emoji"] = "💡";
                 // line 86
                 yield "                    ";
                 $context["message"] = CoreExtension::getAttribute($this->env, $this->source, $context["notification"], "message", [], "any", false, false, false, 86);
@@ -528,7 +528,7 @@ class __TwigTemplate_4e31d793715654bd6330fa75e96cb239 extends Template
             <div class=\"space-y-6\">
                 {% for notification in notifications %}
                     {% set bg_color = 'glassmorphism-invitation-accepted' %}
-                    {% set emoji = 'ℹ️' %}
+                    {% set emoji = '💡' %}
                     {% set message = notification.message %}
                     {% if notification.type == 'acceptance_confirmation' %}
                         {% set bg_color = 'glassmorphism-acceptance' %}

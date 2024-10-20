@@ -44,18 +44,22 @@ class ProfileController extends AbstractController
             ];
         }
     
+        $favoriteJDRs = $user->getFavoriteGroupeJDR();
+    
         $ownedJDRCount = count($ownedJDRs);
         $joinedJDRCount = count($joinedJDRs);
+        $favoriteJDRCount = count($favoriteJDRs);
     
         return $this->render('profile/show.html.twig', [
             'user' => $user,
             'ownedJDRs' => $ownedJDRs,
             'joinedJDRs' => $joinedJDRs,
+            'favoriteJDRs' => $favoriteJDRs,
             'ownedJDRCount' => $ownedJDRCount,
             'joinedJDRCount' => $joinedJDRCount,
+            'favoriteJDRCount' => $favoriteJDRCount,
         ]);
     }
-    
 
     #[Route('/profile/edit', name: 'app_profile_edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, SluggerInterface $slugger): Response

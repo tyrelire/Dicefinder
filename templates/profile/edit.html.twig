@@ -116,15 +116,9 @@
                 </div>
 
                 <div class="mb-6">
-                    {{ form_label(socialMediaAndCompetenceForm.YoutubeChannelLink, 'Lien de chaîne YouTube', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    {{ form_widget(socialMediaAndCompetenceForm.YoutubeChannelLink, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400', 'oninput': 'validateYouTubeLink(this)' }}) }}
-                    {{ form_errors(socialMediaAndCompetenceForm.YoutubeChannelLink) }}
-                </div>
-
-                <div class="mb-6">
-                    {{ form_label(socialMediaAndCompetenceForm.TwitchChannelLink, 'Lien de chaîne Twitch', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    {{ form_widget(socialMediaAndCompetenceForm.TwitchChannelLink, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400', 'oninput': 'validateTwitchLink(this)' }}) }}
-                    {{ form_errors(socialMediaAndCompetenceForm.TwitchChannelLink) }}
+                    {{ form_label(socialMediaAndCompetenceForm.roll20Pseudo, 'Profile Roll20', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
+                    {{ form_widget(socialMediaAndCompetenceForm.roll20Pseudo, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400', 'oninput': 'validateYouTubeLink(this)' }}) }}
+                    {{ form_errors(socialMediaAndCompetenceForm.roll20Pseudo) }}
                 </div>
             </div>
 

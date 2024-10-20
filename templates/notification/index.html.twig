@@ -82,7 +82,7 @@
             <div class="space-y-6">
                 {% for notification in notifications %}
                     {% set bg_color = 'glassmorphism-invitation-accepted' %}
-                    {% set emoji = 'ℹ️' %}
+                    {% set emoji = '💡' %}
                     {% set message = notification.message %}
                     {% if notification.type == 'acceptance_confirmation' %}
                         {% set bg_color = 'glassmorphism-acceptance' %}

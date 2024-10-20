@@ -138,7 +138,6 @@ final class GroupeJDRController extends AbstractController
             'categories' => $categories,
         ]);
     }
-    
 
 
     #[Route('/new', name: 'app_groupe_j_d_r_new', methods: ['GET', 'POST'])]
@@ -192,39 +191,43 @@ final class GroupeJDRController extends AbstractController
     #[Route('/{id}', name: 'app_groupe_j_d_r_show', methods: ['GET'])]
     public function show(GroupeJDR $groupeJDR, GroupeJDRRepository $groupeJDRRepository, InvitationRepository $invitationRepository): Response
     {
-        $recruitingJDRs = $groupeJDRRepository->findBy(['recrutement' => true]);
+        $recruitingJDRs = $groupeJDRRepository->findBy([
+            'recrutement' => true,
+            'isArchived' => false,
+        ]);
+    
         $invitations = $invitationRepository->findBy(['groupeJDR' => $groupeJDR]);
-
+    
         $currentUser = $this->getUser();
         $requestInProgress = false;
         $isOwner = false;
         $isMember = false;
         $favorites = null;
-
+    
         if ($currentUser) {
             if ($groupeJDR->getOwner() === $currentUser) {
                 $isOwner = true;
             }
-
+    
             if ($groupeJDR->getPlayers()->contains($currentUser)) {
                 $isMember = true;
             }
-
+    
             $invitation = $invitationRepository->findOneBy([
                 'requestedBy' => $currentUser,
                 'groupeJDR' => $groupeJDR,
                 'status' => 'pending'
             ]);
-
+    
             if ($invitation) {
                 $requestInProgress = true;
             }
-        }
-        if ($currentUser) {
+    
             $favorites = $currentUser->getFavoriteGroupeJDR();
         }
+    
         $isClosed = in_array($groupeJDR->getStatus(), ['complet', 'termine', 'annule']);
-
+    
         return $this->render('groupe_jdr/show.html.twig', [
             'groupe_j_d_r' => $groupeJDR,
             'recruiting_jdrs' => $recruitingJDRs,

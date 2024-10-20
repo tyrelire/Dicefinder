@@ -285,30 +285,15 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
                 <div class=\"mb-6\">
                     ";
         // line 119
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 119, $this->source); })()), "YoutubeChannelLink", [], "any", false, false, false, 119), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Lien de chaîne YouTube"]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 119, $this->source); })()), "roll20Pseudo", [], "any", false, false, false, 119), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Profile Roll20"]);
         yield "
                     ";
         // line 120
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 120, $this->source); })()), "YoutubeChannelLink", [], "any", false, false, false, 120), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400", "oninput" => "validateYouTubeLink(this)"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 120, $this->source); })()), "roll20Pseudo", [], "any", false, false, false, 120), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400", "oninput" => "validateYouTubeLink(this)"]]);
         yield "
                     ";
         // line 121
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 121, $this->source); })()), "YoutubeChannelLink", [], "any", false, false, false, 121), 'errors');
-        yield "
-                </div>
-
-                <div class=\"mb-6\">
-                    ";
-        // line 125
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 125, $this->source); })()), "TwitchChannelLink", [], "any", false, false, false, 125), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Lien de chaîne Twitch"]);
-        yield "
-                    ";
-        // line 126
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 126, $this->source); })()), "TwitchChannelLink", [], "any", false, false, false, 126), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400", "oninput" => "validateTwitchLink(this)"]]);
-        yield "
-                    ";
-        // line 127
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 127, $this->source); })()), "TwitchChannelLink", [], "any", false, false, false, 127), 'errors');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 121, $this->source); })()), "roll20Pseudo", [], "any", false, false, false, 121), 'errors');
         yield "
                 </div>
             </div>
@@ -317,13 +302,13 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
             <div class=\"space-y-6\">
                 <div class=\"mb-6\">
                     ";
-        // line 134
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 134, $this->source); })()), "competence", [], "any", false, false, false, 134), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400", "rows" => "4", "placeholder" => "Écrivez la description ici...", "maxlength" => "255", "oninput" => "updateCharCountComp(this)"]]);
+        // line 128
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 128, $this->source); })()), "competence", [], "any", false, false, false, 128), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400", "rows" => "4", "placeholder" => "Écrivez la description ici...", "maxlength" => "255", "oninput" => "updateCharCountComp(this)"]]);
         yield "
                     <div id=\"charCountComp\" class=\"text-gray-400 text-sm mt-1\"></div>
                     ";
-        // line 136
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 136, $this->source); })()), "competence", [], "any", false, false, false, 136), 'errors');
+        // line 130
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 130, $this->source); })()), "competence", [], "any", false, false, false, 130), 'errors');
         yield "
                 </div>
             </div>
@@ -332,13 +317,13 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
             <div class=\"space-y-6\">
                 <div class=\"mb-6\">
                     ";
-        // line 143
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 143, $this->source); })()), "bio", [], "any", false, false, false, 143), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400", "rows" => "4", "placeholder" => "Écrivez la description ici...", "maxlength" => "255", "oninput" => "updateCharCountBio(this)"]]);
+        // line 137
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 137, $this->source); })()), "bio", [], "any", false, false, false, 137), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400", "rows" => "4", "placeholder" => "Écrivez la description ici...", "maxlength" => "255", "oninput" => "updateCharCountBio(this)"]]);
         yield "
                     <div id=\"charCountBio\" class=\"text-gray-400 text-sm mt-1\"></div>
                     ";
-        // line 145
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 145, $this->source); })()), "bio", [], "any", false, false, false, 145), 'errors');
+        // line 139
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 139, $this->source); })()), "bio", [], "any", false, false, false, 139), 'errors');
         yield "
                 </div>
             </div>
@@ -348,60 +333,60 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
                 </button>
             </div>
             ";
-        // line 153
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 153, $this->source); })()), 'form_end');
+        // line 147
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 147, $this->source); })()), 'form_end');
         yield "
         </div>
 
         <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full\">
             <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Changer le mot de passe</h2>
             ";
-        // line 158
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 158, $this->source); })()), 'form_start');
+        // line 152
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 152, $this->source); })()), 'form_start');
         yield "
             <div class=\"space-y-4\">
                 <div class=\"mb-4\">
                     ";
+        // line 155
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 155, $this->source); })()), "current_password", [], "any", false, false, false, 155), 'label', ["label_attr" => ["class" => "block text-white mb-1"], "label" => "Mot de passe actuel"]);
+        yield "
+                    ";
+        // line 156
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 156, $this->source); })()), "current_password", [], "any", false, false, false, 156), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
+        yield "
+                    ";
+        // line 157
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 157, $this->source); })()), "current_password", [], "any", false, false, false, 157), 'errors');
+        yield "
+                </div>
+
+                <div class=\"mb-4\">
+                    ";
         // line 161
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 161, $this->source); })()), "current_password", [], "any", false, false, false, 161), 'label', ["label_attr" => ["class" => "block text-white mb-1"], "label" => "Mot de passe actuel"]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 161, $this->source); })()), "new_password", [], "any", false, false, false, 161), 'label', ["label_attr" => ["class" => "block text-white mb-1"], "label" => "Nouveau mot de passe"]);
         yield "
                     ";
         // line 162
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 162, $this->source); })()), "current_password", [], "any", false, false, false, 162), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 162, $this->source); })()), "new_password", [], "any", false, false, false, 162), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
         yield "
                     ";
         // line 163
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 163, $this->source); })()), "current_password", [], "any", false, false, false, 163), 'errors');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 163, $this->source); })()), "new_password", [], "any", false, false, false, 163), 'errors');
         yield "
                 </div>
 
                 <div class=\"mb-4\">
                     ";
         // line 167
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 167, $this->source); })()), "new_password", [], "any", false, false, false, 167), 'label', ["label_attr" => ["class" => "block text-white mb-1"], "label" => "Nouveau mot de passe"]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 167, $this->source); })()), "confirm_password", [], "any", false, false, false, 167), 'label', ["label_attr" => ["class" => "block text-white mb-1"], "label" => "Confirmer le nouveau mot de passe"]);
         yield "
                     ";
         // line 168
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 168, $this->source); })()), "new_password", [], "any", false, false, false, 168), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 168, $this->source); })()), "confirm_password", [], "any", false, false, false, 168), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
         yield "
                     ";
         // line 169
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 169, $this->source); })()), "new_password", [], "any", false, false, false, 169), 'errors');
-        yield "
-                </div>
-
-                <div class=\"mb-4\">
-                    ";
-        // line 173
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 173, $this->source); })()), "confirm_password", [], "any", false, false, false, 173), 'label', ["label_attr" => ["class" => "block text-white mb-1"], "label" => "Confirmer le nouveau mot de passe"]);
-        yield "
-                    ";
-        // line 174
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 174, $this->source); })()), "confirm_password", [], "any", false, false, false, 174), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
-        yield "
-                    ";
-        // line 175
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 175, $this->source); })()), "confirm_password", [], "any", false, false, false, 175), 'errors');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 169, $this->source); })()), "confirm_password", [], "any", false, false, false, 169), 'errors');
         yield "
                 </div>
             </div>
@@ -412,48 +397,48 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
                 </button>
             </div>
             ";
-        // line 184
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 184, $this->source); })()), 'form_end');
+        // line 178
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 178, $this->source); })()), 'form_end');
         yield "
         </div>
 
         <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full\">
             <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Modifier l'avatar</h2>
             ";
-        // line 189
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 189, $this->source); })()), 'form_start', ["attr" => ["enctype" => "multipart/form-data"]]);
+        // line 183
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 183, $this->source); })()), 'form_start', ["attr" => ["enctype" => "multipart/form-data"]]);
         yield "
             <div class=\"flex items-center justify-center mb-6\">
                 <div class=\"flex flex-col items-center mr-6 pt-10\">
                     <img id=\"avatarPreview\" class=\"w-40 h-40 rounded-full ring-4 ring-indigo-300 object-cover transition-transform duration-300 hover:scale-110\"
                         src=\"";
-        // line 193
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 193, $this->source); })()), "user", [], "any", false, false, false, 193), "avatar", [], "any", false, false, false, 193)) ? ($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 193, $this->source); })()), "user", [], "any", false, false, false, 193), "avatar", [], "any", false, false, false, 193)))) : ($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"))), "html", null, true);
+        // line 187
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 187, $this->source); })()), "user", [], "any", false, false, false, 187), "avatar", [], "any", false, false, false, 187)) ? ($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 187, $this->source); })()), "user", [], "any", false, false, false, 187), "avatar", [], "any", false, false, false, 187)))) : ($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"))), "html", null, true);
         yield "\"
                         alt=\"Photo de profil\">
                     ";
-        // line 195
-        if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 195, $this->source); })()), "user", [], "any", false, false, false, 195), "avatar", [], "any", false, false, false, 195)) {
-            // line 196
+        // line 189
+        if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 189, $this->source); })()), "user", [], "any", false, false, false, 189), "avatar", [], "any", false, false, false, 189)) {
+            // line 190
             yield "                        <button type=\"submit\" name=\"delete_avatar\" value=\"1\" class=\"text-red-600 text-xs mt-2 underline hover:text-red-800\">
                             Supprimer la photo
                         </button>
                     ";
         }
-        // line 200
+        // line 194
         yield "                </div>
                 <div class=\"ml-6\">
                     ";
-        // line 202
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 202, $this->source); })()), "avatar", [], "any", false, false, false, 202), 'widget', ["attr" => ["class" => "hidden", "onchange" => "previewAvatar(this)"]]);
+        // line 196
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 196, $this->source); })()), "avatar", [], "any", false, false, false, 196), 'widget', ["attr" => ["class" => "hidden", "onchange" => "previewAvatar(this)"]]);
         yield "
                     ";
-        // line 203
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 203, $this->source); })()), "avatar", [], "any", false, false, false, 203), 'errors');
+        // line 197
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 197, $this->source); })()), "avatar", [], "any", false, false, false, 197), 'errors');
         yield "
                     <label for=\"";
-        // line 204
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 204, $this->source); })()), "avatar", [], "any", false, false, false, 204), "vars", [], "any", false, false, false, 204), "id", [], "any", false, false, false, 204), "html", null, true);
+        // line 198
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 198, $this->source); })()), "avatar", [], "any", false, false, false, 198), "vars", [], "any", false, false, false, 198), "id", [], "any", false, false, false, 198), "html", null, true);
         yield "\" class=\"cursor-pointer bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 inline-flex items-center transition-transform duration-300 transform hover:-translate-y-1\">
                         <svg class=\"w-5 h-5 mr-2\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\">
                             <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5\" />
@@ -469,8 +454,8 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
                 </button>
             </div>
             ";
-        // line 218
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 218, $this->source); })()), 'form_end');
+        // line 212
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 212, $this->source); })()), 'form_end');
         yield "
         </div>
     </div>
@@ -554,7 +539,7 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
             reader.readAsDataURL(file);
         } else {
             preview.src = \"";
-        // line 300
+        // line 294
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
         yield "\";
         }
@@ -626,7 +611,7 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  558 => 300,  473 => 218,  456 => 204,  452 => 203,  448 => 202,  444 => 200,  438 => 196,  436 => 195,  431 => 193,  424 => 189,  416 => 184,  404 => 175,  400 => 174,  396 => 173,  389 => 169,  385 => 168,  381 => 167,  374 => 163,  370 => 162,  366 => 161,  360 => 158,  352 => 153,  341 => 145,  336 => 143,  326 => 136,  321 => 134,  311 => 127,  307 => 126,  303 => 125,  296 => 121,  292 => 120,  288 => 119,  281 => 115,  277 => 114,  273 => 113,  266 => 109,  262 => 108,  258 => 107,  251 => 103,  243 => 98,  230 => 88,  227 => 87,  225 => 84,  221 => 83,  214 => 79,  210 => 78,  206 => 77,  199 => 73,  195 => 71,  193 => 63,  183 => 56,  176 => 52,  172 => 50,  170 => 45,  159 => 37,  152 => 33,  148 => 32,  144 => 31,  137 => 27,  133 => 26,  129 => 25,  122 => 21,  119 => 20,  117 => 15,  113 => 14,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  543 => 294,  458 => 212,  441 => 198,  437 => 197,  433 => 196,  429 => 194,  423 => 190,  421 => 189,  416 => 187,  409 => 183,  401 => 178,  389 => 169,  385 => 168,  381 => 167,  374 => 163,  370 => 162,  366 => 161,  359 => 157,  355 => 156,  351 => 155,  345 => 152,  337 => 147,  326 => 139,  321 => 137,  311 => 130,  306 => 128,  296 => 121,  292 => 120,  288 => 119,  281 => 115,  277 => 114,  273 => 113,  266 => 109,  262 => 108,  258 => 107,  251 => 103,  243 => 98,  230 => 88,  227 => 87,  225 => 84,  221 => 83,  214 => 79,  210 => 78,  206 => 77,  199 => 73,  195 => 71,  193 => 63,  183 => 56,  176 => 52,  172 => 50,  170 => 45,  159 => 37,  152 => 33,  148 => 32,  144 => 31,  137 => 27,  133 => 26,  129 => 25,  122 => 21,  119 => 20,  117 => 15,  113 => 14,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -749,15 +734,9 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
                 </div>
 
                 <div class=\"mb-6\">
-                    {{ form_label(socialMediaAndCompetenceForm.YoutubeChannelLink, 'Lien de chaîne YouTube', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    {{ form_widget(socialMediaAndCompetenceForm.YoutubeChannelLink, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400', 'oninput': 'validateYouTubeLink(this)' }}) }}
-                    {{ form_errors(socialMediaAndCompetenceForm.YoutubeChannelLink) }}
-                </div>
-
-                <div class=\"mb-6\">
-                    {{ form_label(socialMediaAndCompetenceForm.TwitchChannelLink, 'Lien de chaîne Twitch', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    {{ form_widget(socialMediaAndCompetenceForm.TwitchChannelLink, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400', 'oninput': 'validateTwitchLink(this)' }}) }}
-                    {{ form_errors(socialMediaAndCompetenceForm.TwitchChannelLink) }}
+                    {{ form_label(socialMediaAndCompetenceForm.roll20Pseudo, 'Profile Roll20', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
+                    {{ form_widget(socialMediaAndCompetenceForm.roll20Pseudo, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400', 'oninput': 'validateYouTubeLink(this)' }}) }}
+                    {{ form_errors(socialMediaAndCompetenceForm.roll20Pseudo) }}
                 </div>
             </div>
 

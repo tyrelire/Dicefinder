@@ -16,38 +16,40 @@ class MyGameController extends AbstractController
     public function index(Request $request, GroupeJDRRepository $jdrRepository): Response
     {
         $user = $this->getUser();
-
+    
         if (!$user instanceof User) {
             throw $this->createAccessDeniedException('Utilisateur non valide');
         }
-
+    
         $searchTerm = $request->query->get('search');
-
+    
         $ownedJdrsQuery = $jdrRepository->createQueryBuilder('g')
             ->leftJoin('g.owner', 'o')
             ->where('g.owner = :userId')
+            ->andWhere('g.isArchived = false')
             ->setParameter('userId', $user->getId());
-
+    
         $playerJdrsQuery = $jdrRepository->createQueryBuilder('g')
             ->innerJoin('g.players', 'p')
             ->leftJoin('g.owner', 'o')
             ->where('p.id = :userId')
+            ->andWhere('g.isArchived = false')
             ->setParameter('userId', $user->getId());
-
+    
         if ($searchTerm) {
             $ownedJdrsQuery
                 ->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm OR o.username LIKE :searchTerm')
                 ->setParameter('searchTerm', '%' . $searchTerm . '%');
-
+    
             $playerJdrsQuery
                 ->andWhere('g.title LIKE :searchTerm OR g.description LIKE :searchTerm OR o.username LIKE :searchTerm')
                 ->setParameter('searchTerm', '%' . $searchTerm . '%');
         }
-
+    
         $ownedJdrs = $ownedJdrsQuery->getQuery()->getResult();
         $playerJdrs = $playerJdrsQuery->getQuery()->getResult();
         $favorites = $user->getFavoriteGroupeJDR();
-
+    
         return $this->render('my_game/index.html.twig', [
             'ownedJdrs' => $ownedJdrs,
             'playerJdrs' => $playerJdrs,
@@ -55,4 +57,5 @@ class MyGameController extends AbstractController
             'favoriteJdrs' => $favorites,
         ]);
     }
+    
 }

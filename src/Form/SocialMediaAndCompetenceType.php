@@ -43,29 +43,9 @@ class SocialMediaAndCompetenceType extends AbstractType
                     'placeholder' => '@username',
                 ],
             ])
-            ->add('YoutubeChannelLink', TextType::class, [
-                'label' => 'Lien de chaîne YouTube',
-                'required' => false,
-                'constraints' => [
-                    new Regex([
-                        'pattern' => '/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/',
-                        'message' => 'Veuillez entrer un lien YouTube valide'
-                    ])
-                ],
-                'attr' => [
-                    'class' => 'block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
-                    'placeholder' => 'https://www.youtube.com/...'
-                ],
-            ])
-            ->add('TwitchChannelLink', TextType::class, [
+            ->add('roll20Pseudo', TextType::class, [
                 'label' => 'Lien de chaîne Twitch',
                 'required' => false,
-                'constraints' => [
-                    new Regex([
-                        'pattern' => '/^(https?:\/\/)?(www\.)?twitch\.tv\/[a-zA-Z0-9_]+$/',
-                        'message' => 'Veuillez entrer un lien Twitch valide'
-                    ])
-                ],
                 'attr' => [
                     'class' => 'block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
                     'placeholder' => 'https://www.twitch.tv/...'
