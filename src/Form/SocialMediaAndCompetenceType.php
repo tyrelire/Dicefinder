@@ -15,13 +15,6 @@ class SocialMediaAndCompetenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('competence', TextareaType::class, [
-                'required' => false,
-                'attr' => [
-                    'class' => 'block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
-                    'placeholder' => 'Décrivez vos compétences en tant que joueur ou MJ',
-                ],
-            ])
             ->add('bio', TextareaType::class, [
                 'required' => false,
                 'attr' => [

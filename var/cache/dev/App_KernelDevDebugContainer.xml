@@ -478,6 +478,13 @@
         <argument type="service" id=".service_locator.QaaoWjx.App\Controller\SecurityController"/>
       </call>
     </service>
+    <service id="App\Controller\SettingsAccountController" class="App\Controller\SettingsAccountController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.QaaoWjx.App\Controller\SettingsAccountController"/>
+      </call>
+    </service>
     <service id="App\DataFixtures\GroupeJDRFixtures" class="App\DataFixtures\GroupeJDRFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
       <argument type="service" id="security.user_password_hasher"/>
@@ -508,7 +515,7 @@
     <service id="App\Form\GroupeJDRType" class="App\Form\GroupeJDRType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
-    <service id="App\Form\PasswordChangeType" class="App\Form\PasswordChangeType" autowire="true" autoconfigure="true">
+    <service id="App\Form\PasswordChangeSettingsType" class="App\Form\PasswordChangeSettingsType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
@@ -601,7 +608,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.fgoaLDA"/>
+      <argument type="service" id=".service_locator.6Svy9In"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1524,7 +1531,7 @@
         <argument>App\Form\ContactFormType</argument>
         <argument>App\Form\EventType</argument>
         <argument>App\Form\GroupeJDRType</argument>
-        <argument>App\Form\PasswordChangeType</argument>
+        <argument>App\Form\PasswordChangeSettingsType</argument>
         <argument>App\Form\RegistrationFormType</argument>
         <argument>App\Form\ResetPasswordRequestFormType</argument>
         <argument>App\Form\SocialMediaAndCompetenceType</argument>
@@ -2317,6 +2324,7 @@
             <argument>C:\Users\benja\Documents\GitHub\dicefinder\vendor\symfony\validator/Resources/translations\validators.da.xlf</argument>
             <argument>C:\Users\benja\Documents\GitHub\dicefinder\vendor\symfony\form/Resources/translations\validators.da.xlf</argument>
             <argument>C:\Users\benja\Documents\GitHub\dicefinder\vendor\symfony\security-core/Resources/translations\security.da.xlf</argument>
+            <argument>C:\Users\benja\Documents\GitHub\dicefinder\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.da.xlf</argument>
           </argument>
           <argument key="de" type="collection">
             <argument>C:\Users\benja\Documents\GitHub\dicefinder\vendor\symfony\validator/Resources/translations\validators.de.xlf</argument>
@@ -3591,7 +3599,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.fgoaLDA"/>
+      <argument type="service" id=".service_locator.6Svy9In"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4101,7 +4109,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.zCZtO8g"/>
+      <argument type="service" id=".service_locator._blbuTq"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -7731,6 +7739,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SettingsAccountController" class="App\Controller\SettingsAccountController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SettingsAccountController" class="App\Controller\SettingsAccountController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\SettingsAccountController" class="App\Controller\SettingsAccountController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\GroupeJDRFixtures" class="App\DataFixtures\GroupeJDRFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\GroupeJDRFixtures" class="App\DataFixtures\GroupeJDRFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\EventSubscriber\NotificationSubscriber" class="App\EventSubscriber\NotificationSubscriber" autowire="true" abstract="true"/>
@@ -7745,8 +7756,8 @@
     <service id=".abstract.instanceof.App\Form\EventType" class="App\Form\EventType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\GroupeJDRType" class="App\Form\GroupeJDRType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\GroupeJDRType" class="App\Form\GroupeJDRType" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PasswordChangeType" class="App\Form\PasswordChangeType" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Form\PasswordChangeType" class="App\Form\PasswordChangeType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PasswordChangeSettingsType" class="App\Form\PasswordChangeSettingsType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\PasswordChangeSettingsType" class="App\Form\PasswordChangeSettingsType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" abstract="true"/>
@@ -8486,6 +8497,30 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.P.blNFL" method="withContext"/>
     </service>
+    <service id=".service_locator.bTA9FKH" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.bTA9FKH.App\Controller\PaymentController::createGiftCheckoutSession()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PaymentController::createGiftCheckoutSession()"/>
+      <argument>App\Controller\PaymentController::createGiftCheckoutSession()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.bTA9FKH" method="withContext"/>
+    </service>
+    <service id=".service_locator.bTA9FKH.App\Controller\PaymentController::giftPaymentSuccess()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PaymentController::giftPaymentSuccess()"/>
+      <argument>App\Controller\PaymentController::giftPaymentSuccess()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.bTA9FKH" method="withContext"/>
+    </service>
+    <service id=".service_locator.bTA9FKH.App\Controller\PaymentController::searchUser()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PaymentController::searchUser()"/>
+      <argument>App\Controller\PaymentController::searchUser()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.bTA9FKH" method="withContext"/>
+    </service>
     <service id=".service_locator.D_ODzvE" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8568,19 +8603,48 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.P.blNFL" method="withContext"/>
     </service>
-    <service id=".service_locator.gigYcBf" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-        <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
-        <argument key="slugger" type="service_closure" id="slugger"/>
-      </argument>
-    </service>
-    <service id=".service_locator.gigYcBf.App\Controller\ProfileController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator..fUBbna.App\Controller\ProfileController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ProfileController::edit()"/>
       <argument>App\Controller\ProfileController::edit()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.gigYcBf" method="withContext"/>
+      <factory service=".service_locator..fUBbna" method="withContext"/>
+    </service>
+    <service id=".service_locator.9wFACBr" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="slugger" type="service_closure" id="slugger"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.9wFACBr.App\Controller\ProfileController::editAvatar()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::editAvatar()"/>
+      <argument>App\Controller\ProfileController::editAvatar()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.9wFACBr" method="withContext"/>
+    </service>
+    <service id=".service_locator.9wFACBr.App\Controller\ProfileController::editBanner()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::editBanner()"/>
+      <argument>App\Controller\ProfileController::editBanner()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.9wFACBr" method="withContext"/>
+    </service>
+    <service id=".service_locator.P.blNFL.App\Controller\ProfileController::editBio()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::editBio()"/>
+      <argument>App\Controller\ProfileController::editBio()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.P.blNFL" method="withContext"/>
+    </service>
+    <service id=".service_locator.P.blNFL.App\Controller\ProfileController::editGender()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::editGender()"/>
+      <argument>App\Controller\ProfileController::editGender()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.P.blNFL" method="withContext"/>
+    </service>
+    <service id=".service_locator.P.blNFL.App\Controller\ProfileController::editBirthdate()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::editBirthdate()"/>
+      <argument>App\Controller\ProfileController::editBirthdate()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.P.blNFL" method="withContext"/>
     </service>
     <service id=".service_locator.QVAk1vM" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -8646,7 +8710,20 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.mXDaS5b" method="withContext"/>
     </service>
-    <service id=".service_locator.fgoaLDA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.__CzQUd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
+      </argument>
+    </service>
+    <service id=".service_locator.__CzQUd.App\Controller\SettingsAccountController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SettingsAccountController::index()"/>
+      <argument>App\Controller\SettingsAccountController::index()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.__CzQUd" method="withContext"/>
+    </service>
+    <service id=".service_locator.6Svy9In" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.4wc4Ag1.kernel::registerContainerConfiguration()"/>
@@ -8669,6 +8746,9 @@
         <argument key="App\Controller\NotificationController::getPendingNotifications" type="service_closure" id=".service_locator.P.blNFL.App\Controller\NotificationController::getPendingNotifications()"/>
         <argument key="App\Controller\NotificationController::respondNotification" type="service_closure" id=".service_locator.S5Dp5Zc.App\Controller\NotificationController::respondNotification()"/>
         <argument key="App\Controller\NotificationController::clearAllNotifications" type="service_closure" id=".service_locator.P.blNFL.App\Controller\NotificationController::clearAllNotifications()"/>
+        <argument key="App\Controller\PaymentController::createGiftCheckoutSession" type="service_closure" id=".service_locator.bTA9FKH.App\Controller\PaymentController::createGiftCheckoutSession()"/>
+        <argument key="App\Controller\PaymentController::giftPaymentSuccess" type="service_closure" id=".service_locator.bTA9FKH.App\Controller\PaymentController::giftPaymentSuccess()"/>
+        <argument key="App\Controller\PaymentController::searchUser" type="service_closure" id=".service_locator.bTA9FKH.App\Controller\PaymentController::searchUser()"/>
         <argument key="App\Controller\PlayerInvitationController::checkUser" type="service_closure" id=".service_locator.D_ODzvE.App\Controller\PlayerInvitationController::checkUser()"/>
         <argument key="App\Controller\PlayerInvitationController::removeUserFromJdr" type="service_closure" id=".service_locator.oaix_UZ.App\Controller\PlayerInvitationController::removeUserFromJdr()"/>
         <argument key="App\Controller\PlayerInvitationController::requestJoin" type="service_closure" id=".service_locator.yJPL6Rp.App\Controller\PlayerInvitationController::requestJoin()"/>
@@ -8676,12 +8756,18 @@
         <argument key="App\Controller\PlayerInvitationController::respondInvitationBase" type="service_closure" id=".service_locator.uEQmNZo.App\Controller\PlayerInvitationController::respondInvitationBase()"/>
         <argument key="App\Controller\PlayerInvitationController::respondInvitation" type="service_closure" id=".service_locator.uEQmNZo.App\Controller\PlayerInvitationController::respondInvitation()"/>
         <argument key="App\Controller\ProfileController::show" type="service_closure" id=".service_locator.P.blNFL.App\Controller\ProfileController::show()"/>
-        <argument key="App\Controller\ProfileController::edit" type="service_closure" id=".service_locator.gigYcBf.App\Controller\ProfileController::edit()"/>
+        <argument key="App\Controller\ProfileController::edit" type="service_closure" id=".service_locator..fUBbna.App\Controller\ProfileController::edit()"/>
+        <argument key="App\Controller\ProfileController::editAvatar" type="service_closure" id=".service_locator.9wFACBr.App\Controller\ProfileController::editAvatar()"/>
+        <argument key="App\Controller\ProfileController::editBanner" type="service_closure" id=".service_locator.9wFACBr.App\Controller\ProfileController::editBanner()"/>
+        <argument key="App\Controller\ProfileController::editBio" type="service_closure" id=".service_locator.P.blNFL.App\Controller\ProfileController::editBio()"/>
+        <argument key="App\Controller\ProfileController::editGender" type="service_closure" id=".service_locator.P.blNFL.App\Controller\ProfileController::editGender()"/>
+        <argument key="App\Controller\ProfileController::editBirthdate" type="service_closure" id=".service_locator.P.blNFL.App\Controller\ProfileController::editBirthdate()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.QVAk1vM.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.SSsS_et.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\ResetPasswordController::request" type="service_closure" id=".service_locator.D.nMOje.App\Controller\ResetPasswordController::request()"/>
         <argument key="App\Controller\ResetPasswordController::reset" type="service_closure" id=".service_locator.2DjqodR.App\Controller\ResetPasswordController::reset()"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.mXDaS5b.App\Controller\SecurityController::login()"/>
+        <argument key="App\Controller\SettingsAccountController::index" type="service_closure" id=".service_locator.__CzQUd.App\Controller\SettingsAccountController::index()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.4wc4Ag1.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.4wc4Ag1.kernel::loadRoutes()"/>
         <argument key="App\Controller\ContactController:index" type="service_closure" id=".service_locator.dPOu_jk.App\Controller\ContactController::index()"/>
@@ -8700,6 +8786,9 @@
         <argument key="App\Controller\NotificationController:getPendingNotifications" type="service_closure" id=".service_locator.P.blNFL.App\Controller\NotificationController::getPendingNotifications()"/>
         <argument key="App\Controller\NotificationController:respondNotification" type="service_closure" id=".service_locator.S5Dp5Zc.App\Controller\NotificationController::respondNotification()"/>
         <argument key="App\Controller\NotificationController:clearAllNotifications" type="service_closure" id=".service_locator.P.blNFL.App\Controller\NotificationController::clearAllNotifications()"/>
+        <argument key="App\Controller\PaymentController:createGiftCheckoutSession" type="service_closure" id=".service_locator.bTA9FKH.App\Controller\PaymentController::createGiftCheckoutSession()"/>
+        <argument key="App\Controller\PaymentController:giftPaymentSuccess" type="service_closure" id=".service_locator.bTA9FKH.App\Controller\PaymentController::giftPaymentSuccess()"/>
+        <argument key="App\Controller\PaymentController:searchUser" type="service_closure" id=".service_locator.bTA9FKH.App\Controller\PaymentController::searchUser()"/>
         <argument key="App\Controller\PlayerInvitationController:checkUser" type="service_closure" id=".service_locator.D_ODzvE.App\Controller\PlayerInvitationController::checkUser()"/>
         <argument key="App\Controller\PlayerInvitationController:removeUserFromJdr" type="service_closure" id=".service_locator.oaix_UZ.App\Controller\PlayerInvitationController::removeUserFromJdr()"/>
         <argument key="App\Controller\PlayerInvitationController:requestJoin" type="service_closure" id=".service_locator.yJPL6Rp.App\Controller\PlayerInvitationController::requestJoin()"/>
@@ -8707,12 +8796,18 @@
         <argument key="App\Controller\PlayerInvitationController:respondInvitationBase" type="service_closure" id=".service_locator.uEQmNZo.App\Controller\PlayerInvitationController::respondInvitationBase()"/>
         <argument key="App\Controller\PlayerInvitationController:respondInvitation" type="service_closure" id=".service_locator.uEQmNZo.App\Controller\PlayerInvitationController::respondInvitation()"/>
         <argument key="App\Controller\ProfileController:show" type="service_closure" id=".service_locator.P.blNFL.App\Controller\ProfileController::show()"/>
-        <argument key="App\Controller\ProfileController:edit" type="service_closure" id=".service_locator.gigYcBf.App\Controller\ProfileController::edit()"/>
+        <argument key="App\Controller\ProfileController:edit" type="service_closure" id=".service_locator..fUBbna.App\Controller\ProfileController::edit()"/>
+        <argument key="App\Controller\ProfileController:editAvatar" type="service_closure" id=".service_locator.9wFACBr.App\Controller\ProfileController::editAvatar()"/>
+        <argument key="App\Controller\ProfileController:editBanner" type="service_closure" id=".service_locator.9wFACBr.App\Controller\ProfileController::editBanner()"/>
+        <argument key="App\Controller\ProfileController:editBio" type="service_closure" id=".service_locator.P.blNFL.App\Controller\ProfileController::editBio()"/>
+        <argument key="App\Controller\ProfileController:editGender" type="service_closure" id=".service_locator.P.blNFL.App\Controller\ProfileController::editGender()"/>
+        <argument key="App\Controller\ProfileController:editBirthdate" type="service_closure" id=".service_locator.P.blNFL.App\Controller\ProfileController::editBirthdate()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.QVAk1vM.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.SSsS_et.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\ResetPasswordController:request" type="service_closure" id=".service_locator.D.nMOje.App\Controller\ResetPasswordController::request()"/>
         <argument key="App\Controller\ResetPasswordController:reset" type="service_closure" id=".service_locator.2DjqodR.App\Controller\ResetPasswordController::reset()"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.mXDaS5b.App\Controller\SecurityController::login()"/>
+        <argument key="App\Controller\SettingsAccountController:index" type="service_closure" id=".service_locator.__CzQUd.App\Controller\SettingsAccountController::index()"/>
       </argument>
     </service>
     <service id=".service_locator.ea.H0ae" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8872,14 +8967,14 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.zCZtO8g" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator._blbuTq" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ChangePasswordFormType" type="service_closure" id="App\Form\ChangePasswordFormType"/>
         <argument key="App\Form\ContactFormType" type="service_closure" id="App\Form\ContactFormType"/>
         <argument key="App\Form\EventType" type="service_closure" id="App\Form\EventType"/>
         <argument key="App\Form\GroupeJDRType" type="service_closure" id="App\Form\GroupeJDRType"/>
-        <argument key="App\Form\PasswordChangeType" type="service_closure" id="App\Form\PasswordChangeType"/>
+        <argument key="App\Form\PasswordChangeSettingsType" type="service_closure" id="App\Form\PasswordChangeSettingsType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="App\Form\ResetPasswordRequestFormType" type="service_closure" id="App\Form\ResetPasswordRequestFormType"/>
         <argument key="App\Form\SocialMediaAndCompetenceType" type="service_closure" id="App\Form\SocialMediaAndCompetenceType"/>
@@ -9347,6 +9442,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.QaaoWjx" method="withContext"/>
     </service>
+    <service id=".service_locator.QaaoWjx.App\Controller\SettingsAccountController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SettingsAccountController"/>
+      <argument>App\Controller\SettingsAccountController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.QaaoWjx" method="withContext"/>
+    </service>
     <service id=".service_locator.DMfgFyO" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -9543,6 +9644,7 @@
           <argument>App\Controller\RegistrationController</argument>
           <argument>App\Controller\ResetPasswordController</argument>
           <argument>App\Controller\SecurityController</argument>
+          <argument>App\Controller\SettingsAccountController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
       </call>
@@ -10925,7 +11027,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.fgoaLDA"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.6Svy9In"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10979,17 +11081,19 @@
     <service id=".service_locator.lsjk2SJ" alias=".service_locator.yDVn2rI"/>
     <service id=".service_locator.4KsIGyf" alias=".service_locator.P.blNFL"/>
     <service id=".service_locator.tPRJmhs" alias=".service_locator.S5Dp5Zc"/>
+    <service id=".service_locator.qIDYkpc" alias=".service_locator.bTA9FKH"/>
     <service id=".service_locator.ALbmI8F" alias=".service_locator.D_ODzvE"/>
     <service id=".service_locator.GcxzNEm" alias=".service_locator.oaix_UZ"/>
     <service id=".service_locator.sJdXUp0" alias=".service_locator.yJPL6Rp"/>
     <service id=".service_locator.rYH24X2" alias=".service_locator.C_WqeYK"/>
     <service id=".service_locator.8RyoKye" alias=".service_locator.uEQmNZo"/>
-    <service id=".service_locator.RbXSRxP" alias=".service_locator.gigYcBf"/>
+    <service id=".service_locator.iBJpKxu" alias=".service_locator.9wFACBr"/>
     <service id=".service_locator._I.kJlJ" alias=".service_locator.QVAk1vM"/>
     <service id=".service_locator.LdR28Rm" alias=".service_locator.SSsS_et"/>
     <service id=".service_locator.BeKAW3g" alias=".service_locator.D.nMOje"/>
     <service id=".service_locator._zZz8Cp" alias=".service_locator.2DjqodR"/>
     <service id=".service_locator...2Ndi3" alias=".service_locator.mXDaS5b"/>
+    <service id=".service_locator.6yrOe37" alias=".service_locator.__CzQUd"/>
     <service id=".service_locator.b491maD" alias=".service_locator.QaaoWjx"/>
   </services>
 </container>

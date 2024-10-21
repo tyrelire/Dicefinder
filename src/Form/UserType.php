@@ -22,13 +22,13 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class, [
-                'label' => 'Nom d\'utilisateur',
-                'required' => false,
-                'attr' => [
-                    'class' => 'block w-full rounded-md sm:text-sm',
-                ],
-            ])
+            // ->add('username', TextType::class, [
+            //     'label' => 'Nom d\'utilisateur',
+            //     'required' => false,
+            //     'attr' => [
+            //         'class' => 'block w-full rounded-md sm:text-sm',
+            //     ],
+            // ])
             ->add('email', EmailType::class, [
                 'label' => 'Adresse email',
                 'attr' => [
@@ -60,27 +60,21 @@ class UserType extends AbstractType
                     'class' => 'block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
                 ],
             ])
-            ->add('phoneNumber', TelType::class, [
-                'label' => 'Numéro de téléphone',
-                'required' => false,
-                'attr' => [
-                    'class' => 'block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm',
-                ],
-            ])
-            ->add('gender', ChoiceType::class, [
-                'label' => 'Genre',
-                'choices' => [
-                    'Homme' => 'Homme',
-                    'Femme' => 'Femme',
-                ],
-                'required' => false,
-                'expanded' => true,
-                'multiple' => false,
-                'placeholder' => false,
-                'attr' => [
-                    'class' => 'block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
-                ],
-            ]);
+            // ->add('gender', ChoiceType::class, [
+            //     'label' => 'Genre',
+            //     'choices' => [
+            //         'Homme' => 'Homme',
+            //         'Femme' => 'Femme',
+            //     ],
+            //     'required' => false,
+            //     'expanded' => true,
+            //     'multiple' => false,
+            //     'placeholder' => false,
+            //     'attr' => [
+            //         'class' => '',
+            //     ],
+            // ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

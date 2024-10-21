@@ -29,17 +29,27 @@ return [
         '/api/invitations_pending' => [[['_route' => 'app_invitations_pending', '_controller' => 'App\\Controller\\NotificationController::getPendingInvitations'], null, null, null, false, false, null]],
         '/api/notifications_pending' => [[['_route' => 'app_notifications_pending', '_controller' => 'App\\Controller\\NotificationController::getPendingNotifications'], null, null, null, false, false, null]],
         '/notifications/clear' => [[['_route' => 'app_notifications_clear_all', '_controller' => 'App\\Controller\\NotificationController::clearAllNotifications'], null, ['POST' => 0], null, false, false, null]],
-        '/payment' => [[['_route' => 'app_payment', '_controller' => 'App\\Controller\\PaymentController::index'], null, null, null, false, false, null]],
-        '/create-checkout-session' => [[['_route' => 'app_create_checkout_session', '_controller' => 'App\\Controller\\PaymentController::createCheckoutSession'], null, ['POST' => 0], null, false, false, null]],
+        '/vip' => [[['_route' => 'app_vip', '_controller' => 'App\\Controller\\PaymentController::index'], null, null, null, false, false, null]],
+        '/create-checkout-session/monthly' => [[['_route' => 'app_create_checkout_session_monthly', '_controller' => 'App\\Controller\\PaymentController::createCheckoutSessionMonthly'], null, ['POST' => 0], null, false, false, null]],
+        '/create-checkout-session/annual' => [[['_route' => 'app_create_checkout_session_annual', '_controller' => 'App\\Controller\\PaymentController::createCheckoutSessionAnnual'], null, ['POST' => 0], null, false, false, null]],
+        '/create-checkout-session/one-time' => [[['_route' => 'app_create_checkout_session_one_time', '_controller' => 'App\\Controller\\PaymentController::createCheckoutSessionOneTime'], null, ['POST' => 0], null, false, false, null]],
         '/payment-success' => [[['_route' => 'app_payment_success', '_controller' => 'App\\Controller\\PaymentController::paymentSuccess'], null, null, null, false, false, null]],
         '/payment-cancel' => [[['_route' => 'app_payment_cancel', '_controller' => 'App\\Controller\\PaymentController::paymentCancel'], null, null, null, false, false, null]],
-        '/profile/edit' => [[['_route' => 'app_profile_edit', '_controller' => 'App\\Controller\\ProfileController::edit'], null, null, null, false, false, null]],
+        '/create-gift-checkout-session' => [[['_route' => 'app_create_gift_checkout_session', '_controller' => 'App\\Controller\\PaymentController::createGiftCheckoutSession'], null, ['POST' => 0], null, false, false, null]],
+        '/api/search-user' => [[['_route' => 'api_search_user', '_controller' => 'App\\Controller\\PaymentController::searchUser'], null, ['GET' => 0], null, false, false, null]],
+        '/profile/edit' => [[['_route' => 'app_profile_edit', '_controller' => 'App\\Controller\\ProfileController::edit'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/profile/edit/avatar' => [[['_route' => 'app_profile_edit_avatar', '_controller' => 'App\\Controller\\ProfileController::editAvatar'], null, ['POST' => 0], null, false, false, null]],
+        '/profile/edit/banner' => [[['_route' => 'app_profile_edit_banner', '_controller' => 'App\\Controller\\ProfileController::editBanner'], null, ['POST' => 0], null, false, false, null]],
+        '/profile/edit/bio' => [[['_route' => 'app_profile_edit_bio', '_controller' => 'App\\Controller\\ProfileController::editBio'], null, ['POST' => 0], null, false, false, null]],
+        '/profile/edit/gender' => [[['_route' => 'app_profile_edit_gender', '_controller' => 'App\\Controller\\ProfileController::editGender'], null, ['POST' => 0], null, false, false, null]],
+        '/profile/edit/birthdate' => [[['_route' => 'app_profile_edit_birthdate', '_controller' => 'App\\Controller\\ProfileController::editBirthdate'], null, ['POST' => 0], null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
         '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, null, null, false, false, null]],
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
+        '/settings/account' => [[['_route' => 'app_settings_account', '_controller' => 'App\\Controller\\SettingsAccountController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -65,31 +75,34 @@ return [
                     .'|add/([^/]++)(*:227)'
                     .'|remove/([^/]++)(*:250)'
                 .')'
-                .'|/groupe/jdr/([^/]++)(?'
-                    .'|(*:282)'
-                    .'|/(?'
-                        .'|edit(*:298)'
-                        .'|leave(*:311)'
+                .'|/g(?'
+                    .'|roupe/jdr/([^/]++)(?'
+                        .'|(*:285)'
+                        .'|/(?'
+                            .'|edit(*:301)'
+                            .'|leave(*:314)'
+                        .')'
+                        .'|(*:323)'
                     .')'
-                    .'|(*:320)'
+                    .'|ift\\-payment\\-success/([^/]++)(*:362)'
                 .')'
-                .'|/notifications/([^/]++)/respond(*:360)'
+                .'|/notifications/([^/]++)/respond(*:402)'
                 .'|/api/(?'
-                    .'|check_user/([^/]++)/([^/]++)(*:404)'
+                    .'|check_user/([^/]++)/([^/]++)(*:446)'
                     .'|re(?'
                         .'|move_(?'
-                            .'|user/([^/]++)/([^/]++)(*:447)'
-                            .'|invitation/([^/]++)(*:474)'
+                            .'|user/([^/]++)/([^/]++)(*:489)'
+                            .'|invitation/([^/]++)(*:516)'
                         .')'
-                        .'|quest_join/([^/]++)(*:502)'
+                        .'|quest_join/([^/]++)(*:544)'
                         .'|spond_invitation(?'
-                            .'|_base/([^/]++)(*:543)'
-                            .'|/([^/]++)(*:560)'
+                            .'|_base/([^/]++)(*:585)'
+                            .'|/([^/]++)(*:602)'
                         .')'
                     .')'
                 .')'
-                .'|/profile/(\\d+)(*:585)'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:629)'
+                .'|/profile/(\\d+)(*:627)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:671)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -103,19 +116,20 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         227 => [[['_route' => 'add_favorite', '_controller' => 'App\\Controller\\FavorisController::addFavorite'], ['id'], ['GET' => 0], null, false, true, null]],
         250 => [[['_route' => 'remove_favorite', '_controller' => 'App\\Controller\\FavorisController::removeFavorite'], ['id'], ['GET' => 0], null, false, true, null]],
-        282 => [[['_route' => 'app_groupe_j_d_r_show', '_controller' => 'App\\Controller\\GroupeJDRController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        298 => [[['_route' => 'app_groupe_j_d_r_edit', '_controller' => 'App\\Controller\\GroupeJDRController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        311 => [[['_route' => 'leave_jdr', '_controller' => 'App\\Controller\\GroupeJDRController::leave'], ['id'], ['POST' => 0], null, false, false, null]],
-        320 => [[['_route' => 'app_groupe_j_d_r_delete', '_controller' => 'App\\Controller\\GroupeJDRController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        360 => [[['_route' => 'app_notifications_respond', '_controller' => 'App\\Controller\\NotificationController::respondNotification'], ['id'], ['POST' => 0], null, false, false, null]],
-        404 => [[['_route' => 'check_user', '_controller' => 'App\\Controller\\PlayerInvitationController::checkUser'], ['pseudo', 'jdrId'], ['GET' => 0], null, false, true, null]],
-        447 => [[['_route' => 'remove_user_from_jdr', '_controller' => 'App\\Controller\\PlayerInvitationController::removeUserFromJdr'], ['userId', 'jdrId'], ['DELETE' => 0], null, false, true, null]],
-        474 => [[['_route' => 'remove_invitation', '_controller' => 'App\\Controller\\PlayerInvitationController::removeInvitation'], ['invitationId'], ['DELETE' => 0], null, false, true, null]],
-        502 => [[['_route' => 'request_join', '_controller' => 'App\\Controller\\PlayerInvitationController::requestJoin'], ['groupeId'], ['POST' => 0], null, false, true, null]],
-        543 => [[['_route' => 'respond_invitation_base', '_controller' => 'App\\Controller\\PlayerInvitationController::respondInvitationBase'], ['invitationId'], ['POST' => 0], null, false, true, null]],
-        560 => [[['_route' => 'respond_invitation', '_controller' => 'App\\Controller\\PlayerInvitationController::respondInvitation'], ['invitationId'], ['POST' => 0], null, false, true, null]],
-        585 => [[['_route' => 'app_profile_show', '_controller' => 'App\\Controller\\ProfileController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        629 => [
+        285 => [[['_route' => 'app_groupe_j_d_r_show', '_controller' => 'App\\Controller\\GroupeJDRController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        301 => [[['_route' => 'app_groupe_j_d_r_edit', '_controller' => 'App\\Controller\\GroupeJDRController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        314 => [[['_route' => 'leave_jdr', '_controller' => 'App\\Controller\\GroupeJDRController::leave'], ['id'], ['POST' => 0], null, false, false, null]],
+        323 => [[['_route' => 'app_groupe_j_d_r_delete', '_controller' => 'App\\Controller\\GroupeJDRController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        362 => [[['_route' => 'app_gift_payment_success', '_controller' => 'App\\Controller\\PaymentController::giftPaymentSuccess'], ['id'], null, null, false, true, null]],
+        402 => [[['_route' => 'app_notifications_respond', '_controller' => 'App\\Controller\\NotificationController::respondNotification'], ['id'], ['POST' => 0], null, false, false, null]],
+        446 => [[['_route' => 'check_user', '_controller' => 'App\\Controller\\PlayerInvitationController::checkUser'], ['pseudo', 'jdrId'], ['GET' => 0], null, false, true, null]],
+        489 => [[['_route' => 'remove_user_from_jdr', '_controller' => 'App\\Controller\\PlayerInvitationController::removeUserFromJdr'], ['userId', 'jdrId'], ['DELETE' => 0], null, false, true, null]],
+        516 => [[['_route' => 'remove_invitation', '_controller' => 'App\\Controller\\PlayerInvitationController::removeInvitation'], ['invitationId'], ['DELETE' => 0], null, false, true, null]],
+        544 => [[['_route' => 'request_join', '_controller' => 'App\\Controller\\PlayerInvitationController::requestJoin'], ['groupeId'], ['POST' => 0], null, false, true, null]],
+        585 => [[['_route' => 'respond_invitation_base', '_controller' => 'App\\Controller\\PlayerInvitationController::respondInvitationBase'], ['invitationId'], ['POST' => 0], null, false, true, null]],
+        602 => [[['_route' => 'respond_invitation', '_controller' => 'App\\Controller\\PlayerInvitationController::respondInvitation'], ['invitationId'], ['POST' => 0], null, false, true, null]],
+        627 => [[['_route' => 'app_profile_show', '_controller' => 'App\\Controller\\ProfileController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        671 => [
             [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

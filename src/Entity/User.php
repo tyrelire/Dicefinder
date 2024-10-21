@@ -50,9 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $birthDate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $phoneNumber = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $gender = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -97,9 +94,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: PlayerMembership::class, mappedBy: 'player')]
     private Collection $playerMemberships;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $competence = null;
-
     #[ORM\Column(type: 'datetime', nullable: false)]
     private ?\DateTime $createdAt = null;
 
@@ -118,6 +112,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: GroupeJDR::class, inversedBy: 'usersFavorited')]
     #[ORM\JoinTable(name: 'user_favorite_jdr')]
     private Collection $favoriteGroupeJDR;
+
+    #[ORM\Column(length: 255)]
+    private ?string $banner = null;
 
 
     public function __construct()
@@ -264,18 +261,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBirthDate(\DateTimeInterface $birthDate): static
     {
         $this->birthDate = $birthDate;
-
-        return $this;
-    }
-
-    public function getPhoneNumber(): ?string
-    {
-        return $this->phoneNumber;
-    }
-
-    public function setPhoneNumber(string $phoneNumber): static
-    {
-        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
@@ -502,18 +487,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCompetence(): ?string
-    {
-        return $this->competence;
-    }
-
-    public function setCompetence(?string $competence): static
-    {
-        $this->competence = $competence;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Notification>
      */
@@ -576,6 +549,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVip(bool $isVip): self
     {
         $this->isVip = $isVip;
+
+        return $this;
+    }
+
+    public function getBanner(): ?string
+    {
+        return $this->banner;
+    }
+
+    public function setBanner(string $banner): static
+    {
+        $this->banner = $banner;
 
         return $this;
     }

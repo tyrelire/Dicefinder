@@ -73,7 +73,8 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "Modifier Profil";
+        yield "Profil de ";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 3, $this->source); })()), "username", [], "any", false, false, false, 3), "html", null, true);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -97,440 +98,338 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "<div class=\"container mx-auto px-4 py-8\">
-    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-8\">
-        <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full hover:shadow-2xl\">
-            <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Modification du Compte</h2>
-            ";
-        // line 10
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 10, $this->source); })()), 'form_start');
-        yield "
-            <h3 class=\"text-2xl font-semibold text-indigo-500 mb-4 transition-colors duration-300 hover:text-indigo-600\">Informations personnelles</h3>
-            <div class=\"space-y-6\">
-                <div class=\"mb-6\">
-                    ";
-        // line 14
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 14, $this->source); })()), "username", [], "any", false, false, false, 14), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Nom d'utilisateur"]);
-        yield "
-                    ";
-        // line 15
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 15, $this->source); })()), "username", [], "any", false, false, false, 15), 'widget', ["attr" => ["class" => "bg-gray-200 text-gray-500 text-base rounded-lg w-full p-3 cursor-not-allowed transition-all duration-300 hover:border-indigo-400", "readonly" => true]]);
-        // line 20
-        yield "
-                    ";
-        // line 21
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 21, $this->source); })()), "username", [], "any", false, false, false, 21), 'errors');
-        yield "
+        yield "<div class=\"glassmorphism-warning pr-5 pl-5\">
+    <h1 class=\"text-2xl font-semibold text-center text-gray-100 mb-5 mt-5\">
+        Mode Edition du Profil
+        <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"inline h-10 w-10 mb-3 text-yellow-500\" viewBox=\"0 0 24 24\">
+            <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z\"/>
+        </svg>
+    </h1>
+
+    <div class=\"relative flex flex-col lg:flex-row w-full min-w-0 mt-6 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable space-y-4 lg:space-y-0 lg:space-x-6\">
+        <div class=\"lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl\">
+            <div class=\"w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center relative group\">
+                <img id=\"banner-preview\" src=\"";
+        // line 17
+        ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 17, $this->source); })()), "banner", [], "any", false, false, false, 17)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/banners/" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 17, $this->source); })()), "banner", [], "any", false, false, false, 17))), "html", null, true)) : (yield "https://via.placeholder.com/150"));
+        yield "\" alt=\"Bannière\" class=\"w-full h-full object-cover rounded-lg\">
+
+                <div class=\"absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg\">
+                    <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-8 w-8 text-white mb-2\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
+                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 4v16h16V4H4zm16-2a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h16zm-8 7v4m0 4h.01\"/>
+                    </svg>
+                    <span class=\"text-white font-semibold\">Modifier la bannière</span>
                 </div>
 
-                <div class=\"mb-6\">
-                    ";
-        // line 25
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 25, $this->source); })()), "firstName", [], "any", false, false, false, 25), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Prénom"]);
-        yield "
-                    ";
+                ";
         // line 26
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 26, $this->source); })()), "firstName", [], "any", false, false, false, 26), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
-        yield "
-                    ";
-        // line 27
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 27, $this->source); })()), "firstName", [], "any", false, false, false, 27), 'errors');
-        yield "
-                </div>
-
-                <div class=\"mb-6\">
-                    ";
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 26, $this->source); })()), "user", [], "any", false, false, false, 26) && (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 26, $this->source); })()), "user", [], "any", false, false, false, 26), "id", [], "any", false, false, false, 26) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 26, $this->source); })()), "id", [], "any", false, false, false, 26)))) {
+            // line 27
+            yield "                <form id=\"banner-form\" action=\"";
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit_banner");
+            yield "\" method=\"POST\" enctype=\"multipart/form-data\" class=\"absolute inset-0 cursor-pointer opacity-0\">
+                    <input type=\"file\" name=\"banner\" id=\"banner-input\" class=\"w-full h-full cursor-pointer\" onchange=\"previewAndSubmitBanner()\">
+                </form>
+                ";
+        }
         // line 31
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 31, $this->source); })()), "lastName", [], "any", false, false, false, 31), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Nom"]);
-        yield "
-                    ";
-        // line 32
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 32, $this->source); })()), "lastName", [], "any", false, false, false, 32), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
-        yield "
-                    ";
-        // line 33
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 33, $this->source); })()), "lastName", [], "any", false, false, false, 33), 'errors');
-        yield "
+        yield "            </div>
+
+            <div class=\"absolute top-40 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-gray-900 transition-transform duration-300 hover:scale-110 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/50 overflow-hidden group\">
+                <img id=\"avatar-preview\" src=\"";
+        // line 34
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 34, $this->source); })()), "avatar", [], "any", false, false, false, 34)) ? ($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 34, $this->source); })()), "avatar", [], "any", false, false, false, 34)))) : ($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"))), "html", null, true);
+        yield "\" alt=\"Photo de profil\" class=\"w-full h-full object-cover rounded-full\">
+                
+                <div class=\"absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300\">
+                    <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-8 w-8 text-white mb-2\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
+                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 4v16h16V4H4zm16-2a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h16zm-8 7v4m0 4h.01\"/>
+                    </svg>
+                    <span class=\"text-white font-semibold\">Upload</span>
                 </div>
 
-                <div class=\"mb-6\">
-                    ";
-        // line 37
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 37, $this->source); })()), "email", [], "any", false, false, false, 37), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Adresse email"]);
-        yield "
-                    <div class=\"relative mt-1 rounded-md shadow-sm\">
-                        <div class=\"absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none\">
-                            <svg class=\"h-5 w-5 text-gray-400\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\">
-                                <path d=\"M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z\" />
-                                <path d=\"M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z\" />
-                            </svg>
-                        </div>
-                        ";
-        // line 45
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 45, $this->source); })()), "email", [], "any", false, false, false, 45), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full pl-10 p-3 transition-all duration-300 hover:border-indigo-400", "placeholder" => "you@example.com"]]);
-        // line 50
-        yield "
-                    </div>
-                    ";
+                ";
+        // line 43
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 43, $this->source); })()), "user", [], "any", false, false, false, 43) && (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 43, $this->source); })()), "user", [], "any", false, false, false, 43), "id", [], "any", false, false, false, 43) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 43, $this->source); })()), "id", [], "any", false, false, false, 43)))) {
+            // line 44
+            yield "                    <form id=\"avatar-form\" action=\"";
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit_avatar");
+            yield "\" method=\"POST\" enctype=\"multipart/form-data\" class=\"absolute inset-0 opacity-0\">
+                        <input id=\"avatar-input\" type=\"file\" name=\"avatar\" class=\"w-full h-full cursor-pointer\" onchange=\"previewImage(event)\">
+                    </form>
+                ";
+        }
+        // line 48
+        yield "            </div>
+
+            <div class=\"mt-20 text-center relative group\">
+                <div class=\"flex justify-center items-center\">
+                    <h3 class=\"text-gray-100 font-bold text-xl\">";
         // line 52
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 52, $this->source); })()), "email", [], "any", false, false, false, 52), 'errors');
-        yield "
-                </div>
-
-                <div class=\"mb-6\">
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 52, $this->source); })()), "username", [], "any", false, false, false, 52), "html", null, true);
+        yield "</h3>
                     ";
-        // line 56
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 56, $this->source); })()), "phoneNumber", [], "any", false, false, false, 56), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Numéro de téléphone"]);
-        yield "
-                    <div class=\"relative mt-1 rounded-md shadow-sm\">
-                        <div class=\"absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none\">
-                            <svg class=\"w-5 h-5 text-gray-400\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 19 18\">
-                                <path d=\"M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z\"/>
-                            </svg>
-                        </div>
-                        ";
-        // line 63
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 63, $this->source); })()), "phoneNumber", [], "any", false, false, false, 63), 'widget', ["attr" => ["id" => "phoneNumber", "class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full pl-10 p-3 transition-all duration-300 hover:border-indigo-400", "placeholder" => "06 12 34 56 78", "oninput" => "formatPhoneNumber(this)", "maxlength" => "14"]]);
-        // line 71
-        yield "
-                    </div>
-                    ";
-        // line 73
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 73, $this->source); })()), "phoneNumber", [], "any", false, false, false, 73), 'errors');
-        yield "
-                </div>
-
-                <div class=\"mb-6\">
-                    ";
-        // line 77
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 77, $this->source); })()), "birthDate", [], "any", false, false, false, 77), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Date de naissance"]);
-        yield "
-                    ";
-        // line 78
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 78, $this->source); })()), "birthDate", [], "any", false, false, false, 78), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
-        yield "
-                    ";
-        // line 79
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 79, $this->source); })()), "birthDate", [], "any", false, false, false, 79), 'errors');
-        yield "
-                </div>
-
-                <div class=\"mb-6\">
-                    ";
-        // line 83
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 83, $this->source); })()), "gender", [], "any", false, false, false, 83), 'label', ["label_attr" => ["class" => "block text-white font-medium mb-2"], "label" => "Genre"]);
-        yield "
-                    ";
-        // line 84
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 84, $this->source); })()), "gender", [], "any", false, false, false, 84), 'widget', ["attr" => ["class" => "flex items-center space-x-4 text-white font-medium"]]);
-        // line 87
-        yield "
-                    ";
-        // line 88
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 88, $this->source); })()), "birthDate", [], "any", false, false, false, 88), 'errors');
-        yield "
-
-                </div>
-            </div>
-
-            <div class=\"flex justify-end mt-8\">
-                <button type=\"submit\" class=\"bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg\">
-                    Mettre à jour
-                </button>
-            </div>
-            ";
-        // line 98
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 98, $this->source); })()), 'form_end');
-        yield "
-        </div>
-        
-        <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full hover:shadow-2xl\">
-            <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Modification du Profil</h2>
-            ";
-        // line 103
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 103, $this->source); })()), 'form_start');
-        yield "
-            <h3 class=\"text-2xl font-semibold text-indigo-500 mt-8 mb-4 transition-colors duration-300 hover:text-indigo-600\">Compétences</h3>
-            <div class=\"space-y-6\">
-                <div class=\"mb-6\">
-                    ";
-        // line 107
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 107, $this->source); })()), "competence", [], "any", false, false, false, 107), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400", "rows" => "4", "placeholder" => "Écrivez la description ici...", "maxlength" => "255", "oninput" => "updateCharCountComp(this)"]]);
-        yield "
-                    <div id=\"charCountComp\" class=\"text-gray-400 text-sm mt-1\"></div>
-                    ";
-        // line 109
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 109, $this->source); })()), "competence", [], "any", false, false, false, 109), 'errors');
-        yield "
-                </div>
-            </div>
-
-            <h3 class=\"text-2xl font-semibold text-indigo-500 mt-8 mb-4 transition-colors duration-300 hover:text-indigo-600\">Biographie</h3>
-            <div class=\"space-y-6\">
-                <div class=\"mb-6\">
-                    ";
-        // line 116
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 116, $this->source); })()), "bio", [], "any", false, false, false, 116), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400", "rows" => "4", "placeholder" => "Écrivez la description ici...", "maxlength" => "255", "oninput" => "updateCharCountBio(this)"]]);
-        yield "
-                    <div id=\"charCountBio\" class=\"text-gray-400 text-sm mt-1\"></div>
-                    ";
-        // line 118
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 118, $this->source); })()), "bio", [], "any", false, false, false, 118), 'errors');
-        yield "
-                </div>
-            </div>
-            <div class=\"flex justify-end mt-8\">
-                <button type=\"submit\" class=\"bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg\">
-                    Mettre à jour
-                </button>
-            </div>
-            ";
-        // line 126
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["socialMediaAndCompetenceForm"]) || array_key_exists("socialMediaAndCompetenceForm", $context) ? $context["socialMediaAndCompetenceForm"] : (function () { throw new RuntimeError('Variable "socialMediaAndCompetenceForm" does not exist.', 126, $this->source); })()), 'form_end');
-        yield "
-        </div>
-
-        <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full\">
-            <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Changer le mot de passe</h2>
-            ";
-        // line 131
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 131, $this->source); })()), 'form_start');
-        yield "
-            <div class=\"space-y-4\">
-                <div class=\"mb-4\">
-                    ";
-        // line 134
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 134, $this->source); })()), "current_password", [], "any", false, false, false, 134), 'label', ["label_attr" => ["class" => "block text-white mb-1"], "label" => "Mot de passe actuel"]);
-        yield "
-                    ";
-        // line 135
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 135, $this->source); })()), "current_password", [], "any", false, false, false, 135), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
-        yield "
-                    ";
-        // line 136
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 136, $this->source); })()), "current_password", [], "any", false, false, false, 136), 'errors');
-        yield "
-                </div>
-
-                <div class=\"mb-4\">
-                    ";
-        // line 140
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 140, $this->source); })()), "new_password", [], "any", false, false, false, 140), 'label', ["label_attr" => ["class" => "block text-white mb-1"], "label" => "Nouveau mot de passe"]);
-        yield "
-                    ";
-        // line 141
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 141, $this->source); })()), "new_password", [], "any", false, false, false, 141), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
-        yield "
-                    ";
-        // line 142
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 142, $this->source); })()), "new_password", [], "any", false, false, false, 142), 'errors');
-        yield "
-                </div>
-
-                <div class=\"mb-4\">
-                    ";
-        // line 146
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 146, $this->source); })()), "confirm_password", [], "any", false, false, false, 146), 'label', ["label_attr" => ["class" => "block text-white mb-1"], "label" => "Confirmer le nouveau mot de passe"]);
-        yield "
-                    ";
-        // line 147
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 147, $this->source); })()), "confirm_password", [], "any", false, false, false, 147), 'widget', ["attr" => ["class" => "bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400"]]);
-        yield "
-                    ";
-        // line 148
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 148, $this->source); })()), "confirm_password", [], "any", false, false, false, 148), 'errors');
-        yield "
-                </div>
-            </div>
-
-            <div class=\"flex justify-end mt-6\">
-                <button type=\"submit\" class=\"bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg\">
-                    Mettre à jour le mot de passe
-                </button>
-            </div>
-            ";
-        // line 157
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["passwordForm"]) || array_key_exists("passwordForm", $context) ? $context["passwordForm"] : (function () { throw new RuntimeError('Variable "passwordForm" does not exist.', 157, $this->source); })()), 'form_end');
-        yield "
-        </div>
-
-        <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full\">
-            <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Modifier l'avatar</h2>
-            ";
-        // line 162
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 162, $this->source); })()), 'form_start', ["attr" => ["enctype" => "multipart/form-data"]]);
-        yield "
-            <div class=\"flex items-center justify-center mb-6\">
-                <div class=\"flex flex-col items-center mr-6 pt-10\">
-                    <img id=\"avatarPreview\" class=\"w-40 h-40 rounded-full ring-4 ring-indigo-300 object-cover transition-transform duration-300 hover:scale-110\"
-                        src=\"";
-        // line 166
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 166, $this->source); })()), "user", [], "any", false, false, false, 166), "avatar", [], "any", false, false, false, 166)) ? ($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/avatars/" . CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 166, $this->source); })()), "user", [], "any", false, false, false, 166), "avatar", [], "any", false, false, false, 166)))) : ($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"))), "html", null, true);
-        yield "\"
-                        alt=\"Photo de profil\">
-                    ";
-        // line 168
-        if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 168, $this->source); })()), "user", [], "any", false, false, false, 168), "avatar", [], "any", false, false, false, 168)) {
-            // line 169
-            yield "                        <button type=\"submit\" name=\"delete_avatar\" value=\"1\" class=\"text-red-600 text-xs mt-2 underline hover:text-red-800\">
-                            Supprimer la photo
-                        </button>
+        // line 53
+        if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 53, $this->source); })()), "user", [], "any", false, false, false, 53), "isVip", [], "any", false, false, false, 53)) {
+            // line 54
+            yield "                        <img src=\"";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/vip-logo.png"), "html", null, true);
+            yield "\" alt=\"VIP\" class=\"ml-2 w-8 h-8 \" />
                     ";
         }
-        // line 173
+        // line 56
         yield "                </div>
-                <div class=\"ml-6\">
-                    ";
-        // line 175
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 175, $this->source); })()), "avatar", [], "any", false, false, false, 175), 'widget', ["attr" => ["class" => "hidden", "onchange" => "previewAvatar(this)"]]);
-        yield "
-                    ";
-        // line 176
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 176, $this->source); })()), "avatar", [], "any", false, false, false, 176), 'errors');
-        yield "
-                    <label for=\"";
-        // line 177
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 177, $this->source); })()), "avatar", [], "any", false, false, false, 177), "vars", [], "any", false, false, false, 177), "id", [], "any", false, false, false, 177), "html", null, true);
-        yield "\" class=\"cursor-pointer bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 inline-flex items-center transition-transform duration-300 transform hover:-translate-y-1\">
-                        <svg class=\"w-5 h-5 mr-2\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\">
-                            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5\" />
-                        </svg>
-                        Choisir une photo
-                    </label>
-                    <p class=\"text-xs text-gray-500 mt-2\">JPG, GIF ou PNG. 1MB max.</p>
+                <p class=\"mt-3 text-gray-400 text-sm italic\">Chevalier de l'Ordre</p>
+                <div class=\"flex justify-center space-x-2 mt-4\">
+                    <span class=\"inline-block px-3 py-1 text-xs font-semibold text-white bg-red-500 rounded-full\">Badge 1</span>
+                    <span class=\"inline-block px-3 py-1 text-xs font-semibold text-white bg-green-500 rounded-full\">Badge 2</span>
+                    <span class=\"inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full\">Badge 3</span>
                 </div>
             </div>
-            <div class=\"flex justify-end mt-6\">
-                <button type=\"submit\" class=\"bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg\">
-                    Mettre à jour l'avatar
-                </button>
+        </div>
+
+        <div class=\"lg:w-3/4 w-full px-8 pt-8 pb-8 flex-auto min-h-[200px] glassmorphism space-y-6\">
+            <div class=\"text-gray-400 text-md\">
+                <div class=\"flex flex-wrap space-x-6 items-center text-gray-100\">
+                    ";
+        // line 69
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 69, $this->source); })()), "user", [], "any", false, false, false, 69) && (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 69, $this->source); })()), "user", [], "any", false, false, false, 69), "id", [], "any", false, false, false, 69) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 69, $this->source); })()), "id", [], "any", false, false, false, 69)))) {
+            // line 70
+            yield "                    <div class=\"w-full flex justify-center lg:justify-end lg:absolute lg:top-4 lg:right-4 mt-4 lg:mt-0 mb-4\">
+                        <a href=\"";
+            // line 71
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 71, $this->source); })()), "id", [], "any", false, false, false, 71)]), "html", null, true);
+            yield "\" class=\"tab-link p-3 transition-all duration-300 ease-in-out border-b-2 hover:border-red-500 text-gray-100 transform hover:-translate-y-1 hover:scale-105 glassmorphism-player-left flex items-center space-x-2\">
+                            <span>Retour</span>
+                            <svg class=\"h-6 w-6\" xmlns=\"http://www.w3.org/2000/svg\" width=\"5rem\" height=\"5rem\" viewBox=\"0 0 24 24\">
+                                <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m9 11l-4 4l4 4m-4-4h11a4 4 0 0 0 0-8h-1\"/>
+                            </svg>
+                        </a>
+                    </div>
+                    ";
+        }
+        // line 79
+        yield "
+                    ";
+        // line 80
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 80, $this->source); })()), "gender", [], "any", false, false, false, 80)) {
+            // line 81
+            yield "                        <div class=\"flex items-center space-x-2 mt-4 relative\">
+                            <div id=\"gender-display\" class=\"flex items-center space-x-2\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1.5rem\" height=\"1.5rem\" viewBox=\"0 0 50 50\">
+                                    <circle cx=\"22.875\" cy=\"4.625\" r=\"4.125\" fill=\"currentColor\"/>
+                                    <path fill=\"currentColor\" d=\"M22 10h-3c-2.82 0-5 1.719-5 4.587V27c0 2 3 2 3 0V15h1v32c0 1.233.768 2 2 2c1.235 0 2-.767 2-2zm13 15l-4.017-10.357C30.634 12.322 28.29 10 25.615 10H23v23.783c.5.002 1 .075 1 .217v13c0 1.04.917 2 2 2c1.086 0 2-.961 2-2V34h3.869c.362 0 1.044-.654 1.044-1c0-.08.029-.931 0-1l-5.909-16.237l-.034-.167c0-.237.199-.429.447-.429c.211 0 .388.141.435.329L31.869 26c.267.601 1.365 1 2.087 1c.965 0 1.065-1.895 1.044-2\"/>
+                                </svg>
+                                <p>";
+            // line 87
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 87, $this->source); })()), "gender", [], "any", false, false, false, 87), "html", null, true);
+            yield "</p>
+                            </div>
+
+                            ";
+            // line 90
+            if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 90, $this->source); })()), "user", [], "any", false, false, false, 90) && (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 90, $this->source); })()), "user", [], "any", false, false, false, 90), "id", [], "any", false, false, false, 90) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 90, $this->source); })()), "id", [], "any", false, false, false, 90)))) {
+                // line 91
+                yield "                            <button id=\"edit-gender-btn\" class=\"ml-2 text-yellow-500 z-10 focus:outline-none\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"inline h-6 w-6\" viewBox=\"0 0 24 24\">
+                                    <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z\"/>
+                                </svg>
+                            </button>
+                            ";
+            }
+            // line 97
+            yield "
+                            <form id=\"gender-form\" action=\"";
+            // line 98
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit_gender");
+            yield "\" method=\"POST\" class=\"hidden\">
+                                <select name=\"gender\" class=\"bg-gray-800 text-gray-100 rounded-md p-2\">
+                                    <option value=\"Homme\" ";
+            // line 100
+            if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 100, $this->source); })()), "gender", [], "any", false, false, false, 100) == "Homme")) {
+                yield "selected";
+            }
+            yield ">Homme</option>
+                                    <option value=\"Femme\" ";
+            // line 101
+            if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 101, $this->source); })()), "gender", [], "any", false, false, false, 101) == "Femme")) {
+                yield "selected";
+            }
+            yield ">Femme</option>
+                                </select>
+                                <button type=\"submit\" class=\"bg-purple-500 text-white px-4 py-2 rounded-md ml-2\">Sauvegarder</button>
+                            </form>
+                        </div>
+                    ";
+        }
+        // line 107
+        yield "
+                    ";
+        // line 108
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 108, $this->source); })()), "birthdate", [], "any", false, false, false, 108)) {
+            // line 109
+            yield "                        <div class=\"flex items-center space-x-2 mt-4 relative\">
+                            ";
+            // line 110
+            if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 110, $this->source); })()), "birthdate", [], "any", false, false, false, 110)) {
+                // line 111
+                yield "                            <div id=\"birthdate-display\" class=\"flex items-center space-x-2\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1.5rem\" height=\"1.5rem\" viewBox=\"0 0 24 24\">
+                                    <path fill=\"none\" stroke=\"currentColor\" d=\"M7.5 6V1m10 5V1m4 16v4.5h-18v-3m17.863-10H3.352M.5 18.25v.25h17.9l.15-.25l.234-.491A28 28 0 0 0 21.5 5.729V3.5h-18v2.128A28 28 0 0 1 .743 17.744z\"/>
+                                </svg>
+                                <p>";
+                // line 115
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $this->extensions['Twig\Extension\CoreExtension']->convertDate(), "diff", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 115, $this->source); })()), "birthdate", [], "any", false, false, false, 115)], "method", false, false, false, 115), "y", [], "any", false, false, false, 115), "html", null, true);
+                yield " ans</p>
+                            </div>
+                            ";
+            }
+            // line 118
+            yield "
+                            ";
+            // line 119
+            if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 119, $this->source); })()), "user", [], "any", false, false, false, 119) && (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 119, $this->source); })()), "user", [], "any", false, false, false, 119), "id", [], "any", false, false, false, 119) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 119, $this->source); })()), "id", [], "any", false, false, false, 119)))) {
+                // line 120
+                yield "                            <button id=\"edit-birthdate-btn\" class=\"ml-2 text-yellow-500 z-10 focus:outline-none\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"inline h-6 w-6\" viewBox=\"0 0 24 24\">
+                                    <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z\"/>
+                                </svg>
+                            </button>
+                            ";
+            }
+            // line 126
+            yield "
+                            <form id=\"birthdate-form\" action=\"";
+            // line 127
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit_birthdate");
+            yield "\" method=\"POST\" class=\"hidden\">
+                                <input type=\"date\" name=\"birthdate\" class=\"bg-gray-800 text-gray-100 rounded-md p-2\" value=\"";
+            // line 128
+            ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 128, $this->source); })()), "birthdate", [], "any", false, false, false, 128)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 128, $this->source); })()), "birthdate", [], "any", false, false, false, 128), "Y-m-d"), "html", null, true)) : (yield ""));
+            yield "\">
+                                <button type=\"submit\" class=\"bg-purple-500 text-white px-4 py-2 rounded-md ml-2\">Sauvegarder</button>
+                            </form>
+                        </div>
+                    ";
+        }
+        // line 133
+        yield "                </div>
             </div>
             ";
-        // line 191
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["avatarForm"]) || array_key_exists("avatarForm", $context) ? $context["avatarForm"] : (function () { throw new RuntimeError('Variable "avatarForm" does not exist.', 191, $this->source); })()), 'form_end');
-        yield "
-        </div>
+        // line 135
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 135, $this->source); })()), "user", [], "any", false, false, false, 135) && (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 135, $this->source); })()), "user", [], "any", false, false, false, 135), "id", [], "any", false, false, false, 135) == CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 135, $this->source); })()), "id", [], "any", false, false, false, 135)))) {
+            // line 136
+            yield "                <div class=\"w-full text-gray-100 glassmorphism p-6 rounded-lg mb-8 relative group\">
+                    <h2 class=\"text-2xl font-semibold mb-4\">Biographie
+                        <span class=\"ml-1 text-yellow-500 cursor-pointer\" id=\"edit-bio-btn\">
+                            <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"inline h-7 w-7\" viewBox=\"0 0 24 24\">
+                                <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z\"/>
+                            </svg>
+                        </span>
+                    </h2>
+                    <form id=\"bio-form\" action=\"";
+            // line 144
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit_bio");
+            yield "\" method=\"POST\">
+                        <textarea id=\"bio-textarea\" name=\"bio\" class=\"w-full h-32 p-2 bg-gray-800 text-gray-100 rounded-md hidden\" rows=\"5\">";
+            // line 145
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 145, $this->source); })()), "bio", [], "any", false, false, false, 145), "html", null, true);
+            yield "</textarea>
+                        <div id=\"bio-display\">";
+            // line 146
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 146, $this->source); })()), "bio", [], "any", false, false, false, 146), "html", null, true);
+            yield "</div>
+                        <button type=\"submit\" class=\"bg-purple-500 text-white px-4 py-2 rounded-md mt-4 hidden\" id=\"save-bio-btn\">Sauvegarder</button>
+                    </form>
+                </div>
+            ";
+        } else {
+            // line 151
+            yield "                <div class=\"w-full text-gray-100 glassmorphism p-6 rounded-lg mb-8\">
+                    <h2 class=\"text-2xl font-semibold mb-4\">Biographie</h2>
+                    <p>";
+            // line 153
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 153, $this->source); })()), "bio", [], "any", false, false, false, 153), "html", null, true);
+            yield "</p>
+                </div>
+            ";
+        }
+        // line 156
+        yield "        </div>
     </div>
 </div>
 
 <script>
-    function updateCharCountComp(textarea) {
-        const maxChars = 255;
-        const remainingChars = maxChars - textarea.value.length;
-        document.getElementById('charCountComp').textContent = remainingChars + \" caractères restants\";
-    }
+    function previewImage(event) {
+        const reader = new FileReader();
+        const imageField = document.getElementById(\"avatar-preview\");
 
-    function updateCharCountBio(textarea) {
-        const maxChars = 255;
-        const remainingChars = maxChars - textarea.value.length;
-        document.getElementById('charCountBio').textContent = remainingChars + \" caractères restants\";
-    }
-
-    function validateDiscordPseudo(input) {
-        if (input.value !== \"\") {
-            const regex = /^[a-zA-Z0-9._-]{3,32}\$/;
-            if (!regex.test(input.value)) {
-                input.setCustomValidity('Veuillez entrer un pseudo Discord valide (3 à 32 caractères, lettres, chiffres, \".\" , \"-\" et \"_\" sont autorisés)');
-            } else {
-                input.setCustomValidity('');
+        reader.onload = function() {
+            if (reader.readyState === 2) {
+                imageField.src = reader.result;
             }
-        } else {
-            input.setCustomValidity('');
-        }
+        };
+        reader.readAsDataURL(event.target.files[0]);
+
+        document.getElementById(\"avatar-form\").submit();
     }
 
-    function validateTwitterPseudo(input) {
-        if (input.value.trim() !== \"\") {
-            const regex = /^@?(\\w){1,15}\$/;
-            if (!regex.test(input.value.trim())) {
-                input.setCustomValidity('Veuillez entrer un pseudo Twitter valide, exemple: @username');
-            } else {
-                input.setCustomValidity('');
-            }
-        } else {
-            input.setCustomValidity('');
-        }
-    }
+    function previewAndSubmitBanner() {
+        const input = document.getElementById('banner-input');
+        const preview = document.getElementById('banner-preview');
+        const form = document.getElementById('banner-form');
+        const file = input.files[0];
+        const reader = new FileReader();
 
-    function validateYouTubeLink(input) {
-        if (input.value !== \"\") {
-            const regex = /^(https?\\:\\/\\/)?(www\\.)?(youtube\\.com|youtu\\.?be)\\/.+\$/;
-            if (!regex.test(input.value)) {
-                input.setCustomValidity('Veuillez entrer un lien YouTube valide');
-            } else {
-                input.setCustomValidity('');
-            }
-        } else {
-            input.setCustomValidity('');
-        }
-    }
-
-    function validateTwitchLink(input) {
-        if (input.value !== \"\") {
-            const regex = /^(https?:\\/\\/)?(www\\.)?twitch\\.tv\\/[a-zA-Z0-9_]+\$/;
-            if (!regex.test(input.value)) {
-                input.setCustomValidity('Veuillez entrer un lien Twitch valide');
-            } else {
-                input.setCustomValidity('');
-            }
-        } else {
-            input.setCustomValidity('');
-        }
-}
-
-    function previewAvatar(input) {
-        var preview = document.getElementById('avatarPreview');
-        var file = input.files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
+        reader.onloadend = function () {
             preview.src = reader.result;
+            form.submit();
         };
 
         if (file) {
             reader.readAsDataURL(file);
         } else {
-            preview.src = \"";
-        // line 273
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/default-avatar.png"), "html", null, true);
-        yield "\";
+            preview.src = \"https://via.placeholder.com/150\";
         }
     }
 
-    function formatPhoneNumber(input) {
-        let phone = input.value.replace(/\\D/g, '');
+    document.addEventListener('DOMContentLoaded', function() {
+        const editBioBtn = document.getElementById('edit-bio-btn');
+        const bioDisplay = document.getElementById('bio-display');
+        const bioTextarea = document.getElementById('bio-textarea');
+        const saveBioBtn = document.getElementById('save-bio-btn');
 
-        if (phone.length > 2) {
-            phone = phone.replace(/(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})\$/, '\$1 \$2 \$3 \$4 \$5');
-        } else if (phone.length > 4) {
-            phone = phone.replace(/(\\d{2})(\\d{2})(\\d{2})(\\d{2})\$/, '\$1 \$2 \$3 \$4');
-        } else if (phone.length > 6) {
-            phone = phone.replace(/(\\d{2})(\\d{2})(\\d{2})\$/, '\$1 \$2 \$3');
-        } else if (phone.length > 8) {
-            phone = phone.replace(/(\\d{2})(\\d{2})\$/, '\$1 \$2');
-        }
+        editBioBtn.addEventListener('click', function() {
+            bioDisplay.classList.add('hidden');
+            bioTextarea.classList.remove('hidden');
+            saveBioBtn.classList.remove('hidden');
+            bioTextarea.focus();
+        });
+        bioTextarea.addEventListener('input', function() {
+            if (bioTextarea.value.trim() === \"\") {
+                bioTextarea.value = \"\";
+            }
+        });
 
-        input.value = phone;
-    }
+        const editGenderBtn = document.getElementById('edit-gender-btn');
+        const genderDisplay = document.getElementById('gender-display');
+        const genderForm = document.getElementById('gender-form');
 
-    document.addEventListener(\"DOMContentLoaded\", function() {
-        const competenceField = document.querySelector('[name=\"socialMediaAndCompetenceForm[competence]\"]');
-        const bioField = document.querySelector('[name=\"socialMediaAndCompetenceForm[bio]\"]');
+        editGenderBtn.addEventListener('click', function() {
+            genderDisplay.classList.add('hidden');
+            genderForm.classList.remove('hidden');
+        });
 
-        if (competenceField) {
-            updateCharCountComp(competenceField);
-            competenceField.addEventListener('input', function() {
-                updateCharCountComp(competenceField);
-            });
-        }
+        const editBirthdateBtn = document.getElementById('edit-birthdate-btn');
+        const birthdateDisplay = document.getElementById('birthdate-display');
+        const birthdateForm = document.getElementById('birthdate-form');
 
-        if (bioField) {
-            updateCharCountBio(bioField);
-            bioField.addEventListener('input', function() {
-                updateCharCountBio(bioField);
-            });
-        }
+        editBirthdateBtn.addEventListener('click', function() {
+            birthdateDisplay.classList.add('hidden');
+            birthdateForm.classList.remove('hidden');
+        });
     });
+
 </script>
 ";
         
@@ -563,321 +462,241 @@ class __TwigTemplate_5e9569918a04a83c1f8c8c4d1f7fa764 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  495 => 273,  410 => 191,  393 => 177,  389 => 176,  385 => 175,  381 => 173,  375 => 169,  373 => 168,  368 => 166,  361 => 162,  353 => 157,  341 => 148,  337 => 147,  333 => 146,  326 => 142,  322 => 141,  318 => 140,  311 => 136,  307 => 135,  303 => 134,  297 => 131,  289 => 126,  278 => 118,  273 => 116,  263 => 109,  258 => 107,  251 => 103,  243 => 98,  230 => 88,  227 => 87,  225 => 84,  221 => 83,  214 => 79,  210 => 78,  206 => 77,  199 => 73,  195 => 71,  193 => 63,  183 => 56,  176 => 52,  172 => 50,  170 => 45,  159 => 37,  152 => 33,  148 => 32,  144 => 31,  137 => 27,  133 => 26,  129 => 25,  122 => 21,  119 => 20,  117 => 15,  113 => 14,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  358 => 156,  352 => 153,  348 => 151,  340 => 146,  336 => 145,  332 => 144,  322 => 136,  320 => 135,  316 => 133,  308 => 128,  304 => 127,  301 => 126,  293 => 120,  291 => 119,  288 => 118,  282 => 115,  276 => 111,  274 => 110,  271 => 109,  269 => 108,  266 => 107,  255 => 101,  249 => 100,  244 => 98,  241 => 97,  233 => 91,  231 => 90,  225 => 87,  217 => 81,  215 => 80,  212 => 79,  201 => 71,  198 => 70,  196 => 69,  181 => 56,  175 => 54,  173 => 53,  169 => 52,  163 => 48,  155 => 44,  153 => 43,  141 => 34,  136 => 31,  128 => 27,  126 => 26,  114 => 17,  101 => 6,  88 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}Modifier Profil{% endblock %}
+{% block title %}Profil de {{ user.username }}{% endblock %}
 
 {% block body %}
-<div class=\"container mx-auto px-4 py-8\">
-    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-8\">
-        <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full hover:shadow-2xl\">
-            <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Modification du Compte</h2>
-            {{ form_start(form) }}
-            <h3 class=\"text-2xl font-semibold text-indigo-500 mb-4 transition-colors duration-300 hover:text-indigo-600\">Informations personnelles</h3>
-            <div class=\"space-y-6\">
-                <div class=\"mb-6\">
-                    {{ form_label(form.username, 'Nom d\\'utilisateur', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    {{ form_widget(form.username, {
-                        'attr': {
-                            'class': 'bg-gray-200 text-gray-500 text-base rounded-lg w-full p-3 cursor-not-allowed transition-all duration-300 hover:border-indigo-400',
-                            'readonly': true
-                        }
-                    }) }}
-                    {{ form_errors(form.username) }}
+<div class=\"glassmorphism-warning pr-5 pl-5\">
+    <h1 class=\"text-2xl font-semibold text-center text-gray-100 mb-5 mt-5\">
+        Mode Edition du Profil
+        <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"inline h-10 w-10 mb-3 text-yellow-500\" viewBox=\"0 0 24 24\">
+            <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z\"/>
+        </svg>
+    </h1>
+
+    <div class=\"relative flex flex-col lg:flex-row w-full min-w-0 mt-6 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable space-y-4 lg:space-y-0 lg:space-x-6\">
+        <div class=\"lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl\">
+            <div class=\"w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center relative group\">
+                <img id=\"banner-preview\" src=\"{{ user.banner ? asset('uploads/banners/' ~ user.banner) : 'https://via.placeholder.com/150' }}\" alt=\"Bannière\" class=\"w-full h-full object-cover rounded-lg\">
+
+                <div class=\"absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg\">
+                    <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-8 w-8 text-white mb-2\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
+                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 4v16h16V4H4zm16-2a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h16zm-8 7v4m0 4h.01\"/>
+                    </svg>
+                    <span class=\"text-white font-semibold\">Modifier la bannière</span>
                 </div>
 
-                <div class=\"mb-6\">
-                    {{ form_label(form.firstName, 'Prénom', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    {{ form_widget(form.firstName, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400'}}) }}
-                    {{ form_errors(form.firstName) }}
-                </div>
-
-                <div class=\"mb-6\">
-                    {{ form_label(form.lastName, 'Nom', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    {{ form_widget(form.lastName, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400'}}) }}
-                    {{ form_errors(form.lastName) }}
-                </div>
-
-                <div class=\"mb-6\">
-                    {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    <div class=\"relative mt-1 rounded-md shadow-sm\">
-                        <div class=\"absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none\">
-                            <svg class=\"h-5 w-5 text-gray-400\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\">
-                                <path d=\"M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z\" />
-                                <path d=\"M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z\" />
-                            </svg>
-                        </div>
-                        {{ form_widget(form.email, {
-                            'attr': {
-                                'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full pl-10 p-3 transition-all duration-300 hover:border-indigo-400',
-                                'placeholder': 'you@example.com'
-                            }
-                        }) }}
-                    </div>
-                    {{ form_errors(form.email) }}
-                </div>
-
-                <div class=\"mb-6\">
-                    {{ form_label(form.phoneNumber, 'Numéro de téléphone', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    <div class=\"relative mt-1 rounded-md shadow-sm\">
-                        <div class=\"absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none\">
-                            <svg class=\"w-5 h-5 text-gray-400\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 19 18\">
-                                <path d=\"M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z\"/>
-                            </svg>
-                        </div>
-                        {{ form_widget(form.phoneNumber, {
-                            'attr': {
-                                'id': 'phoneNumber',
-                                'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full pl-10 p-3 transition-all duration-300 hover:border-indigo-400',
-                                'placeholder': '06 12 34 56 78',
-                                'oninput': 'formatPhoneNumber(this)',
-                                'maxlength': '14'
-                            }
-                        }) }}
-                    </div>
-                    {{ form_errors(form.phoneNumber) }}
-                </div>
-
-                <div class=\"mb-6\">
-                    {{ form_label(form.birthDate, 'Date de naissance', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    {{ form_widget(form.birthDate, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400'}}) }}
-                    {{ form_errors(form.birthDate) }}
-                </div>
-
-                <div class=\"mb-6\">
-                    {{ form_label(form.gender, 'Genre', {'label_attr': {'class': 'block text-white font-medium mb-2'}}) }}
-                    {{ form_widget(form.gender, {
-                        'attr': {'class': 'flex items-center space-x-4 text-white font-medium'}
-                        })
-                    }}
-                    {{ form_errors(form.birthDate) }}
-
-                </div>
+                {% if app.user and app.user.id == user.id %}
+                <form id=\"banner-form\" action=\"{{ path('app_profile_edit_banner') }}\" method=\"POST\" enctype=\"multipart/form-data\" class=\"absolute inset-0 cursor-pointer opacity-0\">
+                    <input type=\"file\" name=\"banner\" id=\"banner-input\" class=\"w-full h-full cursor-pointer\" onchange=\"previewAndSubmitBanner()\">
+                </form>
+                {% endif %}
             </div>
 
-            <div class=\"flex justify-end mt-8\">
-                <button type=\"submit\" class=\"bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg\">
-                    Mettre à jour
-                </button>
-            </div>
-            {{ form_end(form) }}
-        </div>
-        
-        <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full hover:shadow-2xl\">
-            <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Modification du Profil</h2>
-            {{ form_start(socialMediaAndCompetenceForm) }}
-            <h3 class=\"text-2xl font-semibold text-indigo-500 mt-8 mb-4 transition-colors duration-300 hover:text-indigo-600\">Compétences</h3>
-            <div class=\"space-y-6\">
-                <div class=\"mb-6\">
-                    {{ form_widget(socialMediaAndCompetenceForm.competence, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400', 'rows': '4', 'placeholder': 'Écrivez la description ici...', 'maxlength': '255', 'oninput': 'updateCharCountComp(this)' }}) }}
-                    <div id=\"charCountComp\" class=\"text-gray-400 text-sm mt-1\"></div>
-                    {{ form_errors(socialMediaAndCompetenceForm.competence) }}
-                </div>
-            </div>
-
-            <h3 class=\"text-2xl font-semibold text-indigo-500 mt-8 mb-4 transition-colors duration-300 hover:text-indigo-600\">Biographie</h3>
-            <div class=\"space-y-6\">
-                <div class=\"mb-6\">
-                    {{ form_widget(socialMediaAndCompetenceForm.bio, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400', 'rows': '4', 'placeholder': 'Écrivez la description ici...', 'maxlength': '255', 'oninput': 'updateCharCountBio(this)' }}) }}
-                    <div id=\"charCountBio\" class=\"text-gray-400 text-sm mt-1\"></div>
-                    {{ form_errors(socialMediaAndCompetenceForm.bio) }}
-                </div>
-            </div>
-            <div class=\"flex justify-end mt-8\">
-                <button type=\"submit\" class=\"bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg\">
-                    Mettre à jour
-                </button>
-            </div>
-            {{ form_end(socialMediaAndCompetenceForm) }}
-        </div>
-
-        <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full\">
-            <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Changer le mot de passe</h2>
-            {{ form_start(passwordForm) }}
-            <div class=\"space-y-4\">
-                <div class=\"mb-4\">
-                    {{ form_label(passwordForm.current_password, 'Mot de passe actuel', {'label_attr': {'class': 'block text-white mb-1'}}) }}
-                    {{ form_widget(passwordForm.current_password, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400'}}) }}
-                    {{ form_errors(passwordForm.current_password) }}
+            <div class=\"absolute top-40 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-gray-900 transition-transform duration-300 hover:scale-110 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/50 overflow-hidden group\">
+                <img id=\"avatar-preview\" src=\"{{ user.avatar ? asset('uploads/avatars/' ~ user.avatar) : asset('images/default-avatar.png') }}\" alt=\"Photo de profil\" class=\"w-full h-full object-cover rounded-full\">
+                
+                <div class=\"absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300\">
+                    <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-8 w-8 text-white mb-2\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
+                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 4v16h16V4H4zm16-2a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h16zm-8 7v4m0 4h.01\"/>
+                    </svg>
+                    <span class=\"text-white font-semibold\">Upload</span>
                 </div>
 
-                <div class=\"mb-4\">
-                    {{ form_label(passwordForm.new_password, 'Nouveau mot de passe', {'label_attr': {'class': 'block text-white mb-1'}}) }}
-                    {{ form_widget(passwordForm.new_password, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400'}}) }}
-                    {{ form_errors(passwordForm.new_password) }}
-                </div>
-
-                <div class=\"mb-4\">
-                    {{ form_label(passwordForm.confirm_password, 'Confirmer le nouveau mot de passe', {'label_attr': {'class': 'block text-white mb-1'}}) }}
-                    {{ form_widget(passwordForm.confirm_password, {'attr': {'class': 'bg-gray-100 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full p-3 transition-all duration-300 hover:border-indigo-400'}}) }}
-                    {{ form_errors(passwordForm.confirm_password) }}
-                </div>
+                {% if app.user and app.user.id == user.id %}
+                    <form id=\"avatar-form\" action=\"{{ path('app_profile_edit_avatar') }}\" method=\"POST\" enctype=\"multipart/form-data\" class=\"absolute inset-0 opacity-0\">
+                        <input id=\"avatar-input\" type=\"file\" name=\"avatar\" class=\"w-full h-full cursor-pointer\" onchange=\"previewImage(event)\">
+                    </form>
+                {% endif %}
             </div>
 
-            <div class=\"flex justify-end mt-6\">
-                <button type=\"submit\" class=\"bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg\">
-                    Mettre à jour le mot de passe
-                </button>
-            </div>
-            {{ form_end(passwordForm) }}
-        </div>
-
-        <div class=\"bg-gray-800 border-2 border-[#363672] p-6 rounded-lg shadow-lg w-full\">
-            <h2 class=\"text-3xl font-bold text-center mb-6 text-white transition-colors duration-300 hover:text-indigo-700\">Modifier l'avatar</h2>
-            {{ form_start(avatarForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
-            <div class=\"flex items-center justify-center mb-6\">
-                <div class=\"flex flex-col items-center mr-6 pt-10\">
-                    <img id=\"avatarPreview\" class=\"w-40 h-40 rounded-full ring-4 ring-indigo-300 object-cover transition-transform duration-300 hover:scale-110\"
-                        src=\"{{ app.user.avatar ? asset('uploads/avatars/' ~ app.user.avatar) : asset('images/default-avatar.png') }}\"
-                        alt=\"Photo de profil\">
-                    {% if app.user.avatar %}
-                        <button type=\"submit\" name=\"delete_avatar\" value=\"1\" class=\"text-red-600 text-xs mt-2 underline hover:text-red-800\">
-                            Supprimer la photo
-                        </button>
+            <div class=\"mt-20 text-center relative group\">
+                <div class=\"flex justify-center items-center\">
+                    <h3 class=\"text-gray-100 font-bold text-xl\">{{ user.username }}</h3>
+                    {% if app.user.isVip %}
+                        <img src=\"{{ asset('images/vip-logo.png') }}\" alt=\"VIP\" class=\"ml-2 w-8 h-8 \" />
                     {% endif %}
                 </div>
-                <div class=\"ml-6\">
-                    {{ form_widget(avatarForm.avatar, {'attr': {'class': 'hidden', 'onchange': 'previewAvatar(this)'}}) }}
-                    {{ form_errors(avatarForm.avatar) }}
-                    <label for=\"{{ avatarForm.avatar.vars.id }}\" class=\"cursor-pointer bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 inline-flex items-center transition-transform duration-300 transform hover:-translate-y-1\">
-                        <svg class=\"w-5 h-5 mr-2\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\">
-                            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5\" />
-                        </svg>
-                        Choisir une photo
-                    </label>
-                    <p class=\"text-xs text-gray-500 mt-2\">JPG, GIF ou PNG. 1MB max.</p>
+                <p class=\"mt-3 text-gray-400 text-sm italic\">Chevalier de l'Ordre</p>
+                <div class=\"flex justify-center space-x-2 mt-4\">
+                    <span class=\"inline-block px-3 py-1 text-xs font-semibold text-white bg-red-500 rounded-full\">Badge 1</span>
+                    <span class=\"inline-block px-3 py-1 text-xs font-semibold text-white bg-green-500 rounded-full\">Badge 2</span>
+                    <span class=\"inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full\">Badge 3</span>
                 </div>
             </div>
-            <div class=\"flex justify-end mt-6\">
-                <button type=\"submit\" class=\"bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg\">
-                    Mettre à jour l'avatar
-                </button>
+        </div>
+
+        <div class=\"lg:w-3/4 w-full px-8 pt-8 pb-8 flex-auto min-h-[200px] glassmorphism space-y-6\">
+            <div class=\"text-gray-400 text-md\">
+                <div class=\"flex flex-wrap space-x-6 items-center text-gray-100\">
+                    {% if app.user and app.user.id == user.id %}
+                    <div class=\"w-full flex justify-center lg:justify-end lg:absolute lg:top-4 lg:right-4 mt-4 lg:mt-0 mb-4\">
+                        <a href=\"{{ path('app_profile_show', {'id': user.id}) }}\" class=\"tab-link p-3 transition-all duration-300 ease-in-out border-b-2 hover:border-red-500 text-gray-100 transform hover:-translate-y-1 hover:scale-105 glassmorphism-player-left flex items-center space-x-2\">
+                            <span>Retour</span>
+                            <svg class=\"h-6 w-6\" xmlns=\"http://www.w3.org/2000/svg\" width=\"5rem\" height=\"5rem\" viewBox=\"0 0 24 24\">
+                                <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m9 11l-4 4l4 4m-4-4h11a4 4 0 0 0 0-8h-1\"/>
+                            </svg>
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    {% if user.gender %}
+                        <div class=\"flex items-center space-x-2 mt-4 relative\">
+                            <div id=\"gender-display\" class=\"flex items-center space-x-2\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1.5rem\" height=\"1.5rem\" viewBox=\"0 0 50 50\">
+                                    <circle cx=\"22.875\" cy=\"4.625\" r=\"4.125\" fill=\"currentColor\"/>
+                                    <path fill=\"currentColor\" d=\"M22 10h-3c-2.82 0-5 1.719-5 4.587V27c0 2 3 2 3 0V15h1v32c0 1.233.768 2 2 2c1.235 0 2-.767 2-2zm13 15l-4.017-10.357C30.634 12.322 28.29 10 25.615 10H23v23.783c.5.002 1 .075 1 .217v13c0 1.04.917 2 2 2c1.086 0 2-.961 2-2V34h3.869c.362 0 1.044-.654 1.044-1c0-.08.029-.931 0-1l-5.909-16.237l-.034-.167c0-.237.199-.429.447-.429c.211 0 .388.141.435.329L31.869 26c.267.601 1.365 1 2.087 1c.965 0 1.065-1.895 1.044-2\"/>
+                                </svg>
+                                <p>{{ user.gender }}</p>
+                            </div>
+
+                            {% if app.user and app.user.id == user.id %}
+                            <button id=\"edit-gender-btn\" class=\"ml-2 text-yellow-500 z-10 focus:outline-none\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"inline h-6 w-6\" viewBox=\"0 0 24 24\">
+                                    <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z\"/>
+                                </svg>
+                            </button>
+                            {% endif %}
+
+                            <form id=\"gender-form\" action=\"{{ path('app_profile_edit_gender') }}\" method=\"POST\" class=\"hidden\">
+                                <select name=\"gender\" class=\"bg-gray-800 text-gray-100 rounded-md p-2\">
+                                    <option value=\"Homme\" {% if user.gender == 'Homme' %}selected{% endif %}>Homme</option>
+                                    <option value=\"Femme\" {% if user.gender == 'Femme' %}selected{% endif %}>Femme</option>
+                                </select>
+                                <button type=\"submit\" class=\"bg-purple-500 text-white px-4 py-2 rounded-md ml-2\">Sauvegarder</button>
+                            </form>
+                        </div>
+                    {% endif %}
+
+                    {% if user.birthdate %}
+                        <div class=\"flex items-center space-x-2 mt-4 relative\">
+                            {% if user.birthdate %}
+                            <div id=\"birthdate-display\" class=\"flex items-center space-x-2\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1.5rem\" height=\"1.5rem\" viewBox=\"0 0 24 24\">
+                                    <path fill=\"none\" stroke=\"currentColor\" d=\"M7.5 6V1m10 5V1m4 16v4.5h-18v-3m17.863-10H3.352M.5 18.25v.25h17.9l.15-.25l.234-.491A28 28 0 0 0 21.5 5.729V3.5h-18v2.128A28 28 0 0 1 .743 17.744z\"/>
+                                </svg>
+                                <p>{{ date().diff(user.birthdate).y }} ans</p>
+                            </div>
+                            {% endif %}
+
+                            {% if app.user and app.user.id == user.id %}
+                            <button id=\"edit-birthdate-btn\" class=\"ml-2 text-yellow-500 z-10 focus:outline-none\">
+                                <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"inline h-6 w-6\" viewBox=\"0 0 24 24\">
+                                    <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z\"/>
+                                </svg>
+                            </button>
+                            {% endif %}
+
+                            <form id=\"birthdate-form\" action=\"{{ path('app_profile_edit_birthdate') }}\" method=\"POST\" class=\"hidden\">
+                                <input type=\"date\" name=\"birthdate\" class=\"bg-gray-800 text-gray-100 rounded-md p-2\" value=\"{{ user.birthdate ? user.birthdate|date('Y-m-d') }}\">
+                                <button type=\"submit\" class=\"bg-purple-500 text-white px-4 py-2 rounded-md ml-2\">Sauvegarder</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-            {{ form_end(avatarForm) }}
+            {% if app.user and app.user.id == user.id %}
+                <div class=\"w-full text-gray-100 glassmorphism p-6 rounded-lg mb-8 relative group\">
+                    <h2 class=\"text-2xl font-semibold mb-4\">Biographie
+                        <span class=\"ml-1 text-yellow-500 cursor-pointer\" id=\"edit-bio-btn\">
+                            <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"inline h-7 w-7\" viewBox=\"0 0 24 24\">
+                                <path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z\"/>
+                            </svg>
+                        </span>
+                    </h2>
+                    <form id=\"bio-form\" action=\"{{ path('app_profile_edit_bio') }}\" method=\"POST\">
+                        <textarea id=\"bio-textarea\" name=\"bio\" class=\"w-full h-32 p-2 bg-gray-800 text-gray-100 rounded-md hidden\" rows=\"5\">{{ user.bio }}</textarea>
+                        <div id=\"bio-display\">{{ user.bio }}</div>
+                        <button type=\"submit\" class=\"bg-purple-500 text-white px-4 py-2 rounded-md mt-4 hidden\" id=\"save-bio-btn\">Sauvegarder</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class=\"w-full text-gray-100 glassmorphism p-6 rounded-lg mb-8\">
+                    <h2 class=\"text-2xl font-semibold mb-4\">Biographie</h2>
+                    <p>{{ user.bio }}</p>
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>
 
 <script>
-    function updateCharCountComp(textarea) {
-        const maxChars = 255;
-        const remainingChars = maxChars - textarea.value.length;
-        document.getElementById('charCountComp').textContent = remainingChars + \" caractères restants\";
-    }
+    function previewImage(event) {
+        const reader = new FileReader();
+        const imageField = document.getElementById(\"avatar-preview\");
 
-    function updateCharCountBio(textarea) {
-        const maxChars = 255;
-        const remainingChars = maxChars - textarea.value.length;
-        document.getElementById('charCountBio').textContent = remainingChars + \" caractères restants\";
-    }
-
-    function validateDiscordPseudo(input) {
-        if (input.value !== \"\") {
-            const regex = /^[a-zA-Z0-9._-]{3,32}\$/;
-            if (!regex.test(input.value)) {
-                input.setCustomValidity('Veuillez entrer un pseudo Discord valide (3 à 32 caractères, lettres, chiffres, \".\" , \"-\" et \"_\" sont autorisés)');
-            } else {
-                input.setCustomValidity('');
+        reader.onload = function() {
+            if (reader.readyState === 2) {
+                imageField.src = reader.result;
             }
-        } else {
-            input.setCustomValidity('');
-        }
+        };
+        reader.readAsDataURL(event.target.files[0]);
+
+        document.getElementById(\"avatar-form\").submit();
     }
 
-    function validateTwitterPseudo(input) {
-        if (input.value.trim() !== \"\") {
-            const regex = /^@?(\\w){1,15}\$/;
-            if (!regex.test(input.value.trim())) {
-                input.setCustomValidity('Veuillez entrer un pseudo Twitter valide, exemple: @username');
-            } else {
-                input.setCustomValidity('');
-            }
-        } else {
-            input.setCustomValidity('');
-        }
-    }
+    function previewAndSubmitBanner() {
+        const input = document.getElementById('banner-input');
+        const preview = document.getElementById('banner-preview');
+        const form = document.getElementById('banner-form');
+        const file = input.files[0];
+        const reader = new FileReader();
 
-    function validateYouTubeLink(input) {
-        if (input.value !== \"\") {
-            const regex = /^(https?\\:\\/\\/)?(www\\.)?(youtube\\.com|youtu\\.?be)\\/.+\$/;
-            if (!regex.test(input.value)) {
-                input.setCustomValidity('Veuillez entrer un lien YouTube valide');
-            } else {
-                input.setCustomValidity('');
-            }
-        } else {
-            input.setCustomValidity('');
-        }
-    }
-
-    function validateTwitchLink(input) {
-        if (input.value !== \"\") {
-            const regex = /^(https?:\\/\\/)?(www\\.)?twitch\\.tv\\/[a-zA-Z0-9_]+\$/;
-            if (!regex.test(input.value)) {
-                input.setCustomValidity('Veuillez entrer un lien Twitch valide');
-            } else {
-                input.setCustomValidity('');
-            }
-        } else {
-            input.setCustomValidity('');
-        }
-}
-
-    function previewAvatar(input) {
-        var preview = document.getElementById('avatarPreview');
-        var file = input.files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
+        reader.onloadend = function () {
             preview.src = reader.result;
+            form.submit();
         };
 
         if (file) {
             reader.readAsDataURL(file);
         } else {
-            preview.src = \"{{ asset('images/default-avatar.png') }}\";
+            preview.src = \"https://via.placeholder.com/150\";
         }
     }
 
-    function formatPhoneNumber(input) {
-        let phone = input.value.replace(/\\D/g, '');
+    document.addEventListener('DOMContentLoaded', function() {
+        const editBioBtn = document.getElementById('edit-bio-btn');
+        const bioDisplay = document.getElementById('bio-display');
+        const bioTextarea = document.getElementById('bio-textarea');
+        const saveBioBtn = document.getElementById('save-bio-btn');
 
-        if (phone.length > 2) {
-            phone = phone.replace(/(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})\$/, '\$1 \$2 \$3 \$4 \$5');
-        } else if (phone.length > 4) {
-            phone = phone.replace(/(\\d{2})(\\d{2})(\\d{2})(\\d{2})\$/, '\$1 \$2 \$3 \$4');
-        } else if (phone.length > 6) {
-            phone = phone.replace(/(\\d{2})(\\d{2})(\\d{2})\$/, '\$1 \$2 \$3');
-        } else if (phone.length > 8) {
-            phone = phone.replace(/(\\d{2})(\\d{2})\$/, '\$1 \$2');
-        }
+        editBioBtn.addEventListener('click', function() {
+            bioDisplay.classList.add('hidden');
+            bioTextarea.classList.remove('hidden');
+            saveBioBtn.classList.remove('hidden');
+            bioTextarea.focus();
+        });
+        bioTextarea.addEventListener('input', function() {
+            if (bioTextarea.value.trim() === \"\") {
+                bioTextarea.value = \"\";
+            }
+        });
 
-        input.value = phone;
-    }
+        const editGenderBtn = document.getElementById('edit-gender-btn');
+        const genderDisplay = document.getElementById('gender-display');
+        const genderForm = document.getElementById('gender-form');
 
-    document.addEventListener(\"DOMContentLoaded\", function() {
-        const competenceField = document.querySelector('[name=\"socialMediaAndCompetenceForm[competence]\"]');
-        const bioField = document.querySelector('[name=\"socialMediaAndCompetenceForm[bio]\"]');
+        editGenderBtn.addEventListener('click', function() {
+            genderDisplay.classList.add('hidden');
+            genderForm.classList.remove('hidden');
+        });
 
-        if (competenceField) {
-            updateCharCountComp(competenceField);
-            competenceField.addEventListener('input', function() {
-                updateCharCountComp(competenceField);
-            });
-        }
+        const editBirthdateBtn = document.getElementById('edit-birthdate-btn');
+        const birthdateDisplay = document.getElementById('birthdate-display');
+        const birthdateForm = document.getElementById('birthdate-form');
 
-        if (bioField) {
-            updateCharCountBio(bioField);
-            bioField.addEventListener('input', function() {
-                updateCharCountBio(bioField);
-            });
-        }
+        editBirthdateBtn.addEventListener('click', function() {
+            birthdateDisplay.classList.add('hidden');
+            birthdateForm.classList.remove('hidden');
+        });
     });
+
 </script>
 {% endblock %}
 ", "profile/edit.html.twig", "C:\\Users\\benja\\Documents\\GitHub\\dicefinder\\templates\\profile\\edit.html.twig");

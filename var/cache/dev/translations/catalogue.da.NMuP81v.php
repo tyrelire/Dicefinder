@@ -171,6 +171,17 @@ $catalogue = new MessageCatalogue('da', array (
     'Too many failed login attempts, please try again in %minutes% minute.' => 'For mange mislykkede loginforsøg. Prøv venligst igen om %minutes% minut.',
     'Too many failed login attempts, please try again in %minutes% minutes.' => 'For mange mislykkede loginforsøg, prøv igen om %minutes% minutter.',
   ),
+  'VerifyEmailBundle' => 
+  array (
+    '%count% year|%count% years' => '%count% år|%count% år',
+    '%count% month|%count% months' => '%count% måned|%count% måneder',
+    '%count% day|%count% days' => '%count% dag|%count% dage',
+    '%count% hour|%count% hours' => '%count% time|%count% timer',
+    '%count% minute|%count% minutes' => '%count% minut|%count% minutter',
+    'The link to verify your email has expired. Please request a new link.' => 'Linket til at bekræfte din e-mail er udløbet. Venligst anmod om et nyt link.',
+    'The link to verify your email is invalid. Please request a new link.' => 'Linket til at bekræfte din e-mail er ugyldigt. Venligst anmod om et nyt link.',
+    'The link to verify your email appears to be for a different account or email. Please request a new link.' => 'Linket til at bekræfte din e-mail ser ud til at være til en anden konto eller e-mail. Venligst anmod om et nyt link.',
+  ),
 ));
 
 $catalogueFr = new MessageCatalogue('fr', array (

@@ -180,7 +180,7 @@ $catalogue = new MessageCatalogue('nl', array (
     '%count% day|%count% days' => '{count, plural, =0 {0 dagen} one {1 dag} other {# dagen}}',
     '%count% hour|%count% hours' => '{count, plural, =0 {0 uur} one {1 uur} other {# uren}}',
     '%count% minute|%count% minutes' => '{count, plural, =0 {0 minuten} one {1 minuut} other {# minuten}}',
-    'The link to verify your email has expired. Please request a new link.' => 'De link om je e-mailadres the verifiëren is verlopen. Vraag een nieuwe link aan.',
+    'The link to verify your email has expired. Please request a new link.' => 'De link om je e-mailadres te verifiëren is verlopen. Vraag een nieuwe link aan.',
     'The link to verify your email is invalid. Please request a new link.' => 'De link om je e-mailadres the verifiëren is ongeldig. Vraag een nieuwe link aan.',
     'The link to verify your email appears to be for a different account or email. Please request a new link.' => 'De link om je e-mailadres the verifiëren is voor een andere gebruiker of e-mailadres. Vraag een nieuwe link aan.',
   ),

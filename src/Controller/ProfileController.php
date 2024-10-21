@@ -7,6 +7,7 @@ use App\Form\UserType;
 use App\Entity\GroupeJDR;
 use App\Entity\PlayerMembership;
 use App\Form\PasswordChangeType;
+use App\Form\PasswordChangeSettingsType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\SocialMediaAndCompetenceType;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,31 +26,39 @@ class ProfileController extends AbstractController
     public function show(int $id, EntityManagerInterface $entityManager): Response
     {
         $user = $entityManager->getRepository(User::class)->find($id);
-    
+
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-    
+
         $ownedJDRs = $entityManager->getRepository(GroupeJDR::class)
             ->findBy(['owner' => $user]);
-    
+
         $playerMemberships = $entityManager->getRepository(PlayerMembership::class)
             ->findBy(['player' => $user]);
-    
+
         $joinedJDRs = [];
         foreach ($playerMemberships as $membership) {
+            $groupeJDR = $membership->getGroupeJDR();
             $joinedJDRs[] = [
-                'groupe' => $membership->getGroupeJDR(),
+                'id' => $groupeJDR->getId(),
+                'groupe' => $groupeJDR,
                 'joined_at' => $membership->getJoinedAt(),
+                'picture' => $groupeJDR->getPicture(),
+                'title' => $groupeJDR->getTitle(),
+                'players' => $groupeJDR->getPlayers(),
+                'maxPlayer' => $groupeJDR->getMaxPlayer(),
+                'status' => $groupeJDR->getStatus(),
+                'owner' => $groupeJDR->getOwner(),
             ];
         }
-    
+
         $favoriteJDRs = $user->getFavoriteGroupeJDR();
-    
+
         $ownedJDRCount = count($ownedJDRs);
         $joinedJDRCount = count($joinedJDRs);
         $favoriteJDRCount = count($favoriteJDRs);
-    
+
         return $this->render('profile/show.html.twig', [
             'user' => $user,
             'ownedJDRs' => $ownedJDRs,
@@ -61,127 +70,193 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/edit', name: 'app_profile_edit')]
-    public function edit(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, SluggerInterface $slugger): Response
+    #[Route('/profile/edit', name: 'app_profile_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $user = $this->getUser();
-        
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-    
-        $passwordForm = $this->createForm(PasswordChangeType::class);
-        $passwordForm->handleRequest($request);
-    
-        $avatarForm = $this->createFormBuilder(null, ['block_prefix' => 'avatarForm'])
-            ->add('avatar', FileType::class, [
-                'label' => false,
-                'mapped' => false,
-                'required' => false,
-            ])
-            ->getForm();
-        $avatarForm->handleRequest($request);
-    
-        $socialMediaAndCompetenceForm = $this->createForm(SocialMediaAndCompetenceType::class, $user);
-        $socialMediaAndCompetenceForm->handleRequest($request);
-    
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->handleFormSubmission($entityManager, $user, 'Profil mis à jour avec succès.');
-            return $this->redirectToRoute('app_profile_edit');
-        }
-    
-        if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
-            $this->handlePasswordChange($passwordForm, $passwordHasher, $entityManager, $user);
-            return $this->redirectToRoute('app_profile_edit');
-        }
-    
-        if ($avatarForm->isSubmitted() && $avatarForm->isValid()) {
-            $this->handleAvatarUpload($avatarForm, $request, $slugger, $entityManager, $user);
-            return $this->redirectToRoute('app_profile_edit');
-        }
-    
-        if ($socialMediaAndCompetenceForm->isSubmitted() && $socialMediaAndCompetenceForm->isValid()) {
-            $this->handleFormSubmission($entityManager, $user, 'Votre profil a été mis à jour avec succès.');
-            return $this->redirectToRoute('app_profile_edit');
-        }
-    
-        return $this->render('profile/edit.html.twig', [
-            'form' => $form->createView(),
-            'passwordForm' => $passwordForm->createView(),
-            'avatarForm' => $avatarForm->createView(),
-            'socialMediaAndCompetenceForm' => $socialMediaAndCompetenceForm->createView(),
-        ]);
-    }    
 
-    private function handleFormSubmission(EntityManagerInterface $entityManager, $user, string $message): void
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
+        }
+
+        if ($request->isMethod('POST')) {
+            if ($request->files->get('avatar')) {
+                $this->handleAvatarUpload($request->files->get('avatar'), $slugger, $user, $entityManager);
+            }
+
+            if ($request->files->get('banner')) {
+                $this->handleBannerUpload($request->files->get('banner'), $slugger, $user, $entityManager);
+            }
+
+            return $this->redirectToRoute('app_profile_edit');
+        }
+
+        $ownedJDRs = $entityManager->getRepository(GroupeJDR::class)
+            ->findBy(['owner' => $user]);
+
+        $playerMemberships = $entityManager->getRepository(PlayerMembership::class)
+            ->findBy(['player' => $user]);
+
+        $joinedJDRs = [];
+        foreach ($playerMemberships as $membership) {
+            $groupeJDR = $membership->getGroupeJDR();
+            $joinedJDRs[] = [
+                'id' => $groupeJDR->getId(),
+                'groupe' => $groupeJDR,
+                'joined_at' => $membership->getJoinedAt(),
+                'picture' => $groupeJDR->getPicture(),
+                'title' => $groupeJDR->getTitle(),
+                'players' => $groupeJDR->getPlayers(),
+                'maxPlayer' => $groupeJDR->getMaxPlayer(),
+                'status' => $groupeJDR->getStatus(),
+                'owner' => $groupeJDR->getOwner(),
+            ];
+        }
+
+        $favoriteJDRs = $user->getFavoriteGroupeJDR();
+
+        $ownedJDRCount = count($ownedJDRs);
+        $joinedJDRCount = count($joinedJDRs);
+        $favoriteJDRCount = count($favoriteJDRs);
+
+        return $this->render('profile/edit.html.twig', [
+            'user' => $user,
+            'ownedJDRs' => $ownedJDRs,
+            'joinedJDRs' => $joinedJDRs,
+            'favoriteJDRs' => $favoriteJDRs,
+            'ownedJDRCount' => $ownedJDRCount,
+            'joinedJDRCount' => $joinedJDRCount,
+            'favoriteJDRCount' => $favoriteJDRCount,
+        ]);
+    }
+
+    #[Route('/profile/edit/avatar', name: 'app_profile_edit_avatar', methods: ['POST'])]
+    public function editAvatar(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
+        }
+
+        /** @var UploadedFile $avatarFile */
+        $avatarFile = $request->files->get('avatar');
+        if ($avatarFile) {
+            $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$avatarFile->guessExtension();
+
+            try {
+                $avatarFile->move(
+                    $this->getParameter('kernel.project_dir').'/public/uploads/avatars',
+                    $newFilename
+                );
+                $user->setAvatar($newFilename);
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                $this->addFlash('success', 'Photo de profil mise à jour avec succès.');
+            } catch (FileException $e) {
+                $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de la photo.');
+            }
+        }
+
+        return $this->redirectToRoute('app_profile_edit');
+    }
+
+    #[Route('/profile/edit/banner', name: 'app_profile_edit_banner', methods: ['POST'])]
+    public function editBanner(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+    
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
+        }
+    
+        /** @var UploadedFile $bannerFile */
+        $bannerFile = $request->files->get('banner');
+        if ($bannerFile) {
+            $originalFilename = pathinfo($bannerFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$bannerFile->guessExtension();
+    
+            try {
+                $bannerFile->move(
+                    $this->getParameter('kernel.project_dir').'/public/uploads/banners',
+                    $newFilename
+                );
+                $user->setBanner($newFilename);
+                $entityManager->persist($user);
+                $entityManager->flush();
+    
+                $this->addFlash('success', 'Bannière mise à jour avec succès.');
+            } catch (FileException $e) {
+                $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de la bannière.');
+            }
+        }
+    
+        return $this->redirectToRoute('app_profile_edit');
+    }
+
+    #[Route('/profile/edit/bio', name: 'app_profile_edit_bio', methods: ['POST'])]
+    public function editBio(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+    
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
+        }
+    
+        $bio = $request->request->get('bio');
+        $user->setBio($bio !== null ? $bio : '');
         $entityManager->persist($user);
         $entityManager->flush();
-
-        $this->addFlash('success', $message);
+    
+        $this->addFlash('success', 'Biographie mise à jour avec succès.');
+    
+        return $this->redirectToRoute('app_profile_edit');
     }
+    
 
-    private function handlePasswordChange($passwordForm, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager, $user): void
+    #[Route('/profile/edit/gender', name: 'app_profile_edit_gender', methods: ['POST'])]
+    public function editGender(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $data = $passwordForm->getData();
-        
-        if ($passwordHasher->isPasswordValid($user, $data['current_password'])) {
-            if ($data['new_password'] === $data['confirm_password']) {
-                $user->setPassword($passwordHasher->hashPassword($user, $data['new_password']));
-                $this->handleFormSubmission($entityManager, $user, 'Mot de passe mis à jour avec succès.');
-            } else {
-                $this->addFlash('error', 'Les nouveaux mots de passe ne correspondent pas.');
-            }
-        } else {
-            $this->addFlash('error', 'Le mot de passe actuel est incorrect.');
+        $user = $this->getUser();
+
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-    }
 
-    private function handleAvatarUpload($avatarForm, Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager, $user): void
-    {
-        if ($request->request->get('delete_avatar')) {
-            $this->deleteAvatar($user, $entityManager);
-        } else {
-            /** @var UploadedFile $avatarFile */
-            $avatarFile = $avatarForm->get('avatar')->getData();
-            if ($avatarFile) {
-                $this->deleteAvatar($user, $entityManager);
-                $this->uploadAvatar($avatarFile, $slugger, $user, $entityManager);
-            }
-        }
-    }
-
-    private function deleteAvatar($user, EntityManagerInterface $entityManager): void
-    {
-        $oldAvatarFilename = $user->getAvatar();
-        if ($oldAvatarFilename) {
-            $oldAvatarPath = $this->getParameter('kernel.project_dir').'/public/uploads/avatars/'.$oldAvatarFilename;
-            if (file_exists($oldAvatarPath)) {
-                unlink($oldAvatarPath);
-            }
-            $user->setAvatar(null);
+        $gender = $request->request->get('gender');
+        if ($gender) {
+            $user->setGender($gender);
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success', 'Photo de profil supprimée avec succès.');
+
+            $this->addFlash('success', 'Genre mis à jour avec succès.');
         }
+
+        return $this->redirectToRoute('app_profile_edit');
     }
 
-    private function uploadAvatar(UploadedFile $avatarFile, SluggerInterface $slugger, $user, EntityManagerInterface $entityManager): void
+    #[Route('/profile/edit/birthdate', name: 'app_profile_edit_birthdate', methods: ['POST'])]
+    public function editBirthdate(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
-        $safeFilename = $slugger->slug($originalFilename);
-        $newFilename = $safeFilename.'-'.uniqid().'.'.$avatarFile->guessExtension();
+        $user = $this->getUser();
 
-        try {
-            $avatarFile->move(
-                $this->getParameter('kernel.project_dir').'/public/uploads/avatars',
-                $newFilename
-            );
-            $user->setAvatar($newFilename);
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
+        }
+
+        $birthdate = $request->request->get('birthdate');
+        if ($birthdate) {
+            $user->setBirthdate(new \DateTime($birthdate));
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success', 'Photo de profil mise à jour avec succès.');
-        } catch (FileException $e) {
-            $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de la photo.');
+
+            $this->addFlash('success', 'Date de naissance mise à jour avec succès.');
         }
+
+        return $this->redirectToRoute('app_profile_edit');
     }
 }
