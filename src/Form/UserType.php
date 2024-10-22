@@ -34,6 +34,7 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => 'block w-full rounded-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
                     'placeholder' => 'you@example.com',
+                    'disabled' => true,
                 ],
             ])
             ->add('firstName', TextType::class, [
@@ -50,14 +51,6 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => 'block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
                     'placeholder' => 'Entrez votre nom',
-                ],
-            ])
-            ->add('birthDate', DateType::class, [
-                'label' => 'Date de naissance',
-                'widget' => 'single_text',
-                'required' => true,
-                'attr' => [
-                    'class' => 'block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
                 ],
             ])
             // ->add('gender', ChoiceType::class, [

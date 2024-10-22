@@ -6,7 +6,7 @@
 <div class="relative flex flex-col lg:flex-row w-full min-w-0 mt-6 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable space-y-4 lg:space-y-0 lg:space-x-6">
     <div class="lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
         <div class="w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center">
-            <img src="https://via.placeholder.com/150" alt="Image principale" class="w-full h-full object-cover rounded-lg">
+            <img id="banner-preview" src="{{ user.banner ? asset('uploads/banners/' ~ user.banner) : 'https://via.placeholder.com/150' }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
         </div>
         <div class="absolute top-44 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-gray-900 transition-transform duration-300 hover:scale-110 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/50">
             {% if user.avatar %}
@@ -99,11 +99,11 @@
                         style="will-change: transform;">
                         <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe.id}) }}" class="block">
                             <div class="relative">
-                                <img src="{{ asset('uploads/images-jdr/' ~ groupe.picture) }}" 
-                                    alt="{{ groupe.title }} image" 
+                                <img src="{{ asset('uploads/images-jdr/' ~ groupe.picture) }}"
+                                    alt="{{ groupe.title }} image"
                                     class="rounded-lg mb-4 w-full h-[20rem] object-cover {% if groupe.players|length >= groupe.maxPlayer %} blur-sm {% endif %} tokenImage">
                                 <div class="absolute top-2 right-2">
-                                    <span class="text-sm font-bold px-2 py-1 rounded 
+                                    <span class="text-sm font-bold px-2 py-1 rounded
                                         {% if groupe.status == 'nouveau' %} bg-green-600
                                         {% elseif groupe.status == 'en_cours' %} bg-blue-500
                                         {% elseif groupe.status == 'termine' %} bg-red-500

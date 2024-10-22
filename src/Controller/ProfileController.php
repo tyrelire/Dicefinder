@@ -142,6 +142,15 @@ class ProfileController extends AbstractController
         /** @var UploadedFile $avatarFile */
         $avatarFile = $request->files->get('avatar');
         if ($avatarFile) {
+            // Supprimer l'ancienne image d'avatar si elle existe
+            $oldAvatar = $user->getAvatar();
+            if ($oldAvatar) {
+                $oldAvatarPath = $this->getParameter('kernel.project_dir').'/public/uploads/avatars/'.$oldAvatar;
+                if (file_exists($oldAvatarPath)) {
+                    unlink($oldAvatarPath);
+                }
+            }
+
             $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
             $safeFilename = $slugger->slug($originalFilename);
             $newFilename = $safeFilename.'-'.uniqid().'.'.$avatarFile->guessExtension();
@@ -168,18 +177,26 @@ class ProfileController extends AbstractController
     public function editBanner(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
-    
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-    
+
         /** @var UploadedFile $bannerFile */
         $bannerFile = $request->files->get('banner');
         if ($bannerFile) {
+            // Supprimer l'ancienne bannière si elle existe
+            $oldBanner = $user->getBanner();
+            if ($oldBanner) {
+                $oldBannerPath = $this->getParameter('kernel.project_dir').'/public/uploads/banners/'.$oldBanner;
+                if (file_exists($oldBannerPath)) {
+                    unlink($oldBannerPath);
+                }
+            }
+
             $originalFilename = pathinfo($bannerFile->getClientOriginalName(), PATHINFO_FILENAME);
             $safeFilename = $slugger->slug($originalFilename);
             $newFilename = $safeFilename.'-'.uniqid().'.'.$bannerFile->guessExtension();
-    
+
             try {
                 $bannerFile->move(
                     $this->getParameter('kernel.project_dir').'/public/uploads/banners',
@@ -188,35 +205,35 @@ class ProfileController extends AbstractController
                 $user->setBanner($newFilename);
                 $entityManager->persist($user);
                 $entityManager->flush();
-    
+
                 $this->addFlash('success', 'Bannière mise à jour avec succès.');
             } catch (FileException $e) {
                 $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de la bannière.');
             }
         }
-    
+
         return $this->redirectToRoute('app_profile_edit');
     }
+
 
     #[Route('/profile/edit/bio', name: 'app_profile_edit_bio', methods: ['POST'])]
     public function editBio(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
-    
+
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-    
+
         $bio = $request->request->get('bio');
         $user->setBio($bio !== null ? $bio : '');
         $entityManager->persist($user);
         $entityManager->flush();
-    
+
         $this->addFlash('success', 'Biographie mise à jour avec succès.');
-    
+
         return $this->redirectToRoute('app_profile_edit');
     }
-    
 
     #[Route('/profile/edit/gender', name: 'app_profile_edit_gender', methods: ['POST'])]
     public function editGender(Request $request, EntityManagerInterface $entityManager): Response

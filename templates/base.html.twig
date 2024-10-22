@@ -222,7 +222,7 @@
                                 <div id="dropdown-menu" class="hidden absolute right-0 w-96 mt-2 origin-top-right glassmorphism shadow-lg focus:outline-none z-50">
                                     <div class="py-4 px-4">
                                         <h4 class="text-lg font-semibold text-white mb-2">Notifications</h4>
-                                        <div id="notifications-list">
+                                        <div id="notifications-list" class="mb-4">
                                             {% if notifications|length > 0 %}
                                                 {% for notification in notifications|reverse|slice(0, 2) %}
                                                     <div class="notification-item flex items-center px-4 py-4 hover:bg-gray-800 rounded-md cursor-pointer mb-2" onclick="window.location.href='{{ path('app_notifications_index') }}'">
