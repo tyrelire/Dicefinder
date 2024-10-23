@@ -5,17 +5,22 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Entity\GroupeJDR;
+use App\Entity\Friendship;
 use App\Entity\PlayerMembership;
 use App\Form\PasswordChangeType;
+use App\Repository\UserRepository;
 use App\Form\PasswordChangeSettingsType;
+use App\Repository\FriendshipRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\SocialMediaAndCompetenceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -23,19 +28,17 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class ProfileController extends AbstractController
 {
     #[Route('/profile/{id<\d+>}', name: 'app_profile_show', methods: ['GET'])]
-    public function show(int $id, EntityManagerInterface $entityManager): Response
+    public function show(int $id, EntityManagerInterface $entityManager, UserRepository $userRepository, FriendshipRepository $friendshipRepository): Response
     {
+        $currentUser = $this->getUser();
         $user = $entityManager->getRepository(User::class)->find($id);
 
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
 
-        $ownedJDRs = $entityManager->getRepository(GroupeJDR::class)
-            ->findBy(['owner' => $user]);
-
-        $playerMemberships = $entityManager->getRepository(PlayerMembership::class)
-            ->findBy(['player' => $user]);
+        $ownedJDRs = $entityManager->getRepository(GroupeJDR::class)->findBy(['owner' => $user]);
+        $playerMemberships = $entityManager->getRepository(PlayerMembership::class)->findBy(['player' => $user]);
 
         $joinedJDRs = [];
         foreach ($playerMemberships as $membership) {
@@ -54,11 +57,22 @@ class ProfileController extends AbstractController
         }
 
         $favoriteJDRs = $user->getFavoriteGroupeJDR();
-
         $ownedJDRCount = count($ownedJDRs);
         $joinedJDRCount = count($joinedJDRs);
         $favoriteJDRCount = count($favoriteJDRs);
 
+        $friends = $userRepository->findFriendsOfUser($user);
+
+        $relationshipStatus = null;
+        if ($currentUser && $currentUser->getId() !== $user->getId()) {
+            $relationship = $friendshipRepository->findFriendship($currentUser, $user);
+            if ($relationship) {
+                $relationshipStatus = $relationship->getStatus();
+            } else {
+                $relationshipStatus = 'no_relationship';
+            }
+        }
+    
         return $this->render('profile/show.html.twig', [
             'user' => $user,
             'ownedJDRs' => $ownedJDRs,
@@ -67,6 +81,8 @@ class ProfileController extends AbstractController
             'ownedJDRCount' => $ownedJDRCount,
             'joinedJDRCount' => $joinedJDRCount,
             'favoriteJDRCount' => $favoriteJDRCount,
+            'relationshipStatus' => $relationshipStatus,
+            'friends' => $friends,
         ]);
     }
 
@@ -142,7 +158,6 @@ class ProfileController extends AbstractController
         /** @var UploadedFile $avatarFile */
         $avatarFile = $request->files->get('avatar');
         if ($avatarFile) {
-            // Supprimer l'ancienne image d'avatar si elle existe
             $oldAvatar = $user->getAvatar();
             if ($oldAvatar) {
                 $oldAvatarPath = $this->getParameter('kernel.project_dir').'/public/uploads/avatars/'.$oldAvatar;
@@ -184,7 +199,6 @@ class ProfileController extends AbstractController
         /** @var UploadedFile $bannerFile */
         $bannerFile = $request->files->get('banner');
         if ($bannerFile) {
-            // Supprimer l'ancienne bannière si elle existe
             $oldBanner = $user->getBanner();
             if ($oldBanner) {
                 $oldBannerPath = $this->getParameter('kernel.project_dir').'/public/uploads/banners/'.$oldBanner;

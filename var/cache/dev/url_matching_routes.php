@@ -14,7 +14,6 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/cgu' => [[['_route' => 'app_footer_cgu', '_controller' => 'App\\Controller\\FooterController::footerCgu'], null, null, null, false, false, null]],
         '/about' => [[['_route' => 'app_footer_about', '_controller' => 'App\\Controller\\FooterController::footerAbout'], null, null, null, false, false, null]],
         '/cgv' => [[['_route' => 'app_footer_cgv', '_controller' => 'App\\Controller\\FooterController::footerCgv'], null, null, null, false, false, null]],
@@ -50,6 +49,7 @@ return [
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
         '/settings/account' => [[['_route' => 'app_settings_account', '_controller' => 'App\\Controller\\SettingsAccountController::index'], null, null, null, false, false, null]],
+        '/support' => [[['_route' => 'app_support', '_controller' => 'App\\Controller\\SupportController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -75,34 +75,43 @@ return [
                     .'|add/([^/]++)(*:227)'
                     .'|remove/([^/]++)(*:250)'
                 .')'
+                .'|/a(?'
+                    .'|dd\\-friend/([^/]++)(*:283)'
+                    .'|ccept\\-request/([^/]++)(*:314)'
+                    .'|pi/(?'
+                        .'|check_user/([^/]++)/([^/]++)(*:356)'
+                        .'|re(?'
+                            .'|move_(?'
+                                .'|user/([^/]++)/([^/]++)(*:399)'
+                                .'|invitation/([^/]++)(*:426)'
+                            .')'
+                            .'|quest_join/([^/]++)(*:454)'
+                            .'|spond_invitation(?'
+                                .'|_base/([^/]++)(*:495)'
+                                .'|/([^/]++)(*:512)'
+                            .')'
+                        .')'
+                    .')'
+                .')'
+                .'|/re(?'
+                    .'|move\\-friend/([^/]++)(*:551)'
+                    .'|set\\-password/reset(?:/([^/]++))?(*:592)'
+                .')'
+                .'|/block\\-user/([^/]++)(*:622)'
+                .'|/decline\\-request/([^/]++)(*:656)'
                 .'|/g(?'
                     .'|roupe/jdr/([^/]++)(?'
-                        .'|(*:285)'
+                        .'|(*:690)'
                         .'|/(?'
-                            .'|edit(*:301)'
-                            .'|leave(*:314)'
+                            .'|edit(*:706)'
+                            .'|leave(*:719)'
                         .')'
-                        .'|(*:323)'
+                        .'|(*:728)'
                     .')'
-                    .'|ift\\-payment\\-success/([^/]++)(*:362)'
+                    .'|ift\\-payment\\-success/([^/]++)(*:767)'
                 .')'
-                .'|/notifications/([^/]++)/respond(*:402)'
-                .'|/api/(?'
-                    .'|check_user/([^/]++)/([^/]++)(*:446)'
-                    .'|re(?'
-                        .'|move_(?'
-                            .'|user/([^/]++)/([^/]++)(*:489)'
-                            .'|invitation/([^/]++)(*:516)'
-                        .')'
-                        .'|quest_join/([^/]++)(*:544)'
-                        .'|spond_invitation(?'
-                            .'|_base/([^/]++)(*:585)'
-                            .'|/([^/]++)(*:602)'
-                        .')'
-                    .')'
-                .')'
-                .'|/profile/(\\d+)(*:627)'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:671)'
+                .'|/notifications/([^/]++)/respond(*:807)'
+                .'|/profile/(\\d+)(*:829)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -116,21 +125,26 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         227 => [[['_route' => 'add_favorite', '_controller' => 'App\\Controller\\FavorisController::addFavorite'], ['id'], ['GET' => 0], null, false, true, null]],
         250 => [[['_route' => 'remove_favorite', '_controller' => 'App\\Controller\\FavorisController::removeFavorite'], ['id'], ['GET' => 0], null, false, true, null]],
-        285 => [[['_route' => 'app_groupe_j_d_r_show', '_controller' => 'App\\Controller\\GroupeJDRController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        301 => [[['_route' => 'app_groupe_j_d_r_edit', '_controller' => 'App\\Controller\\GroupeJDRController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        314 => [[['_route' => 'leave_jdr', '_controller' => 'App\\Controller\\GroupeJDRController::leave'], ['id'], ['POST' => 0], null, false, false, null]],
-        323 => [[['_route' => 'app_groupe_j_d_r_delete', '_controller' => 'App\\Controller\\GroupeJDRController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        362 => [[['_route' => 'app_gift_payment_success', '_controller' => 'App\\Controller\\PaymentController::giftPaymentSuccess'], ['id'], null, null, false, true, null]],
-        402 => [[['_route' => 'app_notifications_respond', '_controller' => 'App\\Controller\\NotificationController::respondNotification'], ['id'], ['POST' => 0], null, false, false, null]],
-        446 => [[['_route' => 'check_user', '_controller' => 'App\\Controller\\PlayerInvitationController::checkUser'], ['pseudo', 'jdrId'], ['GET' => 0], null, false, true, null]],
-        489 => [[['_route' => 'remove_user_from_jdr', '_controller' => 'App\\Controller\\PlayerInvitationController::removeUserFromJdr'], ['userId', 'jdrId'], ['DELETE' => 0], null, false, true, null]],
-        516 => [[['_route' => 'remove_invitation', '_controller' => 'App\\Controller\\PlayerInvitationController::removeInvitation'], ['invitationId'], ['DELETE' => 0], null, false, true, null]],
-        544 => [[['_route' => 'request_join', '_controller' => 'App\\Controller\\PlayerInvitationController::requestJoin'], ['groupeId'], ['POST' => 0], null, false, true, null]],
-        585 => [[['_route' => 'respond_invitation_base', '_controller' => 'App\\Controller\\PlayerInvitationController::respondInvitationBase'], ['invitationId'], ['POST' => 0], null, false, true, null]],
-        602 => [[['_route' => 'respond_invitation', '_controller' => 'App\\Controller\\PlayerInvitationController::respondInvitation'], ['invitationId'], ['POST' => 0], null, false, true, null]],
-        627 => [[['_route' => 'app_profile_show', '_controller' => 'App\\Controller\\ProfileController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        671 => [
-            [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
+        283 => [[['_route' => 'add_friend', '_controller' => 'App\\Controller\\FriendShipController::addFriend'], ['id'], null, null, false, true, null]],
+        314 => [[['_route' => 'accept_request', '_controller' => 'App\\Controller\\FriendShipController::acceptRequest'], ['id'], null, null, false, true, null]],
+        356 => [[['_route' => 'check_user', '_controller' => 'App\\Controller\\PlayerInvitationController::checkUser'], ['pseudo', 'jdrId'], ['GET' => 0], null, false, true, null]],
+        399 => [[['_route' => 'remove_user_from_jdr', '_controller' => 'App\\Controller\\PlayerInvitationController::removeUserFromJdr'], ['userId', 'jdrId'], ['DELETE' => 0], null, false, true, null]],
+        426 => [[['_route' => 'remove_invitation', '_controller' => 'App\\Controller\\PlayerInvitationController::removeInvitation'], ['invitationId'], ['DELETE' => 0], null, false, true, null]],
+        454 => [[['_route' => 'request_join', '_controller' => 'App\\Controller\\PlayerInvitationController::requestJoin'], ['groupeId'], ['POST' => 0], null, false, true, null]],
+        495 => [[['_route' => 'respond_invitation_base', '_controller' => 'App\\Controller\\PlayerInvitationController::respondInvitationBase'], ['invitationId'], ['POST' => 0], null, false, true, null]],
+        512 => [[['_route' => 'respond_invitation', '_controller' => 'App\\Controller\\PlayerInvitationController::respondInvitation'], ['invitationId'], ['POST' => 0], null, false, true, null]],
+        551 => [[['_route' => 'remove_friend', '_controller' => 'App\\Controller\\FriendShipController::removeFriend'], ['id'], null, null, false, true, null]],
+        592 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        622 => [[['_route' => 'block_user', '_controller' => 'App\\Controller\\FriendShipController::blockUser'], ['id'], null, null, false, true, null]],
+        656 => [[['_route' => 'decline_request', '_controller' => 'App\\Controller\\FriendShipController::declineRequest'], ['id'], null, null, false, true, null]],
+        690 => [[['_route' => 'app_groupe_j_d_r_show', '_controller' => 'App\\Controller\\GroupeJDRController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        706 => [[['_route' => 'app_groupe_j_d_r_edit', '_controller' => 'App\\Controller\\GroupeJDRController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        719 => [[['_route' => 'leave_jdr', '_controller' => 'App\\Controller\\GroupeJDRController::leave'], ['id'], ['POST' => 0], null, false, false, null]],
+        728 => [[['_route' => 'app_groupe_j_d_r_delete', '_controller' => 'App\\Controller\\GroupeJDRController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        767 => [[['_route' => 'app_gift_payment_success', '_controller' => 'App\\Controller\\PaymentController::giftPaymentSuccess'], ['id'], null, null, false, true, null]],
+        807 => [[['_route' => 'app_notifications_respond', '_controller' => 'App\\Controller\\NotificationController::respondNotification'], ['id'], ['POST' => 0], null, false, false, null]],
+        829 => [
+            [['_route' => 'app_profile_show', '_controller' => 'App\\Controller\\ProfileController::show'], ['id'], ['GET' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

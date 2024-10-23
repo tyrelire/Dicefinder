@@ -29,3 +29,8 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\Twig\TwigViteExtension:
+        arguments:
+            $assetPath: '%kernel.project_dir%/public/assets'
+            $env: '%kernel.environment%'

@@ -27,64 +27,6 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 #[Route('/groupe/jdr')]
 final class GroupeJDRController extends AbstractController
 {
-    // #[Route('/', name: 'app_groupe_j_d_r_index', methods: ['GET'])]
-    // public function index(Request $request, GroupeJDRRepository $groupeJDRRepository, CategoryRepository $categoryRepository): Response
-    // {
-    //     $searchTerm = $request->query->get('search', '');
-    //     $selectedCategories = $request->query->all('category');
-        
-    //     $sort = $request->query->get('sort');
-    //     if (empty($sort) || $sort === 'undefined') {
-    //         $sort = 'newest';
-    //     }
-        
-    //     $recruitment = $request->query->getBoolean('recruitment', false);
-
-    //     if (!in_array($sort, ['newest', 'oldest'])) {
-    //         $sort = 'newest';
-    //     }
-
-    //     $categories = $categoryRepository->findAll();
-
-    //     $queryBuilder = $groupeJDRRepository->createQueryBuilder('g')
-    //         ->leftJoin('g.owner', 'o');
-
-    //     if ($searchTerm) {
-    //         $queryBuilder
-    //             ->andWhere('g.title LIKE :searchTerm OR o.username LIKE :searchTerm')
-    //             ->setParameter('searchTerm', '%' . $searchTerm . '%');
-    //     }
-
-    //     if (!empty($selectedCategories)) {
-    //         foreach ($selectedCategories as $key => $categoryId) {
-    //             $queryBuilder
-    //                 ->andWhere(':categoryId' . $key . ' MEMBER OF g.categories')
-    //                 ->setParameter('categoryId' . $key, $categoryId);
-    //         }
-    //     }
-
-    //     if ($sort === 'newest') {
-    //         $queryBuilder->orderBy('g.created_at', 'DESC');
-    //     } else {
-    //         $queryBuilder->orderBy('g.created_at', 'ASC');
-    //     }
-
-    //     if ($recruitment) {
-    //         $queryBuilder->andWhere('g.recrutement = true');
-    //     }
-
-    //     $groupeJDRs = $queryBuilder->getQuery()->getResult();
-
-    //     return $this->render('groupe_jdr/index.html.twig', [
-    //         'groupe_j_d_rs' => $groupeJDRs,
-    //         'searchTerm' => $searchTerm,
-    //         'selectedCategories' => $selectedCategories,
-    //         'sort' => $sort,
-    //         'recruitment' => $recruitment,
-    //         'categories' => $categories,
-    //     ]);
-    // }
-
     #[Route('/', name: 'app_groupe_j_d_r_index', methods: ['GET'])]
     public function index(Request $request, GroupeJDRRepository $groupeJDRRepository, CategoryRepository $categoryRepository): Response
     {
@@ -138,7 +80,6 @@ final class GroupeJDRController extends AbstractController
             'categories' => $categories,
         ]);
     }
-
 
     #[Route('/new', name: 'app_groupe_j_d_r_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
@@ -254,10 +195,10 @@ final class GroupeJDRController extends AbstractController
                 $this->addFlash('error', 'Vous n\'êtes pas autorisé à modifier cette Univers.');
                 return $this->redirectToRoute('app_groupe_j_d_r_index');
             }
-        
+
             $form = $this->createForm(GroupeJDRType::class, $groupeJDR, ['is_edit' => true]);
             $form->handleRequest($request);
-        
+
             $addedPlayers = $request->request->get('added_players');
             if ($addedPlayers) {
                 $playerIds = json_decode($addedPlayers, true);
@@ -281,28 +222,28 @@ final class GroupeJDRController extends AbstractController
                     }
                 }
             }
-        
+
             if ($form->isSubmitted() && $form->isValid()) {
                 $file = $form->get('picture')->getData();
                 if ($file) {
                     $newFilename = $this->uploadImage($file, $slugger);
                     $groupeJDR->setPicture($newFilename);
                 }
-        
+
                 $groupeJDR->setEditAt(new \DateTime());
-        
+
                 foreach ($groupeJDR->getEvents() as $event) {
                     if (!$event->getGroupeJDR()) {
                         $event->setGroupeJDR($groupeJDR);
                     }
                 }
-        
+
                 $entityManager->flush();
                 $this->addFlash('success', 'L\'Univers a été mis à jour avec succès.');
-        
+
                 return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
         }
-    
+
         return $this->render('groupe_jdr/edit.html.twig', [
             'groupe_j_d_r' => $groupeJDR,
             'form' => $form,
@@ -315,7 +256,7 @@ final class GroupeJDRController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $groupeJDR->getId(), $request->request->get('_token'))) {
             $owner = $groupeJDR->getOwner();
-            
+
             $players = $groupeJDR->getPlayers();
             $notificationService->createNotification(
                 $owner,
@@ -323,7 +264,7 @@ final class GroupeJDRController extends AbstractController
                 'Votre univers "' . $groupeJDR->getTitle() . '" a été supprimé.',
                 $groupeJDR
             );
-            
+
             foreach ($players as $player) {
                 $notificationService->createNotification(
                     $player,
@@ -345,12 +286,12 @@ final class GroupeJDRController extends AbstractController
     public function leave(GroupeJDR $groupeJDR, EntityManagerInterface $entityManager, NotificationService $notificationService): Response
     {
         $user = $this->getUser();
-    
+
         if (!$user) {
             $this->addFlash('error', 'Vous devez être connecté pour quitter un univers.');
             return $this->redirectToRoute('app_groupe_j_d_r_index');
         }
-    
+
         if ($groupeJDR->getPlayers()->contains($user)) {
             $groupeJDR->removePlayer($user);
 
@@ -410,13 +351,4 @@ final class GroupeJDRController extends AbstractController
 
         return $newFilename;
     }
-
-    private function deleteImage(string $filename): void
-    {
-        $filePath = $this->getParameter('uploads_directory') . '/' . $filename;
-        if (file_exists($filePath)) {
-            unlink($filePath);
-        }
-    }
-    
 }

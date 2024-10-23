@@ -4,11 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\GroupeJDR;
-use App\Repository\GroupeJDRRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,6 +37,7 @@ class FavorisController extends AbstractController
     }
 
     #[Route('/favorite/remove/{id}', name: 'remove_favorite', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function removeFavorite(GroupeJDR $groupeJDR, EntityManagerInterface $entityManager): RedirectResponse
     {
         $user = $this->getUser();
