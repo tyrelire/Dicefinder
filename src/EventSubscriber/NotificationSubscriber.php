@@ -4,6 +4,7 @@ namespace App\EventSubscriber;
 
 use App\Repository\InvitationRepository;
 use App\Repository\NotificationRepository;
+use App\Repository\FriendshipRepository;
 use Twig\Environment;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -16,17 +17,20 @@ class NotificationSubscriber implements EventSubscriberInterface
     private Environment $twig;
     private NotificationRepository $notificationRepository;
     private InvitationRepository $invitationRepository;
+    private FriendshipRepository $friendshipRepository;
 
     public function __construct(
         Security $security,
         Environment $twig,
         NotificationRepository $notificationRepository,
-        InvitationRepository $invitationRepository
+        InvitationRepository $invitationRepository,
+        FriendshipRepository $friendshipRepository
     ) {
         $this->security = $security;
         $this->twig = $twig;
         $this->notificationRepository = $notificationRepository;
         $this->invitationRepository = $invitationRepository;
+        $this->friendshipRepository = $friendshipRepository;
     }
 
     public static function getSubscribedEvents(): array
@@ -51,8 +55,14 @@ class NotificationSubscriber implements EventSubscriberInterface
                 'status' => 'pending',
             ]);
 
+            $friendRequests = $this->friendshipRepository->findBy([
+                'receiver' => $user,
+                'status' => 'pending',
+            ]);
+
             $this->twig->addGlobal('notifications', $notifications);
             $this->twig->addGlobal('invitations', $invitations);
+            $this->twig->addGlobal('friendRequests', $friendRequests);
         }
     }
 }

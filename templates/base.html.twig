@@ -202,7 +202,7 @@
                         <a href="{{ path('app_vip') }}" class="nav-link text-sm font-semibold leading-6 text-white hover:text-gray-300 {% if app.request.get('_route') == 'app_vip' %}active{% endif %}">
                             VIP
                         </a>
-                        <a href="{{ path('app_contact') }}" class="nav-link text-sm font-semibold leading-6 text-white hover:text-gray-300 {% if app.request.get('_route') == 'app_contact' %}active{% endif %}">
+                        <a href="{{ path('app_support') }}" class="nav-link text-sm font-semibold leading-6 text-white hover:text-gray-300 {% if app.request.get('_route') == 'app_support' %}active{% endif %}">
                             Nous Contacter
                         </a>
                     </div>
@@ -214,8 +214,8 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
                                     </svg>
-                                    <div id="invitation-notification" class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 {{ (notifications|length + invitations|length) == 0 ? 'hidden' : '' }}">
-                                        {{ notifications|length + invitations|length }}
+                                    <div id="invitation-notification" class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 {{ (notifications|length + invitations|length + friendRequests|length) == 0 ? 'hidden' : '' }}">
+                                        {{ notifications|length + invitations|length + friendRequests|length }}
                                     </div>
                                 </button>
 
@@ -241,6 +241,7 @@
                                                 <p class="px-4 py-2 text-sm text-gray-400">Pas de nouvelles notifications</p>
                                             {% endif %}
                                         </div>
+
                                         <h4 class="text-lg font-semibold text-white mb-2">Invitations</h4>
                                         <div id="invitations-list">
                                             {% if invitations|length > 0 %}
@@ -261,7 +262,24 @@
                                                 <p class="px-4 py-2 text-sm text-gray-400">Pas d'invitations en attente</p>
                                             {% endif %}
                                         </div>
+                                        <h4 class="text-lg font-semibold text-white mt-2">Demandes d'amis</h4>
+                                        <div id="friend-requests-list">
+                                            {% if friendRequests|length > 0 %}
+                                                {% for request in friendRequests %}
+                                                    <div class="notification-item friend-request-item flex items-center px-4 py-4 hover:bg-gray-800 rounded-md cursor-pointer mb-2" data-request-id="{{ request.id }}">
+                                                        <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ request.requester.avatar ? asset('uploads/avatars/' ~ request.requester.avatar) : asset('images/default-avatar.png') }}" alt="Friend Request Avatar">
+                                                        <div>
+                                                            <p class="text-sm font-medium text-white">Demande d'ami de {{ request.requester.username }}</p>
+                                                            <p class="text-xs text-gray-400">Envoyé le {{ request.createdAt|date('d/m/Y H:i') }}</p>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            {% else %}
+                                                <p class="px-4 py-2 text-sm text-gray-400">Pas de nouvelles demandes d'amis</p>
+                                            {% endif %}
+                                        </div>
                                     </div>
+
                                     <a href="{{ path('app_notifications_index') }}" class="block px-4 py-2 text-base text-white hover:bg-gray-700 text-center">Voir toutes les notifications</a>
                                 </div>
                             {% endif %}
@@ -307,8 +325,8 @@
                         class="block border-l-4 {{ app.request.get('_route') == 'app_vip' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-500' }} py-2 pl-3 pr-4 text-base font-medium">
                         VIP
                     </a>
-                    <a href="{{ path('app_contact') }}"
-                        class="block border-l-4 {{ app.request.get('_route') == 'app_contact' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-500' }} py-2 pl-3 pr-4 text-base font-medium">
+                    <a href="{{ path('app_support') }}"
+                        class="block border-l-4 {{ app.request.get('_route') == 'app_support' ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-white hover:bg-gray-500' }} py-2 pl-3 pr-4 text-base font-medium">
                         Nous Contacter
                     </a>
                     {% if app.user %}
@@ -462,7 +480,7 @@
                         <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Contact</h3>
                         <ul role="list" class="mt-4 space-y-4">
                         <li>
-                            <a href="{{ path('app_contact') }}" class="text-base text-gray-500 hover:text-gray-700"> Nous contacter </a>
+                            <a href="{{ path('app_support') }}" class="text-base text-gray-500 hover:text-gray-700"> Nous contacter </a>
                         </li>
                         </ul>
                     </div>
@@ -475,187 +493,196 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <script>
-        setTimeout(function() {
-            document.querySelectorAll('.alert-message').forEach(function(element) {
-                element.style.transition = 'opacity 0.5s';
-                element.style.opacity = 0;
-                setTimeout(function() {
-                    element.remove();
-                }, 500);
-            });
-        }, 5000);
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialisation des éléments du DOM
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const userMenuToggle = document.getElementById('user-menu-toggle');
+    const userMenu = document.getElementById('user-menu');
+    const notificationDropdown = document.getElementById('notificationDropdown');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const invitationModal = document.getElementById('invitationModal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const laterBtn = document.getElementById('later-btn');
+    const acceptBtn = document.getElementById('accept-btn');
+    const refuseBtn = document.getElementById('refuse-btn');
+    const invitationNotification = document.getElementById('invitation-notification');
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const userMenuToggle = document.getElementById('user-menu-toggle');
-            const userMenu = document.getElementById('user-menu');
-            const notificationDropdown = document.getElementById('notificationDropdown');
-            const dropdownMenu = document.getElementById('dropdown-menu');
-            const invitationModal = document.getElementById('invitationModal');
-            const closeModalBtn = document.getElementById('close-modal-btn');
-            const laterBtn = document.getElementById('later-btn');
-            const acceptBtn = document.getElementById('accept-btn');
-            const refuseBtn = document.getElementById('refuse-btn');
-            const invitationNotification = document.getElementById('invitation-notification');
+    let isDropdownOpen = false;
+    let isUserMenuOpen = false;
 
-            let isDropdownOpen = false;
-            let isUserMenuOpen = false;
+    // Masquer les alertes après 5 secondes
+    setTimeout(function() {
+        document.querySelectorAll('.alert-message').forEach(function(element) {
+            element.style.transition = 'opacity 0.5s';
+            element.style.opacity = 0;
+            setTimeout(function() {
+                element.remove();
+            }, 500);
+        });
+    }, 5000);
 
-            if (invitationNotification) {
-                const notificationCount = parseInt(invitationNotification.textContent.trim(), 10);
-                if (notificationCount === 0) {
-                    invitationNotification.classList.add('hidden');
-                } else {
-                    invitationNotification.classList.remove('hidden');
-                }
-            }
+    // Afficher/masquer les notifications si le nombre est à zéro
+    if (invitationNotification) {
+        const notificationCount = parseInt(invitationNotification.textContent.trim(), 10);
+        if (notificationCount === 0) {
+            invitationNotification.classList.add('hidden');
+        } else {
+            invitationNotification.classList.remove('hidden');
+        }
+    }
 
+    function closeUserMenu() {
+        if (userMenu && !userMenu.classList.contains('hidden')) {
+            userMenu.classList.add('hidden');
+            isUserMenuOpen = false;
+        }
+    }
 
-            function closeUserMenu() {
-                if (userMenu && !userMenu.classList.contains('hidden')) {
-                    userMenu.classList.add('hidden');
-                    isUserMenuOpen = false;
-                }
-            }
+    function closeNotificationMenu() {
+        if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
+            dropdownMenu.classList.add('hidden');
+            isDropdownOpen = false;
+        }
+    }
 
-            function closeNotificationMenu() {
-                if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
-                    dropdownMenu.classList.add('hidden');
-                    isDropdownOpen = false;
-                }
-            }
-
-            if (userMenuToggle) {
-                userMenuToggle.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    closeNotificationMenu();
-                    if (userMenu) {
-                        isUserMenuOpen = !isUserMenuOpen;
-                        userMenu.classList.toggle('hidden', !isUserMenuOpen);
-                    }
-                });
-            }
-
-            if (notificationDropdown) {
-                notificationDropdown.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    closeUserMenu();
-                    if (dropdownMenu) {
-                        isDropdownOpen = !isDropdownOpen;
-                        dropdownMenu.classList.toggle('hidden', !isDropdownOpen);
-                        dropdownMenu.style.opacity = isDropdownOpen ? '1' : '0';
-                        dropdownMenu.style.transform = isDropdownOpen ? 'scale(1)' : 'scale(0.95)';
-                    }
-                });
-            }
-
-            document.addEventListener('click', function (event) {
-                const isClickInsideNotification = notificationDropdown && notificationDropdown.contains(event.target);
-                const isClickInsideDropdown = dropdownMenu && dropdownMenu.contains(event.target);
-                const isClickInsideUserMenu = userMenuToggle && userMenuToggle.contains(event.target);
-                const isClickInsideUserMenuDropdown = userMenu && userMenu.contains(event.target);
-
-                if (!isClickInsideNotification && !isClickInsideDropdown && isDropdownOpen) {
-                    closeNotificationMenu();
-                }
-
-                if (!isClickInsideUserMenu && !isClickInsideUserMenuDropdown && isUserMenuOpen) {
-                    closeUserMenu();
-                }
-            });
-
-            if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', function () {
-                    const menu = document.getElementById('mobile-menu');
-                    const expanded = this.getAttribute('aria-expanded') === 'true' || false;
-                    this.setAttribute('aria-expanded', !expanded);
-                    menu.classList.toggle('hidden');
-                });
-            }
-
-            const invitationItems = document.querySelectorAll('.invitation-item');
-            if (invitationItems && invitationModal && closeModalBtn && laterBtn) {
-                invitationItems.forEach(item => {
-                    item.addEventListener('click', function () {
-                        const title = this.getAttribute('data-title');
-                        const inviter = this.getAttribute('data-inviter');
-                        const message = this.getAttribute('data-message');
-                        const avatarSrc = this.querySelector('img').src;
-                        const invitationId = this.getAttribute('data-invitation-id');
-
-                        closeNotificationMenu();
-                        closeUserMenu();
-
-                        const modalTitle = document.getElementById('modal-group-title');
-                        const modalAction = document.getElementById('modal-action');
-                        const modalMessage = document.getElementById('modal-invitation-message');
-                        const modalAvatar = document.getElementById('jdr-avatar-modal');
-
-                        modalTitle.textContent = title;
-                        modalAction.textContent = "Invitation de " + inviter;
-                        modalMessage.textContent = message;
-                        modalAvatar.src = avatarSrc;
-
-                        acceptBtn.setAttribute('data-invitation-id', invitationId);
-                        refuseBtn.setAttribute('data-invitation-id', invitationId);
-
-                        invitationModal.classList.remove('hidden');
-                    });
-                });
-
-                closeModalBtn.addEventListener('click', function () {
-                    invitationModal.classList.add('hidden');
-                });
-
-                laterBtn.addEventListener('click', function () {
-                    invitationModal.classList.add('hidden');
-                });
-
-                window.addEventListener('click', function (event) {
-                    if (event.target === invitationModal) {
-                        invitationModal.classList.add('hidden');
-                    }
-                });
-
-                function handleInvitationResponse(invitationId, response) {
-                    fetch(`/api/respond_invitation_base/${invitationId}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-Requested-With': 'XMLHttpRequest'
-                        },
-                        body: JSON.stringify({ response: response })
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erreur lors de la soumission de la réponse');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            location.reload();
-                        } else {
-                            console.error('Erreur lors de la soumission de la réponse:', data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erreur:', error);
-                    });
-                }
-
-                acceptBtn.addEventListener('click', function () {
-                    const invitationId = this.getAttribute('data-invitation-id');
-                    handleInvitationResponse(invitationId, 'accept');
-                });
-
-                refuseBtn.addEventListener('click', function () {
-                    const invitationId = this.getAttribute('data-invitation-id');
-                    handleInvitationResponse(invitationId, 'refuse');
-                });
+    if (userMenuToggle) {
+        userMenuToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            closeNotificationMenu();
+            if (userMenu) {
+                isUserMenuOpen = !isUserMenuOpen;
+                userMenu.classList.toggle('hidden', !isUserMenuOpen);
             }
         });
-    </script>
+    }
+
+    if (notificationDropdown) {
+        notificationDropdown.addEventListener('click', function (e) {
+            e.stopPropagation();
+            closeUserMenu();
+            if (dropdownMenu) {
+                isDropdownOpen = !isDropdownOpen;
+                dropdownMenu.classList.toggle('hidden', !isDropdownOpen);
+                dropdownMenu.style.opacity = isDropdownOpen ? '1' : '0';
+                dropdownMenu.style.transform = isDropdownOpen ? 'scale(1)' : 'scale(0.95)';
+            }
+        });
+    }
+
+    document.addEventListener('click', function (event) {
+        const isClickInsideNotification = notificationDropdown && notificationDropdown.contains(event.target);
+        const isClickInsideDropdown = dropdownMenu && dropdownMenu.contains(event.target);
+        const isClickInsideUserMenu = userMenuToggle && userMenuToggle.contains(event.target);
+        const isClickInsideUserMenuDropdown = userMenu && userMenu.contains(event.target);
+
+        if (!isClickInsideNotification && !isClickInsideDropdown && isDropdownOpen) {
+            closeNotificationMenu();
+        }
+
+        if (!isClickInsideUserMenu && !isClickInsideUserMenuDropdown && isUserMenuOpen) {
+            closeUserMenu();
+        }
+    });
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !expanded);
+            menu.classList.toggle('hidden');
+        });
+    }
+
+    // Gestion des invitations
+    const invitationItems = document.querySelectorAll('.invitation-item');
+    if (invitationItems && invitationModal && closeModalBtn && laterBtn) {
+        invitationItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const title = this.getAttribute('data-title');
+                const inviter = this.getAttribute('data-inviter');
+                const message = this.getAttribute('data-message');
+                const avatarSrc = this.querySelector('img').src;
+                const invitationId = this.getAttribute('data-invitation-id');
+
+                closeNotificationMenu();
+                closeUserMenu();
+
+                const modalTitle = document.getElementById('modal-group-title');
+                const modalAction = document.getElementById('modal-action');
+                const modalMessage = document.getElementById('modal-invitation-message');
+                const modalAvatar = document.getElementById('jdr-avatar-modal');
+
+                modalTitle.textContent = title;
+                modalAction.textContent = "Invitation de " + inviter;
+                modalMessage.textContent = message;
+                modalAvatar.src = avatarSrc;
+
+                acceptBtn.setAttribute('data-invitation-id', invitationId);
+                refuseBtn.setAttribute('data-invitation-id', invitationId);
+
+                invitationModal.classList.remove('hidden');
+            });
+        });
+
+        closeModalBtn.addEventListener('click', function () {
+            invitationModal.classList.add('hidden');
+        });
+
+        laterBtn.addEventListener('click', function () {
+            invitationModal.classList.add('hidden');
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target === invitationModal) {
+                invitationModal.classList.add('hidden');
+            }
+        });
+
+        // Utilisation de la méthode GET car les contrôleurs redirigent
+        acceptBtn.addEventListener('click', function () {
+            const invitationId = this.getAttribute('data-invitation-id');
+            window.location.href = `/accept-request/${invitationId}`;
+        });
+
+        refuseBtn.addEventListener('click', function () {
+            const invitationId = this.getAttribute('data-invitation-id');
+            window.location.href = `/decline-request/${invitationId}`;
+        });
+    }
+
+    // Gestion des demandes d'amis
+    const friendRequestItems = document.querySelectorAll('.friend-request-item');
+    if (friendRequestItems) {
+        friendRequestItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const requesterName = this.querySelector('.text-sm.font-medium').textContent;
+                const createdAt = this.querySelector('.text-xs.text-gray-400').textContent;
+                const avatarSrc = this.querySelector('img').src;
+                const requestId = this.getAttribute('data-request-id');
+
+                closeNotificationMenu();
+                closeUserMenu();
+
+                const modalTitle = document.getElementById('modal-group-title');
+                const modalAction = document.getElementById('modal-action');
+                const modalMessage = document.getElementById('modal-invitation-message');
+                const modalAvatar = document.getElementById('jdr-avatar-modal');
+
+                modalTitle.textContent =  requesterName;
+                modalAction.textContent = "Envoyé le " + createdAt;
+                modalMessage.textContent = "Voulez-vous accepter la " + requesterName + "?";
+                modalAvatar.src = avatarSrc;
+
+                acceptBtn.setAttribute('data-invitation-id', requestId);
+                refuseBtn.setAttribute('data-invitation-id', requestId);
+
+                invitationModal.classList.remove('hidden');
+            });
+        });
+    }
+});
+</script>
+
     </body>
 </html>

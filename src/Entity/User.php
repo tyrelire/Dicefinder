@@ -116,6 +116,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $banner = null;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $stripeCustomerId = null;
+
+    /**
+     * @var Collection<int, Friendship>
+     */
+    #[ORM\OneToMany(targetEntity: Friendship::class, mappedBy: 'requester')]
+    private Collection $friendships;
+
+    /**
+     * @var Collection<int, Friendship>
+     */
+    #[ORM\OneToMany(targetEntity: Friendship::class, mappedBy: 'receiver')]
+    private Collection $receiverFriendships;
+
+    /**
+     * @var Collection<int, Message>
+     */
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'sentBy')]
+    private Collection $messages;
+
+    /**
+     * @var Collection<int, Conversation>
+     */
+    #[ORM\OneToMany(targetEntity: Conversation::class, mappedBy: 'createdBy')]
+    private Collection $conversations;
+
+    /**
+     * @var Collection<int, Conversation>
+     */
+    #[ORM\ManyToMany(targetEntity: Conversation::class, mappedBy: 'participants')]
+    private Collection $conversationsParticipants;
+
 
     public function __construct()
     {
@@ -562,6 +595,164 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->banner = $banner;
 
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Friendship>
+     */
+    public function getFriendships(): Collection
+    {
+        return $this->friendships;
+    }
+
+    public function addFriendship(Friendship $friendship): static
+    {
+        if (!$this->friendships->contains($friendship)) {
+            $this->friendships->add($friendship);
+            $friendship->setRequester($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFriendship(Friendship $friendship): static
+    {
+        if ($this->friendships->removeElement($friendship)) {
+            // set the owning side to null (unless already changed)
+            if ($friendship->getRequester() === $this) {
+                $friendship->setRequester(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Friendship>
+     */
+    public function getReceiverFriendships(): Collection
+    {
+        return $this->receiverFriendships;
+    }
+
+    public function addReceiverFriendship(Friendship $receiverFriendship): static
+    {
+        if (!$this->receiverFriendships->contains($receiverFriendship)) {
+            $this->receiverFriendships->add($receiverFriendship);
+            $receiverFriendship->setReceiver($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceiverFriendship(Friendship $receiverFriendship): static
+    {
+        if ($this->receiverFriendships->removeElement($receiverFriendship)) {
+            // set the owning side to null (unless already changed)
+            if ($receiverFriendship->getReceiver() === $this) {
+                $receiverFriendship->setReceiver(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): static
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setSentBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): static
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getSentBy() === $this) {
+                $message->setSentBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Conversation>
+     */
+    public function getConversations(): Collection
+    {
+        return $this->conversations;
+    }
+
+    public function addConversation(Conversation $conversation): static
+    {
+        if (!$this->conversations->contains($conversation)) {
+            $this->conversations->add($conversation);
+            $conversation->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConversation(Conversation $conversation): static
+    {
+        if ($this->conversations->removeElement($conversation)) {
+            // set the owning side to null (unless already changed)
+            if ($conversation->getCreatedBy() === $this) {
+                $conversation->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Conversation>
+     */
+    public function getConversationsParticipants(): Collection
+    {
+        return $this->conversationsParticipants;
+    }
+
+    public function addConversationsParticipant(Conversation $conversationsParticipant): static
+    {
+        if (!$this->conversationsParticipants->contains($conversationsParticipant)) {
+            $this->conversationsParticipants->add($conversationsParticipant);
+            $conversationsParticipant->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConversationsParticipant(Conversation $conversationsParticipant): static
+    {
+        if ($this->conversationsParticipants->removeElement($conversationsParticipant)) {
+            $conversationsParticipant->removeParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function getStripeCustomerId(): ?string
+    {
+        return $this->stripeCustomerId;
+    }
+
+    public function setStripeCustomerId(?string $stripeCustomerId): self
+    {
+        $this->stripeCustomerId = $stripeCustomerId;
         return $this;
     }
 }
