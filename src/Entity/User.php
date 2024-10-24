@@ -116,6 +116,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $banner = null;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $stripeCustomerId = null;
+
     /**
      * @var Collection<int, Friendship>
      */
@@ -158,11 +161,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->notifications = new ArrayCollection();
         $this->favoriteGroupeJDR = new ArrayCollection();
         $this->createdAt = new \DateTime();
-        $this->friendships = new ArrayCollection();
-        $this->receiverFriendships = new ArrayCollection();
-        $this->messages = new ArrayCollection();
-        $this->conversations = new ArrayCollection();
-        $this->conversationsParticipants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -744,6 +742,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $conversationsParticipant->removeParticipant($this);
         }
 
+        return $this;
+    }
+
+    public function getStripeCustomerId(): ?string
+    {
+        return $this->stripeCustomerId;
+    }
+
+    public function setStripeCustomerId(?string $stripeCustomerId): self
+    {
+        $this->stripeCustomerId = $stripeCustomerId;
         return $this;
     }
 }

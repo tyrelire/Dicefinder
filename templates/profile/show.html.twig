@@ -33,36 +33,32 @@
     <div class="lg:w-3/4 w-full px-8 pt-8 pb-8 flex-auto min-h-[200px] glassmorphism space-y-6">
         <div class="text-gray-400 text-md">
             <div class="flex flex-wrap space-x-6 items-center text-gray-100">
-                {% if app.user and app.user.id == user.id %}
-                    <div class="w-full flex justify-center lg:justify-end lg:absolute lg:top-4 lg:right-4 mt-4 lg:mt-0 mb-4">
-                        <a href="{{ path('app_profile_edit') }}" class="p-3 transition-all duration-300 ease-in-out border-b-2 hover:border-yellow-500 text-gray-100 transform hover:-translate-y-1 hover:scale-105 glassmorphism-warning flex items-center space-x-3">
-                            <span>Modifier le profil</span>
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 2048 2048">
-                                <path d="M1783 988v18q0 9 1 18v18q0 9-1 18l259 161l-159 383l-297-68q-24 26-50 50l68 297l-383 159l-161-259h-18q-9 0-18 1h-18q-9 0-18-1l-161 259l-383-159l68-297q-26-24-50-50l-297 68L6 1221l259-161v-18q0-9-1-18v-18q0-9 1-18L6 827l159-383l297 68q24-26 50-50l-68-297L827 6l161 259h18q9 0 18-1h18q9 0 18 1L1221 6l383 159l-68 297q26 24 50 50l297-68l159 383zm-117 130q2-24 4-47t2-48q0-23-2-47t-4-47l236-147l-86-208l-271 63q-31-38-63-70t-71-64l63-271l-208-86l-148 236q-23-2-47-4t-47-2q-24 0-47 2t-48 4L782 146l-208 86l63 271q-38 31-70 63t-64 71l-271-63l-86 208l236 148q-2 24-4 47t-2 48q0 23 2 47t4 47l-236 147l86 208l271-63q31 38 63 70t71 64l-63 271l208 86l148-236q23 2 47 4t47 2q24 0 47-2t48-4l147 236l208-86l-63-271q38-31 70-63t64-71l271 63l86-208zm-642-470q78 0 146 29t120 81t80 119t30 147q0 78-29 146t-81 120t-119 80t-147 30q-78 0-146-29t-120-81t-80-119t-30-147q0-78 29-146t81-120t119-80t147-30m0 640q55 0 103-20t84-57t56-84t21-103q0-55-20-103t-57-84t-84-56t-103-21q-55 0-103 20t-84 57t-56 84t-21 103q0 55 20 103t57 84t84 56t103 21"/>
-                            </svg>
+                <div class="w-full flex justify-center lg:justify-end mt-4 lg:mt-0 mb-4 flex-wrap items-center gap-4">
+                    {% if app.user and app.user.id == user.id %}
+                        <a href="{{ path('app_profile_edit') }}" class="glassmorphism-warning px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center">
+                            Modifier le profil
                         </a>
-                    </div>
-                {% endif %}
-                {% if app.user and app.user.id != user.id %}
-                        <div class="w-full flex justify-center lg:justify-end lg:absolute lg:top-4 lg:right-4 mt-4 lg:mt-0 mb-44">
-                            {% if relationshipStatus == 'pending' %}
-                                <button class="glassmorphism-warning px-4 py-2 text-white fonzt-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                                    Demande d'ami en attente
-                                </button>
-                            {% elseif relationshipStatus == 'accepted' %}
-                                <a href="{{ path('remove_friend', {'id': user.id}) }}" class="glassmorphism-player-left px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl mr-5">
-                                    Retirer des amis
-                                </a>
-                                <a href="{{ path('block_user', {'id': user.id}) }}" class="glassmorphism-warning px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                                    Bloquer
-                                </a>
-                            {% else %}
-                                <a href="{{ path('add_friend', {'id': user.id}) }}" class="glassmorphism-acceptance px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                                    Ajouter comme ami
-                                </a>
-                            {% endif %}
-                        </div>
                     {% endif %}
+
+                    {% if app.user and app.user.id != user.id %}
+                        {% if relationshipStatus == 'pending' %}
+                            <button class="glassmorphism-warning px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center">
+                                Demande d'ami en attente
+                            </button>
+                        {% elseif relationshipStatus == 'accepted' %}
+                            <a href="{{ path('remove_friend', {'id': user.id}) }}" class="glassmorphism-player-left px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center">
+                                Retirer des amis
+                            </a>
+                            <a href="{{ path('block_user', {'id': user.id}) }}" class="glassmorphism-warning px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center">
+                                Bloquer
+                            </a>
+                        {% else %}
+                            <a href="{{ path('add_friend', {'id': user.id}) }}" class="glassmorphism-acceptance px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center">
+                                Ajouter comme ami
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
 
                 {% if user.gender %}
                     <div class="flex items-center space-x-2">
@@ -88,7 +84,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 512 512">
                         <path fill="currentColor" d="M138.798 35.342L28.73 114.268l95.777 29.095l111.305-87.09zm112.986 31.082l-118.047 89.96l51.07 131.102l8.534-7.455l4.23-15.708a18.338 13.102 76.863 0 1-9.08-20.45a18.338 13.102 76.863 0 1 10.997-13.727a18.338 13.102 76.863 0 1 3.62.53a18.338 13.102 76.863 0 1 3.113 1.544l7.94-29.48a9 9 0 0 1 .353-1.04l.058-.128a9 9 0 0 1 .32-.685l.09-.153a9 9 0 0 1 .37-.625a9 9 0 0 1 .534-.723l.066-.074a9 9 0 0 1 .54-.594a9 9 0 0 1 .65-.593l.004-.002a9 9 0 0 1 .46-.342a9 9 0 0 1 .266-.197a9 9 0 0 1 .502-.3a9 9 0 0 1 .27-.157a9 9 0 0 1 .44-.208a9 9 0 0 1 .38-.178a9 9 0 0 1 .437-.152a9 9 0 0 1 .41-.143a9 9 0 0 1 .404-.1a9 9 0 0 1 .47-.114a9 9 0 0 1 .51-.07a9 9 0 0 1 .37-.05h.01l.01-.003l33.624-2.873a18.338 13.102 76.863 0 1 10.326-9.777a18.338 13.102 76.863 0 1 3.622.53a18.338 13.102 76.863 0 1 8.527 7.327l13.043-1.113L251.785 66.42zM137.25 74.03a9.8 19.77 77.916 0 1 12.798 8.734a9.8 19.77 77.916 0 1-21.938 11.998a9.8 19.77 77.916 0 1-16.57-8.602a9.8 19.77 77.916 0 1 21.938-12a9.8 19.77 77.916 0 1 3.77-.13zm100.228 23.517a18.338 13.102 76.863 0 1 .002 0a18.338 13.102 76.863 0 1 3.62.53a18.338 13.102 76.863 0 1 12.112 21.94a18.338 13.102 76.863 0 1-14.617 13.196a18.338 13.102 76.863 0 1-12.114-21.94a18.338 13.102 76.863 0 1 10.998-13.726zM24.22 131.71l46.992 114.124l94.236 40.38l-45.988-125.57l-95.24-28.935zm147.886 17.43a18.338 13.102 76.863 0 1 3.622.528a18.338 13.102 76.863 0 1 12.11 21.94a18.338 13.102 76.863 0 1-14.616 13.197a18.338 13.102 76.863 0 1-12.112-21.94a18.338 13.102 76.863 0 1 10.996-13.726zm-75.123 13.016a19.454 9.134 59.254 0 1 16.955 15.078a19.454 9.134 59.254 0 1-.425 19.485A19.454 9.134 59.254 0 1 95.6 181.78a19.454 9.134 59.254 0 1 .424-19.48a19.454 9.134 59.254 0 1 .96-.144zm263.393 40.21l-112.102 9.577l113.762 79.926l113.598-16.956l-115.258-72.55zM70.82 212.022A19.454 9.134 59.254 0 1 87.777 227.1a19.454 9.134 59.254 0 1-.425 19.484a19.454 9.134 59.254 0 1-17.913-14.938a19.454 9.134 59.254 0 1 .425-19.482a19.454 9.134 59.254 0 1 .96-.14zm157.378 7.813L186.66 374.023l115.616 99.454l47.147-168.47l-121.225-85.17zm126.987 11.168a21.76 8.898 15.267 0 1 19.693 4.783a21.76 8.898 15.267 0 1 7.607 14.244a21.76 8.898 15.267 0 1-28.886-3.182a21.76 8.898 15.267 0 1-7.61-14.244a21.76 8.898 15.267 0 1 9.195-1.6zM487.78 291.3L366.9 309.343l-46.823 167.316l116.297-31.77zm-181.808 10.8a25.834 15.573 84.277 0 1 4.238.943a25.834 15.573 84.277 0 1 12.873 31.72a25.834 15.573 84.277 0 1-18.105 17.893a25.834 15.573 84.277 0 1-12.874-31.72a25.834 15.573 84.277 0 1 13.868-18.836m154.086 11.636a13.237 21.96 28.62 0 1 7.673 4.13a13.237 21.96 28.62 0 1-6.176 28.435a13.237 21.96 28.62 0 1-21.287 3.878a13.237 21.96 28.62 0 1 6.175-28.434a13.237 21.96 28.62 0 1 13.616-8.008zM391.362 324.4a13.237 21.96 28.62 0 1 7.672 4.13a13.237 21.96 28.62 0 1-6.176 28.435a13.237 21.96 28.62 0 1-21.287 3.877a13.237 21.96 28.62 0 1 6.177-28.434a13.237 21.96 28.62 0 1 13.615-8.008zm-173.996 13.305a25.834 15.573 84.277 0 1 4.24.945a25.834 15.573 84.277 0 1 12.872 31.72a25.834 15.573 84.277 0 1-18.106 17.894a25.834 15.573 84.277 0 1-12.873-31.72a25.834 15.573 84.277 0 1 13.866-18.84zm212.278 60.87a13.237 21.96 28.62 0 1 7.67 4.13a13.237 21.96 28.62 0 1-6.174 28.434a13.237 21.96 28.62 0 1-21.287 3.874a13.237 21.96 28.62 0 1 6.176-28.434a13.237 21.96 28.62 0 1 13.616-8.007z"/>
                     </svg>
-                    <p>{{ diff.y > 0 ? diff.y ~ ' an' ~ (diff.y > 1 ? 's' : '') : diff.m > 0 ? diff.m ~ ' mois' : diff.d > 0 ? diff.d ~ ' jour' ~ (diff.d > 1 ? 's' : '') : 'moins d\'une minute' }} sur DiceFinder</p>
+                    <p>{{ diff.y > 0 ? diff.y ~ ' an' ~ (diff.y > 1 ? 's' : '') : diff.m > 0 ? diff.m ~ ' mois' : diff.d > 0 ? diff.d ~ ' jour' ~ (diff.d > 1 ? 's' : '') : '1 minute' }} sur DiceFinder</p>
                 </div>
             </div>
         </div>

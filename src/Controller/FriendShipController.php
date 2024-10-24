@@ -38,7 +38,7 @@ class FriendShipController extends AbstractController
         ]);
     
         if ($blockedFriendship) {
-            $this->addFlash('danger', 'Vous ne pouvez pas envoyer de demande d\'amitié car l\'un de vous a bloqué l\'autre.');
+            $this->addFlash('error', 'Vous ne pouvez pas envoyer de demande d\'amitié car l\'un de vous a bloqué l\'autre.');
             return $this->redirectToRoute('app_profile_show', ['id' => $user->getId()]);
         }
     

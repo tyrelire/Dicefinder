@@ -36,6 +36,7 @@ return [
         '/payment-cancel' => [[['_route' => 'app_payment_cancel', '_controller' => 'App\\Controller\\PaymentController::paymentCancel'], null, null, null, false, false, null]],
         '/create-gift-checkout-session' => [[['_route' => 'app_create_gift_checkout_session', '_controller' => 'App\\Controller\\PaymentController::createGiftCheckoutSession'], null, ['POST' => 0], null, false, false, null]],
         '/api/search-user' => [[['_route' => 'api_search_user', '_controller' => 'App\\Controller\\PaymentController::searchUser'], null, ['GET' => 0], null, false, false, null]],
+        '/stripe/webhook' => [[['_route' => 'app_stripe_webhook', '_controller' => 'App\\Controller\\PaymentController::handleStripeWebhook'], null, ['POST' => 0], null, false, false, null]],
         '/profile/edit' => [[['_route' => 'app_profile_edit', '_controller' => 'App\\Controller\\ProfileController::edit'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/profile/edit/avatar' => [[['_route' => 'app_profile_edit_avatar', '_controller' => 'App\\Controller\\ProfileController::editAvatar'], null, ['POST' => 0], null, false, false, null]],
         '/profile/edit/banner' => [[['_route' => 'app_profile_edit_banner', '_controller' => 'App\\Controller\\ProfileController::editBanner'], null, ['POST' => 0], null, false, false, null]],
