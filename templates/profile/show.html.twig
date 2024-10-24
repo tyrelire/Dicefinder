@@ -6,7 +6,11 @@
 <div class="relative flex flex-col lg:flex-row w-full min-w-0 mt-6 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable space-y-4 lg:space-y-0 lg:space-x-6">
     <div class="lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
         <div class="w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center">
-            <img id="banner-preview" src="{{ user.banner ? asset('uploads/banners/' ~ user.banner) : 'https://via.placeholder.com/150' }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
+            {% if user.avatar %}
+                <img id="banner-preview" src="{{ user.banner ? asset('uploads/banners/' ~ user.banner) : 'https://via.placeholder.com/150' }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
+            {% else %}
+                <img src="{{ asset('images/default-banniere.jpg') }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
+            {% endif %}
         </div>
         <div class="absolute top-44 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-gray-900 transition-transform duration-300 hover:scale-110 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/50">
             {% if user.avatar %}
@@ -311,7 +315,7 @@
                 <div class="px-9 pt-9 pb-9 flex-auto min-h-[70px] pb-0 glassmorphism">
                     <ul class="text-gray-200">
                         {% for friend in friends %}
-                            <div class="lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                            <div class="lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl  card-item">
                                 <a href="{{ path('app_profile_show', {'id': friend.id}) }}" class="block w-full h-full">
                                     <div class="w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center">
                                         <img id="banner-preview" src="{{ friend.banner ? asset('uploads/banners/' ~ friend.banner) : 'https://via.placeholder.com/150' }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">

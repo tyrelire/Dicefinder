@@ -778,49 +778,49 @@ class __TwigTemplate_d95b18e7aafb0f17f03e02250e9957d4 extends Template
                     <div>
                         <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Ressources</h3>
                         <ul role=\"list\" class=\"mt-4 space-y-4\">
-                        <li>
-                            <a href=\"";
+                            <li>
+                                <a href=\"";
         // line 451
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_cgv");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales de Vente </a>
-                        </li>
+                            </li>
 
-                        <li>
-                            <a href=\"";
+                            <li>
+                                <a href=\"";
         // line 455
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_cgu");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales d'Utilisation </a>
-                        </li>
+                            </li>
 
-                        <li>
-                            <a href=\"";
+                            <li>
+                                <a href=\"";
         // line 459
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_policy");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Politique de Confidentialité </a>
-                        </li>
+                            </li>
                         </ul>
                     </div>
                     <div class=\"mt-12 md:mt-0\">
                         <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Entreprise</h3>
                         <ul role=\"list\" class=\"mt-4 space-y-4\">
-                        <li>
-                            <a href=\"";
+                            <li>
+                                <a href=\"";
         // line 467
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_team");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Notre équipe </a>
-                        </li>
-                        <li>
-                            <a href=\"";
+                            </li>
+                            <li>
+                                <a href=\"";
         // line 470
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_about");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> À propos de nous </a>
-                        </li>
-                        <li>
-                            <a href=\"";
+                            </li>
+                            <li>
+                                <a href=\"";
         // line 473
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_footer_faq");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> FAQ </a>
-                        </li>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -828,12 +828,12 @@ class __TwigTemplate_d95b18e7aafb0f17f03e02250e9957d4 extends Template
                     <div>
                         <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Contact</h3>
                         <ul role=\"list\" class=\"mt-4 space-y-4\">
-                        <li>
-                            <a href=\"";
+                            <li>
+                                <a href=\"";
         // line 483
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_support");
         yield "\" class=\"text-base text-gray-500 hover:text-gray-700\"> Nous contacter </a>
-                        </li>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -1639,31 +1639,31 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div>
                         <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Ressources</h3>
                         <ul role=\"list\" class=\"mt-4 space-y-4\">
-                        <li>
-                            <a href=\"{{ path('app_footer_cgv') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales de Vente </a>
-                        </li>
+                            <li>
+                                <a href=\"{{ path('app_footer_cgv') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales de Vente </a>
+                            </li>
 
-                        <li>
-                            <a href=\"{{ path('app_footer_cgu') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales d'Utilisation </a>
-                        </li>
+                            <li>
+                                <a href=\"{{ path('app_footer_cgu') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Conditions Générales d'Utilisation </a>
+                            </li>
 
-                        <li>
-                            <a href=\"{{ path('app_footer_policy') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Politique de Confidentialité </a>
-                        </li>
+                            <li>
+                                <a href=\"{{ path('app_footer_policy') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Politique de Confidentialité </a>
+                            </li>
                         </ul>
                     </div>
                     <div class=\"mt-12 md:mt-0\">
                         <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Entreprise</h3>
                         <ul role=\"list\" class=\"mt-4 space-y-4\">
-                        <li>
-                            <a href=\"{{ path('app_footer_team') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Notre équipe </a>
-                        </li>
-                        <li>
-                            <a href=\"{{ path('app_footer_about') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> À propos de nous </a>
-                        </li>
-                        <li>
-                            <a href=\"{{ path('app_footer_faq') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> FAQ </a>
-                        </li>
+                            <li>
+                                <a href=\"{{ path('app_footer_team') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Notre équipe </a>
+                            </li>
+                            <li>
+                                <a href=\"{{ path('app_footer_about') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> À propos de nous </a>
+                            </li>
+                            <li>
+                                <a href=\"{{ path('app_footer_faq') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> FAQ </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -1671,9 +1671,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div>
                         <h3 class=\"text-sm font-semibold text-gray-400 tracking-wider uppercase\">Contact</h3>
                         <ul role=\"list\" class=\"mt-4 space-y-4\">
-                        <li>
-                            <a href=\"{{ path('app_support') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Nous contacter </a>
-                        </li>
+                            <li>
+                                <a href=\"{{ path('app_support') }}\" class=\"text-base text-gray-500 hover:text-gray-700\"> Nous contacter </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -561,10 +561,6 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Repository\ConversationRepository" class="App\Repository\ConversationRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
     <service id="App\Repository\EventRepository" class="App\Repository\EventRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -578,10 +574,6 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\InvitationRepository" class="App\Repository\InvitationRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
-    <service id="App\Repository\MessageRepository" class="App\Repository\MessageRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -5434,7 +5426,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.GEM1ZgT"/>
+      <argument type="service" id=".service_locator.Nv9RqiL"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7919,8 +7911,6 @@
     <service id=".abstract.instanceof.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ContactRepository" class="App\Repository\ContactRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ContactRepository" class="App\Repository\ContactRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ConversationRepository" class="App\Repository\ConversationRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\ConversationRepository" class="App\Repository\ConversationRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\EventRepository" class="App\Repository\EventRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\EventRepository" class="App\Repository\EventRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\FriendshipRepository" class="App\Repository\FriendshipRepository" autowire="true" abstract="true"/>
@@ -7929,8 +7919,6 @@
     <service id=".abstract.instanceof.App\Repository\GroupeJDRRepository" class="App\Repository\GroupeJDRRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\InvitationRepository" class="App\Repository\InvitationRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\InvitationRepository" class="App\Repository\InvitationRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MessageRepository" class="App\Repository\MessageRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\MessageRepository" class="App\Repository\MessageRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\NotificationHistoryRepository" class="App\Repository\NotificationHistoryRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\NotificationHistoryRepository" class="App\Repository\NotificationHistoryRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\NotificationRepository" class="App\Repository\NotificationRepository" autowire="true" abstract="true"/>
@@ -9352,17 +9340,15 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.GEM1ZgT" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Nv9RqiL" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\CategoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
         <argument key="App\Repository\ContactRepository" type="service_closure" id="App\Repository\ContactRepository"/>
-        <argument key="App\Repository\ConversationRepository" type="service_closure" id="App\Repository\ConversationRepository"/>
         <argument key="App\Repository\EventRepository" type="service_closure" id="App\Repository\EventRepository"/>
         <argument key="App\Repository\FriendshipRepository" type="service_closure" id="App\Repository\FriendshipRepository"/>
         <argument key="App\Repository\GroupeJDRRepository" type="service_closure" id="App\Repository\GroupeJDRRepository"/>
         <argument key="App\Repository\InvitationRepository" type="service_closure" id="App\Repository\InvitationRepository"/>
-        <argument key="App\Repository\MessageRepository" type="service_closure" id="App\Repository\MessageRepository"/>
         <argument key="App\Repository\NotificationHistoryRepository" type="service_closure" id="App\Repository\NotificationHistoryRepository"/>
         <argument key="App\Repository\NotificationRepository" type="service_closure" id="App\Repository\NotificationRepository"/>
         <argument key="App\Repository\PlayerMembershipRepository" type="service_closure" id="App\Repository\PlayerMembershipRepository"/>

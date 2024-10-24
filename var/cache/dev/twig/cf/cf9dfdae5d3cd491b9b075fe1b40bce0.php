@@ -109,37 +109,75 @@ class __TwigTemplate_d5c1f39e194acfb5d729fe3aeca863b4 extends Template
             </div>
         </div>
 
-<div class=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch max-w-full\">
-    <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
-        <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Formule Mensuelle</h3>
-        <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
-            <span class=\"text-4xl font-bold tracking-tight text-gray-900\">4,99€</span>
-            <span class=\"text-base text-gray-500\">/mois</span>
-        </p>
-        <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Idéal pour ceux qui veulent tester tous les avantages VIP sans engagement à long terme.</p>
-        <a href=\"#\" id=\"subscribe-monthly\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
-    </div>
-    
-    <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
-        <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Formule Annuelle</h3>
-        <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
-            <span class=\"text-4xl font-bold tracking-tight text-gray-900\">49,99€</span>
-            <span class=\"text-base text-gray-500\">/an</span>
-        </p>
-        <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Parfait pour les utilisateurs réguliers qui veulent maximiser leur expérience sur DiceFinder.</p>
-        <a href=\"#\" id=\"subscribe-annual\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
-    </div>
+        <div class=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch max-w-full\">
+            <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
+                <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Formule Mensuelle</h3>
+                <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
+                    <span class=\"text-4xl font-bold tracking-tight text-gray-900\">4,99€</span>
+                    <span class=\"text-base text-gray-500\">/mois</span>
+                </p>
+                <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Idéal pour ceux qui veulent tester tous les avantages VIP sans engagement à long terme.</p>
+                ";
+        // line 26
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 26, $this->source); })()), "user", [], "any", false, false, false, 26)) {
+            // line 27
+            yield "                    <a href=\"#\" id=\"subscribe-monthly\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
+                ";
+        } else {
+            // line 29
+            yield "                    <a href=\"";
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            yield "\" class=\"mt-5 block rounded-md bg-red-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500\">Connectez-vous pour souscrire</a>
+                ";
+        }
+        // line 31
+        yield "            </div>
+            
+            <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
+                <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Formule Annuelle</h3>
+                <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
+                    <span class=\"text-4xl font-bold tracking-tight text-gray-900\">49,99€</span>
+                    <span class=\"text-base text-gray-500\">/an</span>
+                </p>
+                <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Parfait pour les utilisateurs réguliers qui veulent maximiser leur expérience sur DiceFinder.</p>
+                ";
+        // line 40
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 40, $this->source); })()), "user", [], "any", false, false, false, 40)) {
+            // line 41
+            yield "                    <a href=\"#\" id=\"subscribe-annual\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
+                ";
+        } else {
+            // line 43
+            yield "                    <a href=\"";
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            yield "\" class=\"mt-5 block rounded-md bg-red-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500\">Connectez-vous pour souscrire</a>
+                ";
+        }
+        // line 45
+        yield "            </div>
 
-    <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
-        <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Paiement Unique</h3>
-        <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
-            <span class=\"text-4xl font-bold tracking-tight text-gray-900\">5,99€</span>
-        </p>
-        <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Pour ceux qui veulent un accès limité sans renouvellement automatique.</p>
-        <a href=\"#\" id=\"subscribe-one-time\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
-    </div>
-</div>
-
+            <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
+                <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Paiement Unique</h3>
+                <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
+                    <span class=\"text-4xl font-bold tracking-tight text-gray-900\">5,99€</span>
+                </p>
+                <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Pour ceux qui veulent un accès limité sans renouvellement automatique.</p>
+                ";
+        // line 53
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 53, $this->source); })()), "user", [], "any", false, false, false, 53)) {
+            // line 54
+            yield "                    <a href=\"#\" id=\"subscribe-one-time\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
+                ";
+        } else {
+            // line 56
+            yield "                    <a href=\"";
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            yield "\" class=\"mt-5 block rounded-md bg-red-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500\">Connectez-vous pour souscrire</a>
+                ";
+        }
+        // line 58
+        yield "            </div>
+        </div>
     </div>
 
     <div class=\"flex flex-col gap-4 lg:flex-row\">
@@ -166,9 +204,9 @@ class __TwigTemplate_d5c1f39e194acfb5d729fe3aeca863b4 extends Template
                 </li>
             </ul>
             ";
-        // line 74
-        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 74, $this->source); })()), "user", [], "any", false, false, false, 74) && CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 74, $this->source); })()), "user", [], "any", false, false, false, 74), "isVip", [], "any", false, false, false, 74))) {
-            // line 75
+        // line 85
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 85, $this->source); })()), "user", [], "any", false, false, false, 85) && CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 85, $this->source); })()), "user", [], "any", false, false, false, 85), "isVip", [], "any", false, false, false, 85))) {
+            // line 86
             yield "            <div class=\"text-center\">
                 <div class=\"px-8 py-3 bg-purple-600 text-white font-semibold rounded-full text-center shadow-lg\">
                     Vous êtes déjà VIP !
@@ -176,7 +214,7 @@ class __TwigTemplate_d5c1f39e194acfb5d729fe3aeca863b4 extends Template
             </div>
             ";
         }
-        // line 81
+        // line 92
         yield "        </div>
 
 
@@ -201,38 +239,54 @@ class __TwigTemplate_d5c1f39e194acfb5d729fe3aeca863b4 extends Template
             Offrez un abonnement VIP à un ami ou un proche !
         </p>
 
-        <div class=\"relative mb-4 sm:mb-6\">
-            <input type=\"text\" id=\"gift-username\" placeholder=\"Nom d'utilisateur\"
-                class=\"w-full py-3 px-4 text-white bg-gray-900/50 backdrop-blur-md border border-gray-600 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400\" />
-        </div>
-
-        <div id=\"user-profile\" class=\"hidden bg-gray-800/50 backdrop-blur-md p-4 rounded-lg shadow-lg transition\">
-            <div class=\"flex items-center hover:bg-gray-700 p-2 rounded-lg\">
-                <img id=\"user-avatar\" src=\"\" alt=\"Avatar de l'utilisateur\" class=\"w-16 h-16 rounded-full mr-4\">
-                <p id=\"user-info\" class=\"text-white text-lg\"></p>
+        ";
+        // line 116
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 116, $this->source); })()), "user", [], "any", false, false, false, 116)) {
+            // line 117
+            yield "            <div class=\"relative mb-4 sm:mb-6\">
+                <input type=\"text\" id=\"gift-username\" placeholder=\"Nom d'utilisateur\"
+                    class=\"w-full py-3 px-4 text-white bg-gray-900/50 backdrop-blur-md border border-gray-600 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400\" />
             </div>
-            <div id=\"vip-status\" class=\"mt-2 hidden flex items-center\">
-                <img src=\"/images/vip-logo.png\" alt=\"Logo VIP\" class=\"w-8 h-8 mr-2\">
-                <p class=\"text-yellow-400 font-semibold\">L'utilisateur est déjà VIP</p>
-            </div>
-        </div>
 
-        <div class=\"text-center mt-6\">
-            <button id=\"offer-vip-button\" class=\"bg-green-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-green-600 transition hidden\">
-                Offrir un VIP
-            </button>
-        </div>
+            <div id=\"user-profile\" class=\"hidden bg-gray-800/50 backdrop-blur-md p-4 rounded-lg shadow-lg transition\">
+                <div class=\"flex items-center hover:bg-gray-700 p-2 rounded-lg\">
+                    <img id=\"user-avatar\" src=\"\" alt=\"Avatar de l'utilisateur\" class=\"w-16 h-16 rounded-full mr-4\">
+                    <p id=\"user-info\" class=\"text-white text-lg\"></p>
+                </div>
+                <div id=\"vip-status\" class=\"mt-2 hidden flex items-center\">
+                    <img src=\"/images/vip-logo.png\" alt=\"Logo VIP\" class=\"w-8 h-8 mr-2\">
+                    <p class=\"text-yellow-400 font-semibold\">L'utilisateur est déjà VIP</p>
+                </div>
+            </div>
+
+            <div class=\"text-center mt-6\">
+                <button id=\"offer-vip-button\" class=\"bg-green-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-green-600 transition hidden\">
+                    Offrir un VIP
+                </button>
+            </div>
+        ";
+        } else {
+            // line 139
+            yield "            <p class=\"text-center mt-6\">
+                <a href=\"";
+            // line 140
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            yield "\" class=\"block rounded-md bg-red-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-400\">
+                    Connectez-vous pour offrir un VIP
+                </a>
+            </p>
+        ";
+        }
+        // line 145
+        yield "
     </div>
 </div>
-
-
-
 
 <script src=\"https://js.stripe.com/v3/\"></script>
 <script type=\"text/javascript\">
     const stripe = Stripe(\"";
-        // line 134
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["stripe_public_key"]) || array_key_exists("stripe_public_key", $context) ? $context["stripe_public_key"] : (function () { throw new RuntimeError('Variable "stripe_public_key" does not exist.', 134, $this->source); })()), "html", null, true);
+        // line 151
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["stripe_public_key"]) || array_key_exists("stripe_public_key", $context) ? $context["stripe_public_key"] : (function () { throw new RuntimeError('Variable "stripe_public_key" does not exist.', 151, $this->source); })()), "html", null, true);
         yield "\");
 
     function setupSubscriptionButton(buttonId, routePath) {
@@ -257,15 +311,15 @@ class __TwigTemplate_d5c1f39e194acfb5d729fe3aeca863b4 extends Template
     }
 
     setupSubscriptionButton('subscribe-monthly', '";
-        // line 157
+        // line 174
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_create_checkout_session_monthly");
         yield "');
     setupSubscriptionButton('subscribe-annual', '";
-        // line 158
+        // line 175
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_create_checkout_session_annual");
         yield "');
     setupSubscriptionButton('subscribe-one-time', '";
-        // line 159
+        // line 176
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_create_checkout_session_one_time");
         yield "');
 
@@ -313,7 +367,7 @@ class __TwigTemplate_d5c1f39e194acfb5d729fe3aeca863b4 extends Template
     offerVipButton.addEventListener('click', function () {
         const giftUsername = offerVipButton.getAttribute('data-username');
         fetch('";
-        // line 204
+        // line 221
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_create_gift_checkout_session");
         yield "', {
             method: 'POST',
@@ -365,7 +419,7 @@ class __TwigTemplate_d5c1f39e194acfb5d729fe3aeca863b4 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  317 => 204,  269 => 159,  265 => 158,  261 => 157,  235 => 134,  180 => 81,  172 => 75,  170 => 74,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  371 => 221,  323 => 176,  319 => 175,  315 => 174,  289 => 151,  281 => 145,  273 => 140,  270 => 139,  246 => 117,  244 => 116,  218 => 92,  210 => 86,  208 => 85,  179 => 58,  173 => 56,  169 => 54,  167 => 53,  157 => 45,  151 => 43,  147 => 41,  145 => 40,  134 => 31,  128 => 29,  124 => 27,  122 => 26,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -387,37 +441,48 @@ class __TwigTemplate_d5c1f39e194acfb5d729fe3aeca863b4 extends Template
             </div>
         </div>
 
-<div class=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch max-w-full\">
-    <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
-        <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Formule Mensuelle</h3>
-        <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
-            <span class=\"text-4xl font-bold tracking-tight text-gray-900\">4,99€</span>
-            <span class=\"text-base text-gray-500\">/mois</span>
-        </p>
-        <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Idéal pour ceux qui veulent tester tous les avantages VIP sans engagement à long terme.</p>
-        <a href=\"#\" id=\"subscribe-monthly\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
-    </div>
-    
-    <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
-        <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Formule Annuelle</h3>
-        <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
-            <span class=\"text-4xl font-bold tracking-tight text-gray-900\">49,99€</span>
-            <span class=\"text-base text-gray-500\">/an</span>
-        </p>
-        <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Parfait pour les utilisateurs réguliers qui veulent maximiser leur expérience sur DiceFinder.</p>
-        <a href=\"#\" id=\"subscribe-annual\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
-    </div>
+        <div class=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch max-w-full\">
+            <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
+                <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Formule Mensuelle</h3>
+                <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
+                    <span class=\"text-4xl font-bold tracking-tight text-gray-900\">4,99€</span>
+                    <span class=\"text-base text-gray-500\">/mois</span>
+                </p>
+                <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Idéal pour ceux qui veulent tester tous les avantages VIP sans engagement à long terme.</p>
+                {% if app.user %}
+                    <a href=\"#\" id=\"subscribe-monthly\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
+                {% else %}
+                    <a href=\"{{ path('app_login') }}\" class=\"mt-5 block rounded-md bg-red-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500\">Connectez-vous pour souscrire</a>
+                {% endif %}
+            </div>
+            
+            <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
+                <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Formule Annuelle</h3>
+                <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
+                    <span class=\"text-4xl font-bold tracking-tight text-gray-900\">49,99€</span>
+                    <span class=\"text-base text-gray-500\">/an</span>
+                </p>
+                <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Parfait pour les utilisateurs réguliers qui veulent maximiser leur expérience sur DiceFinder.</p>
+                {% if app.user %}
+                    <a href=\"#\" id=\"subscribe-annual\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
+                {% else %}
+                    <a href=\"{{ path('app_login') }}\" class=\"mt-5 block rounded-md bg-red-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500\">Connectez-vous pour souscrire</a>
+                {% endif %}
+            </div>
 
-    <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
-        <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Paiement Unique</h3>
-        <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
-            <span class=\"text-4xl font-bold tracking-tight text-gray-900\">5,99€</span>
-        </p>
-        <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Pour ceux qui veulent un accès limité sans renouvellement automatique.</p>
-        <a href=\"#\" id=\"subscribe-one-time\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
-    </div>
-</div>
-
+            <div class=\"flex flex-col items-center justify-center rounded-3xl bg-white/60 p-4 sm:p-6 lg:p-8 ring-1 ring-gray-900/10 glassmorphism min-h-[400px] text-center\">
+                <h3 class=\"text-sm sm:text-base font-semibold leading-7 text-indigo-600\">Paiement Unique</h3>
+                <p class=\"mt-4 flex items-baseline justify-center gap-x-2\">
+                    <span class=\"text-4xl font-bold tracking-tight text-gray-900\">5,99€</span>
+                </p>
+                <p class=\"mt-4 sm:mt-6 text-sm sm:text-base leading-7 text-gray-600\">Pour ceux qui veulent un accès limité sans renouvellement automatique.</p>
+                {% if app.user %}
+                    <a href=\"#\" id=\"subscribe-one-time\" class=\"mt-5 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500\">Souscrire</a>
+                {% else %}
+                    <a href=\"{{ path('app_login') }}\" class=\"mt-5 block rounded-md bg-red-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500\">Connectez-vous pour souscrire</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
 
     <div class=\"flex flex-col gap-4 lg:flex-row\">
@@ -474,32 +539,38 @@ class __TwigTemplate_d5c1f39e194acfb5d729fe3aeca863b4 extends Template
             Offrez un abonnement VIP à un ami ou un proche !
         </p>
 
-        <div class=\"relative mb-4 sm:mb-6\">
-            <input type=\"text\" id=\"gift-username\" placeholder=\"Nom d'utilisateur\"
-                class=\"w-full py-3 px-4 text-white bg-gray-900/50 backdrop-blur-md border border-gray-600 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400\" />
-        </div>
-
-        <div id=\"user-profile\" class=\"hidden bg-gray-800/50 backdrop-blur-md p-4 rounded-lg shadow-lg transition\">
-            <div class=\"flex items-center hover:bg-gray-700 p-2 rounded-lg\">
-                <img id=\"user-avatar\" src=\"\" alt=\"Avatar de l'utilisateur\" class=\"w-16 h-16 rounded-full mr-4\">
-                <p id=\"user-info\" class=\"text-white text-lg\"></p>
+        {% if app.user %}
+            <div class=\"relative mb-4 sm:mb-6\">
+                <input type=\"text\" id=\"gift-username\" placeholder=\"Nom d'utilisateur\"
+                    class=\"w-full py-3 px-4 text-white bg-gray-900/50 backdrop-blur-md border border-gray-600 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400\" />
             </div>
-            <div id=\"vip-status\" class=\"mt-2 hidden flex items-center\">
-                <img src=\"/images/vip-logo.png\" alt=\"Logo VIP\" class=\"w-8 h-8 mr-2\">
-                <p class=\"text-yellow-400 font-semibold\">L'utilisateur est déjà VIP</p>
-            </div>
-        </div>
 
-        <div class=\"text-center mt-6\">
-            <button id=\"offer-vip-button\" class=\"bg-green-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-green-600 transition hidden\">
-                Offrir un VIP
-            </button>
-        </div>
+            <div id=\"user-profile\" class=\"hidden bg-gray-800/50 backdrop-blur-md p-4 rounded-lg shadow-lg transition\">
+                <div class=\"flex items-center hover:bg-gray-700 p-2 rounded-lg\">
+                    <img id=\"user-avatar\" src=\"\" alt=\"Avatar de l'utilisateur\" class=\"w-16 h-16 rounded-full mr-4\">
+                    <p id=\"user-info\" class=\"text-white text-lg\"></p>
+                </div>
+                <div id=\"vip-status\" class=\"mt-2 hidden flex items-center\">
+                    <img src=\"/images/vip-logo.png\" alt=\"Logo VIP\" class=\"w-8 h-8 mr-2\">
+                    <p class=\"text-yellow-400 font-semibold\">L'utilisateur est déjà VIP</p>
+                </div>
+            </div>
+
+            <div class=\"text-center mt-6\">
+                <button id=\"offer-vip-button\" class=\"bg-green-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-green-600 transition hidden\">
+                    Offrir un VIP
+                </button>
+            </div>
+        {% else %}
+            <p class=\"text-center mt-6\">
+                <a href=\"{{ path('app_login') }}\" class=\"block rounded-md bg-red-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-400\">
+                    Connectez-vous pour offrir un VIP
+                </a>
+            </p>
+        {% endif %}
+
     </div>
 </div>
-
-
-
 
 <script src=\"https://js.stripe.com/v3/\"></script>
 <script type=\"text/javascript\">
