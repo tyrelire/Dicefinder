@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Friendship;
+use App\Service\NotificationService;
 use App\Repository\FriendshipRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -15,11 +18,13 @@ class FriendShipController extends AbstractController
 {
     private $entityManager;
     private $friendshipRepository;
+    private $notificationService;
 
-    public function __construct(EntityManagerInterface $entityManager, FriendshipRepository $friendshipRepository)
+    public function __construct(EntityManagerInterface $entityManager, FriendshipRepository $friendshipRepository, NotificationService $notificationService)
     {
         $this->entityManager = $entityManager;
         $this->friendshipRepository = $friendshipRepository;
+        $this->notificationService = $notificationService;
     }
 
     #[Route('/add-friend/{id}', name: 'add_friend')]
@@ -57,9 +62,22 @@ class FriendShipController extends AbstractController
         $this->entityManager->persist($friendship);
         $this->entityManager->flush();
     
+        $this->notificationService->createNotification(
+            $currentUser,
+            'friend_request_sent',
+            sprintf(
+                'Votre demande d\'amitié a été envoyée avec succès à %s.',
+                $user->getUsername()
+            ),
+            null,
+            null,
+            $user
+        );
+    
         $this->addFlash('success', 'Demande d\'amitié envoyée avec succès.');
         return $this->redirectToRoute('app_profile_show', ['id' => $user->getId()]);
     }
+    
 
     #[Route('/remove-friend/{id}', name: 'remove_friend')]
     public function removeFriend(User $user): Response
@@ -97,7 +115,7 @@ class FriendShipController extends AbstractController
         return $this->redirectToRoute('app_profile_show', ['id' => $user->getId()]);
     }
 
-    #[Route('/accept-request/{id}', name: 'accept_request')]
+    #[Route('/accept-friends-request/{id}', name: 'accept_request')]
     #[IsGranted('ROLE_USER')]
     public function acceptRequest($id, FriendshipRepository $friendshipRepository): Response
     {
@@ -117,7 +135,25 @@ class FriendShipController extends AbstractController
         return $this->redirectToRoute('app_profile_show', ['id' => $user->getId()]);
     }
 
-    #[Route('/decline-request/{id}', name: 'decline_request')]
+    #[Route('/accept-friends-request-base/{id}', name: 'accept_request_base', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function acceptRequestBase($id, FriendshipRepository $friendshipRepository, Request $request): JsonResponse
+    {
+        $user = $this->getUser();
+        $friendship = $friendshipRepository->find($id);
+
+        if (!$friendship || $friendship->getReceiver() !== $user) {
+            return new JsonResponse(['success' => false, 'message' => 'Demande d\'amitié non trouvée ou non autorisée.'], 404);
+        }
+
+        $friendship->setStatus(Friendship::STATUS_ACCEPTED);
+        $this->entityManager->persist($friendship);
+        $this->entityManager->flush();
+
+        return new JsonResponse(['success' => true, 'message' => 'Demande d\'amitié acceptée avec succès.']);
+    }
+
+    #[Route('/decline-friends-request/{id}', name: 'decline_request')]
     #[IsGranted('ROLE_USER')]
     public function declineRequest($id, FriendshipRepository $friendshipRepository): Response
     {
@@ -131,8 +167,26 @@ class FriendShipController extends AbstractController
         $this->entityManager->remove($friendship);
         $this->entityManager->flush();
 
-        $this->addFlash('success', 'Demande d\'amitié refusée avec succès.');
+        $this->addFlash('error', 'Demande d\'amitié refusée avec succès.');
 
         return $this->redirectToRoute('app_profile_show', ['id' => $user->getId()]);
+    }
+
+    #[Route('/decline-friends-request-base/{id}', name: 'decline_request_base', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function declineRequestBase($id, FriendshipRepository $friendshipRepository, Request $request): JsonResponse
+    {
+        $user = $this->getUser();
+        $friendship = $friendshipRepository->find($id);
+
+        if (!$friendship || $friendship->getReceiver() !== $user) {
+            return new JsonResponse(['success' => false, 'message' => 'Demande d\'amitié non trouvée ou non autorisée.'], 404);
+        }
+
+        $this->entityManager->remove($friendship);
+        $this->entityManager->flush();
+        $this->addFlash('success', 'Demande d\'amitié acceptée avec succès.');
+
+        return new JsonResponse(['success' => true, 'message' => 'Demande d\'amitié refusée avec succès.']);
     }
 }

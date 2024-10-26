@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Friendship;
 use App\Entity\Invitation;
 use App\Entity\Notification;
+use App\Repository\FriendshipRepository;
 use App\Repository\InvitationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\NotificationRepository;
@@ -21,39 +23,42 @@ class NotificationController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function invitationsNotificationsIndex(
         InvitationRepository $invitationRepository,
-        NotificationRepository $notificationRepository
+        NotificationRepository $notificationRepository,
+        FriendshipRepository $friendshipRepository
     ): Response {
         $user = $this->getUser();
-        
+
         $invitations = $invitationRepository->findBy([
-            'user' => $user, 
+            'user' => $user,
             'status' => 'pending'
         ]);
-        
-        $invitationsData = [];
-        foreach ($invitations as $invitation) {
-            $initiatedByOwner = ($invitation->getInitiatedBy() === 'owner');
-            $initiatedByUser = ($invitation->getInitiatedBy() === 'user');
-        
-            $invitationsData[] = [
+    
+        $invitationsData = array_map(function ($invitation) {
+            return [
                 'invitation' => $invitation,
-                'initiatedByOwner' => $initiatedByOwner,
-                'initiatedByUser' => $initiatedByUser,
+                'initiatedByOwner' => ($invitation->getInitiatedBy() === 'owner'),
+                'initiatedByUser' => ($invitation->getInitiatedBy() === 'user'),
                 'requestedBy' => $invitation->getRequestedBy(),
             ];
-        }
-        
+        }, $invitations);
+
         $notifications = $notificationRepository->findBy([
             'recipient' => $user,
             'isRead' => false
         ]);
-        
+
+        $friendRequests = $friendshipRepository->findBy([
+            'receiver' => $user,
+            'status' => Friendship::STATUS_PENDING
+        ]);
+
         return $this->render('notification/index.html.twig', [
             'invitationsData' => $invitationsData,
             'notifications' => $notifications,
+            'friendRequests' => $friendRequests,
         ]);
     }
-    
+
     #[Route('/api/invitations_pending', name: 'app_invitations_pending')]
     #[IsGranted('ROLE_USER')]
     public function getPendingInvitations(EntityManagerInterface $entityManager): JsonResponse

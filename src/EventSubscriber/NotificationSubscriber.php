@@ -50,10 +50,7 @@ class NotificationSubscriber implements EventSubscriberInterface
                 'isRead' => false,
             ]);
 
-            $invitations = $this->invitationRepository->findBy([
-                'user' => $user,
-                'status' => 'pending',
-            ]);
+            $invitations = $this->invitationRepository->findByOwner($user);
 
             $friendRequests = $this->friendshipRepository->findBy([
                 'receiver' => $user,

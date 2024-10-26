@@ -3,11 +3,12 @@
 namespace App\Controller;
 
 use Stripe\Stripe;
+use App\Entity\User;
 use Stripe\StripeClient;
 use App\Entity\Notification;
-use App\Entity\User;
 use Stripe\Checkout\Session;
 use App\Repository\UserRepository;
+use App\Service\NotificationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,14 +20,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PaymentController extends AbstractController
 {
     private $entityManager;
+    private $notificationService;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, NotificationService $notificationService)
     {
         $this->entityManager = $entityManager;
+        $this->notificationService = $notificationService;
     }
 
     #[Route('/vip', name: 'app_vip')]
-    public function index(): Response
+    public function index(): Response 
     {
         return $this->render('vip/vip.html.twig', [
             'stripe_public_key' => 'pk_test_51QBlZ71qYsqow2KMbEgpRLuCzHNSkIpbubTwkqwIMySi0fLK4L4T22jBPuz4NtOYfnVAaKqyxYBbyyjvwbZq35EW00WG6eGtGf',
@@ -37,9 +40,9 @@ class PaymentController extends AbstractController
     public function createCheckoutSessionMonthly(): JsonResponse
     {
         $user = $this->getUser();
-    
+
         Stripe::setApiKey('sk_test_51QBlZ71qYsqow2KM9FZ9Rnbxpji5WHDxzcJ8gLmiGzWjI4Y1s96vTxk880TP4jj1KU8VGgTEP5uuwkAnlUwv8JNF00PhjAgwpy');
-    
+
         try {
             $customerId = $this->createOrRetrieveStripeCustomer($user);
 
@@ -65,9 +68,9 @@ class PaymentController extends AbstractController
     public function createCheckoutSessionAnnual(): JsonResponse
     {
         $user = $this->getUser();
-    
+
         Stripe::setApiKey('sk_test_51QBlZ71qYsqow2KM9FZ9Rnbxpji5WHDxzcJ8gLmiGzWjI4Y1s96vTxk880TP4jj1KU8VGgTEP5uuwkAnlUwv8JNF00PhjAgwpy');
-    
+
         try {
             $customerId = $this->createOrRetrieveStripeCustomer($user);
 
@@ -82,7 +85,7 @@ class PaymentController extends AbstractController
                 'success_url' => $this->generateUrl('app_payment_success', [], UrlGeneratorInterface::ABSOLUTE_URL),
                 'cancel_url' => $this->generateUrl('app_payment_cancel', [], UrlGeneratorInterface::ABSOLUTE_URL),
             ]);
-    
+
             return new JsonResponse(['id' => $session->id]);
         } catch (\Exception $e) {
             return new JsonResponse(['error' => 'Erreur lors de la création de la session Stripe: ' . $e->getMessage()], Response::HTTP_BAD_REQUEST);
@@ -113,88 +116,38 @@ class PaymentController extends AbstractController
             return new JsonResponse(['error' => 'Erreur lors de la création de la session Stripe: ' . $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
-    
+
     #[Route('/payment-success', name: 'app_payment_success')]
     public function paymentSuccess(): Response
     {
         $user = $this->getUser();
-    
         if ($user) {
             $this->createOrRetrieveStripeCustomer($user);
-    
             $user->setIsVip(true);
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            $this->createNotification($user, 'Félicitations ! Vous avez acheté le VIP.', 'vip_purchase');
-    
-            return $this->render('payment/success.html.twig', [
-                'message' => 'Votre paiement a été réussi. Bienvenue dans le programme VIP !'
-            ]);
+            $this->notificationService->createNotification(
+                $user,
+                'vip_purchase',
+                'Félicitations ! Vous avez acheté le VIP.'
+            );
+            
+
+            $this->addFlash('success', 'Votre paiement a été réussi. Bienvenue dans le programme VIP !');
+
+            return $this->redirectToRoute('app_profile_show', ['id' => $user->getId()]);
         }
+
+        $this->addFlash('error', 'Une erreur est survenue, veuillez réessayer.');
         return $this->redirectToRoute('app_home');
     }
-    
-    
-    public function createStripeCustomer(User $user): string
-    {
-        $stripe = new StripeClient('sk_test_51QBlZ71qYsqow2KM9FZ9Rnbxpji5WHDxzcJ8gLmiGzWjI4Y1s96vTxk880TP4jj1KU8VGgTEP5uuwkAnlUwv8JNF00PhjAgwpy');
-    
-        if ($user->getStripeCustomerId()) {
-            return $user->getStripeCustomerId();
-        }
-    
-        $customer = $stripe->customers->create([
-            'email' => $user->getEmail(),
-            'name' => $user->getFirstName() . ' ' . $user->getLastName(),
-        ]);
-    
-        $user->setStripeCustomerId($customer->id);
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
-    
-        return $customer->id;
-    }
-
-    public function createOrRetrieveStripeCustomer(User $user): string
-    {
-        $stripe = new StripeClient('sk_test_51QBlZ71qYsqow2KM9FZ9Rnbxpji5WHDxzcJ8gLmiGzWjI4Y1s96vTxk880TP4jj1KU8VGgTEP5uuwkAnlUwv8JNF00PhjAgwpy');
-
-        if ($user->getStripeCustomerId()) {
-            return $user->getStripeCustomerId();
-        }
-
-        $customer = $stripe->customers->create([
-            'email' => $user->getEmail(),
-            'name' => $user->getFirstName() . ' ' . $user->getLastName(),
-        ]);
-
-        $user->setStripeCustomerId($customer->id);
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
-
-        return $customer->id;
-    }
-
-        public function createNotification(User $user, string $message, string $type): void
-        {
-            $notification = new Notification();
-            $notification->setRecipient($user);
-            $notification->setMessage($message);
-            $notification->setType($type); 
-            $notification->setRead(false);
-            $notification->setCreatedAt(new \DateTime());
-        
-            $this->entityManager->persist($notification);
-            $this->entityManager->flush();
-        }
 
     #[Route('/payment-cancel', name: 'app_payment_cancel')]
     public function paymentCancel(): Response
     {
-        return $this->render('payment/cancel.html.twig', [
-            'message' => 'Le paiement a été annulé. Vous pouvez réessayer.'
-        ]);
+        $this->addFlash('error', 'Le paiement a été annulé. Vous pouvez réessayer.');
+        return $this->redirectToRoute('app_vip');
     }
 
     #[Route('/create-gift-checkout-session', name: 'app_create_gift_checkout_session', methods: ['POST'])]
@@ -212,7 +165,6 @@ class PaymentController extends AbstractController
         if (!$recipient) {
             return new JsonResponse(['error' => 'Utilisateur introuvable.'], Response::HTTP_BAD_REQUEST);
         }
-
         Stripe::setApiKey('sk_test_51QBlZ71qYsqow2KM9FZ9Rnbxpji5WHDxzcJ8gLmiGzWjI4Y1s96vTxk880TP4jj1KU8VGgTEP5uuwkAnlUwv8JNF00PhjAgwpy');
 
         try {
@@ -244,19 +196,22 @@ class PaymentController extends AbstractController
     {
         $recipient = $userRepository->find($id);
         $user = $this->getUser();
-    
         if ($recipient && $user) {
             $recipient->setIsVip(true);
             $this->entityManager->persist($recipient);
             $this->entityManager->flush();
-    
-            $this->createNotification($user, 'Vous avez offert le VIP à ' . $recipient->getUsername(), 'vip_gift_offered');
-    
-            $this->createNotification($recipient, $user->getUsername() . ' vous a offert le VIP.', 'vip_gift_received');
-    
-            return $this->render('payment/success.html.twig', [
-                'message' => 'Le paiement pour offrir l\'adhésion VIP à ' . $recipient->getUsername() . ' a été réussi !'
-            ]);
+            $this->notificationService->createNotification(
+                $user,
+                'vip_gift_offered',
+                'Vous avez offert le VIP à ' . $recipient->getUsername()
+            );
+            
+            $this->notificationService->createNotification(
+                $recipient,
+                'vip_gift_received',
+                $user->getUsername() . ' vous a offert le VIP.'
+            );
+            return $this->redirectToRoute('app_home');
         }
     
         return $this->redirectToRoute('app_home');
@@ -266,13 +221,10 @@ class PaymentController extends AbstractController
     public function searchUser(Request $request, UserRepository $userRepository): JsonResponse
     {
         $username = $request->query->get('username', '');
-
         if (empty($username)) {
             return new JsonResponse(['error' => 'Aucun nom d\'utilisateur fourni.'], 400);
         }
-
         $user = $userRepository->findOneBy(['username' => $username]);
-
         if (!$user) {
             return new JsonResponse(['error' => 'Utilisateur non trouvé.'], 404);
         }
@@ -291,25 +243,57 @@ class PaymentController extends AbstractController
     {
         $payload = json_decode($request->getContent(), true);
         error_log('Payload reçu: ' . json_encode($payload));
-    
         if ($payload['type'] === 'customer.subscription.deleted') {
             $customerId = $payload['data']['object']['customer'];
             error_log('Customer ID reçu: ' . $customerId);
-    
             $user = $this->entityManager->getRepository(User::class)->findOneBy(['stripeCustomerId' => $customerId]);
-    
             if ($user && $user->getIsVip()) {
                 $user->setIsVip(false);
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
                 error_log('Utilisateur trouvé et mis à jour : ' . $user->getEmail());
                 
-                $this->createNotification($user, 'Votre abonnement VIP a expiré.', 'vip');
+                $this->notificationService->createNotification(
+                    $user,
+                    'vip',
+                    'Votre abonnement VIP a expiré.'
+                );
             } else {
                 error_log('Utilisateur introuvable ou déjà non-VIP.');
             }
         }
-    
         return new Response('Webhook handled', 200);
-    } 
+    }
+
+    public function createStripeCustomer(User $user): string
+    {
+        $stripe = new StripeClient('sk_test_51QBlZ71qYsqow2KM9FZ9Rnbxpji5WHDxzcJ8gLmiGzWjI4Y1s96vTxk880TP4jj1KU8VGgTEP5uuwkAnlUwv8JNF00PhjAgwpy');
+        if ($user->getStripeCustomerId()) {
+            return $user->getStripeCustomerId();
+        }
+        $customer = $stripe->customers->create([
+            'email' => $user->getEmail(),
+            'name' => $user->getFirstName() . ' ' . $user->getLastName(),
+        ]);
+        $user->setStripeCustomerId($customer->id);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+        return $customer->id;
+    }
+
+    public function createOrRetrieveStripeCustomer(User $user): string
+    {
+        $stripe = new StripeClient('sk_test_51QBlZ71qYsqow2KM9FZ9Rnbxpji5WHDxzcJ8gLmiGzWjI4Y1s96vTxk880TP4jj1KU8VGgTEP5uuwkAnlUwv8JNF00PhjAgwpy');
+        if ($user->getStripeCustomerId()) {
+            return $user->getStripeCustomerId();
+        }
+        $customer = $stripe->customers->create([
+            'email' => $user->getEmail(),
+            'name' => $user->getFirstName() . ' ' . $user->getLastName(),
+        ]);
+        $user->setStripeCustomerId($customer->id);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+        return $customer->id;
+    }
 }

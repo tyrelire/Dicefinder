@@ -40,4 +40,16 @@ class InvitationRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findByOwner($owner)
+    {
+        return $this->createQueryBuilder('i')
+            ->join('i.groupeJDR', 'g')
+            ->where('g.owner = :owner')
+            ->andWhere('i.status = :status')
+            ->setParameter('owner', $owner)
+            ->setParameter('status', 'pending')
+            ->getQuery()
+            ->getResult();
+    }
 }

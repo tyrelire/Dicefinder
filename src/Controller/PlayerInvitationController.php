@@ -153,7 +153,7 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Vous devez être connecté pour faire cette action.');
             return $this->redirectToRoute('app_login');
         }
-
+    
         $groupeJdr = $groupeJdrRepository->find($groupeId);
         if (!$groupeJdr) {
             if ($request->isXmlHttpRequest()) {
@@ -162,13 +162,13 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Univers non trouvé.');
             return $this->redirectToRoute('app_groupe_j_d_r_index');
         }
-
+    
         $pendingInvitation = $invitationRepository->findOneBy([
             'requestedBy' => $currentUser,
             'groupeJDR' => $groupeJdr,
             'status' => 'pending'
         ]);
-
+    
         if ($pendingInvitation) {
             if ($request->isXmlHttpRequest()) {
                 return $this->json(['error' => 'Vous avez déjà une demande en attente pour cet Univers.'], Response::HTTP_CONFLICT);
@@ -176,7 +176,7 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Vous avez déjà une demande en attente pour cet Univers.');
             return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeId]);
         }
-
+    
         if ($groupeJdr->getOwner() === $currentUser) {
             if ($request->isXmlHttpRequest()) {
                 return $this->json(['error' => 'Vous ne pouvez pas rejoindre votre propre Univers.'], Response::HTTP_BAD_REQUEST);
@@ -184,7 +184,7 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Vous ne pouvez pas rejoindre votre propre Univers.');
             return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeId]);
         }
-
+    
         if ($groupeJdr->getPlayers()->contains($currentUser)) {
             if ($request->isXmlHttpRequest()) {
                 return $this->json(['error' => 'Vous êtes déjà dans ce groupe.'], Response::HTTP_CONFLICT);
@@ -192,7 +192,7 @@ class PlayerInvitationController extends AbstractController
             $this->addFlash('error', 'Vous êtes déjà dans ce groupe.');
             return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeId]);
         }
-
+    
         $data = json_decode($request->getContent(), true);
         $message = $data['message'] ?? '';
 
@@ -205,22 +205,26 @@ class PlayerInvitationController extends AbstractController
         $invitation->setRequestedBy($currentUser);
 
         $notificationService->createNotification(
-            $currentUser,
-            'join_request_confirmation',
-            'Votre demande pour rejoindre l\'univers ' . $groupeJdr->getTitle() . ' a été envoyée avec succès.',
+            $groupeJdr->getOwner(),
+            'join_request',
+            $currentUser->getUsername() . ' a demandé à rejoindre votre univers ' . $groupeJdr->getTitle() . '.',
             $groupeJdr
         );
-        
-        $entityManager->flush();
+        $notificationService->createNotification(
+            $currentUser,
+            'join_request',
+            'Votre demande pour rejoindre ' . $groupeJdr->getTitle() . ' a été envoyée avec succès',
+            $groupeJdr
+        );
 
-
+    
         $entityManager->persist($invitation);
         $entityManager->flush();
-
+    
         if ($request->isXmlHttpRequest()) {
             return $this->json(['success' => 'Demande envoyée avec succès.'], Response::HTTP_OK);
         }
-
+    
         $this->addFlash('success', 'Demande envoyée avec succès.');
         return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeId]);
     }
@@ -385,13 +389,14 @@ class PlayerInvitationController extends AbstractController
     ): void {
         $requestedBy = $invitation->getRequestedBy();
         $user = $invitation->getUser();
+        $jdrTitle = $groupeJdr->getTitle();
 
         $notificationService->createNotification(
             $requestedBy,
             $response === 'accept' ? 'accepted' : 'refused',
             $response === 'accept'
-                ? 'Votre demande d\'invitation a été acceptée.'
-                : 'Votre demande d\'invitation a été refusée.',
+                ? 'Votre demande d\'invitation à l\'univers "' . $jdrTitle . '" a été acceptée.'
+                : 'Votre demande d\'invitation à l\'univers "' . $jdrTitle . '" a été refusée.',
             $groupeJdr
         );
 
@@ -399,14 +404,14 @@ class PlayerInvitationController extends AbstractController
             $notificationService->createNotification(
                 $user,
                 'acceptance_confirmation',
-                'Vous avez accepté la demande de ' . $requestedBy->getUsername() . ' pour rejoindre l\'univers : ' . $groupeJdr->getTitle() . '.',
+                'Vous avez accepté la demande de ' . $requestedBy->getUsername() . ' pour rejoindre l\'univers : "' . $jdrTitle . '".',
                 $groupeJdr
             );
         } elseif ($response === 'refuse') {
             $notificationService->createNotification(
                 $user,
                 'refusal_confirmation',
-                'Vous avez refusé la demande de ' . $requestedBy->getUsername() . ' pour rejoindre l\'univers : ' . $groupeJdr->getTitle() . '.',
+                'Vous avez refusé la demande de ' . $requestedBy->getUsername() . ' pour rejoindre l\'univers : "' . $jdrTitle . '".',
                 $groupeJdr
             );
         }

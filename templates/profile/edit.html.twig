@@ -3,7 +3,7 @@
 {% block title %}Profil de {{ user.username }}{% endblock %}
 
 {% block body %}
-<div class="glassmorphism-warning pr-5 pl-5">
+<div class="glassmorphism-edition pr-5 pl-5">
     <h1 class="text-2xl font-semibold text-center text-gray-100 mb-5 mt-5">
         Mode Edition du Profil
         <svg xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10 mb-3 text-yellow-500" viewBox="0 0 24 24">
@@ -14,8 +14,11 @@
     <div class="relative flex flex-col lg:flex-row w-full min-w-0 mt-6 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable space-y-4 lg:space-y-0 lg:space-x-6">
         <div class="lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
             <div class="w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center relative group">
-                <img id="banner-preview" src="{{ user.banner ? asset('uploads/banners/' ~ user.banner) : 'https://via.placeholder.com/150' }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
-
+                {% if user.banner %}
+                    <img id="banner-preview" src="{{ user.banner ? asset('uploads/banners/' ~ user.banner) }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
+                {% else %}
+                    <img src="{{ asset('images/default-banniere.jpg') }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
+                {% endif %}
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v16h16V4H4zm16-2a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h16zm-8 7v4m0 4h.01"/>
@@ -24,9 +27,9 @@
                 </div>
 
                 {% if app.user and app.user.id == user.id %}
-                <form id="banner-form" action="{{ path('app_profile_edit_banner') }}" method="POST" enctype="multipart/form-data" class="absolute inset-0 cursor-pointer opacity-0">
-                    <input type="file" name="banner" id="banner-input" class="w-full h-full cursor-pointer" onchange="previewAndSubmitBanner()">
-                </form>
+                    <form id="banner-form" action="{{ path('app_profile_edit_banner') }}" method="POST" enctype="multipart/form-data" class="absolute inset-0 cursor-pointer opacity-0">
+                        <input type="file" name="banner" id="banner-input" class="w-full h-full cursor-pointer" onchange="previewAndSubmitBanner()">
+                    </form>
                 {% endif %}
             </div>
 
@@ -66,8 +69,8 @@
             <div class="text-gray-400 text-md">
                 <div class="flex flex-wrap space-x-6 items-center text-gray-100">
                     {% if app.user and app.user.id == user.id %}
-                    <div class="w-full flex justify-center lg:justify-end lg:absolute lg:top-4 lg:right-4 mt-4 lg:mt-0 mb-4">
-                        <a href="{{ path('app_profile_show', {'id': user.id}) }}" class="tab-link p-3 transition-all duration-300 ease-in-out border-b-2 hover:border-red-500 text-gray-100 transform hover:-translate-y-1 hover:scale-105 glassmorphism-player-left flex items-center space-x-2">
+                    <div class="w-full flex justify-center lg:justify-end mt-4 lg:mt-0 mb-4 flex-wrap items-center gap-4">
+                        <a href="{{ path('app_profile_show', {'id': user.id}) }}" class="glassmorphism-player-left px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center space-x-2">
                             <span>Retour</span>
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 11l-4 4l4 4m-4-4h11a4 4 0 0 0 0-8h-1"/>
@@ -136,14 +139,14 @@
                     </h2>
                     <form id="bio-form" action="{{ path('app_profile_edit_bio') }}" method="POST">
                         <textarea id="bio-textarea" name="bio" class="w-full h-32 p-2 bg-gray-800 text-gray-100 rounded-md hidden" rows="5">{{ user.bio }}</textarea>
-                        <div id="bio-display">{{ user.bio }}</div>
+                        <div id="bio-display">{{ user.bio ? user.bio : 'Aucune information renseignée.' }}</div>
                         <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-md mt-4 hidden" id="save-bio-btn">Sauvegarder</button>
                     </form>
                 </div>
             {% else %}
                 <div class="w-full text-gray-100 glassmorphism p-6 rounded-lg mb-8">
                     <h2 class="text-2xl font-semibold mb-4">Biographie</h2>
-                    <p>{{ user.bio }}</p>
+                    <p>{{ user.bio ? user.bio : 'Aucune information renseignée.' }}</p>
                 </div>
             {% endif %}
         </div>

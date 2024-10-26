@@ -113,7 +113,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinTable(name: 'user_favorite_jdr')]
     private Collection $favoriteGroupeJDR;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $banner = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
@@ -131,6 +131,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Friendship::class, mappedBy: 'receiver')]
     private Collection $receiverFriendships;
 
+    /**
+     * @var Collection<int, Notification>
+     */
+    #[ORM\OneToMany(targetEntity: Notification::class, mappedBy: 'relatedUser')]
+    private Collection $relatedNotifications;
+
 
     public function __construct()
     {
@@ -143,6 +149,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->notifications = new ArrayCollection();
         $this->favoriteGroupeJDR = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->relatedNotifications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -647,6 +654,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setStripeCustomerId(?string $stripeCustomerId): self
     {
         $this->stripeCustomerId = $stripeCustomerId;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notification>
+     */
+    public function getRelatedNotifications(): Collection
+    {
+        return $this->relatedNotifications;
+    }
+
+    public function addRelatedNotification(Notification $relatedNotification): static
+    {
+        if (!$this->relatedNotifications->contains($relatedNotification)) {
+            $this->relatedNotifications->add($relatedNotification);
+            $relatedNotification->setRelatedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRelatedNotification(Notification $relatedNotification): static
+    {
+        if ($this->relatedNotifications->removeElement($relatedNotification)) {
+            // set the owning side to null (unless already changed)
+            if ($relatedNotification->getRelatedUser() === $this) {
+                $relatedNotification->setRelatedUser(null);
+            }
+        }
+
         return $this;
     }
 }

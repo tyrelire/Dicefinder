@@ -9,6 +9,7 @@ use App\Entity\Friendship;
 use App\Entity\PlayerMembership;
 use App\Form\PasswordChangeType;
 use App\Repository\UserRepository;
+use App\Service\FileUploaderService;
 use App\Form\PasswordChangeSettingsType;
 use App\Repository\FriendshipRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,29 +25,51 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile/{id<\d+>}', name: 'app_profile_show', methods: ['GET'])]
-    public function show(int $id, EntityManagerInterface $entityManager, UserRepository $userRepository, FriendshipRepository $friendshipRepository): Response
+    private EntityManagerInterface $entityManager;
+    private ParameterBagInterface $params;
+
+    public function __construct(EntityManagerInterface $entityManager, ParameterBagInterface $params)
     {
+        $this->entityManager = $entityManager;
+        $this->params = $params;
+    }
+
+    #[Route('/profile/{id<\d+>}', name: 'app_profile_show', methods: ['GET'])]
+    public function show(
+        int $id,
+        EntityManagerInterface $entityManager,
+        UserRepository $userRepository,
+        FriendshipRepository $friendshipRepository
+    ): Response {
         $currentUser = $this->getUser();
         $user = $entityManager->getRepository(User::class)->find($id);
-
+    
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-
+    
         $ownedJDRs = $entityManager->getRepository(GroupeJDR::class)->findBy(['owner' => $user]);
         $playerMemberships = $entityManager->getRepository(PlayerMembership::class)->findBy(['player' => $user]);
-
+    
         $joinedJDRs = [];
         foreach ($playerMemberships as $membership) {
             $groupeJDR = $membership->getGroupeJDR();
+            $joinedAt = $membership->getJoinedAt();
+            $now = new \DateTime();
+    
+            // Calcul de la différence de temps depuis l'adhésion
+            $interval = $now->diff($joinedAt);
+            $timeSinceJoined = $this->formatInterval($interval);
+    
             $joinedJDRs[] = [
                 'id' => $groupeJDR->getId(),
                 'groupe' => $groupeJDR,
-                'joined_at' => $membership->getJoinedAt(),
+                'joined_at' => $joinedAt,
+                'time_since_joined' => $timeSinceJoined,
                 'picture' => $groupeJDR->getPicture(),
                 'title' => $groupeJDR->getTitle(),
                 'players' => $groupeJDR->getPlayers(),
@@ -55,23 +78,21 @@ class ProfileController extends AbstractController
                 'owner' => $groupeJDR->getOwner(),
             ];
         }
-
+    
         $favoriteJDRs = $user->getFavoriteGroupeJDR();
         $ownedJDRCount = count($ownedJDRs);
         $joinedJDRCount = count($joinedJDRs);
         $favoriteJDRCount = count($favoriteJDRs);
-
+    
         $friends = $userRepository->findFriendsOfUser($user);
-
+    
         $relationshipStatus = null;
         if ($currentUser && $currentUser->getId() !== $user->getId()) {
             $relationship = $friendshipRepository->findFriendship($currentUser, $user);
-            if ($relationship) {
-                $relationshipStatus = $relationship->getStatus();
-            } else {
-                $relationshipStatus = 'no_relationship';
-            }
+            $relationshipStatus = $relationship ? $relationship->getStatus() : 'no_relationship';
         }
+    
+        $stripePublicKey = $this->getParameter('env(STRIPE_PUBLIC_KEY)');
     
         return $this->render('profile/show.html.twig', [
             'user' => $user,
@@ -83,6 +104,7 @@ class ProfileController extends AbstractController
             'favoriteJDRCount' => $favoriteJDRCount,
             'relationshipStatus' => $relationshipStatus,
             'friends' => $friends,
+            'stripePublicKey' => $stripePublicKey,
         ]);
     }
 
@@ -147,88 +169,70 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/edit/avatar', name: 'app_profile_edit_avatar', methods: ['POST'])]
-    public function editAvatar(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
+    public function editAvatar(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager, FileUploaderService $fileUploaderService): Response
     {
         $user = $this->getUser();
-
+        $targetDirectory = $this->getParameter('avatars_directory');
+    
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-
+    
         /** @var UploadedFile $avatarFile */
         $avatarFile = $request->files->get('avatar');
         if ($avatarFile) {
             $oldAvatar = $user->getAvatar();
             if ($oldAvatar) {
-                $oldAvatarPath = $this->getParameter('kernel.project_dir').'/public/uploads/avatars/'.$oldAvatar;
-                if (file_exists($oldAvatarPath)) {
-                    unlink($oldAvatarPath);
-                }
+                $fileUploaderService->removeFile($oldAvatar, $targetDirectory);
             }
-
-            $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugger->slug($originalFilename);
-            $newFilename = $safeFilename.'-'.uniqid().'.'.$avatarFile->guessExtension();
-
+    
             try {
-                $avatarFile->move(
-                    $this->getParameter('kernel.project_dir').'/public/uploads/avatars',
-                    $newFilename
-                );
+                $newFilename = $fileUploaderService->upload($avatarFile, $slugger, $targetDirectory);
                 $user->setAvatar($newFilename);
                 $entityManager->persist($user);
                 $entityManager->flush();
-
+    
                 $this->addFlash('success', 'Photo de profil mise à jour avec succès.');
-            } catch (FileException $e) {
+            } catch (\Exception $e) {
                 $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de la photo.');
             }
         }
-
+    
         return $this->redirectToRoute('app_profile_edit');
     }
 
     #[Route('/profile/edit/banner', name: 'app_profile_edit_banner', methods: ['POST'])]
-    public function editBanner(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
+    public function editBanner(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager, FileUploaderService $fileUploaderService): Response
     {
         $user = $this->getUser();
+        $targetDirectory = $this->getParameter('banners_directory');
+    
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-
+    
         /** @var UploadedFile $bannerFile */
         $bannerFile = $request->files->get('banner');
         if ($bannerFile) {
             $oldBanner = $user->getBanner();
             if ($oldBanner) {
-                $oldBannerPath = $this->getParameter('kernel.project_dir').'/public/uploads/banners/'.$oldBanner;
-                if (file_exists($oldBannerPath)) {
-                    unlink($oldBannerPath);
-                }
+                $fileUploaderService->removeFile($oldBanner, $targetDirectory);
             }
-
-            $originalFilename = pathinfo($bannerFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugger->slug($originalFilename);
-            $newFilename = $safeFilename.'-'.uniqid().'.'.$bannerFile->guessExtension();
-
+    
             try {
-                $bannerFile->move(
-                    $this->getParameter('kernel.project_dir').'/public/uploads/banners',
-                    $newFilename
-                );
+                $newFilename = $fileUploaderService->upload($bannerFile, $slugger, $targetDirectory);
                 $user->setBanner($newFilename);
                 $entityManager->persist($user);
                 $entityManager->flush();
-
+    
                 $this->addFlash('success', 'Bannière mise à jour avec succès.');
-            } catch (FileException $e) {
+            } catch (\Exception $e) {
                 $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de la bannière.');
             }
         }
-
+    
         return $this->redirectToRoute('app_profile_edit');
     }
-
 
     #[Route('/profile/edit/bio', name: 'app_profile_edit_bio', methods: ['POST'])]
     public function editBio(Request $request, EntityManagerInterface $entityManager): Response
@@ -289,5 +293,22 @@ class ProfileController extends AbstractController
         }
 
         return $this->redirectToRoute('app_profile_edit');
+    }
+
+    private function formatInterval(\DateInterval $interval): string
+    {
+        if ($interval->y > 0) {
+            return $interval->y . ' an' . ($interval->y > 1 ? 's' : '');
+        } elseif ($interval->m > 0) {
+            return $interval->m . ' mois';
+        } elseif ($interval->d > 0) {
+            return $interval->d . ' jour' . ($interval->d > 1 ? 's' : '');
+        } elseif ($interval->h > 0) {
+            return $interval->h . ' heure' . ($interval->h > 1 ? 's' : '');
+        } elseif ($interval->i > 0) {
+            return $interval->i . ' minute' . ($interval->i > 1 ? 's' : '');
+        } else {
+            return 'moins d\'une minute';
+        }
     }
 }

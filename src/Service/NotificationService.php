@@ -16,7 +16,7 @@ class NotificationService
         $this->entityManager = $entityManager;
     }
 
-    public function createNotification(User $recipient, string $type, ?string $message = null, ?GroupeJDR $groupeJDR = null): void
+    public function createNotification(User $recipient, string $type, ?string $message = null, ?GroupeJDR $groupeJDR = null, ?string $avatar = null, ?User $relatedUser = null): void
     {
         $notification = new Notification();
         $notification->setRecipient($recipient);
@@ -25,6 +25,8 @@ class NotificationService
         $notification->setGroupeJDR($groupeJDR);
         $notification->setCreatedAt(new \DateTime());
         $notification->setRead(false);
+        $notification->setAvatar($avatar);
+        $notification->setRelatedUser($relatedUser);
 
         $this->entityManager->persist($notification);
         $this->entityManager->flush();

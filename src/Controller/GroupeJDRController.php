@@ -10,6 +10,7 @@ use App\Entity\Notification;
 use App\Entity\PlayerMembership;
 use App\Repository\UserRepository;
 use App\Entity\NotificationHistory;
+use App\Service\FileUploaderService;
 use App\Service\NotificationService;
 use App\Repository\CategoryRepository;
 use App\Repository\GroupeJDRRepository;
@@ -82,12 +83,13 @@ final class GroupeJDRController extends AbstractController
     }
 
     #[Route('/new', name: 'app_groupe_j_d_r_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, FileUploaderService $fileUploaderService): Response
     {
         if (!$this->getUser()) {
             $this->addFlash('error', 'Vous devez vous connecter pour créer un Univers.');
             return $this->redirectToRoute('app_groupe_j_d_r_index');
         }
+
         $groupeJDR = new GroupeJDR();
         $form = $this->createForm(GroupeJDRType::class, $groupeJDR);
         $form->handleRequest($request);
@@ -95,8 +97,18 @@ final class GroupeJDRController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form->get('picture')->getData();
             if ($file) {
-                $newFilename = $this->uploadImage($file, $slugger);
-                $groupeJDR->setPicture($newFilename);
+                try {
+                    $targetDirectory = $this->getParameter('imagesjdr_directory');
+                    $newFilename = $fileUploaderService->upload($file, $slugger, $targetDirectory);
+                    $groupeJDR->setPicture($newFilename);
+                } catch (\Exception $e) {
+                    $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de l\'image.');
+                    return $this->render('groupe_jdr/new.html.twig', [
+                        'groupe_j_d_r' => $groupeJDR,
+                        'form' => $form,
+                        'isNew' => true,
+                    ]);
+                }
             } else {
                 $this->addFlash('error', 'L\'image est obligatoire pour créer un groupe de Univers.');
                 return $this->render('groupe_jdr/new.html.twig', [
@@ -189,61 +201,72 @@ final class GroupeJDRController extends AbstractController
         UserRepository $userRepository,
         InvitationRepository $invitationRepository,
         SluggerInterface $slugger,
-        NotificationService $notificationService
+        NotificationService $notificationService,
+        FileUploaderService $fileUploaderService
     ): Response {
-            if ($groupeJDR->getOwner() !== $this->getUser()) {
-                $this->addFlash('error', 'Vous n\'êtes pas autorisé à modifier cette Univers.');
-                return $this->redirectToRoute('app_groupe_j_d_r_index');
-            }
-
-            $form = $this->createForm(GroupeJDRType::class, $groupeJDR, ['is_edit' => true]);
-            $form->handleRequest($request);
-
-            $addedPlayers = $request->request->get('added_players');
-            if ($addedPlayers) {
-                $playerIds = json_decode($addedPlayers, true);
-                foreach ($playerIds as $userId) {
-                    $user = $userRepository->find($userId);
-                    if ($user && !$invitationRepository->findOneBy(['groupeJDR' => $groupeJDR, 'user' => $user])) {
-                        $invitation = new Invitation();
-                        $invitation->setUser($user);
-                        $invitation->setGroupeJDR($groupeJDR);
-                        $invitation->setStatus('pending');
-                        $invitation->setInitiatedBy('owner');
-                        $invitation->setRequestedBy($this->getUser());
-                        $entityManager->persist($invitation);
-
-                        $notificationService->createNotification(
-                            $this->getUser(),
-                            'invitation_sent',
-                            'Vous avez invité ' . $user->getUsername() . ' à rejoindre l\'univers : ' . $groupeJDR->getTitle() . '.',
-                            $groupeJDR
-                        );
-                    }
-                }
-            }
-
-            if ($form->isSubmitted() && $form->isValid()) {
-                $file = $form->get('picture')->getData();
-                if ($file) {
-                    $newFilename = $this->uploadImage($file, $slugger);
-                    $groupeJDR->setPicture($newFilename);
-                }
-
-                $groupeJDR->setEditAt(new \DateTime());
-
-                foreach ($groupeJDR->getEvents() as $event) {
-                    if (!$event->getGroupeJDR()) {
-                        $event->setGroupeJDR($groupeJDR);
-                    }
-                }
-
-                $entityManager->flush();
-                $this->addFlash('success', 'L\'Univers a été mis à jour avec succès.');
-
-                return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
+        if ($groupeJDR->getOwner() !== $this->getUser()) {
+            $this->addFlash('error', 'Vous n\'êtes pas autorisé à modifier cet Univers.');
+            return $this->redirectToRoute('app_groupe_j_d_r_index');
         }
+    
+        $form = $this->createForm(GroupeJDRType::class, $groupeJDR, ['is_edit' => true]);
+        $form->handleRequest($request);
+    
+        $addedPlayers = $request->request->get('added_players');
+        if ($addedPlayers) {
+            $playerIds = json_decode($addedPlayers, true);
+            foreach ($playerIds as $userId) {
+                $user = $userRepository->find($userId);
+                if ($user && !$invitationRepository->findOneBy(['groupeJDR' => $groupeJDR, 'user' => $user])) {
+                    $invitation = new Invitation();
+                    $invitation->setUser($user);
+                    $invitation->setGroupeJDR($groupeJDR);
+                    $invitation->setStatus('pending');
+                    $invitation->setInitiatedBy('owner');
+                    $invitation->setRequestedBy($this->getUser());
+                    $entityManager->persist($invitation);
+    
+                    $notificationService->createNotification(
+                        $this->getUser(),
+                        'invitation_sent',
+                        'Vous avez invité ' . $user->getUsername() . ' à rejoindre l\'univers : ' . $groupeJDR->getTitle() . '.',
+                        $groupeJDR
+                    );
+                }
+            }
+        }
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('picture')->getData();
+            if ($file) {
+                try {
+                    $targetDirectory = $this->getParameter('imagesjdr_directory');
+                    $oldPicture = $groupeJDR->getPicture();
+                    if ($oldPicture) {
+                        $fileUploaderService->removeFile($oldPicture, $targetDirectory);
+                    }
 
+                    $newFilename = $fileUploaderService->upload($file, $slugger, $targetDirectory);
+                    $groupeJDR->setPicture($newFilename);
+                } catch (\Exception $e) {
+                    $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de l\'image.');
+                }
+            }
+    
+            $groupeJDR->setEditAt(new \DateTime());
+    
+            foreach ($groupeJDR->getEvents() as $event) {
+                if (!$event->getGroupeJDR()) {
+                    $event->setGroupeJDR($groupeJDR);
+                }
+            }
+    
+            $entityManager->flush();
+            $this->addFlash('success', 'L\'Univers a été mis à jour avec succès.');
+    
+            return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
+        }
+    
         return $this->render('groupe_jdr/edit.html.twig', [
             'groupe_j_d_r' => $groupeJDR,
             'form' => $form,
@@ -328,27 +351,5 @@ final class GroupeJDRController extends AbstractController
         }
 
         return $this->redirectToRoute('app_groupe_j_d_r_show', ['id' => $groupeJDR->getId()]);
-    }
-
-    private function uploadImage($file, SluggerInterface $slugger): string
-    {
-        $maxSize = 2 * 1024 * 1024;
-        if ($file->getSize() > $maxSize) {
-            throw new \Exception('Le fichier est trop volumineux. La taille maximale autorisée est de 2 Mo.');
-        }
-
-        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $safeFilename = $slugger->slug($originalFilename);
-        $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
-
-        try {
-            $file->move(
-                $this->getParameter('uploads_directory'),
-                $newFilename
-            );
-        } catch (FileException $e) {
-        }
-
-        return $newFilename;
     }
 }

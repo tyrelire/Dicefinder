@@ -63,6 +63,40 @@
         {% endif %}
     </div>
 
+    <div class="glassmorphism shadow-2xl rounded-lg p-6 mb-10">
+        <h1 class="text-3xl font-bold mb-6 text-white">Mes Demandes d'Amis</h1>
+        {% if friendRequests|length > 0 %}
+            <div class="space-y-6">
+                {% for request in friendRequests %}
+                    <div class="glassmorphism-invitation-accepted p-4 rounded-lg shadow-lg hover:shadow-md transition-all transform hover:translate-y-1 duration-150 ease-in-out flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
+                        <div class="flex items-center">
+                            {% if request.requester.avatar %}
+                                <img src="{{ asset('uploads/avatars/' ~ request.requester.avatar) }}" class="jdr-avatar w-10 h-10 rounded-full" alt="Avatar de {{ request.requester.username }}">
+                            {% else %}
+                                <img src="{{ asset('images/default-avatar.png') }}" class="jdr-avatar w-10 h-10 rounded-full" alt="Avatar par défaut">
+                            {% endif %}
+                            <div>
+                                <p class="text-lg font-bold text-white">{{ request.requester.username }}</p>
+                                <p class="text-md text-white/90">Vous a envoyé une demande d'ami.</p>
+                                <p class="text-sm text-white/70 mt-2">{{ request.createdAt|date('d/m/Y H:i') }}</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3 w-full md:w-auto justify-end">
+                            <form action="{{ path('accept_request', { id: request.id }) }}" method="POST" class="inline-block w-full md:w-auto">
+                                <button type="submit" class="w-full md:w-auto glassmorphism-acceptance text-white px-4 py-2 rounded-md hover:bg-green-600 transition-all duration-300 ease-in-out hover:shadow-lg winter-button-accept" aria-label="Accepter la demande d'ami de {{ request.requester.username }}">Accepter</button>
+                            </form>
+                            <form action="{{ path('decline_request', { id: request.id }) }}" method="POST" class="inline-block w-full md:w-auto">
+                                <button type="submit" class="w-full md:w-auto glassmorphism-player-left text-white px-4 py-2 rounded-md hover:bg-red-500 transition-all duration-300 ease-in-out hover:shadow-lg winter-button-refuse" aria-label="Refuser la demande d'ami de {{ request.requester.username }}">Refuser</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-white mt-6">Aucune demande d'amis en attente.</p>
+        {% endif %}
+    </div>
+
     <div class="glassmorphism shadow-2xl rounded-lg p-6">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold text-white">Mes Notifications</h1>
@@ -105,13 +139,24 @@
                     {% elseif notification.type == 'invitation_sent' %}
                         {% set bg_color = 'glassmorphism-invitation-accepted' %}
                         {% set emoji = '📩' %}
+                    {% elseif notification.type in ['vip_purchase', 'vip_gift_received', 'vip_gift_offered'] %}
+                        {% set bg_color = 'glassmorphism-acceptance' %}
+                        {% set emoji = '👑' %}
                     {% endif %}
-
                     <div class="{{ bg_color }} glassmorphism border border-white/20 p-4 rounded-lg shadow-lg hover:shadow-md transition-all transform hover:translate-y-1 duration-150 ease-in-out flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
                         <div class="flex items-center">
-                            <div class="mr-4 text-2xl" aria-hidden="true">{{ emoji }}</div>
+                            {% if notification.type in ['friend_request_sent', 'vip_gift_offered', 'vip_gift_received'] and notification.relatedUser is not null %}
+                                {% if notification.relatedUser.avatar %}
+                                    <img src="{{ asset('uploads/avatars/' ~ notification.relatedUser.avatar) }}" class="jdr-avatar w-10 h-10 rounded-full mr-4" alt="Photo de profil de {{ notification.relatedUser.username }}">
+                                {% else %}
+                                    <img src="{{ asset('images/default-avatar.png') }}" class="jdr-avatar w-10 h-10 rounded-full mr-4" alt="Photo de profil par défaut">
+                                {% endif %}
+                                <div class="text-2xl ml-2" aria-hidden="true">{{ emoji }}</div>
+                            {% else %}
+                                <div class="mr-4 text-2xl" aria-hidden="true">{{ emoji }}</div>
+                            {% endif %}
                             <div>
-                                <p class="text-lg font-bold text-white">{{ notification.groupeJDR.title }}</p>
+                                <p class="text-lg font-bold text-white">{{ notification.relatedUser ? notification.relatedUser.username : 'Notification' }}</p>
                                 <p class="text-md text-white/90">
                                     {{ message }}
                                 </p>

@@ -32,6 +32,12 @@ class Notification
     #[ORM\Column]
     private ?bool $isRead = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatar = null;
+
+    #[ORM\ManyToOne(inversedBy: 'relatedNotifications')]
+    private ?User $relatedUser = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +111,30 @@ class Notification
     public function setRead(bool $isRead): static
     {
         $this->isRead = $isRead;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): static
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getRelatedUser(): ?User
+    {
+        return $this->relatedUser;
+    }
+
+    public function setRelatedUser(?User $relatedUser): static
+    {
+        $this->relatedUser = $relatedUser;
 
         return $this;
     }

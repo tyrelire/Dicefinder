@@ -1,0 +1,221 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Discussion{% endblock %}
+
+{% block body %}
+<h1 class="text-3xl font-bold mb-4">Discussion instantanée</h1>
+
+<div class="flex">
+    <div class="w-1/4 bg-gray-200 p-4 rounded shadow overflow-y-auto h-screen">
+        <h2 class="text-xl font-semibold mb-3">Conversations</h2>
+        <input type="text" id="search-user" class="w-full p-2 border rounded mb-2" placeholder="Rechercher un utilisateur">
+        
+        <ul id="suggestions-list" class="space-y-1 mb-4 hidden"></ul>
+
+        <ul id="conversations-list" class="space-y-2">
+            {% for conversation in conversations %}
+                <li data-user="{{ conversation.user }}" 
+                    class="conversation-item cursor-pointer p-2 rounded hover:bg-blue-100 {{ conversation.isRead ? 'text-gray-700 bg-gray-100' : 'font-bold bg-yellow-200' }}">
+                    {{ conversation.user }} <br>
+                    <small>{{ conversation.lastMessage }}</small><br>
+                    {% if conversation.timestamp %}
+                        <small class="text-gray-500">{{ conversation.timestamp|date("H:i") }}</small>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="flex-1 bg-gray-100 p-4 rounded shadow relative">
+        <h2 class="text-xl font-semibold mb-3" id="chat-with">Messages</h2>
+        <ul id="messages-list" class="space-y-2 overflow-y-auto h-80"></ul>
+
+        <form id="send-message-form" class="absolute bottom-4 left-0 right-0 flex">
+            <textarea id="message" placeholder="Tapez votre message ici" class="flex-1 border p-2 rounded" required></textarea>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Envoyer</button>
+        </form>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, push, onChildAdded, onValue, off, get } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyD0ZtA8CXaJO9KAziDJXWCQ9rEQ7lFA1Uw",
+        authDomain: "dicefinder-42b86.firebaseapp.com",
+        databaseURL: "https://dicefinder-42b86-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "dicefinder-42b86",
+        storageBucket: "dicefinder-42b86.appspot.com",
+        messagingSenderId: "15582622513",
+        appId: "1:15582622513:web:690f6bf7297cf610e6f610"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    let fromUser = '{{ currentUser }}';
+    let toUser = null;
+    let messagesRef = null;
+    let loadedMessages = new Set();
+
+    function loadConversations() {
+        const conversationsRef = ref(database, 'messages');
+        onValue(conversationsRef, (snapshot) => {
+            const conversations = snapshot.val();
+            document.getElementById('conversations-list').innerHTML = '';
+
+            if (conversations) {
+                for (const [key, conversation] of Object.entries(conversations)) {
+                    if (key.includes(fromUser)) {
+                        const otherUser = key.replace(fromUser + '_', '').replace('_' + fromUser, '');
+                        const lastMessage = Object.values(conversation).pop();
+                        updateConversationList(otherUser, lastMessage.message, lastMessage.isRead, lastMessage.timestamp);
+                    }
+                }
+            }
+        });
+    }
+
+    function updateConversationList(user, lastMessage, isRead, timestamp) {
+        let conversationElement = document.querySelector(`[data-user="${user}"]`);
+        
+        if (!conversationElement) {
+            conversationElement = document.createElement('li');
+            conversationElement.dataset.user = user;
+            conversationElement.className = 'conversation-item cursor-pointer p-2 rounded hover:bg-blue-100';
+            conversationElement.addEventListener('click', () => selectConversation(user, conversationElement));
+            document.getElementById('conversations-list').appendChild(conversationElement);
+        }
+
+        const messageTime = timestamp ? new Date(timestamp * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+        
+        conversationElement.className = isRead ? 'conversation-item cursor-pointer p-2 rounded hover:bg-blue-100 text-gray-700 bg-gray-100' : 'conversation-item cursor-pointer p-2 rounded hover:bg-blue-100 font-bold bg-yellow-200';
+
+        conversationElement.innerHTML = `
+            ${user} <br>
+            <small>${lastMessage}</small><br>
+            <small class="text-gray-500">${messageTime}</small>
+        `;
+    }
+
+    const searchInput = document.getElementById('search-user');
+    const suggestionsList = document.getElementById('suggestions-list');
+    const conversationsList = document.getElementById('conversations-list');
+
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim();
+        if (query.length > 1) {
+            fetch(`/search-users?q=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(usernames => {
+                    suggestionsList.innerHTML = '';
+                    suggestionsList.classList.remove('hidden');
+
+                    usernames.forEach(username => {
+                        const li = document.createElement('li');
+                        li.className = 'cursor-pointer p-2 rounded hover:bg-blue-100 bg-gray-200';
+                        li.textContent = username;
+                        li.addEventListener('click', () => startConversation(username));
+                        suggestionsList.appendChild(li);
+                    });
+                });
+        } else {
+            suggestionsList.classList.add('hidden');
+        }
+    });
+
+    function startConversation(username) {
+        suggestionsList.classList.add('hidden');
+        searchInput.value = '';
+
+        if (!document.querySelector(`[data-user="${username}"]`)) {
+            const li = document.createElement('li');
+            li.dataset.user = username;
+            li.className = 'conversation-item cursor-pointer p-2 rounded hover:bg-blue-100 font-bold bg-yellow-200';
+            li.innerHTML = `${username} <br><small>Nouveau message</small>`;
+            li.addEventListener('click', () => selectConversation(username, li));
+            conversationsList.prepend(li);
+        }
+
+        toUser = username;
+        document.getElementById('chat-with').textContent = `Chat avec ${username}`;
+        loadMessages(username);
+    }
+
+    function selectConversation(user, conversationElement) {
+        toUser = user;
+        document.getElementById('chat-with').textContent = `Chat avec ${toUser}`;
+        markMessagesAsRead();
+        loadMessages(toUser);
+    }
+
+    function markMessagesAsRead() {
+        fetch(`/mark-messages-as-read?toUser=${toUser}`, { method: 'POST' })
+            .then(() => {
+                const conversationElement = document.querySelector(`[data-user="${toUser}"]`);
+                if (conversationElement) {
+                    conversationElement.classList.remove('font-bold', 'bg-yellow-200');
+                    conversationElement.classList.add('text-gray-700', 'bg-gray-100');
+                }
+            });
+    }
+
+    function loadMessages(toUser) {
+        if (messagesRef) off(messagesRef);
+        messagesRef = ref(database, `messages/${[fromUser, toUser].sort().join('_')}`);
+        document.getElementById('messages-list').innerHTML = '';
+
+        get(messagesRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const messages = snapshot.val();
+                Object.values(messages).forEach(message => {
+                    loadedMessages.add(message.timestamp);
+                    appendMessage(message);
+                });
+            }
+        });
+
+        onChildAdded(messagesRef, snapshot => {
+            const message = snapshot.val();
+            if (!loadedMessages.has(message.timestamp)) {
+                loadedMessages.add(message.timestamp);
+                appendMessage(message);
+            }
+        });
+    }
+
+    function appendMessage(message) {
+        const existingMessages = Array.from(document.querySelectorAll('#messages-list li'));
+        const isDuplicate = existingMessages.some(li => li.textContent === `${message.from}: ${message.message}`);
+
+        if (!isDuplicate) {
+            const li = document.createElement('li');
+            li.textContent = `${message.from}: ${message.message}`;
+            li.className = message.from === fromUser ? 'text-right bg-blue-100 p-2 rounded' : 'text-left bg-gray-200 p-2 rounded';
+            document.getElementById('messages-list').appendChild(li);
+            li.scrollIntoView();
+        }
+    }
+
+    document.getElementById('send-message-form').addEventListener('submit', e => {
+        e.preventDefault();
+        if (toUser) {
+            const message = document.getElementById('message').value;
+            fetch('/send-message', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ toUser, message })
+            })
+            .then(res => res.json())
+            .then(() => {
+                document.getElementById('message').value = '';
+            });
+        } else {
+            alert("Choisissez une conversation.");
+        }
+    });
+
+    loadConversations();
+</script>
+{% endblock %}

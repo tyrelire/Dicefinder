@@ -7,6 +7,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('icons/favicon.ico') }}" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/custom-button.css') }}" rel="stylesheet">
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 
@@ -16,162 +17,264 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
+    <style>
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
 
-<style>
-    .glassmorphism {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    }
+        .glassmorphism-chat {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
 
-    .glassmorphism-acceptance {
-        background: rgba(34, 197, 94, 0.1);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        border: 1px solid rgba(34, 197, 94, 0.3);
-        box-shadow: 0 4px 30px rgba(0, 128, 0, 0.1);
-        transition: transform 0.3s ease-in-out;
-    }
+        .glassmorphism-acceptance {
+            background: rgba(34, 197, 94, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid rgba(34, 197, 94, 0.5);
+            box-shadow: 0 6px 35px rgba(34, 197, 94, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
 
-    .glassmorphism-acceptance:hover {
-        box-shadow: 0 12px 24px rgba(0, 128, 0, 0.3);
-    }
+        .glassmorphism-acceptance:hover {
+            background: rgba(34, 197, 94, 0.4);
+            box-shadow: 0 14px 40px rgba(34, 197, 94, 0.5);
+            transform: scale(1.08);
+            border-color: rgba(34, 197, 94, 0.7);
+        }
 
     .glassmorphism-player-left {
-        background: rgba(220, 38, 38, 0.1);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        border: 1px solid rgba(220, 38, 38, 0.3);
-        box-shadow: 0 4px 30px rgba(220, 38, 38, 0.1);
-        transition: transform 0.3s ease-in-out;
+        background: rgba(220, 38, 38, 0.4);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        border: 2px solid rgba(220, 38, 38, 0.6);
+        box-shadow: 0 6px 40px rgba(220, 38, 38, 0.4);
+        padding: 12px 25px;
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
     }
 
     .glassmorphism-player-left:hover {
-        box-shadow: 0 12px 24px rgba(220, 38, 38, 0.3);
+        background: rgba(220, 38, 38, 0.5);
+        box-shadow: 0 14px 45px rgba(220, 38, 38, 0.6);
+        transform: scale(1.08);
+        border-color: rgba(220, 38, 38, 0.8);
     }
 
-    .glassmorphism-invitation-accepted {
-        background: rgba(79, 70, 229, 0.1);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        border: 1px solid rgba(79, 70, 229, 0.3);
-        box-shadow: 0 4px 30px rgba(79, 70, 229, 0.1);
-        transition: transform 0.3s ease-in-out;
-    }
+        .glassmorphism-invitation-accepted {
+            background: rgba(79, 70, 229, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            box-shadow: 0 4px 30px rgba(79, 70, 229, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
 
-    .glassmorphism-invitation-accepted:hover {
-        box-shadow: 0 12px 24px rgba(79, 70, 229, 0.3);
-    }
+        .glassmorphism-invitation-accepted:hover {
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.3);
+        }
 
-    .glassmorphism-warning {
-        background: rgba(234, 179, 8, 0.1);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        border: 1px solid rgba(234, 179, 8, 0.3);
-        box-shadow: 0 4px 30px rgba(234, 179, 8, 0.1);
-        transition: transform 0.3s ease-in-out;
-    }
+        .glassmorphism-warning {
+            background: rgba(234, 179, 8, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid rgba(234, 179, 8, 0.5);
+            box-shadow: 0 6px 35px rgba(234, 179, 8, 0.4);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
-    .glassmorphism-warning:hover {
-        box-shadow: 0 12px 24px rgba(234, 179, 8, 0.3);
-    }
+        .glassmorphism-warning:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 40px rgba(234, 179, 8, 0.6);
+            border-color: rgba(234, 179, 8, 0.8);
+        }
 
-    .glassmorphism-purple {
-        background: rgba(128, 90, 213, 0.2);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        border: 1px solid rgba(128, 90, 213, 0.5);
-        box-shadow: 0 4px 30px rgba(128, 90, 213, 0.3);
-        transition: transform 0.3s ease-in-out;
-    }
+        .glassmorphism-edition {
+            background: rgba(234, 179, 8, 0.08);
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            box-shadow: 0 4px 30px rgba(234, 179, 8, 0.15);
+            color: #eab308;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-    .glassmorphism-purple:hover {
-        box-shadow: 0 12px 24px rgba(128, 90, 213, 0.5);
-    }
+        .glassmorphism-edition:hover {
+            box-shadow: 0 12px 24px rgba(234, 179, 8, 0.4);
+            border-color: rgba(234, 179, 8, 0.5);
+        }
 
-    .jdr-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 10px;
-        border: 2px solid white;
-    }
+        .glassmorphism-purple {
+            background: rgba(138, 43, 226, 0.6);
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            border: 3px solid rgba(138, 43, 226, 0.8);
+            box-shadow: 0 8px 40px rgba(138, 43, 226, 0.6);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            padding: 12px 24px;
+        }
 
-    .button-hover {
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
+        .glassmorphism-purple:hover {
+            background: rgba(138, 43, 226, 0.8);
+            box-shadow: 0 16px 50px rgba(138, 43, 226, 0.9);
+            transform: scale(1.08);
+            border-color: rgba(138, 43, 226, 1);
+        }
 
-    .button-hover:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-    }
+        .glassmorphism-purple:active {
+            box-shadow: 0 6px 25px rgba(138, 43, 226, 0.8);
+            transform: scale(0.97);
+        }
 
-    .rounded-full {
-        border-radius: 9999px;
-    }
+        .glassmorphism-send-message {
+            background: rgba(0, 123, 255, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid rgba(0, 123, 255, 0.5);
+            box-shadow: 0 6px 35px rgba(0, 123, 255, 0.2);
+            color: #ffffff;
+            padding: 12px 24px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
 
-    #dropdown-menu {
-        width: 24rem;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        border-radius: 16px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        z-index: 50;
-    }
+        .glassmorphism-send-message:hover {
+            background: rgba(0, 123, 255, 0.4);
+            box-shadow: 0 14px 40px rgba(0, 123, 255, 0.5);
+            transform: scale(1.08);
+            border-color: rgba(0, 123, 255, 0.7);
+        }
 
-    #dropdown-menu:hover {
-    }
+        .glassmorphism-send-message:active {
+            box-shadow: 0 4px 20px rgba(0, 123, 255, 0.5);
+            transform: scale(0.95);
+        }
 
-    #dropdown-menu .notification-item {
-        transition: background-color 0.3s ease;
-    }
+        .glassmorphism-vip-gift {
+            background: rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0.5, 0.6);
+            box-shadow: 0 6px 35px rgba(255, 215, 0.4, 0.2);
+            color: #ffffff;
+            padding: 12px 24px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
 
-    #dropdown-menu:hover {
-    }
+        .glassmorphism-vip-gift:hover {
+            background: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 14px 40px rgba(255, 215, 0.7, 0.4);
+            transform: scale(1.08);
+            border-color: rgba(255, 215, 0.7, 0.8);
+        }
 
-    .card-item {
-        user-select: none;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 7px 20px 5px rgba(0, 0, 0, 0.4);
-        border-radius: 0.7rem;
-        overflow: hidden;
-        transition: 0.5s all;
-        position: relative;
-    }
+        .glassmorphism-vip-gift:active {
+            box-shadow: 0 4px 20px rgba(255, 215, 0.5, 0.5);
+            transform: scale(0.95);
+        }
 
-    .card-item::before {
-        content: "";
-        position: absolute;
-        top: -150%;
-        left: -150%;
-        width: 300%;
-        height: 300%;
-        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
-        transform: rotate(-45deg);
-        transition: 0.5s all ease-in-out;
-        opacity: 0;
-        pointer-events: none;
-        filter: blur(10px);
-    }
+        .jdr-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+            border: 2px solid white;
+        }
 
-    .card-item:hover {
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        box-shadow: 0 10px 60px 15px rgba(0, 0, 0, 0.7);
-        transform: scale(1.02);
-    }
+        .button-hover {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
 
-    .card-item:hover::before {
-        top: -150%;
-        left: 200%;
-        opacity: 1;
-        filter: brightness(1.3);
-    }
-</style>
+        .button-hover:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        #dropdown-menu {
+            width: 24rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 50;
+        }
+
+        #dropdown-menu:hover {
+        }
+
+        #dropdown-menu .notification-item {
+            transition: background-color 0.3s ease;
+        }
+
+        #dropdown-menu:hover {
+        }
+
+        .card-item {
+            user-select: none;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 7px 20px 5px rgba(0, 0, 0, 0.4);
+            border-radius: 0.7rem;
+            overflow: hidden;
+            transition: 0.5s all;
+            position: relative;
+        }
+
+        .card-item::before {
+            content: "";
+            position: absolute;
+            top: -150%;
+            left: -150%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
+            transform: rotate(-45deg);
+            transition: 0.5s all ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+            filter: blur(10px);
+        }
+
+        .card-item:hover {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 60px 15px rgba(0, 0, 0, 0.7);
+            transform: scale(1.02);
+        }
+
+        .card-item:hover::before {
+            top: -150%;
+            left: 200%;
+            opacity: 1;
+            filter: brightness(1.3);
+        }
+    </style>
     <body class="bg-slate-900">
     <div>
         <header class="absolute inset-x-0 top-0 z-50">
@@ -189,7 +292,7 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="hidden lg:flex lg:gap-x-12">
+                    <div class="hidden lg:flex lg:gap-x-12 glassmorphism pt-2 pb-1 pl-5 pr-5">
                         <a href="{{ path('app_home') }}" class="nav-link text-sm font-semibold leading-6 text-white hover:text-gray-300 {% if app.request.get('_route') == 'app_home' %}active{% endif %}">
                             Accueil
                         </a>
@@ -214,8 +317,9 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
                                     </svg>
-                                    <div id="invitation-notification" class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 {{ (notifications|length + invitations|length + friendRequests|length) == 0 ? 'hidden' : '' }}">
-                                        {{ notifications|length + invitations|length + friendRequests|length }}
+                                    {% set userInvitations = invitations|filter(invitation => invitation.user.id == app.user.id) %}
+                                    <div id="invitation-notification" class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 {{ (notifications|length + userInvitations|length + friendRequests|length) == 0 ? 'hidden' : '' }}">
+                                        {{ notifications|length + userInvitations|length + friendRequests|length }}
                                     </div>
                                 </button>
 
@@ -226,10 +330,16 @@
                                             {% if notifications|length > 0 %}
                                                 {% for notification in notifications|reverse|slice(0, 2) %}
                                                     <div class="notification-item flex items-center px-4 py-4 hover:bg-gray-800 rounded-md cursor-pointer mb-2" onclick="window.location.href='{{ path('app_notifications_index') }}'">
-                                                        {% if notification.groupeJDR and notification.groupeJDR.picture %}
+                                                        {% if notification.type == 'friend_request_sent' and notification.relatedUser is not null %}
+                                                            {% if notification.relatedUser.avatar %}
+                                                                <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('uploads/avatars/' ~ notification.relatedUser.avatar) }}" alt="Avatar de {{ notification.relatedUser.username }}">
+                                                            {% else %}
+                                                                <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('images/default-avatar.png') }}" alt="Avatar par défaut">
+                                                            {% endif %}
+                                                        {% elseif notification.groupeJDR and notification.groupeJDR.picture %}
                                                             <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('uploads/images-jdr/' ~ notification.groupeJDR.picture) }}" alt="JDR Picture">
                                                         {% else %}
-                                                            <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('images/default-jdr-avatar.png') }}" alt="Default JDR Picture">
+                                                            <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('images/default-jdr-avatar.png') }}" alt="Default Picture">
                                                         {% endif %}
                                                         <div>
                                                             <p class="text-sm font-medium text-white">{{ notification.message }}</p>
@@ -241,12 +351,11 @@
                                                 <p class="px-4 py-2 text-sm text-gray-400">Pas de nouvelles notifications</p>
                                             {% endif %}
                                         </div>
-
                                         <h4 class="text-lg font-semibold text-white mb-2">Invitations</h4>
-                                        <div id="invitations-list">
-                                            {% if invitations|length > 0 %}
-                                                {% for invitation in invitations|reverse|slice(0, 2) %}
-                                                    <div class="notification-item flex items-center px-4 py-4 hover:bg-gray-800 rounded-md cursor-pointer mb-2 invitation-item" 
+                                        <div id="jdr-invitations-list">
+                                            {% if userInvitations|length > 0 %}
+                                                {% for invitation in userInvitations|reverse|slice(0, 2) %}
+                                                    <div class="notification-item jdr-invitation-item flex items-center px-4 py-4 hover:bg-gray-800 rounded-md cursor-pointer mb-2" 
                                                         data-title="{{ invitation.groupeJDR.title }}" 
                                                         data-inviter="{{ invitation.requestedBy.username }}" 
                                                         data-message="Vous avez été invité à rejoindre l'univers {{ invitation.groupeJDR.title }}."
@@ -262,6 +371,7 @@
                                                 <p class="px-4 py-2 text-sm text-gray-400">Pas d'invitations en attente</p>
                                             {% endif %}
                                         </div>
+
                                         <h4 class="text-lg font-semibold text-white mt-2">Demandes d'amis</h4>
                                         <div id="friend-requests-list">
                                             {% if friendRequests|length > 0 %}
@@ -278,8 +388,6 @@
                                                 <p class="px-4 py-2 text-sm text-gray-400">Pas de nouvelles demandes d'amis</p>
                                             {% endif %}
                                         </div>
-                                    </div>
-
                                     <a href="{{ path('app_notifications_index') }}" class="block px-4 py-2 text-base text-white hover:bg-gray-700 text-center">Voir toutes les notifications</a>
                                 </div>
                             {% endif %}
@@ -492,197 +600,231 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Initialisation des éléments du DOM
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const userMenuToggle = document.getElementById('user-menu-toggle');
-    const userMenu = document.getElementById('user-menu');
-    const notificationDropdown = document.getElementById('notificationDropdown');
-    const dropdownMenu = document.getElementById('dropdown-menu');
-    const invitationModal = document.getElementById('invitationModal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
-    const laterBtn = document.getElementById('later-btn');
-    const acceptBtn = document.getElementById('accept-btn');
-    const refuseBtn = document.getElementById('refuse-btn');
-    const invitationNotification = document.getElementById('invitation-notification');
-
-    let isDropdownOpen = false;
-    let isUserMenuOpen = false;
-
-    // Masquer les alertes après 5 secondes
-    setTimeout(function() {
-        document.querySelectorAll('.alert-message').forEach(function(element) {
-            element.style.transition = 'opacity 0.5s';
-            element.style.opacity = 0;
-            setTimeout(function() {
-                element.remove();
-            }, 500);
-        });
-    }, 5000);
-
-    // Afficher/masquer les notifications si le nombre est à zéro
-    if (invitationNotification) {
-        const notificationCount = parseInt(invitationNotification.textContent.trim(), 10);
-        if (notificationCount === 0) {
-            invitationNotification.classList.add('hidden');
-        } else {
-            invitationNotification.classList.remove('hidden');
-        }
-    }
-
-    function closeUserMenu() {
-        if (userMenu && !userMenu.classList.contains('hidden')) {
-            userMenu.classList.add('hidden');
-            isUserMenuOpen = false;
-        }
-    }
-
-    function closeNotificationMenu() {
-        if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
-            dropdownMenu.classList.add('hidden');
-            isDropdownOpen = false;
-        }
-    }
-
-    if (userMenuToggle) {
-        userMenuToggle.addEventListener('click', function (e) {
-            e.stopPropagation();
-            closeNotificationMenu();
-            if (userMenu) {
-                isUserMenuOpen = !isUserMenuOpen;
-                userMenu.classList.toggle('hidden', !isUserMenuOpen);
-            }
-        });
-    }
-
-    if (notificationDropdown) {
-        notificationDropdown.addEventListener('click', function (e) {
-            e.stopPropagation();
-            closeUserMenu();
-            if (dropdownMenu) {
-                isDropdownOpen = !isDropdownOpen;
-                dropdownMenu.classList.toggle('hidden', !isDropdownOpen);
-                dropdownMenu.style.opacity = isDropdownOpen ? '1' : '0';
-                dropdownMenu.style.transform = isDropdownOpen ? 'scale(1)' : 'scale(0.95)';
-            }
-        });
-    }
-
-    document.addEventListener('click', function (event) {
-        const isClickInsideNotification = notificationDropdown && notificationDropdown.contains(event.target);
-        const isClickInsideDropdown = dropdownMenu && dropdownMenu.contains(event.target);
-        const isClickInsideUserMenu = userMenuToggle && userMenuToggle.contains(event.target);
-        const isClickInsideUserMenuDropdown = userMenu && userMenu.contains(event.target);
-
-        if (!isClickInsideNotification && !isClickInsideDropdown && isDropdownOpen) {
-            closeNotificationMenu();
-        }
-
-        if (!isClickInsideUserMenu && !isClickInsideUserMenuDropdown && isUserMenuOpen) {
-            closeUserMenu();
-        }
-    });
-
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function () {
-            const menu = document.getElementById('mobile-menu');
-            const expanded = this.getAttribute('aria-expanded') === 'true' || false;
-            this.setAttribute('aria-expanded', !expanded);
-            menu.classList.toggle('hidden');
-        });
-    }
-
-    // Gestion des invitations
-    const invitationItems = document.querySelectorAll('.invitation-item');
-    if (invitationItems && invitationModal && closeModalBtn && laterBtn) {
-        invitationItems.forEach(item => {
-            item.addEventListener('click', function () {
-                const title = this.getAttribute('data-title');
-                const inviter = this.getAttribute('data-inviter');
-                const message = this.getAttribute('data-message');
-                const avatarSrc = this.querySelector('img').src;
-                const invitationId = this.getAttribute('data-invitation-id');
-
-                closeNotificationMenu();
-                closeUserMenu();
-
-                const modalTitle = document.getElementById('modal-group-title');
-                const modalAction = document.getElementById('modal-action');
-                const modalMessage = document.getElementById('modal-invitation-message');
-                const modalAvatar = document.getElementById('jdr-avatar-modal');
-
-                modalTitle.textContent = title;
-                modalAction.textContent = "Invitation de " + inviter;
-                modalMessage.textContent = message;
-                modalAvatar.src = avatarSrc;
-
-                acceptBtn.setAttribute('data-invitation-id', invitationId);
-                refuseBtn.setAttribute('data-invitation-id', invitationId);
-
-                invitationModal.classList.remove('hidden');
-            });
-        });
-
-        closeModalBtn.addEventListener('click', function () {
-            invitationModal.classList.add('hidden');
-        });
-
-        laterBtn.addEventListener('click', function () {
-            invitationModal.classList.add('hidden');
-        });
-
-        window.addEventListener('click', function (event) {
-            if (event.target === invitationModal) {
-                invitationModal.classList.add('hidden');
-            }
-        });
-
-        // Utilisation de la méthode GET car les contrôleurs redirigent
-        acceptBtn.addEventListener('click', function () {
-            const invitationId = this.getAttribute('data-invitation-id');
-            window.location.href = `/accept-request/${invitationId}`;
-        });
-
-        refuseBtn.addEventListener('click', function () {
-            const invitationId = this.getAttribute('data-invitation-id');
-            window.location.href = `/decline-request/${invitationId}`;
-        });
-    }
-
-    // Gestion des demandes d'amis
-    const friendRequestItems = document.querySelectorAll('.friend-request-item');
-    if (friendRequestItems) {
-        friendRequestItems.forEach(item => {
-            item.addEventListener('click', function () {
-                const requesterName = this.querySelector('.text-sm.font-medium').textContent;
-                const createdAt = this.querySelector('.text-xs.text-gray-400').textContent;
-                const avatarSrc = this.querySelector('img').src;
-                const requestId = this.getAttribute('data-request-id');
-
-                closeNotificationMenu();
-                closeUserMenu();
-
-                const modalTitle = document.getElementById('modal-group-title');
-                const modalAction = document.getElementById('modal-action');
-                const modalMessage = document.getElementById('modal-invitation-message');
-                const modalAvatar = document.getElementById('jdr-avatar-modal');
-
-                modalTitle.textContent =  requesterName;
-                modalAction.textContent = "Envoyé le " + createdAt;
-                modalMessage.textContent = "Voulez-vous accepter la " + requesterName + "?";
-                modalAvatar.src = avatarSrc;
-
-                acceptBtn.setAttribute('data-invitation-id', requestId);
-                refuseBtn.setAttribute('data-invitation-id', requestId);
-
-                invitationModal.classList.remove('hidden');
-            });
-        });
-    }
-});
-</script>
-
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialisation des éléments du DOM
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const userMenuToggle = document.getElementById('user-menu-toggle');
+            const userMenu = document.getElementById('user-menu');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            const invitationModal = document.getElementById('invitationModal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const laterBtn = document.getElementById('later-btn');
+            const acceptBtn = document.getElementById('accept-btn');
+            const refuseBtn = document.getElementById('refuse-btn');
+            const invitationNotification = document.getElementById('invitation-notification');
+
+            let isDropdownOpen = false;
+            let isUserMenuOpen = false;
+
+            // Masquer les alertes après 5 secondes
+            setTimeout(function () {
+                document.querySelectorAll('.alert-message').forEach(function (element) {
+                    element.style.transition = 'opacity 0.5s';
+                    element.style.opacity = 0;
+                    setTimeout(function () {
+                        element.remove();
+                    }, 500);
+                });
+            }, 5000);
+
+            // Afficher/masquer les notifications si le nombre est à zéro
+            if (invitationNotification) {
+                const notificationCount = parseInt(invitationNotification.textContent.trim(), 10);
+                invitationNotification.classList.toggle('hidden', notificationCount === 0);
+            }
+
+            function closeUserMenu() {
+                if (userMenu && !userMenu.classList.contains('hidden')) {
+                    userMenu.classList.add('hidden');
+                    isUserMenuOpen = false;
+                }
+            }
+
+            function closeNotificationMenu() {
+                if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
+                    dropdownMenu.classList.add('hidden');
+                    isDropdownOpen = false;
+                }
+            }
+
+            if (userMenuToggle) {
+                userMenuToggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    closeNotificationMenu();
+                    if (userMenu) {
+                        isUserMenuOpen = !isUserMenuOpen;
+                        userMenu.classList.toggle('hidden', !isUserMenuOpen);
+                    }
+                });
+            }
+
+            if (notificationDropdown) {
+                notificationDropdown.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    closeUserMenu();
+                    if (dropdownMenu) {
+                        isDropdownOpen = !isDropdownOpen;
+                        dropdownMenu.classList.toggle('hidden', !isDropdownOpen);
+                        dropdownMenu.style.opacity = isDropdownOpen ? '1' : '0';
+                        dropdownMenu.style.transform = isDropdownOpen ? 'scale(1)' : 'scale(0.95)';
+                    }
+                });
+            }
+
+            document.addEventListener('click', function (event) {
+                const isClickInsideNotification = notificationDropdown && notificationDropdown.contains(event.target);
+                const isClickInsideDropdown = dropdownMenu && dropdownMenu.contains(event.target);
+                const isClickInsideUserMenu = userMenuToggle && userMenuToggle.contains(event.target);
+                const isClickInsideUserMenuDropdown = userMenu && userMenu.contains(event.target);
+
+                if (!isClickInsideNotification && !isClickInsideDropdown && isDropdownOpen) {
+                    closeNotificationMenu();
+                }
+
+                if (!isClickInsideUserMenu && !isClickInsideUserMenuDropdown && isUserMenuOpen) {
+                    closeUserMenu();
+                }
+            });
+
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function () {
+                    const menu = document.getElementById('mobile-menu');
+                    const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    this.setAttribute('aria-expanded', !expanded);
+                    menu.classList.toggle('hidden');
+                });
+            }
+
+            const invitationItems = document.querySelectorAll('.jdr-invitation-item');
+            if (invitationItems) {
+                invitationItems.forEach(item => {
+                    item.addEventListener('click', function () {
+                        const title = this.getAttribute('data-title');
+                        const inviter = this.getAttribute('data-inviter');
+                        const message = this.getAttribute('data-message');
+                        const avatarSrc = this.querySelector('img').src;
+                        const invitationId = this.getAttribute('data-invitation-id');
+
+                        closeNotificationMenu();
+                        closeUserMenu();
+
+                        const modalTitle = document.getElementById('modal-group-title');
+                        const modalAction = document.getElementById('modal-action');
+                        const modalMessage = document.getElementById('modal-invitation-message');
+                        const modalAvatar = document.getElementById('jdr-avatar-modal');
+
+                        modalTitle.textContent = title;
+                        modalAction.textContent = "Invitation de " + inviter;
+                        modalMessage.textContent = message;
+                        modalAvatar.src = avatarSrc;
+
+                        acceptBtn.setAttribute('data-invitation-id', invitationId);
+                        refuseBtn.setAttribute('data-invitation-id', invitationId);
+
+                        invitationModal.classList.remove('hidden');
+                    });
+                });
+            }
+
+            const friendRequestItems = document.querySelectorAll('.friend-request-item');
+            if (friendRequestItems) {
+                friendRequestItems.forEach(item => {
+                    item.addEventListener('click', function () {
+                        const requesterName = this.querySelector('.text-sm.font-medium').textContent;
+                        const createdAt = this.querySelector('.text-xs.text-gray-400').textContent;
+                        const avatarSrc = this.querySelector('img').src;
+                        const requestId = this.getAttribute('data-request-id');
+
+                        closeNotificationMenu();
+                        closeUserMenu();
+
+                        const modalTitle = document.getElementById('modal-group-title');
+                        const modalAction = document.getElementById('modal-action');
+                        const modalMessage = document.getElementById('modal-invitation-message');
+                        const modalAvatar = document.getElementById('jdr-avatar-modal');
+
+                        modalTitle.textContent = requesterName;
+                        modalAction.textContent = "Envoyé le " + createdAt;
+                        modalMessage.textContent = "Voulez-vous accepter la demande d'amitié de " + requesterName + "?";
+                        modalAvatar.src = avatarSrc;
+
+                        acceptBtn.setAttribute('data-request-id', requestId);
+                        refuseBtn.setAttribute('data-request-id', requestId);
+
+                        invitationModal.classList.remove('hidden');
+                    });
+                });
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', function () {
+                    invitationModal.classList.add('hidden');
+                });
+            }
+
+            if (laterBtn) {
+                laterBtn.addEventListener('click', function () {
+                    invitationModal.classList.add('hidden');
+                });
+            }
+
+            window.addEventListener('click', function (event) {
+                if (event.target === invitationModal) {
+                    invitationModal.classList.add('hidden');
+                }
+            });
+
+            function handleResponse(id, type, isFriendRequest = false) {
+                const url = isFriendRequest ? `/accept-friends-request-base/${id}` : `/api/respond_invitation_base/${id}`;
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({ response: type })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur lors de la soumission de la réponse');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    } else {
+                        console.error('Erreur lors de la soumission de la réponse:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+            }
+
+            acceptBtn.addEventListener('click', function () {
+                const invitationId = this.getAttribute('data-invitation-id');
+                const requestId = this.getAttribute('data-request-id');
+                if (invitationId) {
+                    handleResponse(invitationId, 'accept');
+                } else if (requestId) {
+                    handleResponse(requestId, 'accept', true);
+                }
+            });
+
+            refuseBtn.addEventListener('click', function () {
+                const invitationId = this.getAttribute('data-invitation-id');
+                const requestId = this.getAttribute('data-request-id');
+                if (invitationId) {
+                    handleResponse(invitationId, 'refuse');
+                } else if (requestId) {
+                    handleResponse(requestId, 'refuse', true);
+                }
+            });
+        });
+    </script>
 </html>
