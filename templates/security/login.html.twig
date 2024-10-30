@@ -7,8 +7,7 @@
     <div class="w-full max-w-md space-y-8">
         <div>
             <img class="mx-auto h-24 w-auto mb-3 hidden sm:block" src="{{ asset('images/logo-dicefinder.png') }}" alt="DiceFinder Logo">
-            <h1 class="text-center text-3xl font-bold tracking-tight text-white">DiceFinder</h1>
-            <h2 class="mt-6 text-center text-2xl tracking-tight text-white">Connectez-vous à votre compte</h2>
+            <h2 class="mt-6 text-center text-2xl tracking-tight text-white font-bold">Connectez-vous à votre compte</h2>
             <p class="mt-2 text-center text-sm text-gray-600">
                 ou
                 <a href="{{ path('app_register') }}" class="font-medium text-indigo-600 hover:text-indigo-500">Créez un compte.</a>
@@ -26,20 +25,20 @@
                 </div>
             {% endif %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            <div class="-space-y-px rounded-md shadow-sm">
-                {# <div>
-                    <label for="username" class="sr-only">Adresse e-mail</label>
-                    <input id="username" name="_username" type="text" value="{{ last_username }}" autocomplete="email" required autofocus class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-black placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="toi@exemple.com">
-                </div> #}
-                <div>
-                    <label for="username" class="sr-only">Identifiant</label>
-                    <input id="username" name="_username" type="text" value="{{ last_username }}" autocomplete="username" required autofocus class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-black placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Pseudo ou email">
+                <div class="-space-y-px rounded-md shadow-sm">
+                    <div>
+                        <label for="username" class="sr-only">Identifiant</label>
+                        <input id="username" name="_username" type="text" value="{{ last_username }}" autocomplete="username" required autofocus
+                            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-600 bg-gray-800 px-4 py-2 text-gray-200 placeholder-gray-500 shadow-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Pseudo ou email">
+                    </div>
+                    <div>
+                        <label for="password" class="sr-only">Mot de passe</label>
+                        <input id="password" name="_password" type="password" autocomplete="current-password" required
+                            class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-600 bg-gray-800 px-4 py-2 text-gray-200 placeholder-gray-500 shadow-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Mot de passe">
+                    </div>
                 </div>
-                <div>
-                    <label for="password" class="sr-only">Mot de passe</label>
-                    <input id="password" name="_password" type="password" autocomplete="current-password" required class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-black placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Mot de passe">
-                </div>
-            </div>
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     <input id="remember-me" name="_remember_me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">

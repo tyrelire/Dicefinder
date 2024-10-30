@@ -253,27 +253,6 @@ class ProfileController extends AbstractController
         return $this->redirectToRoute('app_profile_edit');
     }
 
-    #[Route('/profile/edit/gender', name: 'app_profile_edit_gender', methods: ['POST'])]
-    public function editGender(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $user = $this->getUser();
-
-        if (!$user) {
-            throw $this->createNotFoundException('Utilisateur non trouvé');
-        }
-
-        $gender = $request->request->get('gender');
-        if ($gender) {
-            $user->setGender($gender);
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Genre mis à jour avec succès.');
-        }
-
-        return $this->redirectToRoute('app_profile_edit');
-    }
-
     #[Route('/profile/edit/birthdate', name: 'app_profile_edit_birthdate', methods: ['POST'])]
     public function editBirthdate(Request $request, EntityManagerInterface $entityManager): Response
     {

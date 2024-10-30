@@ -196,7 +196,7 @@
                     } else {
                         userProfile.classList.remove('hidden');
                         userAvatar.src = data.avatar || '/images/default-avatar.png';
-                        userInfo.innerText = `${data.username} (${data.email})`;
+                        userInfo.innerText = `${data.username}`;
 
                         if (data.isVip) {
                             vipStatus.classList.remove('hidden');

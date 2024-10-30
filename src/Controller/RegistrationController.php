@@ -32,15 +32,26 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            $username = $form->get('username')->getData();
-    
+            $username = strtolower($form->get('username')->getData());
             $existingUser = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
     
             if ($existingUser) {
                 $form->get('username')->addError(new FormError('Ce nom d’utilisateur est déjà pris.'));
             } else {
+                $user->setUsername($username);
                 $user->setRoles(['ROLE_MJ', 'ROLE_JOUEUR']);
-                
+    
+                $birthdate = $request->request->get('birthdate');
+                if ($birthdate) {
+                    try {
+                        $user->setBirthDate(new \DateTime($birthdate));
+                    } catch (\Exception $e) {
+                        $form->addError(new FormError("La date de naissance est invalide."));
+                    }
+                }
+                $ipAddress = $request->getClientIp();
+                $user->setIpAddress($ipAddress);
+    
                 $plainPassword = $form->get('password')->getData();
                 $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
     
@@ -63,7 +74,6 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
-    
 
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response

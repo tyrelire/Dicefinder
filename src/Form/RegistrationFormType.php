@@ -22,7 +22,7 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
+            $builder
             ->add('username', TextType::class, [
                 'label' => 'Nom d\'utilisateur',
                 'constraints' => [
@@ -30,10 +30,11 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Le nom d’utilisateur est obligatoire.',
                     ]),
                     new Regex([
-                        'pattern' => '/^[A-Z][a-zA-Z0-9]+$/',
-                        'message' => 'Le nom d’utilisateur doit commencer par une majuscule et ne contenir que des lettres et des chiffres.',
+                        'pattern' => '/^[a-zA-ZÀ-ÿ\s]+$/u',
+                        'message' => 'Le nom d’utilisateur ne doit contenir que des lettres et des espaces.',
                     ]),
                 ],
+                'required' => true,
                 'attr' => [
                     'placeholder' => 'Entrez votre nom d’utilisateur',
                     'class' => 'form-input',
@@ -44,6 +45,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'p-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
                     'placeholder' => 'toi@exemple.com',
                 ],
+                'required' => true,
                 'invalid_message' => 'Un compte existe déjà avec cette adresse e-mail.',
                 'constraints' => [
                     new Assert\NotBlank([
@@ -65,6 +67,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'text-sm text-gray-900',
                     'style' => 'font-size: .9em;',
                 ],
+                'required' => true,
                 'attr' => [
                     'class' => 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 rounded border-gray-300',
                 ],

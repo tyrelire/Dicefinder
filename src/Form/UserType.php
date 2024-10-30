@@ -22,13 +22,6 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('username', TextType::class, [
-            //     'label' => 'Nom d\'utilisateur',
-            //     'required' => false,
-            //     'attr' => [
-            //         'class' => 'block w-full rounded-md sm:text-sm',
-            //     ],
-            // ])
             ->add('email', EmailType::class, [
                 'label' => 'Adresse email',
                 'attr' => [
@@ -53,20 +46,6 @@ class UserType extends AbstractType
                     'placeholder' => 'Entrez votre nom',
                 ],
             ])
-            // ->add('gender', ChoiceType::class, [
-            //     'label' => 'Genre',
-            //     'choices' => [
-            //         'Homme' => 'Homme',
-            //         'Femme' => 'Femme',
-            //     ],
-            //     'required' => false,
-            //     'expanded' => true,
-            //     'multiple' => false,
-            //     'placeholder' => false,
-            //     'attr' => [
-            //         'class' => '',
-            //     ],
-            // ])
             ;
     }
 

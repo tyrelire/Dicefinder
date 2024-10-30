@@ -59,12 +59,17 @@
                                 </svg>
                             </button>
                         {% endif  %}
-                            <a href="{{ path('send_message', {'toUserId': user.id}) }}" class="glassmorphism-send-message px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center space-x-2">
-                                <span>Envoyer un message</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
-                                    <path fill="currentColor" d="M4 4h16v12H5.17L4 17.17zm0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm2 10h12v2H6zm0-3h12v2H6zm0-3h12v2H6z"/>
-                                </svg>
-                            </a>
+<a href="javascript:void(0);" 
+   class="glassmorphism-send-message px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center space-x-2" 
+   data-to-user="{{ user.id }}" 
+   id="sendMessageBtn">
+    <span>Envoyer un message</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M4 4h16v12H5.17L4 17.17zm0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm2 10h12v2H6zm0-3h12v2H6zm0-3h12v2H6z"/>
+    </svg>
+</a>
+
+
                     {% endif %}
                     {% if app.user and app.user.id != user.id %}
                         {% if relationshipStatus == 'pending' %}
@@ -97,15 +102,6 @@
                         {% endif %}
                     {% endif %}
                 </div>
-                {% if user.gender %}
-                    <div class="flex items-center space-x-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 50 50">
-                            <circle cx="22.875" cy="4.625" r="4.125" fill="currentColor"/>
-                            <path fill="currentColor" d="M22 10h-3c-2.82 0-5 1.719-5 4.587V27c0 2 3 2 3 0V15h1v32c0 1.233.768 2 2 2c1.235 0 2-.767 2-2zm13 15l-4.017-10.357C30.634 12.322 28.29 10 25.615 10H23v23.783c.5.002 1 .075 1 .217v13c0 1.04.917 2 2 2c1.086 0 2-.961 2-2V34h3.869c.362 0 1.044-.654 1.044-1c0-.08.029-.931 0-1l-5.909-16.237l-.034-.167c0-.237.199-.429.447-.429c.211 0 .388.141.435.329L31.869 26c.267.601 1.365 1 2.087 1c.965 0 1.065-1.895 1.044-2"/>
-                        </svg>
-                        <p>{{ user.gender }}</p>
-                    </div>
-                {% endif %}
                 {% if user.birthdate %}
                     <div class="flex items-center space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
@@ -346,15 +342,15 @@
         <div id="friends-container" class="tab-content hidden">
             <div class="relative flex flex-col w-full min-w-0 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable">
                 <div class="px-9 pt-9 pb-9 flex-auto min-h-[70px] pb-0 glassmorphism">
-                    <ul class="text-gray-200">
+                    <div class="flex flex-wrap justify-start gap-6">
                         {% for friend in friends %}
-                            <div class="lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl  card-item">
+                            <div class="lg:w-1/4 md:w-1/2 w-full shadow-lg p-6 glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl card-item">
                                 <a href="{{ path('app_profile_show', {'id': friend.id}) }}" class="block w-full h-full">
                                     <div class="w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center">
                                         {% if friend.banner %}
-                                            <img src="{{ friend.banner ? asset('uploads/banners/' ~ friend.banner) }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
+                                            <img src="{{ asset('uploads/banners/' ~ friend.banner) }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
                                         {% else %}
-                                            <img src="{{ friend.banner ? asset('uploads/images/default-banniere.jpg') }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
+                                            <img src="{{ asset('images/default-banniere.jpg') }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
                                         {% endif %}
                                     </div>
                                     <div class="absolute top-44 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-gray-900 transition-transform duration-300 hover:scale-110 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/50">
@@ -378,9 +374,9 @@
                                 </a>
                             </div>
                         {% else %}
-                            <p class="text-gray-400">Aucun ami trouvé.</p>
+                            <p class="text-gray-400 w-full text-center">Aucun ami trouvé.</p>
                         {% endfor %}
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -395,9 +391,20 @@
         const sendMessageBtn = document.getElementById('sendMessageBtn');
         if (sendMessageBtn) {
             sendMessageBtn.addEventListener('click', function () {
-                const toUser = this.getAttribute('data-to-user');
-                window.location.href = `/chat?toUser=${toUser}`;
+                const userId = this.getAttribute('data-to-user');
+                window.location.href = `/chat/message/${userId}`;
             });
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const conversationIdParam = urlParams.get('conversationId');
+
+        if (conversationIdParam) {
+            const conversationListItem = document.getElementById(`conversation-${conversationIdParam}`);
+            if (conversationListItem) {
+                const contactName = conversationListItem.innerText.replace('Conversation avec ', '');
+                openConversation(conversationIdParam, contactName);
+            }
         }
 
         const stripePublicKey = '{{ stripePublicKey }}';

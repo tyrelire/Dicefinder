@@ -14,11 +14,7 @@
     <div class="relative flex flex-col lg:flex-row w-full min-w-0 mt-6 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable space-y-4 lg:space-y-0 lg:space-x-6">
         <div class="lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
             <div class="w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center relative group">
-                {% if user.banner %}
-                    <img id="banner-preview" src="{{ user.banner ? asset('uploads/banners/' ~ user.banner) }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
-                {% else %}
-                    <img src="{{ asset('images/default-banniere.jpg') }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
-                {% endif %}
+                <img id="banner-preview" src="{{ user.banner ? asset('uploads/banners/' ~ user.banner) : asset('images/default-banniere.jpg') }}" alt="Bannière" class="w-full h-full object-cover rounded-lg">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v16h16V4H4zm16-2a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h16zm-8 7v4m0 4h.01"/>
@@ -78,54 +74,27 @@
                         </a>
                     </div>
                     {% endif %}
-
-                        <div class="flex items-center space-x-2 mt-4 relative">
-                            <div id="gender-display" class="flex items-center space-x-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 50 50">
-                                    <circle cx="22.875" cy="4.625" r="4.125" fill="currentColor"/>
-                                    <path fill="currentColor" d="M22 10h-3c-2.82 0-5 1.719-5 4.587V27c0 2 3 2 3 0V15h1v32c0 1.233.768 2 2 2c1.235 0 2-.767 2-2zm13 15l-4.017-10.357C30.634 12.322 28.29 10 25.615 10H23v23.783c.5.002 1 .075 1 .217v13c0 1.04.917 2 2 2c1.086 0 2-.961 2-2V34h3.869c.362 0 1.044-.654 1.044-1c0-.08.029-.931 0-1l-5.909-16.237l-.034-.167c0-.237.199-.429.447-.429c.211 0 .388.141.435.329L31.869 26c.267.601 1.365 1 2.087 1c.965 0 1.065-1.895 1.044-2"/>
-                                </svg>
-                                <p>{% if user.gender %} {{ user.gender }}{% else %}Choisissez un genre.{% endif %}</p>
-                            </div>
-
-                            {% if app.user and app.user.id == user.id %}
-                            <button id="edit-gender-btn" class="ml-2 text-yellow-500 z-10 focus:outline-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24">
-                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                                </svg>
-                            </button>
-                            {% endif %}
-
-                            <form id="gender-form" action="{{ path('app_profile_edit_gender') }}" method="POST" class="hidden">
-                                <select name="gender" class="bg-gray-800 text-gray-100 rounded-md p-2">
-                                    <option value="Homme" {% if user.gender == 'Homme' %}selected{% endif %}>Homme</option>
-                                    <option value="Femme" {% if user.gender == 'Femme' %}selected{% endif %}>Femme</option>
-                                </select>
-                                <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-md ml-2">Sauvegarder</button>
-                            </form>
+                    <div class="flex items-center space-x-2 mt-4 relative">
+                        <div id="birthdate-display" class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" d="M7.5 6V1m10 5V1m4 16v4.5h-18v-3m17.863-10H3.352M.5 18.25v.25h17.9l.15-.25l.234-.491A28 28 0 0 0 21.5 5.729V3.5h-18v2.128A28 28 0 0 1 .743 17.744z"/>
+                            </svg>
+                            <p>{% if user.birthdate %} {{ date().diff(user.birthdate).y }} ans {% else %}Choisissez une date de naissance.{% endif %}</p>
                         </div>
 
-                        <div class="flex items-center space-x-2 mt-4 relative">
-                            <div id="birthdate-display" class="flex items-center space-x-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
-                                    <path fill="none" stroke="currentColor" d="M7.5 6V1m10 5V1m4 16v4.5h-18v-3m17.863-10H3.352M.5 18.25v.25h17.9l.15-.25l.234-.491A28 28 0 0 0 21.5 5.729V3.5h-18v2.128A28 28 0 0 1 .743 17.744z"/>
-                                </svg>
-                                <p>{% if user.birthdate %} {{ date().diff(user.birthdate).y }} ans {% else %}Choisissez une date de naissance.{% endif %}</p>
-                            </div>
+                        {% if app.user and app.user.id == user.id %}
+                        <button id="edit-birthdate-btn" class="ml-2 text-yellow-500 z-10 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                            </svg>
+                        </button>
+                        {% endif %}
 
-                            {% if app.user and app.user.id == user.id %}
-                            <button id="edit-birthdate-btn" class="ml-2 text-yellow-500 z-10 focus:outline-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24">
-                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844l2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565l6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                                </svg>
-                            </button>
-                            {% endif %}
-
-                            <form id="birthdate-form" action="{{ path('app_profile_edit_birthdate') }}" method="POST" class="hidden">
-                                <input type="date" name="birthdate" class="bg-gray-800 text-gray-100 rounded-md p-2" value="{{ user.birthdate ? user.birthdate|date('Y-m-d') }}">
-                                <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-md ml-2">Sauvegarder</button>
-                            </form>
-                        </div>
+                        <form id="birthdate-form" action="{{ path('app_profile_edit_birthdate') }}" method="POST" class="hidden">
+                            <input type="date" name="birthdate" class="bg-gray-800 text-gray-100 rounded-md p-2" value="{{ user.birthdate ? user.birthdate|date('Y-m-d') }}">
+                            <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-md ml-2">Sauvegarder</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             {% if app.user and app.user.id == user.id %}
@@ -176,13 +145,17 @@
         const reader = new FileReader();
 
         reader.onloadend = function () {
-            preview.src = reader.result;
-            form.submit();
+            if (preview) {
+                preview.src = reader.result;
+                form.submit();
+            } else {
+                console.error("L'élément de prévisualisation de la bannière n'existe pas.");
+            }
         };
 
         if (file) {
             reader.readAsDataURL(file);
-        } else {
+        } else if (preview) {
             preview.src = "https://via.placeholder.com/150";
         }
     }
@@ -204,15 +177,6 @@
             if (bioTextarea.value.trim() === "") {
                 bioTextarea.value = "";
             }
-        });
-
-        const editGenderBtn = document.getElementById('edit-gender-btn');
-        const genderDisplay = document.getElementById('gender-display');
-        const genderForm = document.getElementById('gender-form');
-
-        editGenderBtn.addEventListener('click', function() {
-            genderDisplay.classList.add('hidden');
-            genderForm.classList.remove('hidden');
         });
 
         const editBirthdateBtn = document.getElementById('edit-birthdate-btn');

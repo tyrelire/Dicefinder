@@ -50,9 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $birthDate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $gender = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $bio = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -136,6 +133,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Notification::class, mappedBy: 'relatedUser')]
     private Collection $relatedNotifications;
+
+    #[ORM\Column(length: 255)]
+    private ?string $ipAddress = null;
 
 
     public function __construct()
@@ -283,18 +283,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBirthDate(\DateTimeInterface $birthDate): static
     {
         $this->birthDate = $birthDate;
-
-        return $this;
-    }
-
-    public function getGender(): ?string
-    {
-        return $this->gender;
-    }
-
-    public function setGender(string $gender): static
-    {
-        $this->gender = $gender;
 
         return $this;
     }
@@ -683,6 +671,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $relatedNotification->setRelatedUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getipAddress(): ?string
+    {
+        return $this->ipAddress;
+    }
+
+    public function setipAddress(string $ipAddress): static
+    {
+        $this->ipAddress = $ipAddress;
 
         return $this;
     }
