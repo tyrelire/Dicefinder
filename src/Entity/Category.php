@@ -24,9 +24,16 @@ class Category
     #[ORM\ManyToMany(targetEntity: GroupeJDR::class, mappedBy: 'categories')]
     private Collection $groupeJDRs;
 
+    /**
+     * @var Collection<int, LicenceJDR>
+     */
+    #[ORM\OneToMany(targetEntity: LicenceJDR::class, mappedBy: 'genre')]
+    private Collection $licenceJDRs;
+
     public function __construct()
     {
         $this->groupeJDRs = new ArrayCollection();
+        $this->licenceJDRs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,6 +75,36 @@ class Category
     {
         if ($this->groupeJDRs->removeElement($groupeJDR)) {
             $groupeJDR->removeCategory($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LicenceJDR>
+     */
+    public function getLicenceJDRs(): Collection
+    {
+        return $this->licenceJDRs;
+    }
+
+    public function addLicenceJDR(LicenceJDR $licenceJDR): static
+    {
+        if (!$this->licenceJDRs->contains($licenceJDR)) {
+            $this->licenceJDRs->add($licenceJDR);
+            $licenceJDR->setGenre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLicenceJDR(LicenceJDR $licenceJDR): static
+    {
+        if ($this->licenceJDRs->removeElement($licenceJDR)) {
+            // set the owning side to null (unless already changed)
+            if ($licenceJDR->getGenre() === $this) {
+                $licenceJDR->setGenre(null);
+            }
         }
 
         return $this;

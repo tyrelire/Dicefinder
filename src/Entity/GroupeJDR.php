@@ -104,6 +104,9 @@ class GroupeJDR
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private ?bool $isArchived = false;
 
+    #[ORM\ManyToOne(inversedBy: 'groupeJDRs')]
+    private ?LicenceJDR $licence = null;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
@@ -463,6 +466,18 @@ class GroupeJDR
     public function setArchived(bool $isArchived): static
     {
         $this->isArchived = $isArchived;
+
+        return $this;
+    }
+
+    public function getLicence(): ?LicenceJDR
+    {
+        return $this->licence;
+    }
+
+    public function setLicence(?LicenceJDR $licence): static
+    {
+        $this->licence = $licence;
 
         return $this;
     }

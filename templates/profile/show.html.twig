@@ -59,15 +59,15 @@
                                 </svg>
                             </button>
                         {% endif  %}
-<a href="javascript:void(0);" 
-   class="glassmorphism-send-message px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center space-x-2" 
-   data-to-user="{{ user.id }}" 
-   id="sendMessageBtn">
-    <span>Envoyer un message</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M4 4h16v12H5.17L4 17.17zm0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm2 10h12v2H6zm0-3h12v2H6zm0-3h12v2H6z"/>
-    </svg>
-</a>
+                        <a href="javascript:void(0);" 
+                        class="glassmorphism-send-message px-4 py-2 text-white font-semibold rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-xl min-w-[150px] h-12 flex items-center justify-center space-x-2" 
+                        data-to-user="{{ user.id }}" 
+                        id="sendMessageBtn">
+                            <span>Envoyer un message</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M4 4h16v12H5.17L4 17.17zm0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm2 10h12v2H6zm0-3h12v2H6zm0-3h12v2H6z"/>
+                            </svg>
+                        </a>
 
 
                     {% endif %}
@@ -118,7 +118,7 @@
                     <p>{{ diff.y > 0 ? diff.y ~ ' an' ~ (diff.y > 1 ? 's' : '') : diff.m > 0 ? diff.m ~ ' mois' : diff.d > 0 ? diff.d ~ ' jour' ~ (diff.d > 1 ? 's' : '') : '1 minute' }} sur DiceFinder</p>
                 </div>
             </div>
-        </div>
+        </div>r
 
         <div class="w-full text-gray-100 glassmorphism p-6 rounded-lg mb-8">
             <h2 class="text-2xl font-semibold mb-4">Biographie</h2>

@@ -161,6 +161,23 @@
                         {% endif %}
                     </div>
                 </div>
+                
+                <div class="mt-4">
+                    {% if groupe_j_d_r.licence %}
+                        <div class="text-sm bg-gradient-to-r from-blue-500 to-blue-700 text-white py-1 px-3 rounded-lg shadow-lg">
+                            Licence: <span class="font-semibold">{{ groupe_j_d_r.licence.name }}</span><br>
+                            <span class="text-xs text-gray-200">Éditeur : {{ groupe_j_d_r.licence.publisher }} | Sortie : {{ groupe_j_d_r.licence.releaseYear }}</span>
+                        </div>
+                    {% else %}
+                        <div class="flex flex-wrap gap-2">
+                            {% set colors = ['bg-blue-200 text-blue-800', 'bg-green-100 text-green-800', 'bg-yellow-200 text-yellow-800', 'bg-red-200 text-red-800'] %}
+                            {% for category in groupe_j_d_r.categories %}
+                                {% set color = colors[loop.index0 % colors|length] %}
+                                <span class="{{ color }} text-xs font-medium px-2.5 py-0.5 rounded-full">{{ category.name }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
             </div>
             {% else %}
                 <p class="text-gray-700 text-lg">Aucun résultat trouvé</p>
