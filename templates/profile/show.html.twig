@@ -3,7 +3,7 @@
 {% block title %}Profil de {{ user.username }}{% endblock %}
 
 {% block body %}
-<div class="relative flex flex-col lg:flex-row w-full min-w-0 mt-6 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable space-y-4 lg:space-y-0 lg:space-x-6">
+<div class="relative flex flex-col lg:flex-row w-full min-w-0 mt-10 mb-6 break-words bg-clip-border rounded-2xl border-stone-200 bg-light/30 draggable space-y-4 lg:space-y-0 lg:space-x-6">
     <div class="lg:w-1/4 w-full shadow-lg p-6 flex-auto min-h-[250px] glassmorphism relative transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
         <div class="w-full h-56 glassmorphism rounded-t-lg flex items-center justify-center">
             {% if user.banner %}
@@ -118,7 +118,7 @@
                     <p>{{ diff.y > 0 ? diff.y ~ ' an' ~ (diff.y > 1 ? 's' : '') : diff.m > 0 ? diff.m ~ ' mois' : diff.d > 0 ? diff.d ~ ' jour' ~ (diff.d > 1 ? 's' : '') : '1 minute' }} sur DiceFinder</p>
                 </div>
             </div>
-        </div>r
+        </div>
 
         <div class="w-full text-gray-100 glassmorphism p-6 rounded-lg mb-8">
             <h2 class="text-2xl font-semibold mb-4">Biographie</h2>
@@ -387,7 +387,6 @@
     document.addEventListener('DOMContentLoaded', function () {
         const tabLinks = document.querySelectorAll('.tab-link');
         const tabContents = document.querySelectorAll('.tab-content');
-        
         const sendMessageBtn = document.getElementById('sendMessageBtn');
         if (sendMessageBtn) {
             sendMessageBtn.addEventListener('click', function () {
@@ -395,7 +394,6 @@
                 window.location.href = `/chat/message/${userId}`;
             });
         }
-
         const urlParams = new URLSearchParams(window.location.search);
         const conversationIdParam = urlParams.get('conversationId');
 
@@ -406,7 +404,6 @@
                 openConversation(conversationIdParam, contactName);
             }
         }
-
         const stripePublicKey = '{{ stripePublicKey }}';
         if (!stripePublicKey) {
             console.error('Stripe public key is not set.');
@@ -437,7 +434,6 @@
                 });
             }
         }
-
         function resetTabs() {
             tabLinks.forEach(link => {
                 link.classList.remove('glassmorphism-purple');
@@ -446,7 +442,6 @@
                 content.classList.add('hidden');
             });
         }
-
         function activateTab(tabLink) {
             const tabId = tabLink.getAttribute('aria-controls');
             const targetContent = document.getElementById(tabId);
@@ -457,19 +452,20 @@
                 localStorage.setItem('activeTab', tabId);
             }
         }
-
         const activeTabId = localStorage.getItem('activeTab');
         if (activeTabId) {
             const activeTabLink = document.querySelector(`[aria-controls="${activeTabId}"]`);
             if (activeTabLink) {
                 resetTabs();
                 activateTab(activeTabLink);
+            } else {
+                resetTabs();
+                activateTab(tabLinks[0]);
             }
         } else {
             resetTabs();
             activateTab(tabLinks[0]);
         }
-
         tabLinks.forEach(link => {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -479,4 +475,5 @@
         });
     });
 </script>
+
 {% endblock %}

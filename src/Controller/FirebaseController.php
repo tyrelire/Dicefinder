@@ -79,32 +79,29 @@ class FirebaseController extends AbstractController
     
         $conversations = $this->firebaseService->getUserConversations($user->getId());
         $conversationData = array_map(function ($conversation) use ($user) {
-            // Rechercher un participant qui n'est pas l'utilisateur actuel
             $contactParticipant = $conversation->getParticipants()
                 ->filter(fn($p) => $p && $p->getUser() && $p->getUser()->getId() !== $user->getId())
                 ->first();
-    
-            // Si aucun participant externe, utiliser l'utilisateur lui-même pour les conversations personnelles
+
             if (!$contactParticipant || !$contactParticipant->getUser()) {
-                $contact = $user; // L'utilisateur est son propre contact
-                $contactUsername = 'Moi'; // Nom d'affichage pour les conversations personnelles
+                $contact = $user;
+                $contactUsername = 'Moi';
             } else {
                 $contact = $contactParticipant->getUser();
                 $contactUsername = $contact->getUsername();
             }
-    
-            // Définir l'URL de l'avatar
+
             $avatarUrl = $contact->getAvatar() 
                 ? '/uploads/avatars/' . $contact->getAvatar() 
                 : '/images/default-avatar.png';
-    
+
             return [
                 'id' => $conversation->getId(),
                 'contactUsername' => $contactUsername,
                 'avatarUrl' => $avatarUrl,
             ];
         }, $conversations);
-    
+
         return new JsonResponse(array_filter($conversationData));
     }
     

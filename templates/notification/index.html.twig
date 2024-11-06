@@ -4,13 +4,12 @@
 
 {% block body %}
 
-
 <div class="container mx-auto px-4 py-8">
     <div class="glassmorphism shadow-2xl rounded-lg p-6 mb-10">
         <h1 class="text-3xl font-bold mb-6 text-white">Mes Invitations</h1>
         {% if invitationsData|length > 0 %}
             <div class="space-y-6">
-                {% for invitationData in invitationsData %}
+                {% for invitationData in invitationsData|reverse %} {# Trie les invitations de la plus récente à la plus ancienne #}
                     {% set invitation = invitationData.invitation %}
                     <div class="glassmorphism-invitation-accepted p-4 rounded-lg shadow-lg hover:shadow-md transition-all transform hover:translate-y-1 duration-150 ease-in-out flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
                         <div class="flex items-center">
@@ -67,7 +66,7 @@
         <h1 class="text-3xl font-bold mb-6 text-white">Mes Demandes d'Amis</h1>
         {% if friendRequests|length > 0 %}
             <div class="space-y-6">
-                {% for request in friendRequests %}
+                {% for request in friendRequests|reverse %} {# Trie les demandes d'amis de la plus récente à la plus ancienne #}
                     <div class="glassmorphism-invitation-accepted p-4 rounded-lg shadow-lg hover:shadow-md transition-all transform hover:translate-y-1 duration-150 ease-in-out flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
                         <div class="flex items-center">
                             {% if request.requester.avatar %}
@@ -114,7 +113,7 @@
 
         {% if notifications|length > 0 %}
             <div class="space-y-6">
-                {% for notification in notifications %}
+                {% for notification in notifications|reverse %} {# Trie les notifications de la plus récente à la plus ancienne #}
                     {% set bg_color = 'glassmorphism-invitation-accepted' %}
                     {% set emoji = '💡' %}
                     {% set message = notification.message %}
@@ -179,4 +178,3 @@
 </div>
 
 {% endblock %}
-

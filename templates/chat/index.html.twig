@@ -5,7 +5,7 @@
 {% block body %}
 <div class="flex flex-col md:flex-row-reverse h-screen text-white gap-4 px-4 py-4 w-full mx-auto">
     <div class="flex-grow md:flex-grow-[4] h-[85vh] flex flex-col bg-white/10 backdrop-blur-lg rounded-lg shadow-lg mb-4 md:mb-0 border border-white/20 w-full md:w-[78%]">
-        <div class="bg-white/10 backdrop-blur-lg p-4 rounded-t-lg border-b border-white/20 text-center flex flex-col items-center">
+        <div class="bg-white/10 backdrop-blur-lg p-4 rounded-t-lg border-b border-white/20 text-center flex items-center justify-between">
             <h2 id="chatTitle" class="text-lg font-semibold flex items-center justify-center w-full">
                 {% if selectedContactId is defined and selectedContactName is defined %}
                     <a href="{{ path('app_profile_show', { 'id': selectedContactId }) }}" class="text-white hover:underline">
@@ -15,11 +15,12 @@
                     Aucune conversation sélectionnée
                 {% endif %}
             </h2>
-            {% if selectedContactId is defined %}
-                <button id="blockButton" class="text-red-500 hover:text-red-700 mt-2" onclick="toggleBlockUser({{ selectedContactId }})">
-                    Bloquer
+            <div class="relative w-1/3 ml-4">
+                <input type="text" id="messageSearch" placeholder="Rechercher..." class="w-full p-2 rounded-lg bg-white/20 border border-white/20 text-white placeholder-gray-300 focus:outline-none">
+                <button id="searchButton" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-white">
+                    🔍
                 </button>
-            {% endif %}
+            </div>
         </div>
         <div id="messagesContainer" class="flex-1 overflow-y-auto p-4 space-y-4 bg-transparent custom-scrollbar"></div>
         <form id="messageForm" class="bg-white/10 backdrop-blur-lg p-2 rounded-b-lg border-t border-white/20">
@@ -29,6 +30,7 @@
                     <textarea id="messageInput" rows="1" class="block w-full p-2.5 pr-12 text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Votre message..." style="max-height: 35vh; overflow-y: auto;"></textarea>
                     <span id="charCount" class="absolute bottom-2 right-3 text-sky-500 text-xs pointer-events-none">2000</span>
                 </div>
+                <button id="sendButton" type="button" class="hidden p-2 rounded-full bg-blue-500 text-white ml-2">Envoyer</button>
             </div>
             <div class="flex flex-col items-center">
                 <div class="flex justify-end w-full">
@@ -101,6 +103,28 @@
     </div>
 </div>
 <style>
+
+@media (max-width: 768px) {
+    #sendButton {
+        display: block;
+    }
+    #messageInput {
+        padding-right: 3rem;
+    }
+}
+
+#messageSearch {
+    padding-right: 2rem;
+    color: white;
+}
+
+#searchButton {
+    font-size: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
 
 .custom-scrollbar::-webkit-scrollbar {
     width: 8px;
@@ -191,10 +215,9 @@
 }
 
 .message-sent, .message-received {
-    padding: 10px 15px;
+    padding: 8px 12px;
     margin-top: 6px;
     max-width: 90%;
-    min-width: 120px;
     width: fit-content;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -310,7 +333,6 @@
     text-align: left;
 }
 </style>
-
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
@@ -409,7 +431,7 @@
             messageContainer.classList.add('message-container');
 
             const messageBubble = document.createElement('div');
-            messageBubble.classList.add(isCurrentUser ? 'message-sent' : 'message-received');
+            messageBubble.classList.add(isCurrentUser ? 'message-sent' : 'message-received', 'message-content'); 
             messageBubble.innerHTML = message.content;
 
             const timestamp = document.createElement('div');
@@ -505,6 +527,8 @@
             cancelCategoryButton.classList.add('hidden');
         }
 
+        let isUserScrollingUp = false;
+        let notificationVisible = false;
 
         function showNewMessageNotification() {
             let notification = document.getElementById('newMessageNotification');
@@ -682,6 +706,31 @@
                 }
             }, 100);
         }
-    });
+
+    document.getElementById('sendButton').addEventListener('click', (event) => {
+        event.preventDefault();
+        const content = messageInput.value.trim();
+        if (content.length > 0 && content.length <= maxChars && conversationId) {
+            sendMessage(conversationId, {{ userId|json_encode }}, content, userAvatar);
+            messageInput.value = "";
+            charCount.innerText = maxChars;
+            errorMessage.classList.add('hidden');
+                }
+        });
+        
+        document.getElementById('messageSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const messages = document.querySelectorAll('#messagesContainer .message-content');
+            
+            messages.forEach(message => {
+                const messageText = message.textContent.toLowerCase();
+                if (messageText.includes(searchTerm)) {
+                    message.closest('.message-wrapper').style.display = '';
+                } else {
+                    message.closest('.message-wrapper').style.display = 'none';
+                }
+            });
+        });
+}); 
 </script>
 {% endblock %}

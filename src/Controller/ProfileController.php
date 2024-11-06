@@ -60,8 +60,7 @@ class ProfileController extends AbstractController
             $groupeJDR = $membership->getGroupeJDR();
             $joinedAt = $membership->getJoinedAt();
             $now = new \DateTime();
-    
-            // Calcul de la différence de temps depuis l'adhésion
+
             $interval = $now->diff($joinedAt);
             $timeSinceJoined = $this->formatInterval($interval);
     
@@ -173,31 +172,36 @@ class ProfileController extends AbstractController
     {
         $user = $this->getUser();
         $targetDirectory = $this->getParameter('avatars_directory');
-    
+
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-    
+
         /** @var UploadedFile $avatarFile */
         $avatarFile = $request->files->get('avatar');
         if ($avatarFile) {
+            if (in_array($avatarFile->getMimeType(), ['image/gif', 'image/webp'])) {
+                $this->addFlash('error', 'Seuls les formats PNG et JPG sont autorisés pour la photo de profil.');
+                return $this->redirectToRoute('app_profile_edit');
+            }
+
             $oldAvatar = $user->getAvatar();
             if ($oldAvatar) {
                 $fileUploaderService->removeFile($oldAvatar, $targetDirectory);
             }
-    
+
             try {
                 $newFilename = $fileUploaderService->upload($avatarFile, $slugger, $targetDirectory);
                 $user->setAvatar($newFilename);
                 $entityManager->persist($user);
                 $entityManager->flush();
-    
+
                 $this->addFlash('success', 'Photo de profil mise à jour avec succès.');
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de la photo.');
             }
         }
-    
+
         return $this->redirectToRoute('app_profile_edit');
     }
 
@@ -206,31 +210,36 @@ class ProfileController extends AbstractController
     {
         $user = $this->getUser();
         $targetDirectory = $this->getParameter('banners_directory');
-    
+
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-    
+
         /** @var UploadedFile $bannerFile */
         $bannerFile = $request->files->get('banner');
         if ($bannerFile) {
+            if (in_array($bannerFile->getMimeType(), ['image/gif', 'image/webp'])) {
+                $this->addFlash('error', 'Seuls les formats PNG et JPG sont autorisés pour la bannière.');
+                return $this->redirectToRoute('app_profile_edit');
+            }
+
             $oldBanner = $user->getBanner();
             if ($oldBanner) {
                 $fileUploaderService->removeFile($oldBanner, $targetDirectory);
             }
-    
+
             try {
                 $newFilename = $fileUploaderService->upload($bannerFile, $slugger, $targetDirectory);
                 $user->setBanner($newFilename);
                 $entityManager->persist($user);
                 $entityManager->flush();
-    
+
                 $this->addFlash('success', 'Bannière mise à jour avec succès.');
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Une erreur est survenue lors de l\'upload de la bannière.');
             }
         }
-    
+
         return $this->redirectToRoute('app_profile_edit');
     }
 

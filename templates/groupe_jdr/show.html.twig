@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container mx-auto px-4 p-6 relative">
-    <a href="{{ path('app_groupe_j_d_r_index') }}" class="glassmorphism text-white bg-[#4447a1] hover:bg-blue-800 focus:ring-4 
+    <a href="{{ path('app_groupe_j_d_r_index') }}" class="glassmorphism text-white bg-[#4447a1] hover:bg-blue-800 focus:ring-4
         focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center mb-6">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-3">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
@@ -17,11 +17,11 @@
                 style="will-change: transform;">
                 <a href="{{ path('app_groupe_j_d_r_show', {'id': groupe_j_d_r.id}) }}" class="block">
                     <div class="relative">
-                        <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}" 
-                                alt="{{ groupe_j_d_r.title }} image" 
+                        <img src="{{ asset('uploads/images-jdr/' ~ groupe_j_d_r.picture) }}"
+                                alt="{{ groupe_j_d_r.title }} image"
                                 class="rounded-lg mb-4 w-full h-[20rem] object-cover {% if groupe_j_d_r.players|length >= groupe_j_d_r.maxPlayer %} blur-sm {% endif %} tokenImage">
                         <div class="absolute top-2 right-2">
-                            <span class="text-sm font-bold px-2 py-1 rounded 
+                            <span class="text-sm font-bold px-2 py-1 rounded
                                 {% if groupe_j_d_r.status == 'nouveau' %} bg-green-600
                                 {% elseif groupe_j_d_r.status == 'en_cours' %} bg-blue-500
                                 {% elseif groupe_j_d_r.status == 'termine' %} bg-red-500
@@ -46,9 +46,9 @@
                 <div class="flex justify-between items-center mt-2">
                     <a href="{{ path('app_profile_show', { 'id': groupe_j_d_r.owner.id }) }}" class="flex items-center group transition-all duration-300 hover:bg-opacity-20 p-1 rounded-lg">
                         {% if groupe_j_d_r.owner.avatar %}
-                            <img src="{{ asset('uploads/avatars/' ~ groupe_j_d_r.owner.avatar) }}" alt="MJ photo" class="rounded-full h-12 w-12 object-cover border-2 border-gray-500 group-hover:border-blue-500 transition-all duration-300">
+                            <img src="{{ asset('uploads/avatars/' ~ groupe_j_d_r.owner.avatar) }}" alt="MJ photo" class="rounded-full h-12 w-12 object-cover transform border-2 border-gray-500 transition-transform duration-300 hover:scale-110 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/50">
                         {% else %}
-                            <img class="rounded-full h-12 w-12 object-cover border-2 border-gray-500 group-hover:border-blue-500 transition-all duration-300" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
+                            <img class="rounded-full h-12 w-12 object-cover transform border-2 border-gray-500 transition-transform duration-300 hover:scale-110 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/50" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
                         {% endif %}
                         <div class="ml-2">
                             <p class="text-xs text-gray-400 group-hover:text-white transition-colors duration-300">MJ</p>
@@ -67,34 +67,78 @@
                     </div>
                 </div>
             </div>
-            {% if app.user and app.user.id == groupe_j_d_r.owner.id %}
-                <a href="{{ path('app_groupe_j_d_r_edit', { id: groupe_j_d_r.id }) }}" class="w-full bg-green-600 text-white font-bold py-3 rounded hover:bg-green-700 text-center block">
-                    Editer mon Univers
-                </a>
-            {% endif %}
+            <div class="flex justify-center mb-6 pt-10">
+                <div class="flex space-x-2 items-center">
+                {% if app.user %}
+                    {% if favoriteJdrs is not null and favoriteJdrs.contains(groupe_j_d_r) == false %}
+                        <svg  width="36" height="35" viewBox="0 0 46 45" fill="none" xmlns="http://www.w3.org/2000/svg" class="">
+                            <g clip-path="url(#clip0_502_849)">
+                                <g filter="url(#filter0_d_502_849)">
+                                    <path d="M27.3125 0.00012207C17.5094 5.52568 18.6875 21.0939 18.6875 21.0939C18.6875 21.0939 14.375 19.6876 14.375 13.3595C9.22992 16.2781 5.75 21.8878 5.75 28.1251C5.75 37.4449 13.4731 45.0001 23 45.0001C32.527 45.0001 40.25 37.4449 40.25 28.1251C40.2499 14.4142 27.3125 11.6017 27.3125 0.00012207V0.00012207ZM24.5152 39.1855C21.0489 40.031 17.5381 37.9674 16.6737 34.5763C15.8095 31.1853 17.9189 27.7507 21.3854 26.9052C29.7542 24.864 30.803 20.2602 30.803 20.2602C30.803 20.2602 34.9762 36.6339 24.5152 39.1855V39.1855Z" fill="#FF6D00"/>
+                                    <path d="M18.5318 21.569C18.5321 21.5691 18.5325 21.5692 18.6875 21.0939L18.5325 21.5692L19.2424 21.8007L19.1861 21.0563L19.186 21.0561L19.186 21.0561L19.1859 21.0546L19.1854 21.0474L19.1833 21.0165C19.1815 20.9887 19.1789 20.9465 19.1759 20.8907C19.1699 20.7791 19.1622 20.6132 19.1558 20.3992C19.143 19.9711 19.1353 19.351 19.1564 18.5888C19.1985 17.0632 19.3556 14.9744 19.8138 12.7186C20.686 8.42494 22.6274 3.62541 26.8367 0.874025C27.1307 6.12395 30.0519 9.60489 32.9697 13.0818C33.1125 13.2519 33.2552 13.4221 33.3977 13.5924C36.6229 17.4486 39.75 21.4598 39.75 28.1251C39.75 37.1585 32.2612 44.5001 23 44.5001C13.7388 44.5001 6.25 37.1585 6.25 28.1251C6.25 22.3697 9.30569 17.1606 13.9022 14.2277C14.0804 17.0177 15.1074 18.8193 16.1676 19.9429C16.7461 20.556 17.3263 20.9587 17.7658 21.2095C17.9857 21.335 18.171 21.4228 18.3043 21.4803C18.371 21.509 18.4248 21.5302 18.4635 21.5447C18.4828 21.552 18.4984 21.5576 18.51 21.5616L18.5244 21.5665L18.5292 21.5682L18.531 21.5688L18.5318 21.569ZM30.803 20.2602L31.2875 20.1367L30.3179 20.1491C30.3157 20.1485 30.3157 20.1484 30.3157 20.1484L30.3158 20.1478L30.3153 20.1498C30.3146 20.1524 30.3136 20.1565 30.3121 20.162C30.311 20.1659 30.3097 20.1704 30.3082 20.1757C30.301 20.2011 30.2885 20.2425 30.2692 20.2982C30.2306 20.4096 30.1649 20.578 30.0601 20.7899C29.8509 21.2132 29.4852 21.8117 28.8665 22.4766C27.6326 23.8027 25.3683 25.4191 21.2669 26.4195C17.5392 27.3286 15.254 31.0303 16.1892 34.6998L16.6708 34.577L16.1892 34.6998C17.1235 38.3653 20.9098 40.5796 24.6337 39.6713L24.5152 39.1855L24.6337 39.6713C27.3939 38.998 29.2034 37.4023 30.3453 35.3997C31.4778 33.4135 31.9465 31.0424 32.0811 28.7959C32.216 26.5446 32.0172 24.3821 31.7865 22.7869C31.6709 21.988 31.5469 21.3284 31.4515 20.8674C31.4038 20.6368 31.3632 20.4557 31.3344 20.3315C31.3199 20.2694 31.3084 20.2215 31.3004 20.1887L31.2911 20.151L31.2886 20.1409L31.2879 20.138L31.2877 20.1372C31.2876 20.1369 31.2875 20.1367 30.803 20.2602Z" stroke="black"/>
+                                </g>
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_502_849" x="1.75" y="0.00012207" width="42.5001" height="53" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                    <feOffset dy="4"/>
+                                    <feGaussianBlur stdDeviation="2"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_502_849"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_502_849" result="shape"/>
+                                </filter>
+                                <clipPath id="clip0_502_849">
+                                    <rect width="46" height="45" fill="white"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <a href="{{ path('add_favorite', {'id': groupe_j_d_r.id}) }}" class="text-lg font-semibold text-gray-300 cursor-pointer hover:text-orange-500 pt-1 pr-5">
+                            Ajouter aux Favoris
+                        </a>
+                    {% else %}
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-500 pr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-lg font-semibold text-gray-300 pr-5">Déjà dans les favoris</span>
+                        </div>
+                        <a href="{{ path('remove_favorite', {'id': groupe_j_d_r.id}) }}" class="text-sm font-medium text-red-500 hover:underline cursor-pointer">
+                            Retirer des favoris
+                        </a>
+                    {% endif %}
+                    {% if app.user and app.user.id == groupe_j_d_r.owner.id %}
+                        <a href="{{ path('app_groupe_j_d_r_edit', { id: groupe_j_d_r.id }) }}" class="bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700">
+                            Editer mon Univers
+                        </a>
+                    {% endif %}
+                {% endif %}
+                </div>
+            </div>
         </div>
 
         <div class="flex flex-col w-full lg:w-2/3 space-y-6">
-            <div class="p-6 rounded-lg bg-opacity-12 border border-[#bb8f4f] glassmorphism w-full">
-                <h3 class="text-gray-100 font-semibold text-xl mb-4">Description</h3>
-                <p class="text-gray-300 mb-4">{{ groupe_j_d_r.description }}</p>
-                    {% set diff = date().diff(groupe_j_d_r.createdAt) %}
-                    <p class="absolute bottom-2 right-4 text-sm text-gray-400">
-                        Fondé depuis 
-                        {% if diff.y > 0 %}
-                            {{ diff.y }} an{{ diff.y > 1 ? 's' }}
-                        {% elseif diff.m > 0 %}
-                            {{ diff.m }} mois
-                        {% elseif diff.d > 0 %}
-                            {{ diff.d }} jour{{ diff.d > 1 ? 's' }}
-                        {% elseif diff.h > 0 %}
-                            {{ diff.h }} heure{{ diff.h > 1 ? 's' }}
-                        {% elseif diff.i > 0 %}
-                            {{ diff.i }} minute{{ diff.i > 1 ? 's' }}
-                        {% else %}
-                            à l'instant
-                        {% endif %}
-                    </p>
+        <div class="p-6 rounded-lg bg-opacity-12 border border-[#bb8f4f] glassmorphism w-full">
+            <h3 class="text-gray-100 font-semibold text-xl mb-4">Description</h3>
+            <p class="text-gray-300 mb-4 break-words">{{ groupe_j_d_r.description }}</p>
+                {% set diff = date().diff(groupe_j_d_r.createdAt) %}
+                <p class="absolute bottom-2 right-4 text-sm text-gray-400">
+                    Fondé depuis
+                    {% if diff.y > 0 %}
+                        {{ diff.y }} an{{ diff.y > 1 ? 's' }}
+                    {% elseif diff.m > 0 %}
+                        {{ diff.m }} mois
+                    {% elseif diff.d > 0 %}
+                        {{ diff.d }} jour{{ diff.d > 1 ? 's' }}
+                    {% elseif diff.h > 0 %}
+                        {{ diff.h }} heure{{ diff.h > 1 ? 's' }}
+                    {% elseif diff.i > 0 %}
+                        {{ diff.i }} minute{{ diff.i > 1 ? 's' }}
+                    {% else %}
+                        à l'instant
+                    {% endif %}
+                </p>
             </div>
 
             <div class="flex flex-col lg:flex-row w-full space-y-4 lg:space-y-0 lg:space-x-4">
@@ -104,7 +148,6 @@
                         {{ groupe_j_d_r.recrutement ? 'Ouvert' : 'Fermé' }}
                     </p>
                 </div>
-                
                 <div class="w-full lg:w-1/2 bg-white bg-opacity-10 border rounded-lg shadow-lg p-6 border border-[#bb8f4f]">
                     <h2 class="text-gray-100 font-semibold text-xl mb-4">
                         {% if groupe_j_d_r.licence %}
@@ -113,7 +156,6 @@
                             Catégories
                         {% endif %}
                     </h2>
-                    
                     <div class="flex flex-wrap gap-2">
                         {% if groupe_j_d_r.licence %}
                             <span class="bg-blue-200 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
@@ -130,6 +172,48 @@
                             {% endfor %}
                         {% endif %}
                     </div>
+                </div>
+            </div>
+            <div class="glassmorphism p-6 rounded-lg space-y-4 border border-[#bb8f4f] mt-6">
+                <h3 class="text-gray-100 font-semibold text-xl mb-4">MJ et Joueurs</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <a href="{{ path('app_profile_show', { 'id': groupe_j_d_r.owner.id }) }}" class="flex items-center space-x-4 group transition-transform duration-300 transform hover:scale-105">
+                        {% if groupe_j_d_r.owner.avatar %}
+                            <img src="{{ asset('uploads/avatars/' ~ groupe_j_d_r.owner.avatar) }}" class="rounded-full w-12 h-12 object-cover border-2 border-gray-500 group-hover:border-purple-500" alt="{{ groupe_j_d_r.owner.username }}">
+                        {% else %}
+                            <img class="rounded-full w-12 h-12 object-cover border-2 border-gray-500 group-hover:border-purple-500" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
+                        {% endif %}
+                        <div class="flex-1 min-w-0">
+                            <p class="font-semibold truncate max-w-full flex items-center group-hover:underline">
+                                {{ groupe_j_d_r.owner.username }}
+                                {% if groupe_j_d_r.owner.isVip %}
+                                    <img src="{{ asset('images/vip-logo.png') }}" alt="VIP" class="ml-2 w-4 h-4" />
+                                {% endif %}
+                            </p>
+                            <span class="text-gray-400 text-sm">MJ</span>
+                        </div>
+                    </a>
+                    
+                    {% for player in groupe_j_d_r.players %}
+                        {% if player.id != groupe_j_d_r.owner.id %}
+                            <a href="{{ path('app_profile_show', { 'id': player.id }) }}" class="flex items-center space-x-4 group transition-transform duration-300 transform hover:scale-105">
+                                {% if player.avatar %}
+                                    <img src="{{ asset('uploads/avatars/' ~ player.avatar) }}" class="rounded-full h-12 w-12 object-cover border-2 border-gray-500 group-hover:border-purple-500" alt="{{ player.username }}">
+                                {% else %}
+                                    <img class="rounded-full h-12 w-12 object-cover border-2 border-gray-500 group-hover:border-purple-500" src="{{ asset('images/default-avatar.png') }}" alt="Default profile photo">
+                                {% endif %}
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold truncate max-w-full flex items-center group-hover:underline">
+                                        {{ player.username }}
+                                        {% if player.isVip %}
+                                            <img src="{{ asset('images/vip-logo.png') }}" alt="VIP" class="ml-2 w-4 h-4" />
+                                        {% endif %}
+                                    </p>
+                                    <span class="text-gray-400 text-sm">Joueur</span>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -176,25 +260,104 @@
             {% endif %}
         </div>
     </div>
+    <div class="w-full glassmorphism p-6 rounded-lg space-y-4 border border-[#bb8f4f] mt-8">
+        <ul class="flex justify-evenly w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400" id="tabs-list">
+            <li class="flex-1">
+                <a href="#" data-tab-target="#tab1" class="tab-link inline-block w-full px-4 py-3 text-white rounded-lg border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-purple-500 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">Horaire</a>
+            </li>
+            <li class="flex-1">
+                <a href="#" data-tab-target="#tab2" class="tab-link inline-block w-full px-4 py-3 rounded-lg border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-purple-500 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">Tab 2</a>
+            </li>
+            <li class="flex-1">
+                <a href="#" data-tab-target="#tab3" class="tab-link inline-block w-full px-4 py-3 rounded-lg border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-purple-500 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">Tab 3</a>
+            </li>
+            <li class="flex-1">
+                <a href="#" data-tab-target="#tab4" class="tab-link inline-block w-full px-4 py-3 rounded-lg border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-purple-500 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">Tab 4</a>
+            </li>
+        </ul>
+        <div id="tab-content" class="tab-content-container mt-6">
+            <div id="tab1" class="tab-content">
+                <h3 class="text-lg font-semibold mb-4">Horaire des événements</h3>
+                <ul class="space-y-3">
+                    {% for event in groupe_j_d_r.events %}
+                        <li class="bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg flex items-center justify-between transition-all duration-300 hover:bg-opacity-100 hover:shadow-2xl">
+                            <div>
+                                <p class="text-2xl font-bold text-white">
+                                    Jour: {{ event.dayOfWeek|capitalize }}
+                                </p>
+                                <p class="text-xl text-yellow-300 mt-1">
+                                    Heure: {{ event.eventTime|date('H:i') }}
+                                </p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lg font-medium text-blue-300">
+                                    {% set hour = event.eventTime|date('H') %}
+                                    {% if hour < 12 %}
+                                        {% set period = 'du matin' %}
+                                    {% elseif hour < 18 %}
+                                        {% set period = 'de l\'après-midi' %}
+                                    {% else %}
+                                        {% set period = 'du soir' %}
+                                    {% endif %}
+                                    
+                                    {{ event.dayOfWeek|capitalize }} à {{ hour }}:{{ event.eventTime|date('i') }} {{ period }}
+                                </p>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="text-gray-400 text-center bg-gray-700 bg-opacity-75 p-4 rounded-lg">
+                            Aucun événement programmé.
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="tab2" class="tab-content hidden">
+                <p>Contenu du Tab 2</p>
+            </div>
+            <div id="tab3" class="tab-content hidden">
+                <p>Contenu du Tab 3</p>
+            </div>
+            <div id="tab4" class="tab-content hidden">
+                <p>Contenu du Tab 4</p>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const tabLinks = document.querySelectorAll('[data-tab-target]');
+document.addEventListener('DOMContentLoaded', function () {
+    const tabLinks = document.querySelectorAll('.tab-link');
     const tabContents = document.querySelectorAll('.tab-content');
+    let activeTabId = localStorage.getItem('activeTab');
+    if (!activeTabId || !document.querySelector(`[data-tab-target="${activeTabId}"]`)) {
+        activeTabId = tabLinks.length > 0 ? tabLinks[0].getAttribute('data-tab-target') : '#tab1';
+    }
+
+    function activateTab(tabId) {
+        const activeTabLink = document.querySelector(`[data-tab-target="${tabId}"]`);
+        const activeTabContent = document.querySelector(tabId);
+
+        if (activeTabLink && activeTabContent) {
+            resetTabs();
+            activeTabLink.classList.add('glassmorphism-purple', 'border-b-2', 'border-purple-500');
+            activeTabContent.classList.remove('hidden');
+            localStorage.setItem('activeTab', tabId);
+        }
+    }
+
+    function resetTabs() {
+        tabLinks.forEach(link => link.classList.remove('glassmorphism-purple', 'border-b-2', 'border-purple-500'));
+        tabContents.forEach(content => content.classList.add('hidden'));
+    }
+
+    activateTab(activeTabId);
 
     tabLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            tabLinks.forEach(item => {
-                item.classList.remove('text-blue-600', 'border-blue-600', 'dark:text-blue-500', 'dark:border-blue-500');
-                item.classList.add('hover:text-gray-600', 'hover:border-gray-300', 'dark:hover:text-gray-300', 'border-transparent');
-            });
-            tabContents.forEach(content => content.classList.add('hidden'));
-            link.classList.add('text-blue-600', 'border-blue-600', 'dark:text-blue-500', 'dark:border-blue-500');
-            link.classList.remove('hover:text-gray-600', 'hover:border-gray-300', 'border-transparent');
-            const target = document.querySelector(link.getAttribute('data-tab-target'));
-            target.classList.remove('hidden');
+            const tabId = link.getAttribute('data-tab-target');
+            activateTab(tabId);
         });
     });
 
@@ -205,12 +368,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('request-join-form');
 
     function closeModal() {
-        modal.classList.add('hidden');
+        if (modal) {
+            modal.classList.add('hidden');
+        }
     }
 
     if (participateButton) {
-        participateButton.addEventListener('click', function() {
-            modal.classList.remove('hidden');
+        participateButton.addEventListener('click', function () {
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
         });
     }
 
@@ -222,30 +389,36 @@ document.addEventListener('DOMContentLoaded', function() {
         cancelButton.addEventListener('click', closeModal);
     }
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
+    if (form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        const message = document.getElementById('message').value;
+            const message = document.getElementById('message').value;
 
-        fetch(form.action, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token("submit_invitation_request") }}'
-            },
-            body: JSON.stringify({ message: message })
-        }).then(response => {
-            if (response.ok) {
-                closeModal();
-                setTimeout(() => {
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token("submit_invitation_request") }}'
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => {
+                if (response.ok) {
+                    closeModal();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 500);
+                } else {
+                    console.error('Erreur lors de la soumission du formulaire.');
                     location.reload();
-                }, 500);
-            } else {
-                location.reload();
-            }
-        }).catch(error => {
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
         });
-    });
+    }
 });
 </script>
 
