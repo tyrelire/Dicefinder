@@ -393,7 +393,7 @@
                                                             {% elseif notification.groupeJDR and notification.groupeJDR.picture %}
                                                                 <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('uploads/images-jdr/' ~ notification.groupeJDR.picture) }}" alt="JDR Picture">
                                                             {% else %}
-                                                                <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('images/default-jdr-avatar.png') }}" alt="Default Picture">
+                                                                <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('images/logo-dicefinder.png') }}" alt="Default Picture">
                                                             {% endif %}
                                                             <div>
                                                                 <p class="text-sm font-medium text-white">{{ notification.message }}</p>
@@ -414,7 +414,7 @@
                                                             data-inviter="{{ invitation.requestedBy.username }}" 
                                                             data-message="Vous avez été invité à rejoindre l'univers {{ invitation.groupeJDR.title }}."
                                                             data-invitation-id="{{ invitation.id }}">
-                                                            <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ invitation.groupeJDR.picture ? asset('uploads/images-jdr/' ~ invitation.groupeJDR.picture) : asset('images/default-jdr-avatar.png') }}" alt="Avatar Picture"> 
+                                                            <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ invitation.groupeJDR.picture ? asset('uploads/images-jdr/' ~ invitation.groupeJDR.picture) : asset('images/logo-dicefinder.png') }}" alt="Avatar Picture"> 
                                                             <div>
                                                                 <p class="text-sm font-medium text-white">Invitation pour l'univers "{{ invitation.groupeJDR.title }}"</p>
                                                                 <p class="text-xs text-gray-400">Envoyé par {{ invitation.requestedBy.username }}</p>

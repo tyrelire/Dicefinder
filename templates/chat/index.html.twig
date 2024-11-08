@@ -3,7 +3,7 @@
 {% block title %}Discussion{% endblock %}
 
 {% block body %}
-<div class="flex flex-col md:flex-row-reverse h-screen text-white gap-4 px-4 py-4 w-full mx-auto">
+<div class="flex flex-col md:flex-row-reverse h-screen text-white gap-4 px-4 py-4 w-full mx-auto mt-10">
     <div class="flex-grow md:flex-grow-[4] h-[85vh] flex flex-col bg-white/10 backdrop-blur-lg rounded-lg shadow-lg mb-4 md:mb-0 border border-white/20 w-full md:w-[78%]">
         <div class="bg-white/10 backdrop-blur-lg p-4 rounded-t-lg border-b border-white/20 text-center flex items-center justify-between">
             <h2 id="chatTitle" class="text-lg font-semibold flex items-center justify-center w-full">
@@ -60,19 +60,17 @@
                 <li id="conversation-{{ conversation.id }}" 
                     class="cursor-pointer flex items-center p-2 conversation-item {% if selectedConversationId is defined and selectedConversationId == conversation.id %}selected-conversation{% else %}bg-transparent{% endif %}" 
                     onclick="openConversation({{ conversation.id }}, '{{ contactUser.user.username }}', {{ contactUser.user.id }})">
-                    
                     <div class="flex items-center justify-center w-12 h-12">
                         <img src="{{ avatarUrl }}" alt="{{ contactUser.user.username }}" class="w-10 h-10 rounded-full object-cover">
                     </div>
-                    
                     <div class="flex items-center flex-1">
-                        <span class="text-white hover:underline truncate block" style="max-width: 9rem;">
+                        <span class="text-white  truncate block" style="max-width: 9rem;">
                             {{ contactUser.user.username }}
                         </span>
                     </div>
                 </li>
             {% else %}
-                <li class="bg-white/10 p-2 rounded-lg border border-white/20">Aucune conversation disponible.</li>
+                <li id="noConversationMessage" class="bg-white/10 p-2 rounded-lg border border-white/20">Aucune conversation disponible.</li>
             {% endfor %}
         </ul>
     </div>
@@ -103,235 +101,234 @@
     </div>
 </div>
 <style>
-
-@media (max-width: 768px) {
-    #sendButton {
-        display: block;
+    @media (max-width: 768px) {
+        #sendButton {
+            display: block;
+        }
+        #messageInput {
+            padding-right: 3rem;
+        }
     }
+
+    #messageSearch {
+        padding-right: 2rem;
+        color: white;
+    }
+
+    #searchButton {
+        font-size: 1rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .avatar-container {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    #messageInput::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    #messageInput::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+    }
+
+    #messageInput::-webkit-scrollbar-thumb {
+        background-color: rgba(14, 165, 233, 0.7);
+        border-radius: 10px;
+        border: 1px solid transparent;
+    }
+
+    #messageInput::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(14, 165, 233, 1);
+    }
+
     #messageInput {
-        padding-right: 3rem;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(14, 165, 233, 0.7) transparent;
+        padding-right: 2rem;
     }
-}
 
-#messageSearch {
-    padding-right: 2rem;
-    color: white;
-}
+    #closeGifButton {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: transparent;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 2rem;
+        color: red;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        z-index: 10;
+    }
 
-#searchButton {
-    font-size: 1rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
+    #closeGifButton:hover {
+        background-color: rgba(255, 0, 0, 0.2);
+        transition: background-color 0.3s;
+    }
 
-.custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
-}
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
 
-.avatar-container {
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        border: 2px solid transparent;
+    }
 
-#messageInput::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
+    .message-wrapper {
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+        gap: 8px;
+    }
 
-#messageInput::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 10px;
-}
+    .message-wrapper img {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
 
-#messageInput::-webkit-scrollbar-thumb {
-    background-color: rgba(14, 165, 233, 0.7);
-    border-radius: 10px;
-    border: 1px solid transparent;
-}
+    .message-sent, .message-received {
+        padding: 8px 12px;
+        margin-top: 6px;
+        max-width: 90%;
+        width: fit-content;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        word-break: break-word;
+        border-radius: 18px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-#messageInput::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(14, 165, 233, 1);
-}
+    .message-sent:hover {
+        box-shadow: 0px 0px 12px 6px rgba(0, 150, 255, 0.6);
+        transform: scale(1.05);
+    }
 
-#messageInput {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(14, 165, 233, 0.7) transparent;
-    padding-right: 2rem;
-}
+    .message-received:hover {
+        box-shadow: 0px 0px 12px 6px rgba(128, 128, 128, 0.6);
+        transform: scale(1.05);
+    }
 
-#closeGifButton {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: transparent;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 2rem;
-    color: red;
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    z-index: 10;
-}
+    .message-sent {
+        align-self: flex-end;
+        background: linear-gradient(135deg, #005BB5, #007AFF);
+        color: #ffffff;
+        border-radius: 18px 18px 4px 18px;
+        margin-left: auto;
+    }
 
-#closeGifButton:hover {
-    background-color: rgba(255, 0, 0, 0.2);
-    transition: background-color 0.3s;
-}
+    .message-received {
+        align-self: flex-start;
+        background: linear-gradient(135deg, #444, #666);
+        color: #ffffff;
+        border-radius: 18px 18px 18px 4px;
+        margin-right: auto;
+        margin-left: 4px;
+    }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-}
+    .message-content {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    border: 2px solid transparent;
-}
+    .timestamp-sent {
+        text-align: right;
+        margin-top: 4px;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.75rem;
+    }
 
-.message-wrapper {
-    display: flex;
-    align-items: flex-end;
-    width: 100%;
-    gap: 8px;
-}
+    .timestamp-received {
+        text-align: left;
+        margin-top: 4px;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.75rem;
+    }
 
-.message-wrapper img {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    object-fit: cover;
-}
+    #charCount {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 1rem;
+        font-size: 0.75rem;
+        pointer-events: none;
+        color: #0EA5E9;
+    }
 
-.message-sent, .message-received {
-    padding: 8px 12px;
-    margin-top: 6px;
-    max-width: 90%;
-    width: fit-content;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
-    word-break: break-word;
-    border-radius: 18px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
+    #messageInput {
+        resize: none;
+        overflow: hidden;
+        max-height: 35vh;
+        min-height: 2.5rem;
+    }
 
-.message-sent:hover {
-    box-shadow: 0px 0px 12px 6px rgba(0, 150, 255, 0.6);
-    transform: scale(1.05);
-}
+    .conversation-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        gap: 10px;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 60px;
+    }
 
-.message-received:hover {
-    box-shadow: 0px 0px 12px 6px rgba(128, 128, 128, 0.6);
-    transform: scale(1.05);
-}
+    .conversation-item .avatar-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-size: cover;
+    }
 
-.message-sent {
-    align-self: flex-end;
-    background: linear-gradient(135deg, #005BB5, #007AFF);
-    color: #ffffff;
-    border-radius: 18px 18px 4px 18px;
-    margin-left: auto;
-}
+    .conversation-item .avatar-container img {
+        width: 44px !important;
+        height: 44px !important;
+        object-fit: cover;
+        transition: none;
+    }
 
-.message-received {
-    align-self: flex-start;
-    background: linear-gradient(135deg, #444, #666);
-    color: #ffffff;
-    border-radius: 18px 18px 18px 4px;
-    margin-right: auto;
-    margin-left: 4px;
-}
+    .conversation-item.selected-conversation,
+    .conversation-item:hover:not(.selected-conversation) {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+    }
 
-.message-content {
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-.timestamp-sent {
-    text-align: right;
-    margin-top: 4px;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.75rem;
-}
-
-.timestamp-received {
-    text-align: left;
-    margin-top: 4px;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.75rem;
-}
-
-#charCount {
-    position: absolute;
-    bottom: 0.5rem;
-    right: 1rem;
-    font-size: 0.75rem;
-    pointer-events: none;
-    color: #0EA5E9;
-}
-
-#messageInput {
-    resize: none;
-    overflow: hidden;
-    max-height: 35vh;
-    min-height: 2.5rem;
-}
-
-.conversation-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    gap: 10px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
-    cursor: pointer;
-    height: 60px;
-}
-
-.conversation-item .avatar-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-size: cover;
-}
-
-.conversation-item .avatar-container img {
-    width: 44px !important;
-    height: 44px !important;
-    object-fit: cover;
-    transition: none;
-}
-
-.conversation-item.selected-conversation,
-.conversation-item:hover:not(.selected-conversation) {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-}
-
-.conversation-item span {
-    display: inline-block;
-    text-align: left;
-}
+    .conversation-item span {
+        display: inline-block;
+        text-align: left;
+    }
 </style>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
@@ -405,7 +402,6 @@
                 }
             }
         });
-
         function scrollToBottom() {
             const messagesContainer = document.getElementById('messagesContainer');
             setTimeout(() => {
@@ -416,28 +412,21 @@
                 }
             }, 100);
         }
-
         function displayMessage(message, isCurrentUser) {
             const messagesContainer = document.getElementById('messagesContainer');
-
             const messageWrapper = document.createElement('div');
             messageWrapper.classList.add('message-wrapper', isCurrentUser ? 'justify-end' : 'justify-start');
-
             const avatarImage = document.createElement('img');
             avatarImage.src = message.avatar || "{{ asset('images/default-avatar.png') }}";
             avatarImage.alt = "Avatar";
-
             const messageContainer = document.createElement('div');
             messageContainer.classList.add('message-container');
-
             const messageBubble = document.createElement('div');
             messageBubble.classList.add(isCurrentUser ? 'message-sent' : 'message-received', 'message-content'); 
             messageBubble.innerHTML = message.content;
-
             const timestamp = document.createElement('div');
             timestamp.classList.add(isCurrentUser ? 'timestamp-sent' : 'timestamp-received');
             timestamp.textContent = format(new Date(message.timestamp), 'Pp', { locale: fr });
-
             messageContainer.appendChild(messageBubble);
             messageContainer.appendChild(timestamp);
             messagesContainer.appendChild(messageWrapper);
@@ -449,7 +438,6 @@
                 messageWrapper.appendChild(avatarImage);
                 messageWrapper.appendChild(messageContainer);
             }
-
             messagesContainer.appendChild(messageWrapper);
         }
         document.getElementById('openSearchButton').addEventListener('click', () => {
@@ -526,10 +514,8 @@
             gifResults.innerHTML = '';
             cancelCategoryButton.classList.add('hidden');
         }
-
         let isUserScrollingUp = false;
         let notificationVisible = false;
-
         function showNewMessageNotification() {
             let notification = document.getElementById('newMessageNotification');
             if (!notification) {
@@ -555,7 +541,6 @@
             notification.style.display = 'block';
             notificationVisible = true;
         }
-
         window.openConversation = function (convId, contactName, contactId) {
             document.querySelectorAll('.conversation-item').forEach(item => item.classList.remove('selected-conversation'));
             const selectedItem = document.getElementById(`conversation-${convId}`);
@@ -573,7 +558,6 @@
             }
             listenToMessages(conversationId, contactName);
         };
-
         function listenToMessages(conversationId, contactName) {
             const messagesRef = ref(database, `conversations/${conversationId}/messages`);
             if (activeListener) {
@@ -613,38 +597,35 @@
                 const response = await fetch(`/chat/private/${userId}`, { method: 'POST' });
                 if (!response.ok) throw new Error("Erreur de serveur");
                 const { conversationId } = await response.json();
-
+                const noConversationMessage = document.getElementById('noConversationMessage');
+                if (noConversationMessage) {
+                    noConversationMessage.style.display = 'none';
+                }
                 const existingConversation = document.getElementById(`conversation-${conversationId}`);
                 if (existingConversation) {
                     openConversation(conversationId, username, userId);
                 } else {
                     const conversationItem = document.createElement('li');
                     conversationItem.id = `conversation-${conversationId}`;
-                    conversationItem.className = 'cursor-pointer flex items-center p-2 conversation-item bg-transparent';
+                    conversationItem.className = 'cursor-pointer flex items-center justify-center p-2 conversation-item bg-transparent h-16';
                     conversationItem.onclick = () => openConversation(conversationId, username, userId);
-
-                    const avatarContainer = document.createElement('div');
-                    avatarContainer.className = 'flex-shrink-0 w-12 h-12 mr-3';
-                    const avatarImage = document.createElement('img');
-                    avatarImage.src = "/images/default-avatar.png";
-                    avatarImage.alt = username;
-                    avatarImage.className = 'w-10 h-10 rounded-full object-cover';
-                    avatarContainer.appendChild(avatarImage);
-
-                    const usernameContainer = document.createElement('div');
-                    usernameContainer.className = 'flex-1';
-                    const usernameSpan = document.createElement('span');
-                    usernameSpan.className = 'text-white hover:underline truncate w-full block';
-                    usernameSpan.textContent = username;
-
-                    usernameContainer.appendChild(usernameSpan);
-                    conversationItem.appendChild(avatarContainer);
-                    conversationItem.appendChild(usernameContainer);
+                    if (userId === {{ userId|json_encode }}) {
+                        const usernameSpan = document.createElement('span');
+                        usernameSpan.className = 'text-white truncate text-center w-full';
+                        usernameSpan.textContent = 'Moi';
+                        conversationItem.appendChild(usernameSpan);
+                    } else {
+                        const usernameContainer = document.createElement('div');
+                        usernameContainer.className = 'flex-1 text-center flex items-center justify-center';
+                        const usernameSpan = document.createElement('span');
+                        usernameSpan.className = 'text-white hover:underline truncate w-full block';
+                        usernameSpan.textContent = username;
+                        usernameContainer.appendChild(usernameSpan);
+                        conversationItem.appendChild(usernameContainer);
+                    }
                     document.getElementById('conversationList').appendChild(conversationItem);
-
                     openConversation(conversationId, username, userId);
                 }
-
                 document.getElementById('userSearchPopup').classList.add('hidden');
             } catch (error) {
                 console.error("Erreur lors de la création de la conversation privée :", error);
@@ -706,7 +687,6 @@
                 }
             }, 100);
         }
-
     document.getElementById('sendButton').addEventListener('click', (event) => {
         event.preventDefault();
         const content = messageInput.value.trim();
