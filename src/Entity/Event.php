@@ -14,7 +14,7 @@ class Event
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $dayOfWeek = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
@@ -22,6 +22,18 @@ class Event
 
     #[ORM\ManyToOne(inversedBy: 'events')]
     private ?GroupeJDR $groupeJDR = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $specificDate = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $recurrence = null;
+
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $isRecurrent = false;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $duration = null;
 
     public function getId(): ?int
     {
@@ -33,7 +45,7 @@ class Event
         return $this->dayOfWeek;
     }
 
-    public function setDayOfWeek(string $dayOfWeek): static
+    public function setDayOfWeek(?string $dayOfWeek): static
     {
         $this->dayOfWeek = $dayOfWeek;
 
@@ -63,4 +75,68 @@ class Event
 
         return $this;
     }
+
+    public function getSpecificDate(): ?\DateTimeInterface
+    {
+        return $this->specificDate;
+    }
+
+    public function setSpecificDate(?\DateTimeInterface $specificDate): static
+    {
+        $this->specificDate = $specificDate;
+
+        return $this;
+    }
+
+    public function getRecurrence(): ?string
+    {
+        return $this->recurrence;
+    }
+
+    public function setRecurrence(?string $recurrence): static
+    {
+        $this->recurrence = $recurrence;
+
+        return $this;
+    }
+
+    public function isRecurrent(): bool
+    {
+        return $this->isRecurrent;
+    }
+
+    public function setIsRecurrent(bool $isRecurrent): static
+    {
+        $this->isRecurrent = $isRecurrent;
+
+        return $this;
+    }
+
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?int $duration): static
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function calculateEndTime(): ?\DateTimeInterface
+    {
+        if ($this->eventTime && $this->duration) {
+            $startTime = \DateTime::createFromFormat('H:i:s', $this->eventTime->format('H:i:s'));
+            if (!$startTime) {
+                return null;
+            }
+    
+            // Ajoute la durée
+            $startTime->modify("+{$this->duration} minutes");
+            return $startTime;
+        }
+        return null;
+    }
+    
 }

@@ -14,103 +14,123 @@
                 <a href="{{ path('app_login') }}" class="font-medium text-indigo-600 hover:text-indigo-500">Connectez-vous.</a>
             </p>
         </div>
-        {{ form_errors(registrationForm) }}
         {% for message in app.flashes('emailsent') %}
-            <div class="bg-green-600 text-dark p-4 rounded mb-6">
+            <div class="bg-green-600 text-white p-4 rounded mb-6">
                 {{ message }}
             </div>
         {% endfor %}
         <div class="pr-7 pl-7">
-            {{ form_start(registrationForm, {'attr': {'class': 'space-y-6'}}) }}
+        {{ form_start(registrationForm, {'attr': {'id': 'registrationForm', 'class': 'space-y-6'}}) }}
             {% for flash_error in app.flashes('verify_email_error') %}
-                <div class="alert alert-danger text-red-500" role="alert">{{ flash_error }}</div>
+                <div class="alert alert-danger bg-red-600 text-white text-sm rounded-lg p-4 mb-4 flex items-center animate-pulse" role="alert">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856C18.607 21 21 18.607 21 15.938V8.062C21 5.393 18.607 3 15.938 3H8.062C5.393 3 3 5.393 3 8.062v7.876C3 18.607 5.393 21 8.062 21z" />
+                    </svg>
+                    {{ flash_error }}
+                </div>
             {% endfor %}
             <div>
                 <div class="flex items-center space-x-1">
-                    {{ form_label(registrationForm.username, 'Nom d\'utilisateur', {'label_attr': {'class': 'block text-base '}}) }}
+                    {{ form_label(registrationForm.username, 'Nom d\'utilisateur', {'label_attr': {'class': 'block text-base text-white'}}) }}
                     <span class="text-rose-500">*</span>
                 </div>
-                {{ form_widget(registrationForm.username, {'attr': {'class': 'block w-full appearance-none rounded-md border border-gray-600 bg-gray-800 px-4 py-2 placeholder-gray-400 text-gray-200 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm'}}) }}
-                <p class="text-red-500 text-xs italic mt-2">
-                    {{ form_errors(registrationForm.username) }}
-                </p>
-            </div>
-                <div>
-                    <label class="block text-base text-gray-200">Date de naissance (Facultatif)</label>
-                    <div class="mt-1 grid grid-cols-3 gap-2">
-                        <input type="number" id="day" name="day" min="1" max="31" placeholder="Jour" maxlength="2"
-                            oninput="if(this.value.length > 2) this.value = this.value.slice(0, 2)" onchange="updateBirthdate()" 
-                            class="w-full rounded-md border border-gray-600 bg-gray-800 px-4 py-2 text-gray-200 placeholder-gray-500 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                        
-                        <select id="month" name="month" onchange="updateBirthdate()" 
-                                class="w-full rounded-md border border-gray-600 bg-gray-800 px-4 py-2 text-gray-200 placeholder-gray-500 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <option value="">Mois</option>
-                            <option value="1">Janvier</option>
-                            <option value="2">Février</option>
-                            <option value="3">Mars</option>
-                            <option value="4">Avril</option>
-                            <option value="5">Mai</option>
-                            <option value="6">Juin</option>
-                            <option value="7">Juillet</option>
-                            <option value="8">Août</option>
-                            <option value="9">Septembre</option>
-                            <option value="10">Octobre</option>
-                            <option value="11">Novembre</option>
-                            <option value="12">Décembre</option>
-                        </select>
-                        
-                        <input type="number" id="year" name="year" min="1920" max="{{ "now"|date("Y") }}" placeholder="Année" maxlength="4"
-                            oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4)" onchange="updateBirthdate()" 
-                            class="w-full rounded-md border border-gray-600 bg-gray-800 px-4 py-2 text-gray-200 placeholder-gray-500 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                {{ form_widget(registrationForm.username, {'attr': {'class': 'block w-full appearance-none rounded-md border-2 border-gray-600 bg-gray-800 px-4 py-2 placeholder-gray-400 text-gray-200 shadow-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm'}}) }}
+                {% if form_errors(registrationForm.username) %}
+                    <div class="flex items-start bg-red-600 text-white text-xs italic mt-2 p-3 rounded shadow-lg animate-pulse">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        {{ form_errors(registrationForm.username) }}
                     </div>
-                    <input type="hidden" id="birthdate" name="birthdate">
+                {% endif %}
+            </div>
+            <div>
+                <label class="block text-base text-gray-200">Date de naissance (Facultatif)</label>
+                <div class="mt-1 grid grid-cols-3 gap-2">
+                    <input type="number" id="day" name="day" min="1" max="31" placeholder="Jour" maxlength="2"
+                        oninput="if(this.value.length > 2) this.value = this.value.slice(0, 2)" onchange="updateBirthdate()"
+                        class="w-full rounded-md border border-gray-600 bg-gray-800 px-4 py-2 text-gray-200 placeholder-gray-500 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <select id="month" name="month" onchange="updateBirthdate()"
+                            class="w-full rounded-md border border-gray-600 bg-gray-800 px-4 py-2 text-gray-200 placeholder-gray-500 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Mois</option>
+                        <option value="1">Janvier</option>
+                        <option value="2">Février</option>
+                        <option value="3">Mars</option>
+                        <option value="4">Avril</option>
+                        <option value="5">Mai</option>
+                        <option value="6">Juin</option>
+                        <option value="7">Juillet</option>
+                        <option value="8">Août</option>
+                        <option value="9">Septembre</option>
+                        <option value="10">Octobre</option>
+                        <option value="11">Novembre</option>
+                        <option value="12">Décembre</option>
+                    </select>
+                    <input type="number" id="year" name="year" min="1920" max="{{ "now"|date("Y") }}" placeholder="Année" maxlength="4"
+                        oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4)" onchange="updateBirthdate()"
+                        class="w-full rounded-md border border-gray-600 bg-gray-800 px-4 py-2 text-gray-200 placeholder-gray-500 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
+                <input type="hidden" id="birthdate" name="birthdate">
+            </div>
             <div>
                 <div class="flex items-center space-x-1">
-                    {{ form_label(registrationForm.email, 'Adresse e-mail', {'label_attr': {'class': 'block text-base  text-gray-200'}}) }}
+                    {{ form_label(registrationForm.email, 'Adresse e-mail', {'label_attr': {'class': 'block text-base text-gray-200'}}) }}
                     <span class="text-rose-500">*</span>
                 </div>
                 <div class="mt-1">
                     {{ form_widget(registrationForm.email, {'attr': {'class': 'block w-full appearance-none rounded-md border border-gray-600 bg-gray-800 px-4 py-2 placeholder-gray-400 text-gray-200 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm'}}) }}
-                    <p class="text-red-500 text-xs italic mt-2">
-                        {{ form_errors(registrationForm.email) }}
-                    </p>
+                    {% if form_errors(registrationForm.email) %}
+                        <div class="flex items-start bg-red-600 text-white text-xs italic mt-2 p-3 rounded shadow-lg animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            {{ form_errors(registrationForm.email) }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div>
                 <div class="flex items-center space-x-1">
-                    {{ form_label(registrationForm.password.first, 'Mot de passe', {'label_attr': {'class': 'block text-base  text-dark'}}) }}
+                    {{ form_label(registrationForm.password.first, 'Mot de passe', {'label_attr': {'class': 'block text-base text-gray-200'}}) }}
                     <span class="text-rose-500">*</span>
                 </div>
                 <div class="mt-1">
                     {{ form_widget(registrationForm.password.first, {'attr': {'class': 'block w-full appearance-none rounded-md border border-gray-600 bg-gray-800 px-4 py-2 placeholder-gray-400 text-gray-200 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm'}}) }}
-                    <p class="text-red-500 text-xs italic mt-2">
-                        {{ form_errors(registrationForm.password.first) }}
-                    </p>
+                    {% if form_errors(registrationForm.password.first) %}
+                        <div class="flex items-start bg-red-600 text-white text-xs italic mt-2 p-3 rounded shadow-lg animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            {{ form_errors(registrationForm.password.first) }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div>
                 <div class="flex items-center space-x-1">
-                    {{ form_label(registrationForm.password.second, 'Confirmer le mot de passe', {'label_attr': {'class': 'block text-base  text-dark'}}) }}
+                    {{ form_label(registrationForm.password.second, 'Confirmer le mot de passe', {'label_attr': {'class': 'block text-base text-gray-200'}}) }}
                     <span class="text-rose-500">*</span>
                 </div>
                 <div class="mt-1">
                     {{ form_widget(registrationForm.password.second, {'attr': {'class': 'block w-full appearance-none rounded-md border border-gray-600 bg-gray-800 px-4 py-2 placeholder-gray-400 text-gray-200 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm'}}) }}
                     {% if form_errors(registrationForm.password.second) %}
-                        <p class="text-red-500 text-xs italic mt-2">
+                        <div class="flex items-start bg-red-600 text-white text-xs italic mt-2 p-3 rounded shadow-lg animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
                             {{ form_errors(registrationForm.password.second) }}
-                        </p>
+                        </div>
                     {% endif %}
                 </div>
             </div>
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'}}) }}
-                    {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'ml-2 block text-sm text-dark'}}) }}
+                    {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'ml-2 block text-sm text-gray-200'}}) }}
                 </div>
             </div>
             <div>
-                <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-lg  text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-lg text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                     Créer un compte
                 </button>
             </div>
@@ -119,18 +139,12 @@
     </div>
 </div>
 <script>
-document.getElementById('registrationForm').addEventListener('submit', function(event) {
-    const day = document.getElementById('day').value;
-    const month = document.getElementById('month').value;
-    const year = document.getElementById('year').value;
-
-    if (!month) {
-        event.preventDefault();
-        alert("Veuillez sélectionner un mois pour compléter votre date de naissance.");
-
-        const monthSelect = document.getElementById('month');
-        monthSelect.classList.add("border-red-500");
-        monthSelect.classList.remove("border-gray-600");
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registrationForm');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            updateBirthdate();
+        });
     }
 });
 
@@ -147,4 +161,18 @@ function updateBirthdate() {
     }
 }
 </script>
+<style>
+    .shake {
+        animation: shake 0.5s;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+    }
+</style>
 {% endblock %}

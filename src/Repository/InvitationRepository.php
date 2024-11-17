@@ -52,4 +52,15 @@ class InvitationRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByUser($user)
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.user = :user')
+            ->andWhere('i.status = :status')
+            ->setParameter('user', $user)
+            ->setParameter('status', 'pending')
+            ->getQuery()
+            ->getResult();
+    }
 }

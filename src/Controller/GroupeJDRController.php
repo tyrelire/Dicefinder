@@ -6,6 +6,7 @@ use App\Entity\Event;
 use App\Entity\GroupeJDR;
 use App\Entity\Invitation;
 use App\Form\GroupeJDRType;
+use App\Entity\Availability;
 use App\Entity\Notification;
 use App\Entity\PlayerMembership;
 use App\Repository\UserRepository;
@@ -245,7 +246,7 @@ final class GroupeJDRController extends AbstractController
                     if ($oldPicture) {
                         $fileUploaderService->removeFile($oldPicture, $targetDirectory);
                     }
-
+    
                     $newFilename = $fileUploaderService->upload($file, $slugger, $targetDirectory);
                     $groupeJDR->setPicture($newFilename);
                 } catch (\Exception $e) {
@@ -266,7 +267,7 @@ final class GroupeJDRController extends AbstractController
     
             return $this->redirectToRoute('app_my_jdr', [], Response::HTTP_SEE_OTHER);
         }
-    
+
         return $this->render('groupe_jdr/edit.html.twig', [
             'groupe_j_d_r' => $groupeJDR,
             'form' => $form,

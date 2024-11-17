@@ -122,6 +122,28 @@
             <h2 class="text-2xl font-semibold mb-4">Biographie</h2>
             <p>{{ user.bio ? user.bio : 'Aucune biographie disponible.' }}</p>
         </div>
+        <h2 class="text-xl font-semibold mt-6 mb-4 text-gray-200">Disponibilités</h2>
+        <div class="flex flex-wrap gap-2">
+            {% set days_of_week = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'] %}
+            {% for day in days_of_week %}
+                {% set availability = availabilities|filter(v => v.dayOfWeek == day)|first %}
+                {% set is_available = availability and availability.isAvailable %}
+
+                <div class="flex items-center gap-2 py-2 px-4 rounded-md shadow-md transition duration-200 text-sm
+                            {{ is_available ? 'bg-green-500 text-white' : 'bg-gray-500 text-white' }}">
+                    <span class="font-semibold">{{ day|capitalize }}</span>
+                    <span class="ml-1 text-sm">
+                        {% if is_available %}
+                            <i class="fas fa-check-circle mr-1"></i> Disponible
+                        {% else %}
+                            <i class="fas fa-times-circle mr-1"></i> Indisponible
+                        {% endif %}
+                    </span>
+                </div>
+            {% endfor %}
+        </div>
+
+        <input type="hidden" name="availability_days" id="availability_days" value="{{ availabilities|map(v => v.dayOfWeek)|join(',') }}">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
             <a href="javascript:void(0)" class="tab-link p-3 transition-all duration-300 ease-in-out border-b-2 hover:border-purple-500 text-gray-100 transform hover:-translate-y-1 hover:scale-105 glassmorphism text-center" aria-controls="owned-jdrs">
                 {{ ownedJDRCount == 1 ? 'Univers créé' : 'Univers créés' }}
@@ -471,6 +493,23 @@
                 activateTab(this);
             });
         });
+        function toggleAvailability(button) {
+            button.classList.toggle('bg-green-500');
+            button.classList.toggle('bg-red-500');
+            const day = button.getAttribute('data-day');
+            let availabilityDaysInput = document.getElementById('availability_days');
+            let selectedDays = availabilityDaysInput.value ? availabilityDaysInput.value.split(',') : [];
+
+            if (selectedDays.includes(day)) {
+                selectedDays = selectedDays.filter(d => d !== day);
+                button.textContent = day.charAt(0).toUpperCase() + day.slice(1) + ': Indisponible';
+            } else {
+                selectedDays.push(day);
+                button.textContent = day.charAt(0).toUpperCase() + day.slice(1) + ': Disponible';
+            }
+
+            availabilityDaysInput.value = selectedDays.join(',');
+        }
     });
 </script>
 

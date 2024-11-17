@@ -107,6 +107,12 @@ class GroupeJDR
     #[ORM\ManyToOne(inversedBy: 'groupeJDRs')]
     private ?LicenceJDR $licence = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $informations = null;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $isActive = null;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
@@ -478,6 +484,30 @@ class GroupeJDR
     public function setLicence(?LicenceJDR $licence): static
     {
         $this->licence = $licence;
+
+        return $this;
+    }
+
+    public function getInformations(): ?string
+    {
+        return $this->informations;
+    }
+
+    public function setInformations(?string $informations): static
+    {
+        $this->informations = $informations;
+
+        return $this;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setActive(bool $isActive): static
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }

@@ -281,19 +281,17 @@ class PlayerInvitationController extends AbstractController
         if ($response === 'accept') {
             $this->handleAcceptResponse($invitation, $groupeJdr, $entityManager, $playerMembershipRepository);
         } elseif ($response === 'refuse') {
-            return new JsonResponse(['success' => true, 'message' => 'Invitation refusée.']);
+            $this->sendNotifications('refuse', $invitation, $groupeJdr, $notificationService);
         } else {
             return new JsonResponse(['success' => false, 'message' => 'Réponse invalide.'], JsonResponse::HTTP_BAD_REQUEST);
         }
-    
-        $this->sendNotifications($response, $invitation, $groupeJdr, $notificationService);
-    
         $entityManager->remove($invitation);
         $entityManager->flush();
     
         return new JsonResponse(['success' => true, 'message' => $response === 'accept' ? 'Invitation acceptée.' : 'Invitation refusée.']);
     }
     
+
     #[Route('/api/respond_invitation/{invitationId}', name: 'respond_invitation', methods: ['POST'])]
     public function respondInvitation(
         int $invitationId,

@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier{% endblock %}
+{% block body %}
+    <style>
+        .fc-daygrid-event {
+            background-color: rgba(255, 255, 255, 0.15);
+            transition: background-color 0.3s ease;
+        }
+    </style>
+    <div class="container mx-auto px-4 py-8 space-y-8">
+        <h1 class="text-4xl font-bold p-4 text-center">Calendrier</h1>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 bg-white/10 rounded-xl shadow-lg backdrop-blur-md p-4">
+            <div class="md:col-span-1 space-y-4">
+                <h2 class="text-2xl font-semibold mb-4 text-center md:text-left">Vos JDRs</h2>
+                <ul class="space-y-4">
+                    {% for jdr in gm_jdrs %}
+                    <li class="relative flex flex-col justify-end items-start p-4 rounded-lg overflow-hidden bg-gradient-to-b from-black/50 to-black/70 shadow-md text-white">
+                        <div class="absolute inset-0 bg-cover bg-center blur-sm opacity-50"
+                            style="background-image: url('{{ asset('uploads/images-jdr/' ~ jdr.picture) }}');"></div>
+                        <div class="relative z-10 w-full">
+                            <h3 class="text-lg font-semibold mb-1 truncate">{{ jdr.title }}</h3>
+                            <p class="text-sm mb-2">GM</p>
+                            <a href="{{ path('app_calendar_events', { id: jdr.id }) }}"
+                                class="inline-block bg-white/20 border border-white/50 text-white font-bold px-4 py-2 rounded-full hover:bg-white/30 transition transform hover:scale-105 text-center">
+                                Configurer
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    {% for jdr in player_jdrs %}
+                    <li class="relative flex flex-col justify-end items-start p-4 rounded-lg overflow-hidden bg-gradient-to-b from-black/50 to-black/70 shadow-md text-white cursor-pointer"
+                        onclick="window.location.href='{{ path('app_groupe_j_d_r_show', { id: jdr.id }) }}'">
+                        <div class="absolute inset-0 bg-cover bg-center blur-sm opacity-50"
+                            style="background-image: url('{{ asset('uploads/images-jdr/' ~ jdr.picture) }}');"></div>
+                        <div class="relative z-10 w-full">
+                            <h3 class="text-lg font-semibold mb-1 truncate">{{ jdr.title }}</h3>
+                            <p class="text-sm">Joueur</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="md:col-span-3 p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center md:text-left">Calendrier des événements</h2>
+                <div id="calendar" class="overflow-auto"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                firstDay: 1,
+                headerToolbar: {
+                    start: 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth,timeGridWeek,timeGridDay',
+                },
+                buttonText: {
+                    today: 'Aujourd\'hui',
+                    month: 'Mois',
+                    week: 'Semaine',
+                    day: 'Jour'
+                },
+                locale: 'fr',
+                events: JSON.parse('{{ calendarEvents|json_encode|raw }}').map(event => {
+                    let startTime = event.start ? event.start.substring(11, 16) : '';
+                    let endTime = event.end ? event.end.substring(11, 16) : '';
+                    let titleContent = `
+                        <div class="event-content-custom">
+                            <div class="event-dot" style="background-color: ${event.color || '#3498db'};"></div>
+                            <div>${event.title}</div>
+                        </div>
+                        <div class="event-time">⏰ ${startTime} - ${endTime}</div>
+                    `;
+                    return {
+                        ...event,
+                        title: titleContent,
+                        extendedProps: {
+                            customHtml: titleContent
+                        }
+                    };
+                }),
+                eventContent: function(arg) {
+                    let arrayOfDomNodes = [];
+                    let div = document.createElement('div');
+                    div.innerHTML = arg.event.extendedProps.customHtml;
+                    arrayOfDomNodes.push(div);
+                    return { domNodes: arrayOfDomNodes };
+                },
+                eventClick: function(info) {
+                    const jdrId = info.event.extendedProps.jdrId;
+                    if (jdrId) {
+                        window.location.href = `/groupe/jdr/${jdrId}`;
+                    }
+                }
+            });
+            calendar.render();
+        });
+    </script>
+{% endblock %}

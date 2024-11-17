@@ -1,0 +1,431 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier des événements{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet" />
+    <style>
+        .fc-toolbar-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .edit-mode-header {
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .edit-mode-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .button-glass {
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #000;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            font-weight: bold;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .button-glass:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #FFFFFF;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        .event-content-custom {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.75rem;
+        }
+        .event-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .event-time {
+            font-size: 0.7rem;
+            color: #f0f0f0;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .fc-daygrid-event {
+            max-height: 30px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.15);
+            transition: background-color 0.3s ease;
+        }
+        .fc-daygrid-event:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .fc-daygrid-day-frame:hover {
+            background-color: rgba(240, 240, 240, 0.5);
+        }
+        #calendar {
+            width: 100%;
+            max-width: 1400px;
+            height: 800px;
+            margin: 0 auto;
+        }
+
+        .fc-toolbar-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .fc-daygrid-day-number {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .fc-daygrid-event {
+            font-size: 1rem;
+            padding: 0.5rem;
+        }
+
+        .fc-col-header-cell {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .fc-toolbar-chunk button {
+            margin: 0.5rem;
+        }
+
+        .fc-daygrid-day-frame {
+            min-height: 120px;
+        }
+
+        .fc-daygrid-day {
+            padding: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8 space-y-8">
+    <div style="display: flex; align-items: center; margin-bottom: 1rem; position: relative;">
+        <a href="{{ path('app_calendar') }}" class="back-button" style="position: absolute; left: 0;">Retour</a>
+        <div style="flex: 1; text-align: center;">
+            <div class="edit-mode-header" style="display: inline-flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; color: #ffffff; padding: 0.5rem;">
+                {{ groupeJDR.title }} - Mode Édition
+                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" style="margin-left: 0.5rem;">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                        <path stroke-dasharray="20" stroke-dashoffset="20" d="M3 21h18">
+                            <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="20;0"/>
+                        </path>
+                        <path stroke-dasharray="48" stroke-dashoffset="48" d="M7 17v-4l10 -10l4 4l-10 10h-4">
+                            <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.6s" values="48;0"/>
+                        </path>
+                        <path stroke-dasharray="8" stroke-dashoffset="8" d="M14 6l4 4">
+                            <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="8;0"/>
+                        </path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col lg:flex-row gap-8 mt-8 h-[750px] min-h-0 overflow-hidden">
+        <div class="w-full lg:w-1/4 p-4 glassmorphism shadow-md h-full overflow-hidden flex flex-col min-h-0">
+            <h3 class="text-xl font-semibold text-left text-gray-300 mb-4">Disponibilités des joueurs</h3>
+            <div class="flex flex-col space-y-4 flex-1 overflow-y-auto pr-2">
+                {% for player in groupeJDR.getPlayers() %}
+                    <div class="glassmorphism p-4 rounded-lg shadow-lg flex flex-col items-start gap-4">
+                        <div class="flex items-center gap-4 w-full">
+                            <a href="{{ path('app_profile_show', { id: player.id }) }}" class="hover:opacity-80 transition-opacity">
+                                {% if player.avatar %}
+                                    <img src="{{ asset('uploads/avatars/' ~ player.avatar) }}" alt="Photo de profil de {{ player.getUsername() }}" class="w-16 h-16 rounded-full object-cover">
+                                {% else %}
+                                    <img src="{{ asset('images/default-avatar.png') }}" alt="Photo de profil de {{ player.getUsername() }}" class="w-16 h-16 rounded-full object-cover">
+                                {% endif %}
+                            </a>
+                            <a href="{{ path('app_profile_show', { id: player.id }) }}" class="text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                                {{ player.getUsername() }}
+                            </a>
+                        </div>
+                        <div class="mt-2 w-full">
+                            {% for day in constant('App\\Entity\\Availability::DAYS_OF_WEEK') %}
+                                {% set availability = availabilities | filter(v => v.getUser() == player and v.getDayOfWeek() == day) | first %}
+                                <div class="flex items-center mb-3">
+                                    <div class="w-1/3 font-semibold text-gray-400">{{ day|capitalize }}</div>
+                                    <div class="w-2/3">
+                                        {% if availability and availability.isAvailable() %}
+                                            <span class="inline-block rounded text-xs font-semibold text-green-300 bg-green-900 px-3 py-1">
+                                                Disponible ({{ availability.getStartTime()|date('H:i') }} - {{ availability.getEndTime()|date('H:i') }})
+                                            </span>
+                                        {% else %}
+                                            <span class="inline-block rounded text-xs font-semibold text-red-300 bg-red-900 px-3 py-1">
+                                                Indisponible
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-full lg:w-3/4 p-4 glassmorphism shadow-md h-full overflow-hidden flex flex-col min-h-0">
+            <h3 class="text-xl font-semibold text-left text-gray-300 mb-4">Calendrier des événements</h3>
+            <div id="calendar" class="flex-1 rounded-md p-4 min-h-0 overflow-hidden">
+            </div>
+        </div>
+    </div>
+    <div id="recurrentEventModal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen p-4 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full glassmorphism">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Ajouter un événement</h3>
+                            <div class="mt-2">
+                                <form id="recurrentEventForm">
+                                    <div id="dayOfWeekContainer" class="hidden">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1" for="dayOfWeek">Jour de la semaine</label>
+                                        <select id="dayOfWeek" name="dayOfWeek" class="bg-white border rounded-lg p-2 w-full text-gray-900 glassmorphism">
+                                            <option value="lundi">Lundi</option>
+                                            <option value="mardi">Mardi</option>
+                                            <option value="mercredi">Mercredi</option>
+                                            <option value="jeudi">Jeudi</option>
+                                            <option value="vendredi">Vendredi</option>
+                                            <option value="samedi">Samedi</option>
+                                            <option value="dimanche">Dimanche</option>
+                                        </select>
+                                    </div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1 mt-4" for="eventTime">Heure de l'événement</label>
+                                    <input type="text" id="eventTime" name="eventTime" class="bg-white border rounded-lg p-2 w-full text-gray-900 glassmorphism" placeholder="HH:mm" required>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1 mt-4" for="duration">Durée (en heures)</label>
+                                    <input type="number" id="duration" name="duration" class="bg-white border rounded-lg p-2 w-full text-gray-900 glassmorphism" placeholder="Durée en heures" required step="0.5" min="0.5" max="10">
+                                    <div class="mt-4">
+                                        <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-700 button-glass">
+                                            Ajouter l'événement
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm button-glass" id="closeRecurrentModal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
+    const recurrentModalEl = document.getElementById('recurrentEventModal');
+    const recurrentEventForm = document.getElementById('recurrentEventForm');
+    const eventTimeInput = document.getElementById('eventTime');
+    const durationInput = document.getElementById('duration');
+    const dayOfWeekSelect = document.getElementById('dayOfWeek');
+    const closeRecurrentModalButton = document.getElementById('closeRecurrentModal');
+
+const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'fr',
+    firstDay: 1,
+    customButtons: {
+        addRecurrentEvent: {
+            text: 'Ajouter un événement récurrent',
+            click: function () {
+                resetRecurrentEventForm();
+                document.getElementById('dayOfWeekContainer').classList.remove('hidden');
+                recurrentModalEl.classList.remove('hidden');
+                document.body.classList.add('modal-open');
+            }
+        }
+    },
+    headerToolbar: {
+        left: 'prev,next today addRecurrentEvent',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    titleFormat: { year: 'numeric', month: 'long' }, // Ajuster le format du titre pour le rendre plus visible
+    views: {
+        dayGridMonth: { buttonText: 'Mois' },
+        timeGridWeek: { buttonText: 'Semaine' },
+        timeGridDay: { buttonText: 'Jour' }
+    },
+    buttonText: {
+        today: 'Aujourd\'Hui'
+    },
+    events: JSON.parse('{{ events|raw }}').map(event => {
+        let startTime = event.start ? event.start.substring(11, 16) : '';
+        let endTime = event.end ? event.end.substring(11, 16) : '';
+        let titleContent = `
+            <div class="event-content-custom">
+                <div class="event-dot" style="background-color: ${event.color};"></div>
+                <div>${event.title}</div>
+            </div>
+            <div class="event-time">⏰ ${startTime} - ${endTime}</div>
+        `;
+
+        return {
+            ...event,
+            title: titleContent,
+            extendedProps: {
+                customHtml: titleContent
+            }
+        };
+    }),
+    eventContent: function(arg) {
+        let arrayOfDomNodes = [];
+        let div = document.createElement('div');
+        div.innerHTML = arg.event.extendedProps.customHtml;
+        arrayOfDomNodes.push(div);
+        return { domNodes: arrayOfDomNodes };
+    },
+    dateClick: function(info) {
+        resetRecurrentEventForm();
+        recurrentEventForm.dataset.selectedDate = info.dateStr;
+        document.getElementById('dayOfWeekContainer').classList.add('hidden');
+        recurrentModalEl.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+    }
+});
+
+
+
+    calendar.render();
+
+    closeRecurrentModalButton.addEventListener('click', function () {
+        closeRecurrentEventModal();
+    });
+
+    recurrentEventForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const eventTime = eventTimeInput.value;
+        const duration = parseInt(durationInput.value, 10) || 0;
+
+        if (!eventTime || duration <= 0 || duration > 600) {
+            addFlashMessage('error', 'Veuillez fournir une heure valide et une durée entre 1 et 600 minutes.');
+            return;
+        }
+
+        const [hours, minutes] = eventTime.split(':').map((v) => parseInt(v, 10));
+        let endDateTime = new Date();
+        endDateTime.setHours(hours);
+        endDateTime.setMinutes(minutes);
+        endDateTime.setMinutes(endDateTime.getMinutes() + duration);
+
+        const endHours = endDateTime.getHours().toString().padStart(2, '0');
+        const endMinutes = endDateTime.getMinutes().toString().padStart(2, '0');
+        const endTime = `${endHours}:${endMinutes}`;
+
+        const dataToSend = {
+            eventTime: eventTime,
+            duration: duration,
+            specificDate: recurrentEventForm.dataset.selectedDate || null,
+            dayOfWeek: dayOfWeekSelect.value || null,
+        };
+
+        axios.post('{{ path('app_calendar_events_add', { id: groupeJDR.id }) }}', dataToSend)
+            .then(function (response) {
+                if (response.data.success) {
+                    window.location.reload();
+                } else {
+                    addFlashMessage('error', response.data.error || 'Erreur lors de l\'ajout de l\'événement.');
+                }
+            })
+            .catch(function (error) {
+                addFlashMessage('error', 'Une erreur inattendue est survenue.');
+            });
+    });
+    
+    eventTimeInput.addEventListener('input', function (e) {
+        let value = e.target.value.replace(/[^0-9]/g, '');
+        if (value.length > 4) value = value.slice(0, 4);
+        if (value.length >= 3) value = value.slice(0, 2) + ':' + value.slice(2);
+        e.target.value = value;
+    });
+
+    eventTimeInput.addEventListener('blur', function (e) {
+        const value = e.target.value;
+        const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+
+        if (!timeRegex.test(value)) {
+            e.target.classList.add('border-red-500');
+            addFlashMessage('error', 'Heure invalide. Veuillez respecter le format HH:mm.');
+            e.target.value = '';
+        } else {
+            e.target.classList.remove('border-red-500');
+        }
+    });
+
+    durationInput.addEventListener('input', function () {
+        if (parseFloat(durationInput.value) > 10) {
+            durationInput.value = 10;
+            addFlashMessage('error', 'La durée maximale est de 10 heures.');
+        }
+    });
+
+    function resetRecurrentEventForm() {
+        recurrentEventForm.dataset.selectedDate = null;
+        dayOfWeekSelect.parentElement.classList.add('hidden');
+        eventTimeInput.value = '';
+        durationInput.value = '';
+    }
+
+    function closeRecurrentEventModal() {
+        recurrentModalEl.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+    }
+
+    function addFlashMessage(type, message) {
+        const flashMessageContainer = document.createElement('div');
+        flashMessageContainer.className = `flash-message ${type}`;
+        flashMessageContainer.innerHTML = message;
+        document.body.appendChild(flashMessageContainer);
+        setTimeout(() => {
+            flashMessageContainer.remove();
+        }, 5000);
+    }
+});
+
+</script>
+{% endblock %}

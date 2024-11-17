@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Entity\GroupeJDR;
 use App\Entity\Friendship;
+use App\Entity\Availability;
 use App\Entity\PlayerMembership;
 use App\Form\PasswordChangeType;
 use App\Repository\UserRepository;
@@ -47,52 +48,35 @@ class ProfileController extends AbstractController
     ): Response {
         $currentUser = $this->getUser();
         $user = $entityManager->getRepository(User::class)->find($id);
-    
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-    
         $ownedJDRs = $entityManager->getRepository(GroupeJDR::class)->findBy(['owner' => $user]);
         $playerMemberships = $entityManager->getRepository(PlayerMembership::class)->findBy(['player' => $user]);
-    
-        $joinedJDRs = [];
-        foreach ($playerMemberships as $membership) {
-            $groupeJDR = $membership->getGroupeJDR();
-            $joinedAt = $membership->getJoinedAt();
-            $now = new \DateTime();
-
-            $interval = $now->diff($joinedAt);
-            $timeSinceJoined = $this->formatInterval($interval);
-    
-            $joinedJDRs[] = [
-                'id' => $groupeJDR->getId(),
-                'groupe' => $groupeJDR,
-                'joined_at' => $joinedAt,
-                'time_since_joined' => $timeSinceJoined,
-                'picture' => $groupeJDR->getPicture(),
-                'title' => $groupeJDR->getTitle(),
-                'players' => $groupeJDR->getPlayers(),
-                'maxPlayer' => $groupeJDR->getMaxPlayer(),
-                'status' => $groupeJDR->getStatus(),
-                'owner' => $groupeJDR->getOwner(),
-            ];
-        }
-    
+        $joinedJDRs = array_map(fn($membership) => [
+            'id' => $membership->getGroupeJDR()->getId(),
+            'groupe' => $membership->getGroupeJDR(),
+            'joined_at' => $membership->getJoinedAt(),
+            'time_since_joined' => $this->formatInterval((new \DateTime())->diff($membership->getJoinedAt())),
+            'picture' => $membership->getGroupeJDR()->getPicture(),
+            'title' => $membership->getGroupeJDR()->getTitle(),
+            'players' => $membership->getGroupeJDR()->getPlayers(),
+            'maxPlayer' => $membership->getGroupeJDR()->getMaxPlayer(),
+            'status' => $membership->getGroupeJDR()->getStatus(),
+            'owner' => $membership->getGroupeJDR()->getOwner(),
+        ], $playerMemberships);
+        $availabilities = $entityManager->getRepository(Availability::class)->findBy(['user' => $user]);
         $favoriteJDRs = $user->getFavoriteGroupeJDR();
         $ownedJDRCount = count($ownedJDRs);
         $joinedJDRCount = count($joinedJDRs);
         $favoriteJDRCount = count($favoriteJDRs);
-    
         $friends = $userRepository->findFriendsOfUser($user);
-    
         $relationshipStatus = null;
         if ($currentUser && $currentUser->getId() !== $user->getId()) {
             $relationship = $friendshipRepository->findFriendship($currentUser, $user);
             $relationshipStatus = $relationship ? $relationship->getStatus() : 'no_relationship';
         }
-    
         $stripePublicKey = $this->getParameter('env(STRIPE_PUBLIC_KEY)');
-    
         return $this->render('profile/show.html.twig', [
             'user' => $user,
             'ownedJDRs' => $ownedJDRs,
@@ -104,6 +88,7 @@ class ProfileController extends AbstractController
             'relationshipStatus' => $relationshipStatus,
             'friends' => $friends,
             'stripePublicKey' => $stripePublicKey,
+            'availabilities' => $availabilities,
         ]);
     }
 
@@ -115,12 +100,10 @@ class ProfileController extends AbstractController
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-
         if ($request->isMethod('POST')) {
             if ($request->files->get('avatar')) {
                 $this->handleAvatarUpload($request->files->get('avatar'), $slugger, $user, $entityManager);
             }
-
             if ($request->files->get('banner')) {
                 $this->handleBannerUpload($request->files->get('banner'), $slugger, $user, $entityManager);
             }

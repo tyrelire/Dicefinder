@@ -137,6 +137,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $ipAddress = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $discordId = null;
+
+    /**
+     * @var Collection<int, Availability>
+     */
+    #[ORM\OneToMany(targetEntity: Availability::class, mappedBy: 'user')]
+    private Collection $availabilities;
+
 
     public function __construct()
     {
@@ -150,6 +159,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->favoriteGroupeJDR = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->relatedNotifications = new ArrayCollection();
+        $this->availabilities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -683,6 +693,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setipAddress(string $ipAddress): static
     {
         $this->ipAddress = $ipAddress;
+
+        return $this;
+    }
+
+    public function getDiscordId(): ?string
+    {
+        return $this->discordId;
+    }
+
+    public function setDiscordId(string $discordId): static
+    {
+        $this->discordId = $discordId;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Availability>
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): static
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities->add($availability);
+            $availability->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): static
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getUser() === $this) {
+                $availability->setUser(null);
+            }
+        }
 
         return $this;
     }
