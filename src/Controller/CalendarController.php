@@ -24,7 +24,6 @@ class CalendarController extends AbstractController
         if (!$user) {
             throw $this->createAccessDeniedException('Vous devez être connecté pour accéder au calendrier.');
         }
-
         $gmJDRs = $groupeJDRRepository->findBy(['owner' => $user]);
         $playerJDRs = $groupeJDRRepository->createQueryBuilder('g')
             ->join('g.players', 'p')
@@ -32,14 +31,12 @@ class CalendarController extends AbstractController
             ->setParameter('user', $user)
             ->getQuery()
             ->getResult();
-
         $events = $entityManager->getRepository(Event::class)->createQueryBuilder('e')
             ->join('e.groupeJDR', 'g')
             ->where('g.owner = :user OR :user MEMBER OF g.players')
             ->setParameter('user', $user)
             ->getQuery()
             ->getResult();
-
         $daysMap = [
             'lundi' => 'monday',
             'mardi' => 'tuesday',
@@ -49,21 +46,35 @@ class CalendarController extends AbstractController
             'samedi' => 'saturday',
             'dimanche' => 'sunday',
         ];
-
         $calendarEvents = [];
         foreach ($events as $event) {
             $duration = $event->getDuration() ?: 0;
-
             $endTime = null;
             if ($event->getEventTime() && $duration > 0) {
                 $endTime = (clone $event->getEventTime())->modify('+' . ($duration * 60) . ' minutes');
+                if ($endTime < $event->getEventTime()) {
+                    $endTime->modify('+1 day');
+                }
             }
-
             if ($event->getSpecificDate() && $event->getEventTime()) {
+                $startDateTime = (clone $event->getSpecificDate())->setTime(
+                    (int) $event->getEventTime()->format('H'),
+                    (int) $event->getEventTime()->format('i')
+                );
+                $endDateTime = null;
+                if ($endTime) {
+                    $endDateTime = (clone $startDateTime)->setTime(
+                        (int) $endTime->format('H'),
+                        (int) $endTime->format('i')
+                    );
+                    if ($endDateTime < $startDateTime) {
+                        $endDateTime->modify('+1 day');
+                    }
+                }
                 $calendarEvents[] = [
                     'title' => $event->getGroupeJDR()->getTitle(),
-                    'start' => $event->getSpecificDate()->format('Y-m-d') . 'T' . $event->getEventTime()->format('H:i'),
-                    'end' => $endTime ? $event->getSpecificDate()->format('Y-m-d') . 'T' . $endTime->format('H:i') : null,
+                    'start' => $startDateTime->format('Y-m-d\TH:i'),
+                    'end' => $endDateTime ? $endDateTime->format('Y-m-d\TH:i') : null,
                     'color' => '#1d4ed8',
                 ];
             } elseif ($event->getDayOfWeek() && $event->getEventTime()) {
@@ -79,8 +90,13 @@ class CalendarController extends AbstractController
                             (int) $event->getEventTime()->format('H'),
                             (int) $event->getEventTime()->format('i')
                         )->modify('+' . ($duration * 60) . ' minutes');
+                        if ($endRecurringTime < $currentDate->setTime(
+                            (int) $event->getEventTime()->format('H'),
+                            (int) $event->getEventTime()->format('i')
+                        )) {
+                            $endRecurringTime->modify('+1 day');
+                        }
                     }
-
                     $calendarEvents[] = [
                         'title' => $event->getGroupeJDR()->getTitle(),
                         'start' => $currentDate->format('Y-m-d') . 'T' . $event->getEventTime()->format('H:i'),
@@ -91,7 +107,6 @@ class CalendarController extends AbstractController
                 }
             }
         }
-
         return $this->render('calendar/index.html.twig', [
             'gm_jdrs' => $gmJDRs,
             'player_jdrs' => $playerJDRs,
@@ -148,12 +163,29 @@ class CalendarController extends AbstractController
             $endTime = null;
             if ($e->getEventTime() && is_numeric($duration) && $duration > 0) {
                 $endTime = (clone $e->getEventTime())->modify('+' . ($duration * 60) . ' minutes');
+                if ($endTime < $e->getEventTime()) {
+                    $endTime->modify('+1 day');
+                }
             }
             if ($e->getSpecificDate() && $e->getEventTime()) {
+                $startDateTime = (clone $e->getSpecificDate())->setTime(
+                    (int)$e->getEventTime()->format('H'),
+                    (int)$e->getEventTime()->format('i')
+                );
+                $endDateTime = null;
+                if ($endTime) {
+                    $endDateTime = (clone $startDateTime)->setTime(
+                        (int)$endTime->format('H'),
+                        (int)$endTime->format('i')
+                    );
+                    if ($endDateTime < $startDateTime) {
+                        $endDateTime->modify('+1 day');
+                    }
+                }
                 $displayableEvents[] = [
                     'title' => $e->getGroupeJDR()->getTitle(),
-                    'start' => $e->getSpecificDate()->format('Y-m-d') . 'T' . $e->getEventTime()->format('H:i'),
-                    'end' => $endTime ? $e->getSpecificDate()->format('Y-m-d') . 'T' . $endTime->format('H:i') : null,
+                    'start' => $startDateTime->format('Y-m-d\TH:i'),
+                    'end' => $endDateTime ? $endDateTime->format('Y-m-d\TH:i') : null,
                     'color' => '#1d4ed8',
                 ];
             } elseif ($e->getDayOfWeek()) {
@@ -163,6 +195,9 @@ class CalendarController extends AbstractController
                     $calculatedEndTime = null;
                     if ($e->getEventTime() && is_numeric($duration) && $duration > 0) {
                         $calculatedEndTime = (clone $e->getEventTime())->modify('+' . ($duration * 60) . ' minutes');
+                        if ($calculatedEndTime < $e->getEventTime()) {
+                            $calculatedEndTime->modify('+1 day');
+                        }
                     }
                     $displayableEvents[] = [
                         'title' => $e->getGroupeJDR()->getTitle(),
@@ -271,5 +306,28 @@ class CalendarController extends AbstractController
         }
         $this->addFlash('error', 'Données invalides.');
         return new JsonResponse(['error' => 'Invalid data'], Response::HTTP_BAD_REQUEST);
+    }
+    #[Route('/calendrier/event/{id}/update', name: 'app_calendar_event_update', methods: ['POST'])]
+    public function updateEvent(Event $event, Request $request, EntityManagerInterface $em): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        $eventTime = \DateTime::createFromFormat('H:i', $data['eventTime']);
+        $duration = $data['duration'];
+        if (!$eventTime || !is_numeric($duration) || $duration <= 0) {
+            return new JsonResponse(['error' => 'Données invalides'], Response::HTTP_BAD_REQUEST);
+        }
+        $event->setEventTime($eventTime);
+        $event->setDuration($duration);
+        $em->flush();
+
+        return new JsonResponse(['success' => true]);
+    }
+
+    #[Route('/calendrier/event/{id}/delete', name: 'app_calendar_event_delete', methods: ['DELETE'])]
+    public function deleteEvent(Event $event, EntityManagerInterface $em): JsonResponse
+    {
+        $em->remove($event);
+        $em->flush();
+        return new JsonResponse(['success' => true]);
     }
 }
