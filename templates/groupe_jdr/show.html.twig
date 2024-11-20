@@ -321,29 +321,84 @@
                 <h3 class="text-2xl font-semibold mb-4">Horaire des événements</h3>
                 <ul class="space-y-3">
                     {% for event in groupe_j_d_r.events %}
-                        <li class="bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg flex items-center justify-between transition-all duration-300 hover:bg-opacity-100 hover:shadow-2xl">
-                            <div>
-                                <p class="text-lg font-bold text-white">
-                                    Jour: {{ event.dayOfWeek|capitalize }}
-                                </p>
-                                <p class="text-lg text-yellow-300 mt-1">
-                                    Heure: {{ event.eventTime|date('H:i') }}
-                                </p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-lg font-medium text-blue-300">
-                                    {% set hour = event.eventTime|date('H') %}
-                                    {% if hour < 12 %}
-                                        {% set period = 'du matin' %}
-                                    {% elseif hour < 18 %}
-                                        {% set period = 'de l\'après-midi' %}
-                                    {% else %}
-                                        {% set period = 'du soir' %}
-                                    {% endif %}
-                                    {{ event.dayOfWeek|capitalize }} à {{ hour }}:{{ event.eventTime|date('i') }} {{ period }}
-                                </p>
-                            </div>
-                        </li>
+                        {% set current_date = "now"|date('Y-m-d') %}
+                        {% if event.isRecurrent or (event.specificDate|date('Y-m-d') > current_date) %}
+                            <li class="bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg flex items-center justify-between transition-all duration-300 hover:bg-opacity-100 hover:shadow-2xl">
+                                <div>
+                                    <p class="text-lg font-bold text-white">
+                                        {% if event.isRecurrent %}
+                                            Cet événement a lieu tous les 
+                                            {% set day = event.specificDate|date('l') %}
+                                            {% if day == 'Monday' %}
+                                                Lundi
+                                            {% elseif day == 'Tuesday' %}
+                                                Mardi
+                                            {% elseif day == 'Wednesday' %}
+                                                Mercredi
+                                            {% elseif day == 'Thursday' %}
+                                                Jeudi
+                                            {% elseif day == 'Friday' %}
+                                                Vendredi
+                                            {% elseif day == 'Saturday' %}
+                                                Samedi
+                                            {% elseif day == 'Sunday' %}
+                                                Dimanche
+                                            {% endif %}
+                                        {% else %}
+                                            {% set day = event.specificDate|date('l') %}
+                                            {% if day == 'Monday' %}
+                                                Lundi
+                                            {% elseif day == 'Tuesday' %}
+                                                Mardi
+                                            {% elseif day == 'Wednesday' %}
+                                                Mercredi
+                                            {% elseif day == 'Thursday' %}
+                                                Jeudi
+                                            {% elseif day == 'Friday' %}
+                                                Vendredi
+                                            {% elseif day == 'Saturday' %}
+                                                Samedi
+                                            {% elseif day == 'Sunday' %}
+                                                Dimanche
+                                            {% endif %}
+                                            (le {{ event.specificDate|date('d/m/Y') }})
+                                        {% endif %}
+                                    </p>
+                                    <p class="text-lg text-yellow-300 mt-1">
+                                        {{ event.eventTime|date('H:i') }}h
+                                    </p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-lg font-medium text-blue-300">
+                                        {% set hour = event.eventTime|date('H') %}
+                                        {% if hour < 12 %}
+                                            {% set period = 'du matin' %}
+                                        {% elseif hour < 18 %}
+                                            {% set period = 'de l\'après-midi' %}
+                                        {% else %}
+                                            {% set period = 'du soir' %}
+                                        {% endif %}
+                                        {% set day = event.specificDate|date('l') %}
+                                        {% if day == 'Monday' %}
+                                            {% set day = 'Lundi' %}
+                                        {% elseif day == 'Tuesday' %}
+                                            {% set day = 'Mardi' %}
+                                        {% elseif day == 'Wednesday' %}
+                                            {% set day = 'Mercredi' %}
+                                        {% elseif day == 'Thursday' %}
+                                            {% set day = 'Jeudi' %}
+                                        {% elseif day == 'Friday' %}
+                                            {% set day = 'Vendredi' %}
+                                        {% elseif day == 'Saturday' %}
+                                            {% set day = 'Samedi' %}
+                                        {% elseif day == 'Sunday' %}
+                                            {% set day = 'Dimanche' %}
+                                        {% endif %}
+                                        {{ day }} à {{ event.eventTime|date('H:i') }}h {{ period }}
+                                    </p>
+                                </div>
+                            </li>
+                        {% endif %}
                     {% else %}
                         <li class="text-gray-400 text-center bg-gray-700 bg-opacity-75 p-4 rounded-lg">
                             Aucun événement programmé.

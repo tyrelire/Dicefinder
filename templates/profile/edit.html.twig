@@ -126,19 +126,36 @@
 
     function validateAndSubmitAvatar(event) {
         const file = event.target.files[0];
-
-        if (file && (file.type === 'image/gif' || file.type === 'image/webp')) {
+        if (!file) {
+            alert("Aucun fichier sélectionné.");
+            return;
+        }
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!allowedTypes.includes(file.type)) {
+            alert("Seuls les formats JPG, PNG, et GIF sont autorisés.");
+            return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+            alert("Le fichier est trop volumineux. La taille maximale autorisée est de 10 Mo.");
             return;
         }
         document.getElementById("avatar-form").submit();
     }
 
-
     function validateAndSubmitBanner() {
         const input = document.getElementById('banner-input');
         const file = input.files[0];
-
-        if (file && (file.type === 'image/gif' || file.type === 'image/webp')) {
+        if (!file) {
+            alert("Aucun fichier sélectionné.");
+            return;
+        }
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        if (!allowedTypes.includes(file.type)) {
+            alert("Seuls les formats JPG et PNG sont autorisés pour la bannière.");
+            return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+            alert("Le fichier est trop volumineux. La taille maximale autorisée est de 10 Mo.");
             return;
         }
         const form = document.getElementById('banner-form');
