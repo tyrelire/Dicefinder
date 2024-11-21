@@ -50,6 +50,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const calendarEl = document.getElementById('calendar');
+            const eventsData = {{ calendarEvents|json_encode|raw }};
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 firstDay: 1,
@@ -65,19 +66,19 @@
                     day: 'Jour'
                 },
                 locale: 'fr',
-                events: JSON.parse('{{ calendarEvents|json_encode|raw }}').map(event => {
+                events: eventsData.map(event => {
                     let startTime = event.start ? event.start.substring(11, 16) : '';
                     let endTime = event.end ? event.end.substring(11, 16) : '';
                     let titleContent = `
-                        <div class="event-content-custom">
+                        <div class="event-content-custom" title="${event.title}">
                             <div class="event-dot" style="background-color: ${event.color || '#3498db'};"></div>
-                            <div>${event.title}</div>
+                            <div class="event-title" style="margin-top: 5px; white-space: normal;">${event.title}</div>
                         </div>
-                        <div class="event-time">⏰ ${startTime} - ${endTime}</div>
+                        <div class="event-time" style="margin-top: 5px;">⏰ ${startTime} - ${endTime}</div>
                     `;
                     return {
                         ...event,
-                        title: titleContent,
+                        title: event.title,
                         extendedProps: {
                             customHtml: titleContent
                         }

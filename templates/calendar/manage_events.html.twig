@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
         buttonText: {
             today: 'Aujourd\'Hui'
         },
-        events: JSON.parse('{{ events|raw }}').map(event => {
+        events: {{ events|raw }}.map(event => {
             let startTime = event.start ? event.start.substring(11, 16) : '';
             let endTime = event.end ? event.end.substring(11, 16) : '';
             let titleContent = `
