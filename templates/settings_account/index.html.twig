@@ -39,19 +39,35 @@
                 </div>
             <div class="absolute inset-0 lg:rounded-l-[2rem] rounded-lg border border-white/20 pointer-events-none shadow-xl ring-2 ring-purple-500/20"></div>
         </div>
-        <div class="relative max-lg:row-start-1">
-            <div class="absolute inset-px rounded-lg glassmorphism max-lg:rounded-t-[2rem]"></div>
-            <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
-                <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-                    <p class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center">Performance</p>
-                    <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit maiores impedit.</p>
-                </div>
-                <div class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
-                    <img class="w-full max-lg:max-w-xs" src="https://tailwindui.com/plus/img/component-images/bento-03-performance.png" alt="">
-                </div>
+<div class="relative max-lg:row-start-1 flex items-center justify-center h-full">
+    <div class="absolute inset-0 rounded-lg max-lg:rounded-t-[2rem]"></div>
+    <div class="relative flex flex-col items-center justify-center h-full overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] shadow-lg glassmorphism text-center">
+        {% if user.isVip %}
+            <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                <h2 class="text-xl font-semibold text-gray-100">Abonnement VIP</h2>
+                <p class="mt-4 text-sm text-gray-400">
+                    Votre abonnement VIP est actif. Profitez de tous les avantages exclusifs.
+                </p>
             </div>
-            <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]"></div>
-        </div>
+            <div class="mt-6">
+                <form method="post" action="{{ path('app_cancel_vip') }}">
+                    <button type="submit" class="bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-red-700 transition duration-300">
+                        Résilier l'abonnement
+                    </button>
+                </form>
+            </div>
+        {% else %}
+            <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                <h2 class="text-xl font-semibold text-gray-100">Aucun abonnement VIP</h2>
+                <p class="mt-4 text-sm text-gray-400">
+                    Vous n'avez pas d'abonnement VIP actif pour le moment.
+                </p>
+            </div>
+        {% endif %}
+    </div>
+    <div class="pointer-events-none absolute inset-0 rounded-lg shadow-xl ring-1 ring-black/5 max-lg:rounded-t-[2rem]"></div>
+</div>
+
         <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
             <div class="absolute inset-0 rounded-xl glassmorphism backdrop-blur-lg border border-white/10 shadow-xl"></div>
             <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.xl)+1px)] shadow-lg">

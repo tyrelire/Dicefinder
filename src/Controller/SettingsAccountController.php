@@ -18,12 +18,51 @@ class SettingsAccountController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = $this->getUser();
-        
-        // Récupérer les disponibilités existantes
+
+        // Vérification de l'utilisateur
+        if (!$user) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour accéder à cette page.');
+        }
+
+        $availabilities = $this->initializeAvailabilities($user, $entityManager);
+
+        // Formulaires de modification
+        $form = $this->createForm(UserType::class, $user);
+        $passwordForm = $this->createForm(PasswordChangeSettingsType::class);
+
+        $form->handleRequest($request);
+        $passwordForm->handleRequest($request);
+
+        if ($request->isMethod('POST')) {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->persist($user);
+                $entityManager->flush();
+                $this->addFlash('success', 'Profil mis à jour avec succès.');
+                return $this->redirectToRoute('app_settings_account');
+            }
+
+            if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
+                $this->handlePasswordChange($passwordForm, $passwordHasher, $entityManager, $user);
+                return $this->redirectToRoute('app_settings_account');
+            }
+
+            // Mise à jour des disponibilités
+            $this->updateAvailabilities($availabilities, $request, $entityManager);
+        }
+
+        return $this->render('settings_account/index.html.twig', [
+            'form' => $form->createView(),
+            'passwordForm' => $passwordForm->createView(),
+            'availabilities' => $availabilities,
+            'user' => $user,
+        ]);
+    }
+
+    private function initializeAvailabilities($user, EntityManagerInterface $entityManager): array
+    {
         $availabilities = $entityManager->getRepository(Availability::class)->findBy(['user' => $user]);
         $availabilityMap = [];
 
-        // Créer une disponibilité pour chaque jour si elle n'existe pas encore
         foreach (Availability::DAYS_OF_WEEK as $day) {
             $availability = array_filter($availabilities, fn($a) => $a->getDayOfWeek() === $day);
             if ($availability) {
@@ -41,74 +80,44 @@ class SettingsAccountController extends AbstractController
         }
         $entityManager->flush();
 
-        // Gestion des formulaires utilisateur et mot de passe
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        return $availabilityMap;
+    }
 
-        $passwordForm = $this->createForm(PasswordChangeSettingsType::class);
-        $passwordForm->handleRequest($request);
+    private function updateAvailabilities(array $availabilities, Request $request, EntityManagerInterface $entityManager): void
+    {
+        foreach ($availabilities as $day => $availability) {
+            $submittedIsAvailable = $request->request->get("is_available_$day") === '1';
+            $submittedStartTime = $request->request->get("start_time_$day");
+            $submittedEndTime = $request->request->get("end_time_$day");
 
-        if ($request->isMethod('POST')) {
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager->persist($user);
-                $entityManager->flush();
-                $this->addFlash('success', 'Profil mis à jour avec succès.');
-                return $this->redirectToRoute('app_settings_account');
+            $hasChanged = false;
+
+            if ($submittedIsAvailable !== $availability->isAvailable()) {
+                $availability->setAvailable($submittedIsAvailable);
+                $hasChanged = true;
             }
 
-            if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
-                $this->handlePasswordChange($passwordForm, $passwordHasher, $entityManager, $user);
-                return $this->redirectToRoute('app_settings_account');
-            }
+            if ($submittedIsAvailable) {
+                $startTime = $submittedStartTime ? \DateTime::createFromFormat('H:i', $submittedStartTime) : null;
+                $endTime = $submittedEndTime ? \DateTime::createFromFormat('H:i', $submittedEndTime) : null;
 
-            // Traitement des disponibilités
-            foreach (Availability::DAYS_OF_WEEK as $day) {
-                $availability = $availabilityMap[$day];
-
-                // Récupérer les valeurs actuelles pour comparaison
-                $currentIsAvailable = $availability->isAvailable();
-                $currentStartTime = $availability->getStartTime() ? $availability->getStartTime()->format('H:i') : null;
-                $currentEndTime = $availability->getEndTime() ? $availability->getEndTime()->format('H:i') : null;
-
-                // Vérifier explicitement si `is_available_<day>` est défini dans la requête pour ne pas l’écraser si absent
-                $submittedIsAvailable = $request->request->has("is_available_$day") 
-                                        ? $request->request->get("is_available_$day") === '1' 
-                                        : $currentIsAvailable;
-
-                $submittedStartTime = $request->request->get("start_time_$day");
-                $submittedEndTime = $request->request->get("end_time_$day");
-
-                // Comparer les valeurs soumises avec les valeurs actuelles
-                $hasChanged = false;
-                if ($submittedIsAvailable !== $currentIsAvailable) {
-                    $availability->setAvailable($submittedIsAvailable);
+                if ($availability->getStartTime() != $startTime) {
+                    $availability->setStartTime($startTime);
                     $hasChanged = true;
                 }
-                if ($submittedStartTime !== $currentStartTime && $submittedIsAvailable) {
-                    $availability->setStartTime($submittedStartTime ? \DateTime::createFromFormat('H:i', $submittedStartTime) : null);
+                if ($availability->getEndTime() != $endTime) {
+                    $availability->setEndTime($endTime);
                     $hasChanged = true;
-                }
-                if ($submittedEndTime !== $currentEndTime && $submittedIsAvailable) {
-                    $availability->setEndTime($submittedEndTime ? \DateTime::createFromFormat('H:i', $submittedEndTime) : null);
-                    $hasChanged = true;
-                }
-
-                // Si des modifications ont été effectuées, persister les changements
-                if ($hasChanged) {
-                    $entityManager->persist($availability);
                 }
             }
 
-            $entityManager->flush();
-            $this->addFlash('success', 'Disponibilités mises à jour avec succès.');
-            return $this->redirectToRoute('app_settings_account');
+            if ($hasChanged) {
+                $entityManager->persist($availability);
+            }
         }
+        $entityManager->flush();
 
-        return $this->render('settings_account/index.html.twig', [
-            'form' => $form->createView(),
-            'passwordForm' => $passwordForm->createView(),
-            'availabilities' => $availabilityMap, // Passer les disponibilités existantes pour affichage
-        ]);
+        $this->addFlash('success', 'Disponibilités mises à jour avec succès.');
     }
 
     private function handlePasswordChange($passwordForm, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager, $user): void
@@ -121,5 +130,23 @@ class SettingsAccountController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'Mot de passe mis à jour avec succès.');
+    }
+
+    #[Route('/cancel-vip', name: 'app_cancel_vip', methods: ['POST'])]
+    public function cancelVip(EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+
+        if ($user && $user->isVip()) {
+            $user->setIsVip(false);
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre abonnement VIP a été résilié.');
+        } else {
+            $this->addFlash('warning', 'Vous n\'avez pas d\'abonnement VIP actif.');
+        }
+
+        return $this->redirectToRoute('app_settings_account');
     }
 }

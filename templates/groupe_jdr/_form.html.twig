@@ -14,36 +14,6 @@
         {% else %}
             {{ form_start(form, { 'action': path('app_groupe_j_d_r_new'), 'method': 'POST', 'attr': {'class': 'space-y-4', 'id': 'jdr-form'} }) }}
         {% endif %}
-        {# <div class="flex flex-col 2xl:flex-row items-center justify-center w-full mb-6 relative">
-            <h1 class="text-2xl font-bold text-gray-100 mb-4 2xl:mb-0 2xl:absolute 2xl:left-0 2xl:ml-4">
-                {% if groupe_j_d_r.id is not null %}Édition de votre Univers{% else %}Création de votre Univers{% endif %}
-            </h1>
-            <div class="flex items-center w-full max-w-3xl px-6 justify-center">
-                <ol class="flex items-center justify-between w-full">
-                    <li class="flex items-center w-full">
-                        <div class="flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 glassmorphism shrink-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600 lg:w-6 lg:h-6 dark:text-blue-300" width="5rem" height="5rem" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8 8 0 0 1 12 20Z" opacity="0.5" />
-                                <path fill="currentColor" d="M20 12h2A10 10 0 0 0 12 2V4A8 8 0 0 1 20 12Z">
-                                    <animateTransform attributeName="transform" dur="1s" from="0 12 12" repeatCount="indefinite" to="360 12 12" type="rotate" />
-                                </path>
-                            </svg>
-                        </div>
-                        <div class="flex-1 h-1 flex">
-                            <div class="w-1/2 h-full bg-blue-600"></div>
-                            <div class="w-1/2 h-full glassmorphism"></div>
-                        </div>
-                    </li>
-                    <li class="flex items-center">
-                        <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
-                            <svg class="w-4 h-4 text-gray-500 lg:w-5 lg:h-5 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                                <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z" />
-                            </svg>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </div> #}
         <div class="flex flex-col lg:flex-row w-full lg:space-x-8">
             <div class="flex flex-col w-full lg:w-1/3 space-y-6">
                 <div class="bg-white bg-opacity-10 border border-[#bb8f4f] rounded-lg shadow-lg p-6 text-white relative transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:bg-opacity-20">
